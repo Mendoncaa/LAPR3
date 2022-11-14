@@ -1,0 +1,15 @@
+profundidade janelas e portas -> 30 cm
+espessura paredes divisórias -> 7 cm
+portas zonas C, D, E -> 93 cm largura
+		     -> 210 cm altura
+
+espessura parede exterior -> 30 cm
+
+garagem -> 300 cm altura
+	-> 400 cm largura
+
+janelas -> 120 cm altura
+	-> 150 cm largura
+
+porta Zona B -> 200 cm largura
+	     -> 220 cm altura	
