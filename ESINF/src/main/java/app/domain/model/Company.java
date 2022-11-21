@@ -1,5 +1,6 @@
 package app.domain.model;
 
+import app.stores.IrrigationDeviceStore;
 import app.stores.UsersStore;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
@@ -10,6 +11,7 @@ public class Company {
     private String designation;
     private AuthFacade authFacade;
     private UsersStore usersStore;
+    private IrrigationDeviceStore irrigationDeviceStore;
 
     public Company(String designation)
     {
@@ -19,6 +21,11 @@ public class Company {
         this.designation = designation;
         this.authFacade = new AuthFacade();
         this.usersStore = new UsersStore();
+        this.irrigationDeviceStore = new IrrigationDeviceStore();
+    }
+
+    public IrrigationDeviceStore getIrrigationDeviceStore() {
+        return irrigationDeviceStore;
     }
 
     public String getDesignation() {
