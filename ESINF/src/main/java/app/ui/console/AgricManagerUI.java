@@ -11,8 +11,8 @@ public class AgricManagerUI implements Runnable{
     @Override
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        //options.add(new MenuItem("Register ", new RegisterUI()));
-        options.add(new MenuItem("Get information ", new GetInfoUI()));
+        options.add(new MenuItem("Create a watering dispositive ", new IrrigationDeviceCreationUI()));
+        options.add(new MenuItem("Check current irrigation ", new IrrigationDeviceUI()));
 
         int option = 0;
         do
