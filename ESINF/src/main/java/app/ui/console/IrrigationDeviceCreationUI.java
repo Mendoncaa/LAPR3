@@ -13,12 +13,12 @@ public class IrrigationDeviceCreationUI implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("###        Irrigation device        ###");
+        System.out.println("\n###        Irrigation device        ###");
         System.out.println();
 
         String path = Utils.readLineFromConsole("File path to read: ");
         if (this.ctrl.readFile(path)) {
-            System.out.println("New irrigation device created!");
+            System.out.println("\n\nNew irrigation device created!");
         } else {
             System.out.println("Error reading file!");
         }

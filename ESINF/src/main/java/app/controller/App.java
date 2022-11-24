@@ -79,7 +79,8 @@ public class App {
         this.authFacade.addUserRole(Constants.ROLE_DISTRIBUTION_MANAGER,Constants.ROLE_DISTRIBUTION_MANAGER);
         this.authFacade.addUserRole(Constants.ROLE_AGRICULTURAL_MANAGER,Constants.ROLE_AGRICULTURAL_MANAGER);
         this.authFacade.addUserRole(Constants.ROLE_DRIVER,Constants.ROLE_DRIVER);
-        this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem1.pt", "123456",Constants.ROLE_ADMIN);
+        this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem3.pt", "123456",Constants.ROLE_ADMIN);
+        this.authFacade.addUserWithRole("Main AgricManager", "agrman@lei.sem3.pt","123456",Constants.ROLE_AGRICULTURAL_MANAGER);
 
     }
 

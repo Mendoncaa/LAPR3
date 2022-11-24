@@ -29,8 +29,8 @@ public class IrrigationCheck {
 
         for (HoursMinutes hoursMinutes : device.getCicles()) {
             if (nowHM.isAfter(hoursMinutes)) {
-                if (checkIrrigationTime(hoursMinutes, device)) {
-                    return null;//incompleto
+                if (checkIrrigationTime(device,hoursMinutes)) {
+                    return findIrrigationInfo(device, hoursMinutes);
                 }
             }
         }
@@ -38,7 +38,7 @@ public class IrrigationCheck {
         return new IrrigationInfo(false, null, 0);
     }
 
-    private static boolean checkIrrigationTime(HoursMinutes hm, IrrigationDevice device) {
+    private static boolean checkIrrigationTime(IrrigationDevice device, HoursMinutes hm) {
         HoursMinutes hm1 = new HoursMinutes(hm);
         ArrayList<Irrigation> toBeWatered = irrigationsOfTheDay(device);
         HoursMinutes now = new HoursMinutes(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
@@ -52,23 +52,30 @@ public class IrrigationCheck {
     }
 
     private static IrrigationInfo findIrrigationInfo(IrrigationDevice device, HoursMinutes hm) {
-        HoursMinutes aux = new HoursMinutes(hm);
+        HoursMinutes aux = new HoursMinutes(hm);    //horas dos ciclos em análise
         HoursMinutes aux2 = new HoursMinutes(hm);
+        HoursMinutes aux3 = new HoursMinutes();
+
         Map<HoursMinutes, IrrigationInfo> irrigationInfoMap = new TreeMap<>();
-        ArrayList<Irrigation> irrigations = device.getIrrigations();
+        ArrayList<Irrigation> irrigations = irrigationsOfTheDay(device);
+
         HoursMinutes now = new HoursMinutes(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
 
-        for (int i = 0; i < irrigations.size(); i++) {
-            aux2.addMinutes(irrigations.get(i).getDuration());
+        for (Irrigation irrigation : irrigations) {
+            aux2 = new HoursMinutes(aux);
+            aux2.addMinutes(irrigation.getDuration());
             aux2.subtractHoursMinutes(now);
-            irrigationInfoMap.put(aux, new IrrigationInfo(true, irrigations.get(i).getSector(), aux2.getMinutes()));
-            aux.addMinutes(irrigations.get(i).getDuration());
+            aux.addMinutes(irrigation.getDuration());
+            irrigationInfoMap.put(new HoursMinutes(aux), new IrrigationInfo(true, irrigation.getSector(), aux2.getAllInMinutes()));
         }
-        return null;
+
+        for (HoursMinutes key : irrigationInfoMap.keySet()) {
+            if (key.isAfter(now)) {
+                return irrigationInfoMap.get(key);
+            }
+        }
+        return new IrrigationInfo(false, null, 0);
     }
-
-
-    //criar classe para descobrir que parcela está a regar
 
 
     private static ArrayList<Irrigation> irrigationsOfTheDay(IrrigationDevice device) {
@@ -79,13 +86,13 @@ public class IrrigationCheck {
         if (device.getIrrigations().size() != 0) {
             if (rest != 0) {
                 for (int i = 0; i < device.getIrrigations().size(); i++) {
-                    if (device.getIrrigations().get(i).getFrequency().equalsIgnoreCase("odd") || device.getIrrigations().get(i).getFrequency().equalsIgnoreCase("all")) {
+                    if (device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("odd") || device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("all")) {
                         irrigations.add(device.getIrrigations().get(i));
                     }
                 }
             } else {
                 for (int i = 0; i < device.getIrrigations().size(); i++) {
-                    if (device.getIrrigations().get(i).getFrequency().equalsIgnoreCase("even") || device.getIrrigations().get(i).getFrequency().equalsIgnoreCase("all")) {
+                    if (device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("even") || device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("all")) {
                         irrigations.add(device.getIrrigations().get(i));
                     }
                 }

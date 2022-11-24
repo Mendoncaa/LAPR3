@@ -2,7 +2,7 @@ package app.domain.model;
 
 import java.util.Objects;
 
-public class HoursMinutes {
+public class HoursMinutes implements Comparable<HoursMinutes> {
 
     private int hours;
     private int minutes;
@@ -66,6 +66,9 @@ public class HoursMinutes {
         if (this.minutes > 60){
             this.hours += this.minutes / 60;
             this.minutes = this.minutes % 60;
+        } else if (this.minutes == 60){
+            this.hours++;
+            this.minutes = 0;
         }
     }
 
@@ -101,6 +104,10 @@ public class HoursMinutes {
         return false;
     }
 
+    public int getAllInMinutes(){
+        return this.hours * 60 + this.minutes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,5 +124,21 @@ public class HoursMinutes {
     @Override
     public String toString() {
         return "Hours : " + this.hours + " Minutes : " + this.minutes;
+    }
+
+    @Override
+    public int compareTo(HoursMinutes o) {
+        if (this.hours > o.hours) {
+            return 1;
+        }
+        if (this.hours == o.hours) {
+            if (this.minutes > o.minutes) {
+                return 1;
+            }
+            if (this.minutes == o.minutes) {
+                return 0;
+            }
+        }
+        return -1;
     }
 }
