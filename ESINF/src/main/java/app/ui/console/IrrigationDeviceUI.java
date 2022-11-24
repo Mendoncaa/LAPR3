@@ -34,7 +34,7 @@ public class IrrigationDeviceUI implements Runnable {
                 }
             }
 
-            if (!LocalDateTime.now().isAfter(devices.get(option - 1).getLastIrrigationDay())) {
+            if (LocalDateTime.now().isBefore(devices.get(option - 1).getLastIrrigationDay())) {
                 IrrigationInfo print = this.ctrl.isWorking(devices.get(option - 1));
                 if (print != null) {
 
@@ -43,7 +43,7 @@ public class IrrigationDeviceUI implements Runnable {
                         System.out.println("Sector: " + print.getSectorName());
                         System.out.println("Irrigation minutes left: " + print.getIrrigationMinutesLeft());
                     } else {
-                        System.out.println("\nIrrigation device " + option + " is not working.");
+                        System.out.println("\nIrrigation device " + option + " is not working at this moment.");
                     }
                 } else {
                     System.out.println("There is no irrigations programmed today");

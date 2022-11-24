@@ -7,37 +7,68 @@ import app.domain.model.IrrigationInfo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
+
 
 public class IrrigationCheck {
 
     public static IrrigationInfo isWorking(IrrigationDevice device) {
         ArrayList<Irrigation> toBeWatered = irrigationsOfTheDay(device);
 
-        if (toBeWatered.size() == 0) {
-            System.out.println("There is no irrigations programmed today");
+        if (toBeWatered.isEmpty()) {
             return null;
         }
 
-        return isWorking(device); //incompleto
+        return findRightCicle(device);
     }
 
-    private static boolean findRightCicle(IrrigationDevice device) {
+    private static IrrigationInfo findRightCicle(IrrigationDevice device) {
         LocalDateTime now = LocalDateTime.now();
         HoursMinutes nowHM = new HoursMinutes(now.getHour(), now.getMinute());
 
-        Iterator<HoursMinutes> itr = device.getCicles().iterator();
-        while (itr.hasNext()) {
-            if (nowHM.isAfter(itr.next())) {
-                return true;
+        for (HoursMinutes hoursMinutes : device.getCicles()) {
+            if (nowHM.isAfter(hoursMinutes)) {
+                if (checkIrrigationTime(hoursMinutes, device)) {
+                    return null;//incompleto
+                }
             }
         }
-        return false;//incompleto
+
+        return new IrrigationInfo(false, null, 0);
     }
 
-    private static boolean checkIrrigationTime(HoursMinutes hm){
-    return false;//incompleto
+    private static boolean checkIrrigationTime(HoursMinutes hm, IrrigationDevice device) {
+        HoursMinutes hm1 = new HoursMinutes(hm);
+        ArrayList<Irrigation> toBeWatered = irrigationsOfTheDay(device);
+        HoursMinutes now = new HoursMinutes(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+
+        for (Irrigation irrigation : toBeWatered) {
+            hm1.addMinutes(irrigation.getDuration());
+        }
+
+        return now.isBetween(hm, hm1);
+
     }
+
+    private static IrrigationInfo findIrrigationInfo(IrrigationDevice device, HoursMinutes hm) {
+        HoursMinutes aux = new HoursMinutes(hm);
+        HoursMinutes aux2 = new HoursMinutes(hm);
+        Map<HoursMinutes, IrrigationInfo> irrigationInfoMap = new TreeMap<>();
+        ArrayList<Irrigation> irrigations = device.getIrrigations();
+        HoursMinutes now = new HoursMinutes(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+
+        for (int i = 0; i < irrigations.size(); i++) {
+            aux2.addMinutes(irrigations.get(i).getDuration());
+            aux2.subtractHoursMinutes(now);
+            irrigationInfoMap.put(aux, new IrrigationInfo(true, irrigations.get(i).getSector(), aux2.getMinutes()));
+            aux.addMinutes(irrigations.get(i).getDuration());
+        }
+        return null;
+    }
+
+
+    //criar classe para descobrir que parcela está a regar
 
 
     private static ArrayList<Irrigation> irrigationsOfTheDay(IrrigationDevice device) {

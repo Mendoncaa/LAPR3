@@ -3,9 +3,9 @@ package app.domain.model;
 import java.util.Objects;
 
 public class Irrigation {
-    public String sector;
-    public int duration;
-    public String frequency;
+    private String sector;
+    private int duration;
+    private String frequency;
 
     public Irrigation(String sector, int duration, String frequency) {
         this.sector = sector;

@@ -4,8 +4,14 @@ import java.util.Objects;
 
 public class HoursMinutes {
 
-    public int hours;
-    public int minutes;
+    private int hours;
+    private int minutes;
+
+
+    public HoursMinutes(HoursMinutes other) {
+        this.hours = other.getHours();
+        this.minutes = other.getMinutes();
+    }
 
     public HoursMinutes(int hours, int minutes) {
         this.hours = hours;
@@ -43,6 +49,24 @@ public class HoursMinutes {
             }
         }
         return false;
+    }
+
+
+    public void subtractHoursMinutes(HoursMinutes hm) {
+        this.hours -= hm.hours;
+        this.minutes -= hm.minutes;
+        if (this.minutes < 0) {
+            this.hours--;
+            this.minutes += 60;
+        }
+    }
+
+    public void addMinutes(int minutes){
+        this.minutes += minutes;
+        if (this.minutes > 60){
+            this.hours += this.minutes / 60;
+            this.minutes = this.minutes % 60;
+        }
     }
 
 
