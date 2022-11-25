@@ -37,9 +37,9 @@ public class FilesReaderApp {
                     if (items.length == 3) {
                         if (items[2].trim().equalsIgnoreCase("all") || items[2].trim().equalsIgnoreCase("even") || items[2].trim().equalsIgnoreCase("odd")) {
                             int t = Integer.parseInt(items[1].trim());
-                           if (valid) {
-                               device.addIrrigation(new Irrigation(items[0], t, items[2]));
-                           }
+                            if (valid) {
+                                device.addIrrigation(new Irrigation(items[0], t, items[2]));
+                            }
                         }
                     }
                 } catch (NumberFormatException e) {
@@ -134,22 +134,22 @@ public class FilesReaderApp {
 
 
         try {
-        Scanner scanner = new Scanner(fileEdges);
-        String buffer;
+            Scanner scanner = new Scanner(fileVertexes);
+            String buffer;
 
-        while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
 
-            buffer = scanner.nextLine();
-            String[] arrBuffer = buffer.split(",");
+                buffer = scanner.nextLine();
+                String[] arrBuffer = buffer.split(",");
 
-            if (arrBuffer.length != 4) {
-                continue;
+                if (arrBuffer.length != 4) {
+                    continue;
+                }
+
+                ClientsProducers clp = new ClientsProducers(arrBuffer[0], Float.parseFloat(arrBuffer[1]), Float.parseFloat(arrBuffer[2]), arrBuffer[3]);
+                clientProducersMap.addVertex(clp);
+                System.out.println(clp);
             }
-
-            ClientsProducers clp = new ClientsProducers(arrBuffer[0], Float.parseFloat(arrBuffer[1]), Float.parseFloat(arrBuffer[2]), arrBuffer[3]);
-            clientProducersMap.addVertex(clp);
-            System.out.println(clp);
-        }
         } catch (FileNotFoundException e) {
             System.out.println("Graph Vertexes file not found");
         }

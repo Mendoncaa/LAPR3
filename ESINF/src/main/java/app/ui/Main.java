@@ -10,13 +10,16 @@ public class Main {
 
     public static void main(String[] args)
     {
+
+        File graphVertexFile = new File("src/files/Small/clientes-produtores_small.csv");
+        File graphEdgeFile = new File("src/files/Small/distancias_small.csv");
+        FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);
+
         try
         {
             MainMenuUI menu = new MainMenuUI();
 
-            File graphVertexFile = new File("files/Small/clientes-produtores_small.csv");
-            File graphEdgeFile = new File("files\\Small\\distancias_small.csv");
-            FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);
+
 
                 menu.run();
         }
