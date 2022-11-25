@@ -5,6 +5,7 @@ import app.domain.model.ClientsProducers;
 import app.domain.model.HoursMinutes;
 import app.domain.model.Irrigation;
 import app.domain.model.IrrigationDevice;
+import app.graph.CommonGraph;
 import app.graph.Edge;
 import app.graph.Graph;
 
@@ -16,7 +17,8 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class FilesReaderApp {
-    public static boolean readIrrigationDeviceFile(File path) {
+
+    public static boolean readIrrigationDeviceFile(File path)  {
         try {
             Scanner scanner = new Scanner(path);
             boolean valid = true;
@@ -61,52 +63,12 @@ public class FilesReaderApp {
      *
      * @return countryMap adjacency map containing all the countries and their borders
      */
-    public static Graph<ClientsProducers, Edge> readProducerCSV(File file1) throws FileNotFoundException {
+    public static CommonGraph<ClientsProducers, Edge> readProducerCSV(File fileVertexes, File fileEdges)  {
 
-        Graph<ClientsProducers, Edge> clientProducersMap = new Graph<ClientsProducers, Edge>() {
-            @Override
-            public boolean isDirected() {
-                return false;
-            }
-
-            @Override
-            public int numVertices() {
-                return 0;
-            }
-
-            @Override
-            public ArrayList<ClientsProducers> vertices() {
-                return null;
-            }
-
-            @Override
-            public boolean validVertex(ClientsProducers vert) {
-                return false;
-            }
-
-            @Override
-            public int key(ClientsProducers vert) {
-                return 0;
-            }
-
-            @Override
-            public ClientsProducers vertex(int key) {
-                return null;
-            }
-
-            @Override
-            public ClientsProducers vertex(Predicate<ClientsProducers> p) {
-                return null;
-            }
-
+        CommonGraph<ClientsProducers, Edge> clientProducersMap = new CommonGraph<ClientsProducers, Edge>(true) {
             @Override
             public Collection<ClientsProducers> adjVertices(ClientsProducers vert) {
                 return null;
-            }
-
-            @Override
-            public int numEdges() {
-                return 0;
             }
 
             @Override
@@ -170,23 +132,27 @@ public class FilesReaderApp {
             }
         };
 
-        Scanner scanner = new Scanner(file1);
+
+        try {
+        Scanner scanner = new Scanner(fileEdges);
         String buffer;
 
         while (scanner.hasNextLine()) {
 
-            buffer = scanner.nextLine().replaceAll("\\s+", "");
+            buffer = scanner.nextLine();
             String[] arrBuffer = buffer.split(",");
 
-            if (arrBuffer.length < 6) {
+            if (arrBuffer.length != 4) {
                 continue;
             }
 
-            //ClientsProducers clp = new ClientsProducers(arrBuffer[0], arrBuffer[1], Double.parseDouble(arrBuffer[2]), arrBuffer[3], Double.parseDouble(arrBuffer[4]), Double.parseDouble(arrBuffer[5]));
-            //clientProducersMap.addVertex(clp);
+            ClientsProducers clp = new ClientsProducers(arrBuffer[0], Float.parseFloat(arrBuffer[1]), Float.parseFloat(arrBuffer[2]), arrBuffer[3]);
+            clientProducersMap.addVertex(clp);
+            System.out.println(clp);
         }
-
-
+        } catch (FileNotFoundException e) {
+            System.out.println("Graph Vertexes file not found");
+        }
         return clientProducersMap;
     }
 

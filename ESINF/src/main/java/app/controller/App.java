@@ -19,8 +19,7 @@ public class App {
 
     private EmailsPasswords emailsPasswords;
 
-    private App()
-    {
+    private App() {
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
         this.authFacade = this.company.getAuthFacade();
@@ -86,8 +85,7 @@ public class App {
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
     private static App singleton = null;
-    public static App getInstance()
-    {
+    public static App getInstance()  {
         if(singleton == null)
         {
             synchronized(App.class)

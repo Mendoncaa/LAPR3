@@ -1,9 +1,14 @@
 package app.domain.model;
 
+import app.domain.shared.FilesReaderApp;
+import app.graph.Edge;
+import app.graph.Graph;
 import app.stores.IrrigationDeviceStore;
 import app.stores.UsersStore;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
 
 
 public class Company {
@@ -12,9 +17,13 @@ public class Company {
     private AuthFacade authFacade;
     private UsersStore usersStore;
     private IrrigationDeviceStore irrigationDeviceStore;
+    private Graph<ClientsProducers, Edge> clientsProducersGraph;
 
-    public Company(String designation)
-    {
+    private File graphVertexFile = new File("files\\Small\\clientes-produtores_small.csv");
+
+    private File graphEdgeFile = new File("files\\Small\\distancias_small.csv");
+
+    public Company(String designation) {
         if (StringUtils.isBlank(designation))
             throw new IllegalArgumentException("Designation cannot be blank.");
 
@@ -22,6 +31,7 @@ public class Company {
         this.authFacade = new AuthFacade();
         this.usersStore = new UsersStore();
         this.irrigationDeviceStore = new IrrigationDeviceStore();
+        this.clientsProducersGraph = new FilesReaderApp().readProducerCSV(graphVertexFile, graphEdgeFile);
     }
 
     public IrrigationDeviceStore getIrrigationDeviceStore() {

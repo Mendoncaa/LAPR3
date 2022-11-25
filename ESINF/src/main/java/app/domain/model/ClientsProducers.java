@@ -8,11 +8,11 @@ public class ClientsProducers {
 
     private String locId;
 
-    private String latitude;
-    private String longitude;
+    private float latitude;
+    private float longitude;
     private String code;
 
-    public ClientsProducers(String locId, String latitude, String longitude, String code) {
+    public ClientsProducers(String locId, float latitude, float longitude, String code) {
         this.locId = locId;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -39,11 +39,11 @@ public class ClientsProducers {
         return locId;
     }
 
-    public String getLatitude() {
+    public float getLatitude() {
         return latitude;
     }
 
-    public String getLongitude() {return longitude;}
+    public float getLongitude() {return longitude;}
 
     public String getCode() {
         return code;
