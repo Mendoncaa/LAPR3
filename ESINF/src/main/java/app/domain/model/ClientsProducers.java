@@ -19,6 +19,13 @@ public class ClientsProducers {
         this.code = code;
     }
 
+    public ClientsProducers(ClientsProducers clientsProducers){
+        this.locId = clientsProducers.getLocationID();
+        this.latitude = clientsProducers.getLatitude();
+        this.longitude = clientsProducers.getLongitude();
+        this.code = clientsProducers.getCode();
+    }
+
     public ClientsProducers() {
     }
 

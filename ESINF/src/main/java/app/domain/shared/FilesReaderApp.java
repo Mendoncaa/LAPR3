@@ -10,11 +10,20 @@ import app.graph.map.MapGraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class FilesReaderApp {
 
-    public static boolean readIrrigationDeviceFile(File path)  {
+    public static void bootstrap() {
+
+        File graphVertexFile = new File("src/files/Small/clientes-produtores_small.csv");
+        File graphEdgeFile = new File("src/files/Small/distancias_small.csv");
+        FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);
+
+    }
+
+    public static boolean readIrrigationDeviceFile(File path) {
         try {
             Scanner scanner = new Scanner(path);
             boolean valid = true;
@@ -59,11 +68,9 @@ public class FilesReaderApp {
      *
      * @return clientProducersMap graph containing all the countries and their borders
      */
-    public static MapGraph<ClientsProducers, Edge<ClientsProducers, Double>> readProducerCSV(File fileVertexes, File fileEdges)  {
+    public static void readProducerCSV(File fileVertexes, File fileEdges) {
 
         System.out.println("running reading graph");
-
-        MapGraph<ClientsProducers, Edge<ClientsProducers, Double>> clientProducersMap = new MapGraph<>(true);
         String buffer;
         int counter;
 
@@ -78,15 +85,16 @@ public class FilesReaderApp {
                 buffer = scanner.nextLine();
                 String[] arrBuffer = buffer.split(",");
 
-                if (arrBuffer.length != 4) {
-                    System.out.printf("V - Line number: %d isn't valid.\n", counter );
-                    continue;
-                }
+                if (arrBuffer.length == 4) {
 
-                ClientsProducers clp = new ClientsProducers(arrBuffer[0], Float.parseFloat(arrBuffer[1]), Float.parseFloat(arrBuffer[2]), arrBuffer[3]);
-                clientProducersMap.addVertex(clp);
-                //System.out.println(clp);
-                counter++;
+                    ClientsProducers clp = new ClientsProducers(arrBuffer[0], Float.parseFloat(arrBuffer[1]), Float.parseFloat(arrBuffer[2]), arrBuffer[3]);
+                    App.getInstance().getCompany().getClientsProducersGraph().addVertex(clp);
+                    //System.out.println(clp);
+                    counter++;
+                } else {
+                    System.out.printf("V - Line number: %d isn't valid.\n", counter);
+                    counter++;
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Graph Vertexes file not found");
@@ -101,44 +109,71 @@ public class FilesReaderApp {
             while (scanner2.hasNextLine()) {
 
                 buffer = scanner2.nextLine();
-                String[] arrBuffer = buffer.split(",");
+                String[] arrBuffer = buffer.split(",");         //Loc id 1, Loc id 2, length (m)
 
-                if (arrBuffer.length != 3) {
+                if (arrBuffer.length == 3) {
+
+                    Iterator<ClientsProducers> cp = App.getInstance().getCompany().getClientsProducersGraph().vertices().iterator();
+                    boolean exist = false;
+                    boolean exist2 = false;
+                    ClientsProducers aux = null;
+                    ClientsProducers aux2 = null;
+
+                    while (cp.hasNext()) {
+                        ClientsProducers c = cp.next();
+                        if (c.getLocationID().equals(arrBuffer[0].trim())) {
+                            exist = true;
+                            aux = new ClientsProducers(c);
+                        }
+                        if (c.getLocationID().equals(arrBuffer[1].trim())) {
+                            exist2 = true;
+                            aux2 = new ClientsProducers(c);
+                        }
+                    }
+
+                    if (exist && exist2) {
+                        App.getInstance().getCompany().getClientsProducersGraph().addEdge(aux, aux2, Double.parseDouble(arrBuffer[2].trim()));
+                    } else {
+                        System.out.println("\nOne of the locations didn't exist\n");
+                    }
+
+                    /*
+                    Iterable<ClientsProducers> iterateCP = clientProducersMap.vertices();
+
+                    ClientsProducers cpCode1 = null;
+                    ClientsProducers cpCode2 = null;
+
+                    for (ClientsProducers cp : iterateCP) {
+
+                        if (cp.getCode().equals(arrBuffer[0])) {
+                            cpCode1 = cp;
+                            continue;
+                        }
+
+                        if (cp.getCode().equals(arrBuffer[1])) {
+                            cpCode2 = cp;
+                        }
+                    }
+
+                    if (cpCode1 != null && cpCode2 != null && !cpCode1.equals(cpCode2)) {
+
+                        //clientProducersMap.addEdge(cpCode1, cpCode2, Integer.parseInt(arrBuffer[2]));
+                    }
+
+                     */
+
+                    counter++;
+                } else {
                     System.out.printf("E - Line number: %d isn't valid.\n", counter);
-                    continue;
+                    counter++;
                 }
-
-                Iterable<ClientsProducers> iterateCP = clientProducersMap.vertices();
-
-                ClientsProducers cpCode1 = null;
-                ClientsProducers cpCode2 = null;
-
-                for (ClientsProducers cp : iterateCP) {
-
-                    if (cp.getCode().equals(arrBuffer[0])) {
-                        cpCode1 = cp;
-                        continue;
-                    }
-
-                    if (cp.getCode().equals(arrBuffer[1])) {
-                        cpCode2 = cp;
-                    }
-                }
-
-                if (cpCode1 != null && cpCode2 != null && !cpCode1.equals(cpCode2)) {
-
-                   //clientProducersMap.addEdge(cpCode1, cpCode2, Integer.parseInt(arrBuffer[2]));
-                }
-
-                counter++;
             }
 
         } catch (FileNotFoundException e) {
             System.out.println("Graph Edges file not found");
         }
 
-        System.out.println(clientProducersMap);
-        return clientProducersMap;
+        //System.out.println(graph);
     }
 
 }
