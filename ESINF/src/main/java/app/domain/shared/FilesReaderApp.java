@@ -31,7 +31,7 @@ public class FilesReaderApp {
                 try {
                     String[] items = scanner.nextLine().split(",");
                     if (items.length == 3) {
-                        if (items[2].trim().equalsIgnoreCase("all") || items[2].trim().equalsIgnoreCase("even") || items[2].trim().equalsIgnoreCase("odd")) {
+                        if (items[2].trim().equalsIgnoreCase("t") || items[2].trim().equalsIgnoreCase("p") || items[2].trim().equalsIgnoreCase("i")) {
                             int t = Integer.parseInt(items[1].trim());
                             if (valid) {
                                 device.addIrrigation(new Irrigation(items[0], t, items[2]));

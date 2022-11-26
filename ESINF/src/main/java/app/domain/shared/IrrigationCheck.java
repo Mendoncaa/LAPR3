@@ -86,13 +86,13 @@ public class IrrigationCheck {
         if (device.getIrrigations().size() != 0) {
             if (rest != 0) {
                 for (int i = 0; i < device.getIrrigations().size(); i++) {
-                    if (device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("odd") || device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("all")) {
+                    if (device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("i") || device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("t")) {
                         irrigations.add(device.getIrrigations().get(i));
                     }
                 }
             } else {
                 for (int i = 0; i < device.getIrrigations().size(); i++) {
-                    if (device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("even") || device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("all")) {
+                    if (device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("p") || device.getIrrigations().get(i).getFrequency().trim().equalsIgnoreCase("t")) {
                         irrigations.add(device.getIrrigations().get(i));
                     }
                 }
