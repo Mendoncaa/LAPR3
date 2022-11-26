@@ -8,6 +8,7 @@ import app.domain.model.IrrigationDevice;
 import app.graph.CommonGraph;
 import app.graph.Edge;
 import app.graph.Graph;
+import app.graph.map.MapGraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -63,79 +64,22 @@ public class FilesReaderApp {
      *
      * @return countryMap adjacency map containing all the countries and their borders
      */
-    public static CommonGraph<ClientsProducers, Edge> readProducerCSV(File fileVertexes, File fileEdges)  {
+    public static MapGraph<ClientsProducers, Edge<ClientsProducers, Double>> readProducerCSV(File fileVertexes, File fileEdges)  {
 
-        CommonGraph<ClientsProducers, Edge> clientProducersMap = new CommonGraph<ClientsProducers, Edge>(true) {
-            @Override
-            public Collection<ClientsProducers> adjVertices(ClientsProducers vert) {
-                return null;
-            }
+        MapGraph<ClientsProducers, Edge<ClientsProducers, Double>> clientProducersMap = new MapGraph<>(true);
 
-            @Override
-            public Collection<Edge<ClientsProducers, Edge>> edges() {
-                return null;
-            }
-
-            @Override
-            public Edge<ClientsProducers, Edge> edge(ClientsProducers vOrig, ClientsProducers vDest) {
-                return null;
-            }
-
-            @Override
-            public Edge<ClientsProducers, Edge> edge(int vOrigKey, int vDestKey) {
-                return null;
-            }
-
-            @Override
-            public int outDegree(ClientsProducers vert) {
-                return 0;
-            }
-
-            @Override
-            public int inDegree(ClientsProducers vert) {
-                return 0;
-            }
-
-            @Override
-            public Collection<Edge<ClientsProducers, Edge>> outgoingEdges(ClientsProducers vert) {
-                return null;
-            }
-
-            @Override
-            public Collection<Edge<ClientsProducers, Edge>> incomingEdges(ClientsProducers vert) {
-                return null;
-            }
-
-            @Override
-            public boolean addVertex(ClientsProducers vert) {
-                return false;
-            }
-
-            @Override
-            public boolean addEdge(ClientsProducers vOrig, ClientsProducers vDest, Edge weight) {
-                return false;
-            }
-
-            @Override
-            public boolean removeVertex(ClientsProducers vert) {
-                return false;
-            }
-
-            @Override
-            public boolean removeEdge(ClientsProducers vOrig, ClientsProducers vDest) {
-                return false;
-            }
-
-            @Override
-            public Graph<ClientsProducers, Edge> clone() {
-                return null;
-            }
-        };
-
+        System.out.println("graph object created.\n");
 
         try {
+
+            System.out.print("starting scanner\n");
+
             Scanner scanner = new Scanner(fileVertexes);
             String buffer;
+
+            scanner.nextLine(); //skip first line of file
+
+            System.out.print("scanner working \n");
 
             while (scanner.hasNextLine()) {
 
@@ -146,7 +90,7 @@ public class FilesReaderApp {
                     continue;
                 }
 
-                ClientsProducers clp = new ClientsProducers(arrBuffer[0], Float.parseFloat(arrBuffer[1]), Float.parseFloat(arrBuffer[2]), arrBuffer[3]);
+                ClientsProducers clp = new ClientsProducers(arrBuffer[0], Double.parseDouble(arrBuffer[1]), Double.parseDouble(arrBuffer[2]), arrBuffer[3]);
                 clientProducersMap.addVertex(clp);
                 System.out.println(clp);
             }

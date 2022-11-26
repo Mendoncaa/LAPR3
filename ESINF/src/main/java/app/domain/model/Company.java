@@ -3,6 +3,7 @@ package app.domain.model;
 import app.domain.shared.FilesReaderApp;
 import app.graph.Edge;
 import app.graph.Graph;
+import app.graph.map.MapGraph;
 import app.stores.IrrigationDeviceStore;
 import app.stores.UsersStore;
 import pt.isep.lei.esoft.auth.AuthFacade;
@@ -17,10 +18,8 @@ public class Company {
     private AuthFacade authFacade;
     private UsersStore usersStore;
     private IrrigationDeviceStore irrigationDeviceStore;
-    private Graph<ClientsProducers, Edge> clientsProducersGraph;
-
+    private MapGraph<ClientsProducers, Edge<ClientsProducers, Double>> clientsProducersGraph;
     private File graphVertexFile = new File("files\\Small\\clientes-produtores_small.csv");
-
     private File graphEdgeFile = new File("files\\Small\\distancias_small.csv");
 
     public Company(String designation) {
