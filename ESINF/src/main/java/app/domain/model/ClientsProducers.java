@@ -7,7 +7,6 @@ import java.util.Objects;
 public class ClientsProducers {
 
     private String locId;
-
     private float latitude;
     private float longitude;
     private String code;
@@ -54,6 +53,17 @@ public class ClientsProducers {
 
     public String getCode() {
         return code;
+    }
+
+    public String getType(String code) {
+
+        if(code.substring(0,1).equalsIgnoreCase("C")) {
+            return "Cliente";
+        }else if(code.substring(0,1).equalsIgnoreCase("P")) {
+            return "Produtor";
+        }else {
+            return "Empresa";
+        }
     }
 
     @Override

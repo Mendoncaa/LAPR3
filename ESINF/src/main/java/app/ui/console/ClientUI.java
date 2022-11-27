@@ -10,9 +10,10 @@ import java.util.List;
 public class ClientUI implements Runnable{
     @Override
     public void run() {
-        //List<MenuItem> options = new ArrayList<MenuItem>();
+        List<MenuItem> options = new ArrayList<MenuItem>();
         //options.add(new MenuItem("Register ", new RegisterUI()));
         //options.add(new MenuItem("Get information ", new GetInfoUI()));
+        options.add(new MenuItem("Get shortest path between Clients", new GraphUI()));
 
         /*
         int option = 0;
