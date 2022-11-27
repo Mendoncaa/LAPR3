@@ -19,8 +19,6 @@ public class Company {
     private UsersStore usersStore;
     private IrrigationDeviceStore irrigationDeviceStore;
     private MapGraph<ClientsProducers, Double> clientsProducersGraph;
-    private File graphVertexFile = new File("files\\Small\\clientes-produtores_small.csv");
-    private File graphEdgeFile = new File("files\\Small\\distancias_small.csv");
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -30,7 +28,7 @@ public class Company {
         this.authFacade = new AuthFacade();
         this.usersStore = new UsersStore();
         this.irrigationDeviceStore = new IrrigationDeviceStore();
-        this.clientsProducersGraph = new MapGraph<ClientsProducers,Double>(false);
+        this.clientsProducersGraph = new MapGraph<>(false);
     }
 
     public MapGraph<ClientsProducers, Double> getClientsProducersGraph() {

@@ -5,20 +5,25 @@ import app.domain.model.ClientsProducers;
 import app.domain.model.HoursMinutes;
 import app.domain.model.Irrigation;
 import app.domain.model.IrrigationDevice;
+import app.graph.Algorithms;
 import app.graph.Edge;
 import app.graph.map.MapGraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Scanner;
+
+import static app.graph.Algorithms.DepthFirstSearch;
 
 public class FilesReaderApp {
 
     public static void bootstrap() {
 
-        File graphVertexFile = new File("src/files/Small/clientes-produtores_small.csv");
-        File graphEdgeFile = new File("src/files/Small/distancias_small.csv");
+        File graphVertexFile = new File("./ESINF/src/files/Small/clientes-produtores_small.csv");
+        File graphEdgeFile = new File("./ESINF/src/files/Small/distancias_small.csv");
         FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);
 
     }
@@ -70,7 +75,7 @@ public class FilesReaderApp {
      */
     public static void readProducerCSV(File fileVertexes, File fileEdges) {
 
-        System.out.println("running reading graph");
+        System.out.println("creating graph");
         String buffer;
         int counter;
 
@@ -137,31 +142,6 @@ public class FilesReaderApp {
                         System.out.println("\nOne of the locations didn't exist\n");
                     }
 
-                    /*
-                    Iterable<ClientsProducers> iterateCP = clientProducersMap.vertices();
-
-                    ClientsProducers cpCode1 = null;
-                    ClientsProducers cpCode2 = null;
-
-                    for (ClientsProducers cp : iterateCP) {
-
-                        if (cp.getCode().equals(arrBuffer[0])) {
-                            cpCode1 = cp;
-                            continue;
-                        }
-
-                        if (cp.getCode().equals(arrBuffer[1])) {
-                            cpCode2 = cp;
-                        }
-                    }
-
-                    if (cpCode1 != null && cpCode2 != null && !cpCode1.equals(cpCode2)) {
-
-                        //clientProducersMap.addEdge(cpCode1, cpCode2, Integer.parseInt(arrBuffer[2]));
-                    }
-
-                     */
-
                     counter++;
                 } else {
                     System.out.printf("E - Line number: %d isn't valid.\n", counter);
@@ -173,7 +153,30 @@ public class FilesReaderApp {
             System.out.println("Graph Edges file not found");
         }
 
+        MapGraph<ClientsProducers, Double> cpgraph = App.getInstance().getCompany().getClientsProducersGraph();
+        int cpVert = App.getInstance().getCompany().getClientsProducersGraph().numVertices();
+        ArrayList<ClientsProducers> cp = App.getInstance().getCompany().getClientsProducersGraph().vertices();
+        ClientsProducers cpOrig = cp.get(0);
+
+        boolean connected = isConnected(cpgraph, cpOrig, cp);
+        System.out.printf("Connected graph: %b", connected);
         //System.out.println(graph);
+    }
+    public static boolean isConnected(MapGraph<ClientsProducers, Double> cpgraph,ClientsProducers cpOrig, ArrayList<ClientsProducers> cp) {
+
+        LinkedList<ClientsProducers> dfsResults = Algorithms.DepthFirstSearch(cpgraph, cpOrig);
+        boolean connected = true;
+
+        int i;
+        for (i = 0; i < dfsResults.size();i++){
+            if(!dfsResults.contains(cp.get(i))) {
+                //System.out.println("not connected");
+                connected = false;
+            }
+            //System.out.println("seeing if its connected");
+        }
+
+        return connected;
     }
 
 }
