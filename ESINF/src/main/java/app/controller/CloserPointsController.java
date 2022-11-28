@@ -2,7 +2,7 @@ package app.controller;
 
 import app.domain.model.Company;
 import app.domain.model.Path;
-import app.domain.shared.CloserPointsCheck;
+import app.domain.shared.ClosestPointsCheck;
 
 import java.util.ArrayList;
 
@@ -20,6 +20,6 @@ public class CloserPointsController {
     }
 
     public ArrayList<Path> getCloserPoints() {
-        return CloserPointsCheck.getCloserPoints();
+        return ClosestPointsCheck.getCloserPoints();
     }
 }

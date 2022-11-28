@@ -4,6 +4,7 @@ package app.ui.console;
 
 
 import app.ui.console.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,9 @@ public class ClientUI implements Runnable{
         //options.add(new MenuItem("Register ", new RegisterUI()));
         //options.add(new MenuItem("Get information ", new GetInfoUI()));
         options.add(new MenuItem("Get shortest path between Clients", new GraphUI()));
+        options.add(new MenuItem("Get closest hub", new ClosestHubUI()));
 
-        /*
+
         int option = 0;
         do
         {
@@ -27,8 +29,5 @@ public class ClientUI implements Runnable{
             }
         }
         while (option != -1 );
-
-         */
-        System.out.println("\n\n\n------------------ Client menu ------------------\n\n\n");
     }
 }
