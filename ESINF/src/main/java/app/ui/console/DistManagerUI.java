@@ -11,8 +11,7 @@ public class DistManagerUI implements Runnable{
     @Override
     public void run() {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        //options.add(new MenuItem("Register ", new RegisterUI()));
-        options.add(new MenuItem("Get information ", new GetInfoUI()));
+        options.add(new MenuItem("Define the hubs of the distribution network",new NCloserPointsUI()));
 
         int option = 0;
         do

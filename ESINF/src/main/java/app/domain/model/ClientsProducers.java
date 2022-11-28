@@ -30,7 +30,7 @@ public class ClientsProducers {
 
     @Override
     public String toString() {
-        return String.format("Location ID : "+this.locId+"   Latitude : "+this.latitude+"   Longitude : "+this.longitude+ " Code : "+this.code);
+        return String.format("Location ID : "+this.locId+"    Latitude : "+this.latitude+"    Longitude : "+this.longitude+ "    Code : "+this.code);
     }
 
     @Override
