@@ -137,7 +137,7 @@ public class FilesReaderApp {
                     }
 
                     if (exist && exist2) {
-                        App.getInstance().getCompany().getClientsProducersGraph().addEdge(aux, aux2, Double.parseDouble(arrBuffer[2].trim()));
+                        App.getInstance().getCompany().getClientsProducersGraph().addEdge(aux, aux2, Integer.parseInt(arrBuffer[2].trim()));
                     } else {
                         System.out.println("\nOne of the locations didn't exist\n");
                     }
@@ -153,7 +153,7 @@ public class FilesReaderApp {
             System.out.println("Graph Edges file not found");
         }
 
-        MapGraph<ClientsProducers, Double> cpgraph = App.getInstance().getCompany().getClientsProducersGraph();
+        MapGraph<ClientsProducers, Integer> cpgraph = App.getInstance().getCompany().getClientsProducersGraph();
         int cpVert = App.getInstance().getCompany().getClientsProducersGraph().numVertices();
         ArrayList<ClientsProducers> cp = App.getInstance().getCompany().getClientsProducersGraph().vertices();
         ClientsProducers cpOrig = cp.get(0);
@@ -162,7 +162,7 @@ public class FilesReaderApp {
         System.out.printf("Connected graph: %b", connected);
         //System.out.println(graph);
     }
-    public static boolean isConnected(MapGraph<ClientsProducers, Double> cpgraph,ClientsProducers cpOrig, ArrayList<ClientsProducers> cp) {
+    public static boolean isConnected(MapGraph<ClientsProducers, Integer> cpgraph,ClientsProducers cpOrig, ArrayList<ClientsProducers> cp) {
 
         LinkedList<ClientsProducers> dfsResults = Algorithms.DepthFirstSearch(cpgraph, cpOrig);
         boolean connected = true;

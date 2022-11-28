@@ -18,7 +18,7 @@ public class Company {
     private AuthFacade authFacade;
     private UsersStore usersStore;
     private IrrigationDeviceStore irrigationDeviceStore;
-    private MapGraph<ClientsProducers, Double> clientsProducersGraph;
+    private MapGraph<ClientsProducers, Integer> clientsProducersGraph;
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -31,7 +31,7 @@ public class Company {
         this.clientsProducersGraph = new MapGraph<>(false);
     }
 
-    public MapGraph<ClientsProducers, Double> getClientsProducersGraph() {
+    public MapGraph<ClientsProducers, Integer> getClientsProducersGraph() {
         return clientsProducersGraph;
     }
 

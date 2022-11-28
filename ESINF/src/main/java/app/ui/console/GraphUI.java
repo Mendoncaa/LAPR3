@@ -11,7 +11,7 @@ import java.util.LinkedList;
 
 public class GraphUI implements Runnable{
 
-    MapGraph<ClientsProducers, Double> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+    MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
     ClientsProducers clp1;
     ClientsProducers clp2;
 
@@ -22,8 +22,7 @@ public class GraphUI implements Runnable{
 
     public void run() {
 
-
-       // LinkedList<ClientsProducers> dfsResults = Algorithms.shortestPath(clpGraph, clp1, clp2, Integer::compare, Integer::sum, 0, path);
+       Integer dfsResults = Algorithms.shortestPath(clpGraph, clp1, clp2, Integer::compare, Integer::sum, 0, path);
 
     }
 
