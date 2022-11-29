@@ -16,15 +16,18 @@ public class MainMenuUI {
     public void run() throws IOException
     {
         List<MenuItem> options = new ArrayList<MenuItem>();
-        options.add(new MenuItem("Do Login", new AuthUI()));
-        options.add(new MenuItem("Know the Development Team",new DevTeamUI()));
+        //options.add(new MenuItem("Do Login", new AuthUI()));
         options.add(new MenuItem("Get shortest path between Clients", new GraphUI()));
         options.add(new MenuItem("Get smallest fully connected network", new GraphSmallestUI()));
+        options.add(new MenuItem("Define the hubs of the distribution network",new NCloserPointsUI()));
+        options.add(new MenuItem("Get closest hub", new ClosestHubUI()));
+        options.add(new MenuItem("Register an irrigation device ", new IrrigationDeviceCreationUI()));
+        options.add(new MenuItem("Check current irrigation ", new IrrigationDeviceUI()));
 
         int option = 0;
         do
         {
-            option = Utils.showAndSelectIndex(options, "\n\nMain Menu");
+            option = Utils.showAndSelectIndex(options, "\n\nMain Menu\n");
 
             if ( (option >= 0) && (option < options.size()))
             {
