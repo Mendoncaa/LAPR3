@@ -16,7 +16,6 @@ public class GraphUI implements Runnable{
     ClientsProducers clp2 = null;
     ArrayList<ClientsProducers> cp = clpGraph.vertices();
     LinkedList<String> toBePrinted = new LinkedList<>();
-    String cpCodeBuffer;
     LinkedList<ClientsProducers> path = new LinkedList<>();
 
     ArrayList<String> codePath = new ArrayList<>();
@@ -25,15 +24,7 @@ public class GraphUI implements Runnable{
     @Override
     public void run() {
 
-        for(int i = 0; i < cp.size(); i++) {
-
-            if(cp.get(i).getType().equalsIgnoreCase("Empresa")) {
-                continue;
-            }
-            cpCodeBuffer = cp.get(i).getCode();
-
-            toBePrinted.add(cpCodeBuffer);
-        }
+        generateToBePrinted(cp, toBePrinted);
 
         System.out.printf(toBePrinted + "\n");
 
@@ -67,15 +58,26 @@ public class GraphUI implements Runnable{
 
         }
 
-        System.out.printf("Smallest path from Origin to Destination is:" + codePath + "with size %d.\n", dfsResults);
+        System.out.printf("Smallest path from Origin to Destination is:" + codePath + " with size %d and distance in meters %d.\n", codePath.size(), dfsResults);
+
+        toBePrinted.clear();
+        path.clear();
+        codePath.clear();
 
     }
 
+    private static void generateToBePrinted (ArrayList<ClientsProducers> cp, LinkedList<String> toBePrinted) {
 
-    public <V, E> E getShortestPath(Graph<V, E> clpGraph, ClientsProducers clp1, ClientsProducers clp2, LinkedList<ClientsProducers> path) {
+        for(int i = 0; i < cp.size(); i++) {
 
+            if(cp.get(i).getType().equalsIgnoreCase("Empresa")) {
+                continue;
+            }
+            String cpCodeBuffer = cp.get(i).getCode();
 
+            toBePrinted.add(cpCodeBuffer);
+        }
 
-        return null;
     }
+
 }
