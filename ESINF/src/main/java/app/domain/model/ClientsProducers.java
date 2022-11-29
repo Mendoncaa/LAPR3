@@ -55,7 +55,7 @@ public class ClientsProducers {
         return code;
     }
 
-    public String getType(String code) {
+    public String getType() {
 
         if(code.substring(0,1).equalsIgnoreCase("C")) {
             return "Cliente";

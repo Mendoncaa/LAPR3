@@ -43,8 +43,8 @@ public class Path {
         ArrayList<Integer> distsAux = new ArrayList<>();
 
         for (int i = 0; i < this.paths.size(); i++) {
-            if (this.paths.get(i).getLast().getType(this.paths.get(i).getLast().getCode()).equalsIgnoreCase("Cliente")
-                    || this.paths.get(i).getLast().getType(this.paths.get(i).getLast().getCode()).equalsIgnoreCase("Produtor")) {
+            if (this.paths.get(i).getLast().getType().equalsIgnoreCase("Cliente")
+                    || this.paths.get(i).getLast().getType().equalsIgnoreCase("Produtor")) {
                 distsAux.add(this.dists.get(i));
             }
         }

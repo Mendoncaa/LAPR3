@@ -22,8 +22,8 @@ public class FilesReaderApp {
 
     public static void bootstrap() {
 
-        File graphVertexFile = new File("src/files/Small/clientes-produtores_small.csv");
-        File graphEdgeFile = new File("src/files/Small/distancias_small.csv");
+        File graphVertexFile = new File("./ESINF/src/files/Small/clientes-produtores_small.csv");
+        File graphEdgeFile = new File("./ESINF/src/files/Small/distancias_small.csv");
         FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);
 
     }
@@ -155,7 +155,7 @@ public class FilesReaderApp {
 
         MapGraph<ClientsProducers, Integer> cpgraph = App.getInstance().getCompany().getClientsProducersGraph();
         int cpVert = App.getInstance().getCompany().getClientsProducersGraph().numVertices();
-        ArrayList<ClientsProducers> cp = App.getInstance().getCompany().getClientsProducersGraph().vertices();
+        ArrayList<ClientsProducers> cp = cpgraph.vertices();
         ClientsProducers cpOrig = cp.get(0);
 
         boolean connected = isConnected(cpgraph, cpOrig, cp);

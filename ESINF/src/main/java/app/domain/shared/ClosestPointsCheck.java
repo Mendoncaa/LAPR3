@@ -20,7 +20,7 @@ public class ClosestPointsCheck {
         ArrayList<ClientsProducers> vertices = graph.vertices();
 
         for (ClientsProducers vertex : vertices) {
-            if (vertex.getType(vertex.getCode()).equalsIgnoreCase("Empresa")) {
+            if (vertex.getType().equalsIgnoreCase("Empresa")) {
                 companies.add(vertex);
             }
         }
@@ -50,7 +50,7 @@ public class ClosestPointsCheck {
         Set<HubAndDist> topHubs = new TreeSet<>(new DistanceComparator());
 
         for (int i = 0; i < paths.size(); i++) {
-            if (paths.get(i).getLast().getType(paths.get(i).getLast().getCode()).equalsIgnoreCase("Empresa")) {
+            if (paths.get(i).getLast().getType().equalsIgnoreCase("Empresa")) {
                 topHubs.add(new HubAndDist(paths.get(i).getLast(), dists.get(i)));
             }
         }

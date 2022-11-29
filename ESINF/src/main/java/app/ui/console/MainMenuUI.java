@@ -18,6 +18,7 @@ public class MainMenuUI {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Do Login", new AuthUI()));
         options.add(new MenuItem("Know the Development Team",new DevTeamUI()));
+        options.add(new MenuItem("Get shortest path between Clients", new GraphUI()));
         int option = 0;
         do
         {

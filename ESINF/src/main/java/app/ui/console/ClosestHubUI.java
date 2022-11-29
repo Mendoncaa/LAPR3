@@ -21,7 +21,7 @@ public class ClosestHubUI implements Runnable {
         ArrayList<ClientsProducers> clients = new ArrayList<>();
 
         for (int i = 0; i < graph.vertices().size(); i++) {
-            if (graph.vertices().get(i).getType(graph.vertices().get(i).getCode()).equalsIgnoreCase("Cliente")) {
+            if (graph.vertices().get(i).getType().equalsIgnoreCase("Cliente")) {
                 clients.add(graph.vertices().get(i));
             }
         }
