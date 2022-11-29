@@ -13,11 +13,13 @@
 
 #include <stdio.h> 
 #include <stdint.h> 
-uint64_t state=0;  
-uint64_t inc=0;
+#include <stdlib.h>
+
 
 uint32_t pcg32_random_r()
-{
+{	
+	uint64_t state=rand()%64; 
+	uint64_t inc=rand()%64;
     uint64_t oldstate = state;
     // Advance internal state
     state = oldstate * 6364136223846793005ULL + (inc|1);
@@ -29,8 +31,10 @@ uint32_t pcg32_random_r()
 
 int main()
     { 
-      int i; 
+	
+      int i;   
+	  srand(time(NULL));
       for(i=0;i<32;i++) 
-		printf("%8x\n",pcg32_random_r()); 
+		printf("%d", rand() % 64); 
       return 0; 
     } 

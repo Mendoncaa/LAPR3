@@ -14,8 +14,8 @@ int main(){
 	}
 	state = fread(&state, sizeof(uint64_t), 1, f);
 	inc = fread(&inc, sizeof(uint64_t), 1, f);
-	for(i=0;i<32;i++) 
-    printf("%8x\n",pcg32_random_r()); 
+	for(i=0;i<32;i++)
+	printf("%d\n", rand() % 64);
 	return 0;
 	
 }
