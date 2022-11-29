@@ -44,7 +44,10 @@ public class ClosestHubUI implements Runnable {
         }
 
         System.out.println("\nClient : \n" + clients.get(option - 1));
-        System.out.println("\nClosest Hub : \n" + ctrl.getClosestHub(clients.get(option - 1)));
-
+        if (ctrl.getClosestHub(clients.get(option - 1), graph) == null) {
+            System.out.println("\nThere is no hub available for this client!\n");
+        } else {
+            System.out.println("\nClosest hub : \n" + ctrl.getClosestHub(clients.get(option - 1),graph));
+        }
     }
 }

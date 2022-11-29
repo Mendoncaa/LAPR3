@@ -1,6 +1,7 @@
 package app.ui.console;
 
 
+import app.controller.App;
 import app.controller.CloserPointsController;
 import app.domain.model.Path;
 import app.domain.shared.AverageComparator;
@@ -31,7 +32,7 @@ public class NCloserPointsUI implements Runnable {
             }
         } while (!exit);
 
-        ArrayList<Path> closerPoints = ctrl.getCloserPoints();
+        ArrayList<Path> closerPoints = ctrl.getCloserPoints(App.getInstance().getCompany().getClientsProducersGraph());
         Set<Path> closerPointsSet = new TreeSet<>(new AverageComparator());
 
         closerPointsSet.addAll(closerPoints);

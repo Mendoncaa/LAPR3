@@ -1,8 +1,8 @@
-package app.graph.test.matrix;
+package test.map;
 
 import app.graph.Algorithms;
 import app.graph.Graph;
-import app.graph.matrix.MatrixGraph;
+import app.graph.map.MapGraph;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,12 +11,12 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MatrixAlgorithmsTest {
+class MapAlgorithmsTest {
 
-    final Graph<String,Integer> completeMap = new MatrixGraph<>(false);
-    Graph<String,Integer> incompleteMap = new MatrixGraph<>(false);
+    final Graph<String, Integer> completeMap = new MapGraph<>(false);
+    Graph<String, Integer> incompleteMap = new MapGraph<>(false);
 
-    public MatrixAlgorithmsTest() {
+    public MapAlgorithmsTest() {
     }
 
     @BeforeEach
@@ -127,30 +127,44 @@ class MatrixAlgorithmsTest {
 
         LinkedList<String> shortPath = new LinkedList<>();
 
+
         Integer lenPath = Algorithms.shortestPath(completeMap, "Porto", "LX", Integer::compare, Integer::sum, 0, shortPath);
+
+
         assertNull(lenPath, "Length path should be null if vertex does not exist");
         assertEquals(0, shortPath.size(), "Shortest Path does not exist");
+
+        shortPath.clear();
 
         lenPath = Algorithms.shortestPath(incompleteMap, "Porto", "Faro", Integer::compare, Integer::sum, 0, shortPath);
         assertNull(lenPath, "Length path should be null if vertex does not exist");
         assertEquals(0, shortPath.size(), "Shortest Path does not exist");
 
+        shortPath.clear();
+
         lenPath = Algorithms.shortestPath(completeMap, "Porto", "Porto", Integer::compare, Integer::sum, 0, shortPath);
         assertEquals(0, lenPath, "Length path should be 0 if vertices are the same");
         assertEquals(Arrays.asList("Porto"), shortPath, "Shortest Path only contains Porto");
+
+        shortPath.clear();
 
         lenPath = Algorithms.shortestPath(incompleteMap, "Porto", "Lisboa", Integer::compare, Integer::sum, 0, shortPath);
         assertEquals(335, lenPath, "Length path should be 0 if vertices are the same");
         assertEquals(Arrays.asList("Porto", "Aveiro", "Coimbra", "Lisboa"), shortPath, "Shortest Path Porto - Lisboa");
 
+        shortPath.clear();
+
         lenPath = Algorithms.shortestPath(incompleteMap, "Braga", "Leiria", Integer::compare, Integer::sum, 0, shortPath);
         assertEquals(255, lenPath, "Length path should be 0 if vertices are the same");
         assertEquals(Arrays.asList("Braga", "Porto", "Aveiro", "Leiria"), shortPath, "Shortest Path Braga - Leiria");
+
+        shortPath.clear();
 
         lenPath = Algorithms.shortestPath(completeMap, "Porto", "Castelo Branco", Integer::compare, Integer::sum, 0, shortPath);
         assertEquals(335, lenPath, "Length path should be 0 if vertices are the same");
         assertEquals(Arrays.asList("Porto", "Aveiro", "Viseu", "Guarda", "Castelo Branco"), shortPath, "Shortest Path Porto - Castelo Branco");
 
+        shortPath.clear();
         //Changing Edge: Aveiro-Viseu with Edge: Leiria-C.Branco
         //should change shortest path between Porto and Castelo Branco
 
@@ -167,7 +181,7 @@ class MatrixAlgorithmsTest {
      */
     @Test
     public void testShortestPaths() {
-        System.out.println("Test of shortest path");
+        System.out.println("Test of shortest paths");
 
         ArrayList<LinkedList<String>> paths = new ArrayList<>();
         ArrayList<Integer> dists = new ArrayList<>();
@@ -198,17 +212,30 @@ class MatrixAlgorithmsTest {
         assertEquals(255, dists.get(completeMap.key("Leiria")), "Path between Braga and Leiria should be 255 Km");
         assertEquals(Arrays.asList("Braga", "Porto", "Aveiro", "Leiria"), paths.get(completeMap.key("Leiria")), "Path to Leiria");
     }
-    
-    /**
-     * Test minimum distance graph using Floyd-Warshall.
-     */
+
+
+    @Test
+    public void allPaths(){
+        ArrayList<LinkedList<String>> paths = new ArrayList<>();
+        paths = Algorithms.allPaths(completeMap, "Porto", "Castelo Branco");
+
+        for (int i = 0; i < paths.size(); i++) {
+            System.out.println(paths.get(i));
+        }
+    }
+
+
+
+    ///**
+    //* Test minimum distance graph using Floyd-Warshall.
+    //*/
+    /*
     @Test
     public void testminDistGraph() {
     
         throw new UnsupportedOperationException("Not supported yet.");
         
     }
-    
-    
-    
+
+     */
 }

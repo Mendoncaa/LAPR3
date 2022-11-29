@@ -36,36 +36,38 @@ public class FilesReaderApp {
 
             String[] hours = scanner.nextLine().split(",");
 
-            IrrigationDevice device = new IrrigationDevice();
-            for (String hour : hours) {
-                String[] time = hour.trim().split(":");
-                device.addCicle(new HoursMinutes(Integer.parseInt(time[0]), Integer.parseInt(time[1])));
-            }
+            if (hours.length > 0 && hours[0].contains(":")) {
+                IrrigationDevice device = new IrrigationDevice();
+                for (String hour : hours) {
+                    String[] time = hour.trim().split(":");
+                    device.addCicle(new HoursMinutes(Integer.parseInt(time[0]), Integer.parseInt(time[1])));
+                }
 
-            while (scanner.hasNextLine()) {
-                try {
-                    String[] items = scanner.nextLine().split(",");
-                    if (items.length == 3) {
-                        if (items[2].trim().equalsIgnoreCase("t") || items[2].trim().equalsIgnoreCase("p") || items[2].trim().equalsIgnoreCase("i")) {
-                            int t = Integer.parseInt(items[1].trim());
-                            if (valid) {
-                                device.addIrrigation(new Irrigation(items[0], t, items[2]));
+                while (scanner.hasNextLine()) {
+                    try {
+                        String[] items = scanner.nextLine().split(",");
+                        if (items.length == 3) {
+                            if (items[2].trim().equalsIgnoreCase("t") || items[2].trim().equalsIgnoreCase("p") || items[2].trim().equalsIgnoreCase("i")) {
+                                int t = Integer.parseInt(items[1].trim());
+                                if (valid) {
+                                    device.addIrrigation(new Irrigation(items[0], t, items[2]));
+                                }
                             }
                         }
+                    } catch (NumberFormatException e) {
+                        valid = false;
                     }
-                } catch (NumberFormatException e) {
-                    valid = false;
                 }
+
+                App.getInstance().getCompany().getIrrigationDeviceStore().add(device);
+            } else {
+                return false;
             }
-
-            App.getInstance().getCompany().getIrrigationDeviceStore().add(device);
-
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
             return false;
         }
-
         return true;
     }
 
@@ -163,14 +165,15 @@ public class FilesReaderApp {
         System.out.printf("Connected graph: %b", connected);
         //System.out.println(graph);
     }
-    public static boolean isConnected(MapGraph<ClientsProducers, Integer> cpgraph,ClientsProducers cpOrig, ArrayList<ClientsProducers> cp) {
+
+    public static boolean isConnected(MapGraph<ClientsProducers, Integer> cpgraph, ClientsProducers cpOrig, ArrayList<ClientsProducers> cp) {
 
         LinkedList<ClientsProducers> dfsResults = Algorithms.DepthFirstSearch(cpgraph, cpOrig);
         boolean connected = true;
 
         int i;
-        for (i = 0; i < dfsResults.size();i++){
-            if(!dfsResults.contains(cp.get(i))) {
+        for (i = 0; i < dfsResults.size(); i++) {
+            if (!dfsResults.contains(cp.get(i))) {
                 //System.out.println("not connected");
                 connected = false;
             }

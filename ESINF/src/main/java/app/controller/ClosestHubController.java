@@ -3,6 +3,7 @@ package app.controller;
 import app.domain.model.ClientsProducers;
 import app.domain.model.Company;
 import app.domain.shared.ClosestPointsCheck;
+import app.graph.Graph;
 
 public class ClosestHubController {
 
@@ -16,6 +17,6 @@ public class ClosestHubController {
         this.company = company;
     }
 
-    public ClientsProducers getClosestHub(ClientsProducers cp){return ClosestPointsCheck.getClosestHub(cp);
+    public ClientsProducers getClosestHub(ClientsProducers cp, Graph<ClientsProducers,Integer> graph){return ClosestPointsCheck.getClosestHub(cp, graph);
     }
 }

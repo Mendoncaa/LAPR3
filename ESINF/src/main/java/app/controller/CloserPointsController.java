@@ -1,8 +1,10 @@
 package app.controller;
 
+import app.domain.model.ClientsProducers;
 import app.domain.model.Company;
 import app.domain.model.Path;
 import app.domain.shared.ClosestPointsCheck;
+import app.graph.Graph;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,7 @@ public class CloserPointsController {
         this.company = company;
     }
 
-    public ArrayList<Path> getCloserPoints() {
-        return ClosestPointsCheck.getCloserPoints();
+    public ArrayList<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
+        return ClosestPointsCheck.getCloserPoints(graph);
     }
 }
