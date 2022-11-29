@@ -19,6 +19,8 @@ public class MainMenuUI {
         options.add(new MenuItem("Do Login", new AuthUI()));
         options.add(new MenuItem("Know the Development Team",new DevTeamUI()));
         options.add(new MenuItem("Get shortest path between Clients", new GraphUI()));
+        options.add(new MenuItem("Get smallest fully connected network", new GraphSmallestUI()));
+
         int option = 0;
         do
         {

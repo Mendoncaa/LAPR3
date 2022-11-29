@@ -22,6 +22,7 @@ public class FilesReaderApp {
 
     public static void bootstrap() {
 
+
         File graphVertexFile = new File("ESINF/src/files/Small/clientes-produtores_small.csv");
         File graphEdgeFile = new File("ESINF/src/files/Small/distancias_small.csv");
         FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);

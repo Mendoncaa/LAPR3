@@ -8,15 +8,15 @@ import app.ui.console.utils.Utils;
 
 import java.util.*;
 
-public class GraphUI implements Runnable{
+public class GraphSmallestUI implements Runnable{
 
     MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
     ClientsProducers clp1 = null;
-    ClientsProducers clp2 = null;
     ArrayList<ClientsProducers> cp = clpGraph.vertices();
     LinkedList<String> toBePrinted = new LinkedList<>();
-    LinkedList<ClientsProducers> path = new LinkedList<>();
+   ArrayList< LinkedList<ClientsProducers>> path = new ArrayList<>();
 
+   ArrayList<Integer> dists = new ArrayList<>();
     ArrayList<String> codePath = new ArrayList<>();
 
     Comparator<Double> cpE;
@@ -38,26 +38,13 @@ public class GraphUI implements Runnable{
 
         System.out.println(clp1);
 
-        String dest = Utils.readLineFromConsole("Please Select Destination Vertex from list!\n");
-
-        for(int i = 0; i < cp.size(); i++) {
-
-            if (dest.equalsIgnoreCase(cp.get(i).getCode())) {
-                clp2 = cp.get(i);
-            }
-        }
-
-        System.out.println(clp2);
-
-        Integer sPathResults = Algorithms.shortestPath(clpGraph, clp1, clp2, Integer::compare, Integer::sum, 0, path);
+        boolean sPathsResults = Algorithms.shortestPaths(clpGraph, clp1, Integer::compare, Integer::sum, 0, path, dists);
 
         for(int i = 0; i < path.size(); i++) {
 
-            codePath.add(path.get(i).getCode());
-
         }
 
-        System.out.printf("Smallest path from Origin to Destination is:" + codePath + " with size %d and distance in meters %d.\n", codePath.size(), sPathResults);
+        System.out.printf("Smallest path from Origin to Destination is:" + codePath + " with size %d and distance in meters %d.\n", codePath.size(), sPathsResults);
 
         toBePrinted.clear();
         path.clear();
@@ -76,5 +63,7 @@ public class GraphUI implements Runnable{
 
             toBePrinted.add(cpCodeBuffer);
         }
+
     }
+
 }
