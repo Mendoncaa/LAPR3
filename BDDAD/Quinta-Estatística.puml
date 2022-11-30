@@ -1,0 +1,107 @@
+@startuml Quinta Estatísticas
+
+/'TODO #1:- Verificar se a Designação de um Campo é única e se estas 
+devem seguir um conjunto de regras;'/
+/'TODO #2:- Determinar o valor minímo de uma qualquer Área;'/
+/'Constraints:- [[Area, CHECK(Area > Mínimo)]]'/
+entity Campo {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL
+    Area: NUMBER NOT NULL
+}
+
+entity Sensor {
+    * ID: INTEGER <<PK>>
+    --
+    Campo_ID: INTEGER <<FK>> NOT NULL
+    Marca: VARCHAR2(255) NOT NULL
+    Modelo: VARCHAR2(255) NOT NULL UNIQUE
+}
+
+/'Triggers:-
+    #1: Verificar que um dado Sensor não é utilizado para recolher 
+diferentes tipos de Dados;'/
+entity Dado {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Sensor_ID: INTEGER <<FK>> NOT NULL
+}
+
+/'Constraints:- [[Valor. CHECK(0 =< Valor =< 180)]]'/
+entity Precipitacao {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Valor: NUMBER NOT NULL
+}
+
+/'Constraints:- [[Valor. CHECK(-10 =< Valor =< 45)]]'/
+entity Temperatura_Solo {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Valor: NUMBER NOT NULL
+}
+
+/'Constraints:- [[Valor. CHECK(0 =< Valor =< 100)]]'/
+entity Humidade_Solo {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Valor: NUMBER NOT NULL
+}
+
+/'Constraints:- [[Valor. CHECK(0 =< Valor =< 40)]]'/
+entity Velocidade_Vento {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Valor: NUMBER NOT NULL
+}
+
+/'Constraints:- [[Valor. CHECK(-6 =< Valor =< 40)]]'/
+entity Temperatura_Ar {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Valor: NUMBER NOT NULL
+}
+
+/'Constraints:- [[Valor. CHECK(0 =< Valor =< 100)]]'/
+entity Humidade_Ar {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Valor: NUMBER NOT NULL
+}
+
+/'Constraints:- [[Valor. CHECK(950 =< Valor =< 1040)]]'/
+entity Pressao_Atmosferica {
+    * Data_Dado: DATE <<PK>>
+    * Campo_ID: INTEGER <<PK>>
+    --
+    Valor: NUMBER NOT NULL
+}
+
+Campo ||-l-|{ Sensor
+Campo ||-d-|{ Dado
+
+Sensor ||-d-|{ Dado
+
+Precipitacao ||-u-|| Dado
+
+Temperatura_Solo ||-u-|| Dado
+
+Humidade_Solo ||-u-|| Dado
+
+Velocidade_Vento ||-u-|| Dado
+
+Temperatura_Ar ||-u-|| Dado
+
+Humidade_Ar ||-r-|| Dado
+
+Pressao_Atmosferica ||-l-|| Dado
+
+@enduml
