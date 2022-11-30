@@ -20,16 +20,6 @@ entity Cultura {
     Especie_Vegetal_ID: INTEGER <<FK>> NOT NULL UNIQUE
 }
 
-/'Constraints:- [[Campo_ID, Data_Inicio_Cultura, UNIQUE(Campo_ID, Data_Inicio_Cultura)], 
-[Data_Fim_Cultura, CHECK(Data_Fim_Cultura < Data_Inicio_Cultura)]]'/
-entity Campo_Cultura {
-    * Campo_ID: INTEGER <<PK>> <<FK>>
-    * Cultura_ID: INTEGER <<PK>> <<FK>>
-    * Data_Inicio_Cultura: DATE <<PK>>
-    --
-    Data_Fim_Cultura: DATE
-}
-
 /'Contraints:- [[Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo > 0)], 
 [Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo < 12)]]'/
 entity Cultura_Temporaria {
@@ -42,31 +32,26 @@ entity Cultura_Permanente {
     * Cultura_ID: INTEGER <<PK>> <<FK>>
 }
 
-/'Constraints:- [[Preco, CHECK(Preco > 0)]]'/
+/'Constraints:- [[Campo_ID, Data_Inicio_Cultura, UNIQUE(Campo_ID, Data_Inicio_Cultura)], 
+[Data_Fim_Cultura, CHECK(Data_Fim_Cultura < Data_Inicio_Cultura)]]'/
+entity Plantacao {
+    * Campo_ID: INTEGER <<PK>> <<FK>>
+    * Cultura_ID: INTEGER <<PK>> <<FK>>
+    --
+    Data_Inicio_Cultura: DATE <<PK>>
+    Data_Fim_Cultura: DATE
+}
+
 entity Especie_Vegetal {
     * ID: INTEGER <<PK>>
     --
     Nome: VARCHAR2(255) NOT NULL UNIQUE
 }
 
-entity Preco {
-    * Valor: NUMBER(4,2) <<PK>>
+entity Tipo_Cliente {
+    * ID: INTEGER <<PK>>
     --
-}
-
-/'Constraints:- [[Data_Validade, CHECK(Data_Validade > Data_Colheita)]]'/
-entity Colheita {
-    * Especie_Vegetal_ID: INTEGER <<PK>> <<FK>>
-    * Data_Colheita: DATE <<PK>>
-    --
-    Data_Validade: DATE NOT NULL
-    Quantidade: NUMBER NOT NULL
-}
-
-entity Campo_Colheita {
-    * Campo_ID: INTEGER <<PK>> <<FK>>
-    * Especie_Vegetal_ID: INTEGER <<PK>> <<FK>>
-    * Data_Colheita: DATE <<PK>> 
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
 }
 
 /'Constraints:- [[Numero_Fiscal, CHECK(Numero_Fiscal LIKE "[0-9]{9}")], 
@@ -81,12 +66,8 @@ entity Cliente {
     Numero_Fiscal: VARCHAR(9) NOT NULL UNIQUE
     Email: VARCHAR2(255) NOT NULL UNIQUE
     Plafond: NUMBER NOT NULL
-}
-
-entity Tipo_Cliente {
-    * ID: INTEGER <<PK>>
-    --
-    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+    Numero_Total_Encomendas: INTEGER NOT NULL
+    Valor_Total_Encomendas: NUMBER NOT NULL
 }
 
 /'Constraints:- [[Numero_Porta, CHECK(Numero_Porta > 0)], 
@@ -117,55 +98,74 @@ entity Encomenda {
     * ID: INTEGER <<PK>>
     --
     Cliente_Codigo_Unico: INTEGER <<FK>> NOT NULL
-    Estado_ID: INTEGER <<FK>> NOT NULL
     Data_Encomenda: DATE NOT NULL
     Data_Limite_Pagamento: DATE NOT NULL
-}
-
-entity Estado {
-    * ID: INTEGER <<PK>>
-    --
-    Designacao: VARCHAR2(255) NOT NULL UNIQUE
-}
-
-entity Pagamento {
-    * Cliente_Codigo_Unico: INTEGER <<PK>> <<FK>>
-    * Encomenda_ID: INTEGER <<PK>> <<FK>>
-    --
     Data_Pagamento: DATE NOT NULL
 }
 
-/'Constraints:- [[Data_Sanamento, CHECK(Data_Sanamento >= Data_Incumprimento)]]'/
+/'Triggers:-
+    #1:'/
 entity Incidente {
     * Cliente_Codigo_Unico: INTEGER <<PK>> <<FK>>
     * Encomenda_ID: INTEGER <<PK>> <<FK>>
     --
     Data_Incumprimento: DATE NOT NULL
-    Data_Sanamento: DATE NOT NULL
 }
 
-/'Constraints:- [[Quantidade, CHECK(Quantidade > 0)], [Preco, CHECK(Preco > 0)]]'/
-/'Triggers:-
-    #1: Quantidade da Espécie Vegetal encomendada não deve ser superior à Quantidade
-    extraída na Colheita feita no mesmo período da Encomenda;'/
-entity Encomenda_Colheita {
+entity Encomenda_Especie_Vegetal {
     * Encomenda_ID: INTEGER <<PK>> <<FK>>
     * Especie_Vegetal_ID: INTEGER <<PK>> <<FK>>
-    * Data_Colheita: DATE <<PK>>
     --
+    Quantidade: NUMBER NOT NULL
+    Preco: NUMBER NOT NULL
+}
+
+/'Constraints:- [[Quantidade, CHECK(Quantidade > 0)]]'/
+entity Accao {
+    * ID: INTEGER <<PK>>
+    --
+
+    Campo_ID: INTEGER <<FK>>
+    Cultura_ID: INTEGER <<FK>>
+    Data_Accao: DATE NOT NULL
     Quantidade: NUMBER NOT NULL
 }
 
-Campo ||-d-|{ Campo_Cultura
-Campo ||-u-|{ Campo_Colheita
+entity Metodo_Distribuicao {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+}
 
-Colheita ||-d-|{ Campo_Colheita
-Colheita ||-l-o{ Encomenda_Colheita
+entity Rega {
+    * Accao_ID: INTEGER <<PK>>
+    --
+    Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+}
 
-Cultura ||-u-|{ Campo_Cultura
+entity Aplicacao_Produto {
+    * Accao_ID: INTEGER <<PK>>
+    --
+    Produto_ID: INTEGER <<FK>> NOT NULL
+    Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+}
+
+entity Colheita {
+    * Accao_ID: INTEGER <<PK>>
+    --
+    Especie_Vegetal_ID: INTEGER <<FK>> NOT NULL
+    Preco: NUMBER NOT NULL
+}
+
+Campo ||-d-|{ Plantacao
+
+Cultura ||-u-|{ Plantacao
 Cultura ||-d-|| Cultura_Temporaria
-Cultura ||-l-|| Cultura_Permanente
-Cultura ||-u-|| Especie_Vegetal
+Cultura ||-r-|| Cultura_Permanente
+
+Plantacao ||-r-|{ Accao
+
+Tipo_Cliente ||-l-|{ Cliente
 
 Morada ||-d-|{ Cliente
 Morada ||-d-|{ Cliente
@@ -174,21 +174,20 @@ Localidade ||-r-|{ Morada
 
 Pais ||-l-|{ Morada
 
-Tipo_Cliente ||-r-|{ Cliente
-
-Preco ||-l-o{ Colheita
-
-Especie_Vegetal ||-u-o{ Colheita
-
-Estado ||-l-o{ Encomenda
-
 Cliente ||-d-o{ Encomenda
 Cliente ||-d-o{ Incidente
-Cliente ||-r-o{ Pagamento
 
-Encomenda ||-d-|{ Encomenda_Colheita
 Encomenda ||-l-o| Incidente
+Encomenda ||-d-|{ Encomenda_Especie_Vegetal
 
-Pagamento ||-d-|| Encomenda
+Especie_Vegetal ||-u-|{ Encomenda_Especie_Vegetal
+Especie_Vegetal ||---u---o{ Colheita
+
+Accao ||--d--|| Rega
+Accao ||--d--|| Aplicacao_Produto
+Accao ||--d--|| Colheita
+
+Metodo_Distribuicao ||-u-o{ Rega
+Metodo_Distribuicao ||-u-o{ Aplicacao_Produto
 
 @enduml
