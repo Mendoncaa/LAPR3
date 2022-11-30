@@ -1,19 +1,19 @@
 .section data
-    .global ptrpluvio
-.section .text
-    .global sens_pluvio
+    .global ptrhumatm
+.section text
+    .global sens_humd_atm
 
-sens_pluvio:
-    movq ptrpluvio(%rip), %rcx
+sen_humd_atm:
+    movq ptrhumatm(%rip), %rcx
 
     addb %dl, %dil
 
     cmpb $0, %dil
     jl zero
-
     movb %dil, %al
     movb %al, (%rcx)
     ret
+
 zero:
     movb $0, %dil
     movb %dil, %al

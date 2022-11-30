@@ -1,8 +1,8 @@
-package app.graph.test.map;
+package test.matrix;
 
 import app.graph.Edge;
 import app.graph.Graph;
-import app.graph.map.MapGraph;
+import app.graph.matrix.MatrixGraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,18 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author DEI-ISEP
  *
  */
-public class MapGraphTest {
-
+public class MatrixGraphTest {
     final ArrayList<String> co = new ArrayList<>(Arrays.asList( "A", "A", "B", "C", "C", "D", "E", "E"));
     final ArrayList <String> cd = new ArrayList<>(Arrays.asList("B", "C", "D", "D", "E", "A", "D", "E"));
     final ArrayList <Integer> cw = new ArrayList<>(Arrays.asList( 1,  2 ,  3 ,  4 ,  5 ,  6 ,  7 ,  8 ));
 
     final ArrayList <String> ov = new ArrayList<>(Arrays.asList( "A",  "B",  "C" ,  "D" ,  "E" ));
-    MapGraph<String, Integer> instance = null;
+    MatrixGraph<String, Integer> instance = null;
 
     @BeforeEach
     public void initializeGraph() {
-        instance = new MapGraph<>(true) ;
+        instance = new MatrixGraph<>(true) ;
     }
 
     /**
@@ -41,7 +40,7 @@ public class MapGraphTest {
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
 
-        Graph<String,Integer> g = new MapGraph<>(instance);
+        Graph<String,Integer> g = new MatrixGraph<>(instance);
         assertEquals( instance.getClass(), g.getClass(), "The graphs should be from the same class");
         assertEquals(instance, g, "The graphs should have equal contents");
     }
@@ -54,7 +53,7 @@ public class MapGraphTest {
         System.out.println("Test isDirected");
 
         assertTrue( instance.isDirected(), "result should be true");
-        instance = new MapGraph<>(false);
+        instance = new MatrixGraph<>(false);
         assertFalse(instance.isDirected(), "result should be false");
     }
 
@@ -75,7 +74,7 @@ public class MapGraphTest {
         instance.removeVertex("B");
         assertEquals(0, instance.numVertices(), "result should be zero");
     }
-    
+
     /**
      * Test of vertices method, of class Graph.
      */
@@ -84,7 +83,7 @@ public class MapGraphTest {
         System.out.println("Test vertices");
 
         assertEquals(0, instance.vertices().size(), "vertices should be empty");
-        
+
         instance.addVertex("A");
         instance.addVertex("B");
 
@@ -100,7 +99,7 @@ public class MapGraphTest {
         cs.removeAll(Arrays.asList("B"));
         assertEquals(0, cs.size(), "Vertice should be B");
 
-	    instance.removeVertex("B");
+        instance.removeVertex("B");
         cs = instance.vertices();
         assertEquals(0, cs.size(), "Must not have any vertice");
     }
@@ -202,7 +201,7 @@ public class MapGraphTest {
             ced.removeIf(e -> e.getVOrig().equals(co.get(finalI)) && e.getVDest().equals(cd.get(finalI)) && e.getWeight().equals(cw.get(finalI)));
         }
         assertEquals(0, ced.size(), "Edges should be as inserted");
-        
+
         instance.removeEdge("A","B");
         ced = instance.edges();
         assertEquals(7, ced.size(), "Must have 7 edges");
@@ -351,7 +350,7 @@ public class MapGraphTest {
         assertEquals(2, cie.size(), "Incoming edges of vert E should be 2");
         cie.removeIf(e -> e.getWeight() == 5 || e.getWeight() == 8);
         assertEquals(0, cie.size(), "Incoming edges of vert C should be 5 and 8");
-        
+
         instance.removeEdge("E","E");
 
         cie = instance.incomingEdges("E");
@@ -370,7 +369,7 @@ public class MapGraphTest {
      * Test of removeVertex method, of class Graph.
      */
     @Test
-    public void testRemoveVertex() {       
+    public void testRemoveVertex() {
         System.out.println("Test removeVertex");
 
         for (int i = 0; i <co.size(); i++)
@@ -395,12 +394,12 @@ public class MapGraphTest {
         assertEquals(0, instance.numVertices(), "Num vertices should be 0");
         assertEquals(0, instance.numEdges(), "Num vertices should be 0");
     }
-    
+
     /**
      * Test of removeEdge method, of class Graph.
      */
     @Test
-    public void testRemoveEdge() {     
+    public void testRemoveEdge() {
         System.out.println("Test removeEdge");
 
         assertEquals(0, instance.numEdges(), "Num edges should be 0");
@@ -423,13 +422,13 @@ public class MapGraphTest {
             assertEquals(0, ced.size(),"Expected size is 0");
         }
     }
-    
+
     /**
      * Test of toString method, of class Graph.
      */
     @Test
     public void testClone() {
-	System.out.println("Test Clone");
+        System.out.println("Test Clone");
 
         for (int i = 0; i <co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -462,7 +461,7 @@ public class MapGraphTest {
         for (int i = 0; i <co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
 
-        MapGraph<String,Integer> otherInst =new MapGraph<>(true) ;
+        MatrixGraph<String,Integer> otherInst =new MatrixGraph<>(true) ;
         for (int i = 0; i <co.size(); i++)
             otherInst.addEdge(co.get(i), cd.get(i), cw.get(i));
 
@@ -487,7 +486,7 @@ public class MapGraphTest {
 
     @Test
     public void testUnDirectedGraph() {
-        instance = new MapGraph<>(false);
+        instance = new MatrixGraph<>(false);
 
         for (int i = 0; i <co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -516,5 +515,5 @@ public class MapGraphTest {
             assertEquals(cw.get(i), ecu.getWeight());
         }
     }
-}
 
+}

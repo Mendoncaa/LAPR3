@@ -12,9 +12,7 @@ import java.util.*;
 
 public class ClosestPointsCheck {
 
-    public static ArrayList<Path> getCloserPoints() {
-
-        Graph<ClientsProducers, Integer> graph = App.getInstance().getCompany().getClientsProducersGraph();
+    public static ArrayList<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
 
         ArrayList<ClientsProducers> companies = new ArrayList<>();
         ArrayList<ClientsProducers> vertices = graph.vertices();
@@ -41,12 +39,12 @@ public class ClosestPointsCheck {
 
     }
 
-    public static ClientsProducers getClosestHub(ClientsProducers cp) {
+    public static ClientsProducers getClosestHub(ClientsProducers cp, Graph<ClientsProducers, Integer> graph) {
 
         ArrayList<LinkedList<ClientsProducers>> paths = new ArrayList<>();
         ArrayList<Integer> dists = new ArrayList<>();
 
-        Algorithms.shortestPaths(App.getInstance().getCompany().getClientsProducersGraph(), cp, Integer::compare, Integer::sum, 0, paths, dists);
+        Algorithms.shortestPaths(graph, cp, Integer::compare, Integer::sum, 0, paths, dists);
         Set<HubAndDist> topHubs = new TreeSet<>(new DistanceComparator());
 
         for (int i = 0; i < paths.size(); i++) {
@@ -54,7 +52,9 @@ public class ClosestPointsCheck {
                 topHubs.add(new HubAndDist(paths.get(i).getLast(), dists.get(i)));
             }
         }
-
+        if (topHubs.isEmpty()){
+            return null;
+        }
         return topHubs.iterator().next().getHub();
     }
 }

@@ -22,6 +22,11 @@ int main() {
 		return 1;
     }
      
+	
 	printf("%d\n",pcg32_random_r()); 
-    return 0; 
+    return 0;
+
+
+
+
 }
