@@ -30,3 +30,23 @@ int main() {
 
 
 }
+
+for(int = 0; i<(sizeof(array__)/sizeof(array__[0]));i++){   //pluviosidade
+	sum += array__[i];
+	count++;
+	if (array__[i] < minValue) {
+	minValue = array__[i];
+	}
+	if (arraypluvio[i] > maxValue) {
+	maxValue = array__[i];
+	}
+}
+	avg = sum/count;
+	*(ptrMtrx+15) = maxValue;
+	*(ptrMtrx+16) = minValue;
+	*(ptrMtrx+17)= avg;
+	minValue =400;
+	maxValue=0;
+	sum=0; 
+	count=0; 
+	avg=0;
