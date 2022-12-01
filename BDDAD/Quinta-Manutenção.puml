@@ -1,4 +1,4 @@
-@startuml Quinta Manutenção
+@startuml Quinta-Manutenção
 
 /'TODO #1:- Verificar se a Designação de um Campo é única e se estas 
 devem seguir um conjunto de regras;'/
@@ -17,61 +17,46 @@ entity Campo {
 entity Cultura {
     * ID: INTEGER <<PK>>
     --
-    Especie_Vegetal_ID: INTEGER <<FK>> NOT NULL UNIQUE
 }
 
 /'Constraints:- [[Campo_ID, Data_Inicio_Cultura, UNIQUE(Campo_ID, Data_Inicio_Cultura)], 
 [Data_Fim_Cultura, CHECK(Data_Fim_Cultura < Data_Inicio_Cultura)]]'/
-entity Campo_Cultura {
+entity Plantacao {
     * Campo_ID: INTEGER <<PK>> <<FK>>
     * Cultura_ID: INTEGER <<PK>> <<FK>>
-    * Data_Inicio_Cultura: DATE <<PK>>
     --
+    Data_Inicio_Cultura: DATE <<PK>>
     Data_Fim_Cultura: DATE
 }
 
-entity Plano {
+/'Constraints:- [[Quantidade, CHECK(Quantidade > 0)]]'/
+entity Accao {
     * ID: INTEGER <<PK>>
     --
-    Tipo_Plano_ID: INTEGER <<FK>> NOT NULL
+
     Campo_ID: INTEGER <<FK>>
     Cultura_ID: INTEGER <<FK>>
-    Data_Inicio_Cultura: DATE <<FK>>
-}
-
-entity Plano_Rega {
-    * Plano_ID: INTEGER <<PK>> <<FK>>
-    --
-}
-
-entity Plano_Aplicacao_Produto {
-    * Plano_ID: INTEGER <<PK>> <<FK>>
-    --
-}
-
-/'Constraints:- [[Quantidade, CHECK(Quantidade > 0)]]'/
-entity Aplicacao_Produto {
-    * Campo_ID: INTEGER <<PK>>
-    * Data_Aplicacao_Produto: DATE <<PK>>
-    --
-    Plano_ID: INTEGER <<FK>> NOT NULL
-    Produto_ID: INTEGER <<FK>> NOT NULL
-    Quantidade NUMBER NOT NULL
-}
-
-/'Constraints:- [[Quantidade, CHECK(Quantidade > 0)]]'/
-entity Rega {
-    * Campo_ID: INTEGER <<PK>>
-    * Data_Rega: DATE <<PK>>
-    --
-    Plano_ID: INTEGER <<FK>> NOT NULL
+    Data_Accao: DATE NOT NULL
     Quantidade: NUMBER NOT NULL
 }
 
-entity Tipo_Plano {
+entity Metodo_Distribuicao {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL UNIQUE
+}
+
+entity Rega {
+    * Accao_ID: INTEGER <<PK>>
+    --
+    Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+}
+
+entity Aplicacao_Produto {
+    * Accao_ID: INTEGER <<PK>>
+    --
+    Produto_ID: INTEGER <<FK>> NOT NULL
+    Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
 }
 
 entity Produto {
@@ -104,21 +89,11 @@ entity Ficha_Tecnica {
     Formulacao_Peletizada: INTEGER
 }
 
-/'Constraints:- [[Numero, CHECK(Numero > 0)]]'/
-entity Elemento {
-    * ID: INTEGER <<PK>>
-    --
-    Nome: VARCHAR2(255) NOT NULL UNIQUE
-    Simbolo: VARCHAR(2) NOT NULL UNIQUE
-    Numero: INTEGER NOT NULL
-}
-
-/'Constraints:- [[Percentagem, CHECK(Percentagem > 0)]]'/
-entity Ficha_Tecnica_Elemento {
+entity Ficha_Tecnica_Substancia {
     * Ficha_Tecnica_ID: INTEGER <<PK>> <<FK>>
-    * Elemento_ID: INTEGER <<PK>> <<FK>>
+    * Substancia_ID: INTEGER <<PK>> <<FK>>
     --
-    Percentagem: NUMBER NOT NULL
+    Quantidade: NUMBER NOT NULL
 }
 
 entity Substancia {
@@ -127,42 +102,59 @@ entity Substancia {
     Nome: VARCHAR2(255) NOT NULL UNIQUE
 }
 
-/'Constraints:- [[Percentagem, CHECK(Percentagem > 0)]]'/
-entity Ficha_Tecnica_Substancia {
-    * Ficha_Tecnica_ID: INTEGER <<PK>> <<FK>>
-    * Substancia_ID: INTEGER <<PK>> <<FK>>
+entity Plano {
+    * ID: INTEGER <<PK>>
     --
-    Percentagem: NUMBER NOT NULL
+    Tipo_Plano_ID: INTEGER <<FK>> NOT NULL
+    Campo_ID: INTEGER <<FK>> NOT NULL
+    Cultura_ID: INTEGER <<FK>> NOT NULL
+    Quantidade: NUMBER NOT NULL
 }
 
-Campo ||-d-|{ Campo_Cultura
-Campo ||-r-|{ Rega
-Campo ||-l-|{ Aplicacao_Produto
+entity Periocidade {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+}
 
-Cultura ||-u-|{ Campo_Cultura
+entity Plano_Rega {
+    * Plano_ID: INTEGER <<PK>> <<FK>>
+    --
+}
 
-Campo_Cultura ||--d--|{ Plano
+entity Plano_Aplicacao_Produto {
+    * Plano_ID: INTEGER <<PK>> <<FK>>
+    --
+}
 
-Tipo_Plano ||-u-o{ Plano
+Campo ||-d-|{ Plantacao
 
-Plano_Rega ||-u-|| Plano
-Plano_Rega ||-d-|{ Rega
+Cultura ||-r-|{ Plantacao
 
-Plano_Aplicacao_Produto ||--u--|| Plano
-Plano_Aplicacao_Produto ||-r-|{ Aplicacao_Produto
+Plantacao ||-r-|{ Accao
+Plantacao ||-d-|{ Plano
+
+Accao ||--d--|| Rega
+Accao ||--d--|| Aplicacao_Produto
+
+Metodo_Distribuicao ||-r-o{ Rega
+Metodo_Distribuicao ||-l-o{ Aplicacao_Produto
 
 Classificacao ||-d-o{ Produto
 
 Formulacao ||-d-o{ Produto
 
 Produto ||-d-|| Ficha_Tecnica
-Produto ||-u-o{ Aplicacao_Produto
+Produto ||--u--o{ Aplicacao_Produto
 
-Ficha_Tecnica ||-d-|{ Ficha_Tecnica_Elemento
 Ficha_Tecnica ||-d-|{ Ficha_Tecnica_Substancia
 
-Elemento ||-u-|{ Ficha_Tecnica_Elemento
-
 Substancia ||-u-|{ Ficha_Tecnica_Substancia
+
+Periocidade ||-r-o{ Plano
+
+Plano_Rega ||-u-|| Plano
+
+Plano_Aplicacao_Produto ||-u-|| Plano
 
 @enduml
