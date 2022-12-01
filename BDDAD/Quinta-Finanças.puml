@@ -17,7 +17,6 @@ entity Campo {
 entity Cultura {
     * ID: INTEGER <<PK>>
     --
-    Especie_Vegetal_ID: INTEGER <<FK>> NOT NULL UNIQUE
 }
 
 /'Contraints:- [[Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo > 0)], 
