@@ -37,7 +37,7 @@ entity Plantacao {
     * Campo_ID: INTEGER <<PK>> <<FK>>
     * Cultura_ID: INTEGER <<PK>> <<FK>>
     --
-    Data_Inicio_Cultura: DATE <<PK>>
+    Data_Inicio_Cultura: DATE
     Data_Fim_Cultura: DATE
 }
 
@@ -137,20 +137,20 @@ entity Metodo_Distribuicao {
 }
 
 entity Rega {
-    * Accao_ID: INTEGER <<PK>>
+    * Accao_ID: INTEGER <<PK>> <<FK>>
     --
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
 }
 
 entity Aplicacao_Produto {
-    * Accao_ID: INTEGER <<PK>>
+    * Accao_ID: INTEGER <<PK>> <<FK>>
     --
     Produto_ID: INTEGER <<FK>> NOT NULL
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
 }
 
 entity Colheita {
-    * Accao_ID: INTEGER <<PK>>
+    * Accao_ID: INTEGER <<PK>> <<FK>>
     --
     Especie_Vegetal_ID: INTEGER <<FK>> NOT NULL
     Preco: NUMBER NOT NULL

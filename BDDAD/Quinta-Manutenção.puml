@@ -105,7 +105,7 @@ entity Substancia {
 entity Plano {
     * ID: INTEGER <<PK>>
     --
-    Tipo_Plano_ID: INTEGER <<FK>> NOT NULL
+    Periodicidade_ID: INTEGER <<FK>> NOT NULL
     Campo_ID: INTEGER <<FK>> NOT NULL
     Cultura_ID: INTEGER <<FK>> NOT NULL
     Quantidade: NUMBER NOT NULL
