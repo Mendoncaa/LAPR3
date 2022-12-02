@@ -17,6 +17,13 @@ entity Campo {
 entity Cultura {
     * ID: INTEGER <<PK>>
     --
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+}
+
+entity Tipo_Cultura {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
 }
 
 /'Constraints:- [[Campo_ID, Data_Inicio_Cultura, UNIQUE(Campo_ID, Data_Inicio_Cultura)], 
@@ -55,6 +62,8 @@ Campo ||-d-|{ Plantacao
 Cultura ||-r-|{ Plantacao
 
 Plantacao ||-r-|{ Leitura
+
+Cultura }|-l-|| Tipo_Cultura 
 
 Tipo_Sensor ||-u-|{ Sensor
 

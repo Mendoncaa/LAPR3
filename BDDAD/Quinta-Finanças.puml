@@ -19,6 +19,12 @@ entity Cultura {
     --
 }
 
+entity Tipo_Cultura {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+}
+
 /'Contraints:- [[Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo > 0)], 
 [Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo < 12)]]'/
 entity Cultura_Temporaria {
@@ -161,6 +167,7 @@ Campo ||-d-|{ Plantacao
 Cultura ||-u-|{ Plantacao
 Cultura ||-d-|| Cultura_Temporaria
 Cultura ||-r-|| Cultura_Permanente
+Tipo_Cultura ||-u-|{ Cultura 
 
 Plantacao ||-r-|{ Accao
 
