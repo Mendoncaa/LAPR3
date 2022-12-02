@@ -5,6 +5,25 @@
 uint64_t state=0;  
 uint64_t inc=0;
 
+
+char temp[24];
+char *ptrtemp = &temp;
+
+char velcvento[24];
+char *ptrvento= &velcvento;
+
+char dirvento[24];
+char *ptrdirvento= &dirvento;
+
+char humdatm[24];
+char *ptrhumdatm= &humdatm;
+
+char humdsolo[24];
+char *ptrhumdsolo= &humdsolo;
+
+
+
+
 int main() { 
 	uint32_t buffer [64]; 
 	FILE *f;
@@ -81,12 +100,12 @@ void SensTemp(){
 		
 
 		if(i!=0){
-			ult_dir_vento=  *(ptrdir-1);
+			ult_dir_vento = *(ptrdir-1);
 		}
 		
 		sens_velc_vento(ult_dir_vento, comp_rand);
 
-		*ptrdir++;
+		*ptrdirvento++;
 		
 	}
 	
@@ -107,6 +126,19 @@ void SensTemp(){
 		sens_velc_vento(ult_dir_vento, comp_rand);
 
 		*ptrvento++;
+		
+	}
+
+	void SensHumdSolo(){
+		char ult_humd_solo;
+		for (int i = 0; i < 24; i++){
+			char comp_rand= pcg32_random_r() % 15;
+			
+		}
+
+		if(i!=0){
+			
+		}
 		
 	}
 
