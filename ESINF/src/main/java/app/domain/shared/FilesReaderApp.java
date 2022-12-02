@@ -78,7 +78,7 @@ public class FilesReaderApp {
      */
     public static void readProducerCSV(File fileVertexes, File fileEdges) {
 
-        System.out.println("creating graph");
+        System.out.println("Creating graph");
         String buffer;
         int counter;
 
