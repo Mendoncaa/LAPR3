@@ -102,6 +102,12 @@ entity Substancia {
     Nome: VARCHAR2(255) NOT NULL UNIQUE
 }
 
+entity Tipo_Cultura {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+}
+
 entity Plano {
     * ID: INTEGER <<PK>>
     --
@@ -130,6 +136,7 @@ entity Plano_Aplicacao_Produto {
 Campo ||-d-|{ Plantacao
 
 Cultura ||-r-|{ Plantacao
+Cultura }|-l-|| Tipo_Cultura 
 
 Plantacao ||-r-|{ Accao
 Plantacao ||-d-|{ Plano
