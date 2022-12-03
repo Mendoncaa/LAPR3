@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1738.2px" preserveAspectRatio="none" style="width:1795px;height:1738px;background:#FFFFFF;" version="1.1" viewBox="0 0 1795 1738" width="1795.8px" zoomAndPan="magnify"><defs/><g><!--MD5=[4533588fb66c6fa31a6e04bf29ae6161]
+class Algorithms--><g id="elem_Algorithms"><rect codeLine="5" fill="#FFFFFF" height="138.6967" id="Algorithms" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="544.8" x="279.9" y="803.7"/><ellipse cx="527.25" cy="812.1" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M528.9094,809.625 Q529.0031,809.4938 529.1156,809.4281 Q529.2281,809.3625 529.3594,809.3625 Q529.5844,809.3625 529.725,809.5219 Q529.8656,809.6719 529.8656,810.0375 L529.8656,810.9094 Q529.8656,811.275 529.725,811.4344 Q529.5844,811.5938 529.3594,811.5938 Q529.1531,811.5938 529.0313,811.4719 Q528.9094,811.3594 528.8438,811.05 Q528.8156,810.8344 528.7031,810.7219 Q528.5063,810.4969 528.1406,810.3656 Q527.775,810.2344 527.4,810.2344 Q526.9406,810.2344 526.5563,810.4313 Q526.1813,810.6281 525.8813,811.0781 Q525.5906,811.5281 525.5906,812.1469 L525.5906,812.8031 Q525.5906,813.5437 526.125,814.0406 Q526.6594,814.5281 527.6156,814.5281 Q528.1781,814.5281 528.5719,814.3781 Q528.8063,814.2844 529.0594,814.0219 Q529.2188,813.8625 529.3031,813.8156 Q529.3969,813.7688 529.5188,813.7688 Q529.7156,813.7688 529.8656,813.9281 Q530.025,814.0781 530.025,814.2844 Q530.025,814.4906 529.8188,814.7344 Q529.5188,815.0813 529.0406,815.2781 Q528.3938,815.55 527.6156,815.55 Q526.7063,815.55 525.9844,815.175 Q525.3938,814.875 524.9812,814.2375 Q524.5688,813.5906 524.5688,812.8219 L524.5688,812.1281 Q524.5688,811.3313 524.9344,810.6469 Q525.3094,809.9531 525.9656,809.5875 Q526.6219,809.2125 527.3625,809.2125 Q527.8031,809.2125 528.1875,809.3156 Q528.5813,809.4094 528.9094,809.625 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45.6" x="537.75" y="815.4407">Algorithms</text><line style="stroke:#000000;stroke-width:0.6;" x1="280.5" x2="824.1" y1="820.5" y2="820.5"/><line style="stroke:#000000;stroke-width:0.6;" x1="280.5" x2="824.1" y1="825.3" y2="825.3"/><ellipse cx="286.5" cy="833.7044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="229.2" x="290.7" y="836.1451">BreadthFirstSearch(Graph&lt;V, E&gt;, V): LinkedList&lt;V&gt;?</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="284.7" y="842.1132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="286.2" x="290.7" y="846.3539">DepthFirstSearch(Graph&lt;V, E&gt;, V, boolean[], LinkedList&lt;V&gt;): void</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="284.7" y="852.322"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="147.6" x="290.7" y="856.5627">initializePathDist(int, V[], E[]): void</text><ellipse cx="286.5" cy="864.3308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="221.4" x="290.7" y="866.7715">DepthFirstSearch(Graph&lt;V, E&gt;, V): LinkedList&lt;V&gt;?</text><ellipse cx="286.5" cy="874.5396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="243" x="290.7" y="876.9803">allPaths(Graph&lt;V, E&gt;, V, V): ArrayList&lt;LinkedList&lt;V&gt;&gt;?</text><polygon fill="#FFFFFF" points="286.5,881.7483,288.9,884.1483,286.5,886.5483,284.1,884.1483" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="230.4" x="290.7" y="887.1891">getPath(Graph&lt;V, E&gt;, V, V, V[], LinkedList&lt;V&gt;): void</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="284.7" y="893.1571"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="446.4" x="290.7" y="897.3979">shortestPathDijkstra(Graph&lt;V, E&gt;, V, Comparator&lt;E&gt;, BinaryOperator&lt;E&gt;, E, boolean[], V[], E[]): void</text><ellipse cx="286.5" cy="905.1659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="401.4" x="290.7" y="907.6066">shortestPath(Graph&lt;V, E&gt;, V, V, Comparator&lt;E&gt;, BinaryOperator&lt;E&gt;, E, LinkedList&lt;V&gt;): E?</text><ellipse cx="286.5" cy="915.3747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="530.4" x="290.7" y="917.8154">shortestPaths(Graph&lt;V, E&gt;, V, Comparator&lt;E&gt;, BinaryOperator&lt;E&gt;, E, ArrayList&lt;LinkedList&lt;V&gt;&gt;, ArrayList&lt;E&gt;): boolean</text><ellipse cx="286.5" cy="925.5835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="378.6" x="290.7" y="928.0242">minDistGraph(Graph&lt;V, E&gt;, Comparator&lt;E&gt;, BinaryOperator&lt;E&gt;): MatrixGraph&lt;V, E&gt;?</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="284.7" y="933.9923"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="375" x="290.7" y="938.233">allPaths(Graph&lt;V, E&gt;, V, V, boolean[], LinkedList&lt;V&gt;, ArrayList&lt;LinkedList&lt;V&gt;&gt;): void</text></g><!--MD5=[335f4d9be48430461c68bf6d6fdba145]
+class App--><g id="elem_App"><rect codeLine="18" fill="#FFFFFF" height="128.4879" id="App" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="178.8" x="68.1" y="490.2"/><ellipse cx="146.85" cy="498.6" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M148.5094,496.125 Q148.6031,495.9938 148.7156,495.9281 Q148.8281,495.8625 148.9594,495.8625 Q149.1844,495.8625 149.325,496.0219 Q149.4656,496.1719 149.4656,496.5375 L149.4656,497.4094 Q149.4656,497.775 149.325,497.9344 Q149.1844,498.0938 148.9594,498.0938 Q148.7531,498.0938 148.6313,497.9719 Q148.5094,497.8594 148.4438,497.55 Q148.4156,497.3344 148.3031,497.2219 Q148.1063,496.9969 147.7406,496.8656 Q147.375,496.7344 147,496.7344 Q146.5406,496.7344 146.1563,496.9313 Q145.7813,497.1281 145.4813,497.5781 Q145.1906,498.0281 145.1906,498.6469 L145.1906,499.3031 Q145.1906,500.0438 145.725,500.5406 Q146.2594,501.0281 147.2156,501.0281 Q147.7781,501.0281 148.1719,500.8781 Q148.4063,500.7844 148.6594,500.5219 Q148.8188,500.3625 148.9031,500.3156 Q148.9969,500.2687 149.1188,500.2687 Q149.3156,500.2687 149.4656,500.4281 Q149.625,500.5781 149.625,500.7844 Q149.625,500.9906 149.4188,501.2344 Q149.1188,501.5812 148.6406,501.7781 Q147.9938,502.05 147.2156,502.05 Q146.3063,502.05 145.5844,501.675 Q144.9938,501.375 144.5812,500.7375 Q144.1688,500.0906 144.1688,499.3219 L144.1688,498.6281 Q144.1688,497.8312 144.5344,497.1469 Q144.9094,496.4531 145.5656,496.0875 Q146.2219,495.7125 146.9625,495.7125 Q147.4031,495.7125 147.7875,495.8156 Q148.1813,495.9094 148.5094,496.125 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="16.8" x="157.35" y="501.9407">App</text><line style="stroke:#000000;stroke-width:0.6;" x1="68.7" x2="246.3" y1="507" y2="507"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="72.9" y="513.6044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="84" x="78.9" y="517.8451">company: Company</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="72.9" y="523.8132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="78.9" y="528.0539">authFacade: AuthFacade</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="72.9" y="534.022"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="61.8" x="78.9" y="538.2627">singleton: App</text><line style="stroke:#000000;stroke-width:0.6;" x1="68.7" x2="246.3" y1="542.4264" y2="542.4264"/><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="72.9" y="549.0308"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="73.2" x="78.9" y="553.2715">bootstrap(): void</text><ellipse cx="74.7" cy="561.0396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="72" x="78.9" y="563.4803">doLogout(): void</text><ellipse cx="74.7" cy="571.2483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="138" x="78.9" y="573.6891">doLogin(String, String): boolean</text><ellipse cx="74.7" cy="581.4571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="80.4" x="78.9" y="583.8979">getInstance(): App</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="72.9" y="589.8659"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="112.8" x="78.9" y="594.1066">getProperties(): Properties</text><ellipse cx="74.7" cy="601.8747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="106.8" x="78.9" y="604.3154">getCompany(): Company</text><ellipse cx="74.7" cy="612.0835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="164.4" x="78.9" y="614.5242">getCurrentUserSession(): UserSession</text></g><!--MD5=[9878be2e161685c2af42b541dee0842e]
+class AuthController--><g id="elem_AuthController"><rect codeLine="30" fill="#FFFFFF" height="67.2352" id="AuthController" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="168" x="73.5" y="346.2"/><ellipse cx="124.35" cy="354.6" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M126.0094,352.125 Q126.1031,351.9938 126.2156,351.9281 Q126.3281,351.8625 126.4594,351.8625 Q126.6844,351.8625 126.825,352.0219 Q126.9656,352.1719 126.9656,352.5375 L126.9656,353.4094 Q126.9656,353.775 126.825,353.9344 Q126.6844,354.0938 126.4594,354.0938 Q126.2531,354.0938 126.1313,353.9719 Q126.0094,353.8594 125.9438,353.55 Q125.9156,353.3344 125.8031,353.2219 Q125.6062,352.9969 125.2406,352.8656 Q124.875,352.7344 124.5,352.7344 Q124.0406,352.7344 123.6563,352.9313 Q123.2813,353.1281 122.9812,353.5781 Q122.6906,354.0281 122.6906,354.6469 L122.6906,355.3031 Q122.6906,356.0438 123.225,356.5406 Q123.7594,357.0281 124.7156,357.0281 Q125.2781,357.0281 125.6719,356.8781 Q125.9063,356.7844 126.1594,356.5219 Q126.3188,356.3625 126.4031,356.3156 Q126.4969,356.2688 126.6187,356.2688 Q126.8156,356.2688 126.9656,356.4281 Q127.125,356.5781 127.125,356.7844 Q127.125,356.9906 126.9187,357.2344 Q126.6187,357.5813 126.1406,357.7781 Q125.4937,358.05 124.7156,358.05 Q123.8062,358.05 123.0844,357.675 Q122.4937,357.375 122.0813,356.7375 Q121.6687,356.0906 121.6687,355.3219 L121.6687,354.6281 Q121.6687,353.8313 122.0344,353.1469 Q122.4094,352.4531 123.0656,352.0875 Q123.7219,351.7125 124.4625,351.7125 Q124.9031,351.7125 125.2875,351.8156 Q125.6812,351.9094 126.0094,352.125 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="61.8" x="134.85" y="357.9407">AuthController</text><line style="stroke:#000000;stroke-width:0.6;" x1="74.1" x2="240.9" y1="363" y2="363"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="78.3" y="369.6044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="39" x="84.3" y="373.8451">app: App</text><line style="stroke:#000000;stroke-width:0.6;" x1="74.1" x2="240.9" y1="378.0088" y2="378.0088"/><ellipse cx="80.1" cy="386.4132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="153.6" x="84.3" y="388.8539">getUserRoles(): List&lt;UserRoleDTO&gt;</text><ellipse cx="80.1" cy="396.622" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="138" x="84.3" y="399.0627">doLogin(String, String): boolean</text><ellipse cx="80.1" cy="406.8308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="72" x="84.3" y="409.2715">doLogout(): void</text></g><!--MD5=[268cf44ae8171a8199555a816cce726b]
+class AverageComparator--><g id="elem_AverageComparator"><rect codeLine="36" fill="#FFFFFF" height="36.6088" id="AverageComparator" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="118.2" x="268.2" y="536.1"/><ellipse cx="283.56" cy="544.5" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M285.2194,542.025 Q285.3131,541.8938 285.4256,541.8281 Q285.5381,541.7625 285.6694,541.7625 Q285.8944,541.7625 286.035,541.9219 Q286.1756,542.0719 286.1756,542.4375 L286.1756,543.3094 Q286.1756,543.675 286.035,543.8344 Q285.8944,543.9938 285.6694,543.9938 Q285.4631,543.9938 285.3413,543.8719 Q285.2194,543.7594 285.1538,543.45 Q285.1256,543.2344 285.0131,543.1219 Q284.8163,542.8969 284.4506,542.7656 Q284.085,542.6344 283.71,542.6344 Q283.2506,542.6344 282.8663,542.8313 Q282.4913,543.0281 282.1913,543.4781 Q281.9006,543.9281 281.9006,544.5469 L281.9006,545.2031 Q281.9006,545.9438 282.435,546.4406 Q282.9694,546.9281 283.9256,546.9281 Q284.4881,546.9281 284.8819,546.7781 Q285.1163,546.6844 285.3694,546.4219 Q285.5288,546.2625 285.6131,546.2156 Q285.7069,546.1687 285.8288,546.1687 Q286.0256,546.1687 286.1756,546.3281 Q286.335,546.4781 286.335,546.6844 Q286.335,546.8906 286.1288,547.1344 Q285.8288,547.4812 285.3506,547.6781 Q284.7038,547.95 283.9256,547.95 Q283.0163,547.95 282.2944,547.575 Q281.7038,547.275 281.2913,546.6375 Q280.8788,545.9906 280.8788,545.2219 L280.8788,544.5281 Q280.8788,543.7312 281.2444,543.0469 Q281.6194,542.3531 282.2756,541.9875 Q282.9319,541.6125 283.6725,541.6125 Q284.1131,541.6125 284.4975,541.7156 Q284.8913,541.8094 285.2194,542.025 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="84.6" x="292.44" y="547.8407">AverageComparator</text><line style="stroke:#000000;stroke-width:0.6;" x1="268.8" x2="385.8" y1="552.9" y2="552.9"/><line style="stroke:#000000;stroke-width:0.6;" x1="268.8" x2="385.8" y1="557.7" y2="557.7"/><ellipse cx="274.8" cy="566.1044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="279" y="568.5451">compare(Path, Path): int</text></g><!--MD5=[26afd83432df72b7cd64c72231e5b860]
+class ClientsProducers--><g id="elem_ClientsProducers"><rect codeLine="39" fill="#FFFFFF" height="148.9055" id="ClientsProducers" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="115.8" x="1406.4" y="305.4"/><ellipse cx="1427.16" cy="313.8" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M1428.8194,311.325 Q1428.9131,311.1937 1429.0256,311.1281 Q1429.1381,311.0625 1429.2694,311.0625 Q1429.4944,311.0625 1429.635,311.2219 Q1429.7756,311.3719 1429.7756,311.7375 L1429.7756,312.6094 Q1429.7756,312.975 1429.635,313.1344 Q1429.4944,313.2938 1429.2694,313.2938 Q1429.0631,313.2938 1428.9412,313.1719 Q1428.8194,313.0594 1428.7537,312.75 Q1428.7256,312.5344 1428.6131,312.4219 Q1428.4163,312.1969 1428.0506,312.0656 Q1427.685,311.9344 1427.31,311.9344 Q1426.8506,311.9344 1426.4663,312.1312 Q1426.0913,312.3281 1425.7913,312.7781 Q1425.5006,313.2281 1425.5006,313.8469 L1425.5006,314.5031 Q1425.5006,315.2438 1426.035,315.7406 Q1426.5694,316.2281 1427.5256,316.2281 Q1428.0881,316.2281 1428.4819,316.0781 Q1428.7163,315.9844 1428.9694,315.7219 Q1429.1287,315.5625 1429.2131,315.5156 Q1429.3069,315.4688 1429.4287,315.4688 Q1429.6256,315.4688 1429.7756,315.6281 Q1429.935,315.7781 1429.935,315.9844 Q1429.935,316.1906 1429.7288,316.4344 Q1429.4287,316.7813 1428.9506,316.9781 Q1428.3037,317.25 1427.5256,317.25 Q1426.6162,317.25 1425.8944,316.875 Q1425.3037,316.575 1424.8913,315.9375 Q1424.4788,315.2906 1424.4788,314.5219 L1424.4788,313.8281 Q1424.4788,313.0313 1424.8444,312.3469 Q1425.2194,311.6531 1425.8756,311.2875 Q1426.5319,310.9125 1427.2725,310.9125 Q1427.7131,310.9125 1428.0975,311.0156 Q1428.4912,311.1094 1428.8194,311.325 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="70.2" x="1437.24" y="317.1407">ClientsProducers</text><line style="stroke:#000000;stroke-width:0.6;" x1="1407" x2="1521.6" y1="322.2" y2="322.2"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1411.2" y="328.8044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="52.2" x="1417.2" y="333.0451">code: String</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1411.2" y="339.0132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="56.4" x="1417.2" y="343.2539">latitude: float</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1411.2" y="349.222"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="52.2" x="1417.2" y="353.4627">locId: String</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1411.2" y="359.4308"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="64.2" x="1417.2" y="363.6715">longitude: float</text><line style="stroke:#000000;stroke-width:0.6;" x1="1407" x2="1521.6" y1="367.8352" y2="367.8352"/><ellipse cx="1413" cy="376.2396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="73.8" x="1417.2" y="378.6803">getType(): String</text><ellipse cx="1413" cy="386.4483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="98.4" x="1417.2" y="388.8891">getLocationID(): String</text><ellipse cx="1413" cy="396.6571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="75" x="1417.2" y="399.0979">getCode(): String</text><ellipse cx="1413" cy="406.8659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="88.2" x="1417.2" y="409.3066">getLongitude(): float</text><ellipse cx="1413" cy="417.0747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="66.6" x="1417.2" y="419.5154">hashCode(): int</text><ellipse cx="1413" cy="427.2835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="101.4" x="1417.2" y="429.7242">equals(Object): boolean</text><ellipse cx="1413" cy="437.4923" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="74.4" x="1417.2" y="439.933">toString(): String</text><ellipse cx="1413" cy="447.7011" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="80.4" x="1417.2" y="450.1418">getLatitude(): float</text></g><!--MD5=[23832e3230a47b05325b6dab7b836a81]
+class CloserPointsController--><g id="elem_CloserPointsController"><rect codeLine="53" fill="#FFFFFF" height="46.8176" id="CloserPointsController" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="309.6" x="407.7" y="531"/><ellipse cx="513.45" cy="539.4" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M515.1094,536.925 Q515.2031,536.7937 515.3156,536.7281 Q515.4281,536.6625 515.5594,536.6625 Q515.7844,536.6625 515.925,536.8219 Q516.0656,536.9719 516.0656,537.3375 L516.0656,538.2094 Q516.0656,538.575 515.925,538.7344 Q515.7844,538.8938 515.5594,538.8938 Q515.3531,538.8938 515.2312,538.7719 Q515.1094,538.6594 515.0437,538.35 Q515.0156,538.1344 514.9031,538.0219 Q514.7063,537.7969 514.3406,537.6656 Q513.975,537.5344 513.6,537.5344 Q513.1406,537.5344 512.7563,537.7312 Q512.3813,537.9281 512.0813,538.3781 Q511.7906,538.8281 511.7906,539.4469 L511.7906,540.1031 Q511.7906,540.8438 512.325,541.3406 Q512.8594,541.8281 513.8156,541.8281 Q514.3781,541.8281 514.7719,541.6781 Q515.0063,541.5844 515.2594,541.3219 Q515.4187,541.1625 515.5031,541.1156 Q515.5969,541.0688 515.7188,541.0688 Q515.9156,541.0688 516.0656,541.2281 Q516.225,541.3781 516.225,541.5844 Q516.225,541.7906 516.0188,542.0344 Q515.7188,542.3813 515.2406,542.5781 Q514.5938,542.85 513.8156,542.85 Q512.9063,542.85 512.1844,542.475 Q511.5938,542.175 511.1813,541.5375 Q510.7687,540.8906 510.7687,540.1219 L510.7687,539.4281 Q510.7687,538.6313 511.1344,537.9469 Q511.5094,537.2531 512.1656,536.8875 Q512.8219,536.5125 513.5625,536.5125 Q514.0031,536.5125 514.3875,536.6156 Q514.7813,536.7094 515.1094,536.925 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="93.6" x="523.95" y="542.7407">CloserPointsController</text><line style="stroke:#000000;stroke-width:0.6;" x1="408.3" x2="716.7" y1="547.8" y2="547.8"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="412.5" y="554.4044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="84" x="418.5" y="558.6451">company: Company</text><line style="stroke:#000000;stroke-width:0.6;" x1="408.3" x2="716.7" y1="562.8088" y2="562.8088"/><ellipse cx="414.3" cy="571.2132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="295.2" x="418.5" y="573.6539">getCloserPoints(Graph&lt;ClientsProducers, Integer&gt;): ArrayList&lt;Path&gt;</text></g><!--MD5=[82d3f6e855f5e6540287e30dc9738669]
+class ClosestPointsCheck--><g id="elem_ClosestPointsCheck"><rect codeLine="57" fill="#FFFFFF" height="46.8176" id="ClosestPointsCheck" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="387" x="1270.8" y="32.7"/><ellipse cx="1420.95" cy="41.1" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M1422.6094,38.625 Q1422.7031,38.4938 1422.8156,38.4281 Q1422.9281,38.3625 1423.0594,38.3625 Q1423.2844,38.3625 1423.425,38.5219 Q1423.5656,38.6719 1423.5656,39.0375 L1423.5656,39.9094 Q1423.5656,40.275 1423.425,40.4344 Q1423.2844,40.5938 1423.0594,40.5938 Q1422.8531,40.5938 1422.7313,40.4719 Q1422.6094,40.3594 1422.5438,40.05 Q1422.5156,39.8344 1422.4031,39.7219 Q1422.2063,39.4969 1421.8406,39.3656 Q1421.475,39.2344 1421.1,39.2344 Q1420.6406,39.2344 1420.2563,39.4313 Q1419.8813,39.6281 1419.5813,40.0781 Q1419.2906,40.5281 1419.2906,41.1469 L1419.2906,41.8031 Q1419.2906,42.5437 1419.825,43.0406 Q1420.3594,43.5281 1421.3156,43.5281 Q1421.8781,43.5281 1422.2719,43.3781 Q1422.5063,43.2844 1422.7594,43.0219 Q1422.9188,42.8625 1423.0031,42.8156 Q1423.0969,42.7688 1423.2188,42.7688 Q1423.4156,42.7688 1423.5656,42.9281 Q1423.725,43.0781 1423.725,43.2844 Q1423.725,43.4906 1423.5188,43.7344 Q1423.2188,44.0813 1422.7406,44.2781 Q1422.0938,44.55 1421.3156,44.55 Q1420.4063,44.55 1419.6844,44.175 Q1419.0938,43.875 1418.6812,43.2375 Q1418.2688,42.5906 1418.2688,41.8219 L1418.2688,41.1281 Q1418.2688,40.3313 1418.6344,39.6469 Q1419.0094,38.9531 1419.6656,38.5875 Q1420.3219,38.2125 1421.0625,38.2125 Q1421.5031,38.2125 1421.8875,38.3156 Q1422.2813,38.4094 1422.6094,38.625 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="82.2" x="1431.45" y="44.4407">ClosestPointsCheck</text><line style="stroke:#000000;stroke-width:0.6;" x1="1271.4" x2="1657.2" y1="49.5" y2="49.5"/><line style="stroke:#000000;stroke-width:0.6;" x1="1271.4" x2="1657.2" y1="54.3" y2="54.3"/><ellipse cx="1277.4" cy="62.7044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="372.6" x="1281.6" y="65.1451">getClosestHub(ClientsProducers, Graph&lt;ClientsProducers, Integer&gt;): ClientsProducers?</text><ellipse cx="1277.4" cy="72.9132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="295.2" x="1281.6" y="75.3539">getCloserPoints(Graph&lt;ClientsProducers, Integer&gt;): ArrayList&lt;Path&gt;</text></g><!--MD5=[ef63e85e32976ed6c3ca2a05ce10893d]
+class CommonGraph--><g id="elem_CommonGraph"><rect codeLine="61" fill="#FFFFFF" height="189.7406" id="CommonGraph" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="184.2" x="438.6" y="1260"/><ellipse cx="488.25" cy="1268.4" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M489.9094,1265.925 Q490.0031,1265.7938 490.1156,1265.7281 Q490.2281,1265.6625 490.3594,1265.6625 Q490.5844,1265.6625 490.725,1265.8219 Q490.8656,1265.9719 490.8656,1266.3375 L490.8656,1267.2094 Q490.8656,1267.575 490.725,1267.7344 Q490.5844,1267.8938 490.3594,1267.8938 Q490.1531,1267.8938 490.0313,1267.7719 Q489.9094,1267.6594 489.8438,1267.35 Q489.8156,1267.1344 489.7031,1267.0219 Q489.5062,1266.7969 489.1406,1266.6656 Q488.775,1266.5344 488.4,1266.5344 Q487.9406,1266.5344 487.5563,1266.7313 Q487.1813,1266.9281 486.8812,1267.3781 Q486.5906,1267.8281 486.5906,1268.4469 L486.5906,1269.1031 Q486.5906,1269.8438 487.125,1270.3406 Q487.6594,1270.8281 488.6156,1270.8281 Q489.1781,1270.8281 489.5719,1270.6781 Q489.8063,1270.5844 490.0594,1270.3219 Q490.2188,1270.1625 490.3031,1270.1156 Q490.3969,1270.0688 490.5187,1270.0688 Q490.7156,1270.0688 490.8656,1270.2281 Q491.025,1270.3781 491.025,1270.5844 Q491.025,1270.7906 490.8187,1271.0344 Q490.5187,1271.3813 490.0406,1271.5781 Q489.3937,1271.85 488.6156,1271.85 Q487.7062,1271.85 486.9844,1271.475 Q486.3937,1271.175 485.9813,1270.5375 Q485.5687,1269.8906 485.5687,1269.1219 L485.5687,1268.4281 Q485.5687,1267.6313 485.9344,1266.9469 Q486.3094,1266.2531 486.9656,1265.8875 Q487.6219,1265.5125 488.3625,1265.5125 Q488.8031,1265.5125 489.1875,1265.6156 Q489.5812,1265.7094 489.9094,1265.925 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="63.6" x="498.75" y="1271.7407">CommonGraph</text><rect fill="#FFFFFF" height="9.9504" style="stroke:#000000;stroke-width:0.6;stroke-dasharray:2.0,2.0;" width="15.6" x="609" y="1258.2"/><text fill="#000000" font-family="Verdana" font-size="7.2" font-style="italic" lengthAdjust="spacing" textLength="14.4" x="609.6" y="1266.0387">V, E</text><line style="stroke:#000000;stroke-width:0.6;" x1="439.2" x2="622.2" y1="1276.8" y2="1276.8"/><polygon fill="none" points="445.2,1282.2044,447.6,1284.6044,445.2,1287.0044,442.8,1284.6044" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="61.8" x="449.4" y="1287.6451">numEdges: int</text><polygon fill="none" points="445.2,1292.4132,447.6,1294.8132,445.2,1297.2132,442.8,1294.8132" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="96" x="449.4" y="1297.8539">vertices: ArrayList&lt;V&gt;</text><polygon fill="none" points="445.2,1302.622,447.6,1305.022,445.2,1307.422,442.8,1305.022" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="58.8" x="449.4" y="1308.0627">numVerts: int</text><polygon fill="none" points="445.2,1312.8308,447.6,1315.2308,445.2,1317.6308,442.8,1315.2308" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="81" x="449.4" y="1318.2715">isDirected: boolean</text><line style="stroke:#000000;stroke-width:0.6;" x1="439.2" x2="622.2" y1="1322.4352" y2="1322.4352"/><ellipse cx="445.2" cy="1330.8396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45" x="449.4" y="1333.2803">key(V): int</text><ellipse cx="445.2" cy="1341.0483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="57.6" x="449.4" y="1343.4891">vertex(int): V</text><ellipse cx="445.2" cy="1351.2571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="449.4" y="1353.6979">vertex(Predicate&lt;V&gt;): V</text><ellipse cx="445.2" cy="1361.4659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="91.8" x="449.4" y="1363.9066">clone(): Graph&lt;V, E&gt;</text><ellipse cx="445.2" cy="1371.6747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="69" x="449.4" y="1374.1154">numEdges(): int</text><ellipse cx="445.2" cy="1381.8835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="101.4" x="449.4" y="1384.3242">equals(Object): boolean</text><ellipse cx="445.2" cy="1392.0923" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="66.6" x="449.4" y="1394.533">hashCode(): int</text><ellipse cx="445.2" cy="1402.3011" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.2" x="449.4" y="1404.7418">vertices(): ArrayList&lt;V&gt;</text><polygon fill="#FFFFFF" points="445.2,1409.5099,447.6,1411.9099,445.2,1414.3099,442.8,1411.9099" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="169.8" x="449.4" y="1414.9506">copy(Graph&lt;V, E&gt;, Graph&lt;V, E&gt;): void</text><ellipse cx="445.2" cy="1422.7187" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="88.2" x="449.4" y="1425.1594">isDirected(): boolean</text><ellipse cx="445.2" cy="1432.9274" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="76.8" x="449.4" y="1435.3682">numVertices(): int</text><ellipse cx="445.2" cy="1443.1362" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="99.6" x="449.4" y="1445.577">validVertex(V): boolean</text></g><!--MD5=[02e4b9b7573f1156f41e60aa5b4e25a4]
+class Company--><g id="elem_Company"><rect codeLine="79" fill="#FFFFFF" height="87.6527" id="Company" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="300.6" x="7.2" y="654.6"/><ellipse cx="135.45" cy="663" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M137.1094,660.525 Q137.2031,660.3938 137.3156,660.3281 Q137.4281,660.2625 137.5594,660.2625 Q137.7844,660.2625 137.925,660.4219 Q138.0656,660.5719 138.0656,660.9375 L138.0656,661.8094 Q138.0656,662.175 137.925,662.3344 Q137.7844,662.4938 137.5594,662.4938 Q137.3531,662.4938 137.2313,662.3719 Q137.1094,662.2594 137.0438,661.95 Q137.0156,661.7344 136.9031,661.6219 Q136.7062,661.3969 136.3406,661.2656 Q135.975,661.1344 135.6,661.1344 Q135.1406,661.1344 134.7563,661.3313 Q134.3813,661.5281 134.0812,661.9781 Q133.7906,662.4281 133.7906,663.0469 L133.7906,663.7031 Q133.7906,664.4438 134.325,664.9406 Q134.8594,665.4281 135.8156,665.4281 Q136.3781,665.4281 136.7719,665.2781 Q137.0063,665.1844 137.2594,664.9219 Q137.4188,664.7625 137.5031,664.7156 Q137.5969,664.6687 137.7188,664.6687 Q137.9156,664.6687 138.0656,664.8281 Q138.225,664.9781 138.225,665.1844 Q138.225,665.3906 138.0187,665.6344 Q137.7188,665.9812 137.2406,666.1781 Q136.5938,666.45 135.8156,666.45 Q134.9063,666.45 134.1844,666.075 Q133.5938,665.775 133.1813,665.1375 Q132.7687,664.4906 132.7687,663.7219 L132.7687,663.0281 Q132.7687,662.2312 133.1344,661.5469 Q133.5094,660.8531 134.1656,660.4875 Q134.8219,660.1125 135.5625,660.1125 Q136.0031,660.1125 136.3875,660.2156 Q136.7813,660.3094 137.1094,660.525 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="39.6" x="145.95" y="666.3407">Company</text><line style="stroke:#000000;stroke-width:0.6;" x1="7.8" x2="307.2" y1="671.4" y2="671.4"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="12" y="678.0044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="263.4" x="18" y="682.2451">clientsProducersGraph: MapGraph&lt;ClientsProducers, Integer&gt;</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="12" y="688.2132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="81" x="18" y="692.4539">designation: String</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="12" y="698.422"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="18" y="702.6627">authFacade: AuthFacade</text><line style="stroke:#000000;stroke-width:0.6;" x1="7.8" x2="307.2" y1="706.8264" y2="706.8264"/><ellipse cx="13.8" cy="715.2308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="126" x="18" y="717.6715">getAuthFacade(): AuthFacade</text><ellipse cx="13.8" cy="725.4396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="286.2" x="18" y="727.8803">getClientsProducersGraph(): MapGraph&lt;ClientsProducers, Integer&gt;</text><ellipse cx="13.8" cy="735.6483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.2" x="18" y="738.0891">getDesignation(): String</text></g><!--MD5=[5d909b6c20725e19f5c6863827561ff4]
+class Constants--><g id="elem_Constants"><rect codeLine="87" fill="#FFFFFF" height="97.8615" id="Constants" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="195" x="287.4" y="7.2"/><ellipse cx="360.75" cy="15.6" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M362.4094,13.125 Q362.5031,12.9938 362.6156,12.9281 Q362.7281,12.8625 362.8594,12.8625 Q363.0844,12.8625 363.225,13.0219 Q363.3656,13.1719 363.3656,13.5375 L363.3656,14.4094 Q363.3656,14.775 363.225,14.9344 Q363.0844,15.0938 362.8594,15.0938 Q362.6531,15.0938 362.5313,14.9719 Q362.4094,14.8594 362.3438,14.55 Q362.3156,14.3344 362.2031,14.2219 Q362.0062,13.9969 361.6406,13.8656 Q361.275,13.7344 360.9,13.7344 Q360.4406,13.7344 360.0563,13.9313 Q359.6813,14.1281 359.3812,14.5781 Q359.0906,15.0281 359.0906,15.6469 L359.0906,16.3031 Q359.0906,17.0438 359.625,17.5406 Q360.1594,18.0281 361.1156,18.0281 Q361.6781,18.0281 362.0719,17.8781 Q362.3063,17.7844 362.5594,17.5219 Q362.7188,17.3625 362.8031,17.3156 Q362.8969,17.2688 363.0188,17.2688 Q363.2156,17.2688 363.3656,17.4281 Q363.525,17.5781 363.525,17.7844 Q363.525,17.9906 363.3187,18.2344 Q363.0188,18.5813 362.5406,18.7781 Q361.8938,19.05 361.1156,19.05 Q360.2063,19.05 359.4844,18.675 Q358.8938,18.375 358.4813,17.7375 Q358.0687,17.0906 358.0687,16.3219 L358.0687,15.6281 Q358.0687,14.8312 358.4344,14.1469 Q358.8094,13.4531 359.4656,13.0875 Q360.1219,12.7125 360.8625,12.7125 Q361.3031,12.7125 361.6875,12.8156 Q362.0813,12.9094 362.4094,13.125 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="43.8" x="371.25" y="18.9407">Constants</text><line style="stroke:#000000;stroke-width:0.6;" x1="288" x2="481.8" y1="24" y2="24"/><ellipse cx="294" cy="32.4044" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="93.6" x="298.2" y="34.8451">ROLE_DRIVER: String</text><ellipse cx="294" cy="42.6132" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="91.2" x="298.2" y="45.0539">ROLE_CLIENT: String</text><ellipse cx="294" cy="52.822" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="175.2" x="298.2" y="55.2627">ROLE_AGRICULTURAL_MANAGER: String</text><ellipse cx="294" cy="63.0308" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="115.2" x="298.2" y="65.4715">PARAMS_FILENAME: String</text><ellipse cx="294" cy="73.2396" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="88.8" x="298.2" y="75.6803">ROLE_ADMIN: String</text><ellipse cx="294" cy="83.4483" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="180.6" x="298.2" y="85.8891">PARAMS_COMPANY_DESIGNATION: String</text><ellipse cx="294" cy="93.6571" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="171.6" x="298.2" y="96.0979">ROLE_DISTRIBUTION_MANAGER: String</text><line style="stroke:#000000;stroke-width:0.6;" x1="288" x2="481.8" y1="100.2615" y2="100.2615"/></g><!--MD5=[1f9906393f96598355539e54a2b06538]
+class DistanceComparator--><g id="elem_DistanceComparator"><rect codeLine="96" fill="#FFFFFF" height="36.6088" id="DistanceComparator" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="181.8" x="1197" y="186.9"/><ellipse cx="1242.45" cy="195.3" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M1244.1094,192.825 Q1244.2031,192.6938 1244.3156,192.6281 Q1244.4281,192.5625 1244.5594,192.5625 Q1244.7844,192.5625 1244.925,192.7219 Q1245.0656,192.8719 1245.0656,193.2375 L1245.0656,194.1094 Q1245.0656,194.475 1244.925,194.6344 Q1244.7844,194.7938 1244.5594,194.7938 Q1244.3531,194.7938 1244.2313,194.6719 Q1244.1094,194.5594 1244.0438,194.25 Q1244.0156,194.0344 1243.9031,193.9219 Q1243.7063,193.6969 1243.3406,193.5656 Q1242.975,193.4344 1242.6,193.4344 Q1242.1406,193.4344 1241.7563,193.6313 Q1241.3813,193.8281 1241.0813,194.2781 Q1240.7906,194.7281 1240.7906,195.3469 L1240.7906,196.0031 Q1240.7906,196.7438 1241.325,197.2406 Q1241.8594,197.7281 1242.8156,197.7281 Q1243.3781,197.7281 1243.7719,197.5781 Q1244.0063,197.4844 1244.2594,197.2219 Q1244.4188,197.0625 1244.5031,197.0156 Q1244.5969,196.9688 1244.7188,196.9688 Q1244.9156,196.9688 1245.0656,197.1281 Q1245.225,197.2781 1245.225,197.4844 Q1245.225,197.6906 1245.0188,197.9344 Q1244.7188,198.2813 1244.2406,198.4781 Q1243.5938,198.75 1242.8156,198.75 Q1241.9063,198.75 1241.1844,198.375 Q1240.5938,198.075 1240.1812,197.4375 Q1239.7688,196.7906 1239.7688,196.0219 L1239.7688,195.3281 Q1239.7688,194.5313 1240.1344,193.8469 Q1240.5094,193.1531 1241.1656,192.7875 Q1241.8219,192.4125 1242.5625,192.4125 Q1243.0031,192.4125 1243.3875,192.5156 Q1243.7813,192.6094 1244.1094,192.825 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="86.4" x="1252.95" y="198.6407">DistanceComparator</text><line style="stroke:#000000;stroke-width:0.6;" x1="1197.6" x2="1378.2" y1="203.7" y2="203.7"/><line style="stroke:#000000;stroke-width:0.6;" x1="1197.6" x2="1378.2" y1="208.5" y2="208.5"/><ellipse cx="1203.6" cy="216.9044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="167.4" x="1207.8" y="219.3451">compare(HubAndDist, HubAndDist): int</text></g><!--MD5=[2e2f8c8f62c4eb3bc59a59727cfd81a5]
+class Edge--><g id="elem_Edge"><rect codeLine="99" fill="#FFFFFF" height="128.4879" id="Edge" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="115.8" x="277.8" y="1290.6"/><ellipse cx="314.55" cy="1299" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M316.2094,1296.525 Q316.3031,1296.3938 316.4156,1296.3281 Q316.5281,1296.2625 316.6594,1296.2625 Q316.8844,1296.2625 317.025,1296.4219 Q317.1656,1296.5719 317.1656,1296.9375 L317.1656,1297.8094 Q317.1656,1298.175 317.025,1298.3344 Q316.8844,1298.4937 316.6594,1298.4937 Q316.4531,1298.4937 316.3313,1298.3719 Q316.2094,1298.2594 316.1438,1297.95 Q316.1156,1297.7344 316.0031,1297.6219 Q315.8063,1297.3969 315.4406,1297.2656 Q315.075,1297.1344 314.7,1297.1344 Q314.2406,1297.1344 313.8563,1297.3313 Q313.4813,1297.5281 313.1813,1297.9781 Q312.8906,1298.4281 312.8906,1299.0469 L312.8906,1299.7031 Q312.8906,1300.4438 313.425,1300.9406 Q313.9594,1301.4281 314.9156,1301.4281 Q315.4781,1301.4281 315.8719,1301.2781 Q316.1063,1301.1844 316.3594,1300.9219 Q316.5188,1300.7625 316.6031,1300.7156 Q316.6969,1300.6688 316.8187,1300.6688 Q317.0156,1300.6688 317.1656,1300.8281 Q317.325,1300.9781 317.325,1301.1844 Q317.325,1301.3906 317.1188,1301.6344 Q316.8187,1301.9813 316.3406,1302.1781 Q315.6937,1302.45 314.9156,1302.45 Q314.0062,1302.45 313.2844,1302.075 Q312.6937,1301.775 312.2813,1301.1375 Q311.8688,1300.4906 311.8688,1299.7219 L311.8688,1299.0281 Q311.8688,1298.2313 312.2344,1297.5469 Q312.6094,1296.8531 313.2656,1296.4875 Q313.9219,1296.1125 314.6625,1296.1125 Q315.1031,1296.1125 315.4875,1296.2156 Q315.8812,1296.3094 316.2094,1296.525 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="21" x="325.05" y="1302.3407">Edge</text><rect fill="#FFFFFF" height="9.9504" style="stroke:#000000;stroke-width:0.6;stroke-dasharray:2.0,2.0;" width="15.6" x="379.8" y="1288.8"/><text fill="#000000" font-family="Verdana" font-size="7.2" font-style="italic" lengthAdjust="spacing" textLength="14.4" x="380.4" y="1296.6387">V, E</text><line style="stroke:#000000;stroke-width:0.6;" x1="278.4" x2="393" y1="1307.4" y2="1307.4"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="282.6" y="1314.0044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="34.8" x="288.6" y="1318.2451">vOrig: V</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="282.6" y="1324.2132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="37.2" x="288.6" y="1328.4539">vDest: V</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="282.6" y="1334.422"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="39.6" x="288.6" y="1338.6627">weight: E</text><line style="stroke:#000000;stroke-width:0.6;" x1="278.4" x2="393" y1="1342.8264" y2="1342.8264"/><ellipse cx="284.4" cy="1351.2308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="79.8" x="288.6" y="1353.6715">setWeight(E): void</text><ellipse cx="284.4" cy="1361.4396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="59.4" x="288.6" y="1363.8803">getVDest(): V</text><ellipse cx="284.4" cy="1371.6483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="63" x="288.6" y="1374.0891">getWeight(): E</text><ellipse cx="284.4" cy="1381.8571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="74.4" x="288.6" y="1384.2979">toString(): String</text><ellipse cx="284.4" cy="1392.0659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="101.4" x="288.6" y="1394.5066">equals(Object): boolean</text><ellipse cx="284.4" cy="1402.2747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="66.6" x="288.6" y="1404.7154">hashCode(): int</text><ellipse cx="284.4" cy="1412.4835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="57" x="288.6" y="1414.9242">getVOrig(): V</text></g><!--MD5=[6beef2b6e5c923a489fa5802b1ab5f94]
+class FilesReaderApp--><g id="elem_FilesReaderApp"><rect codeLine="111" fill="#FFFFFF" height="67.2352" id="FilesReaderApp" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="478.8" x="696.9" y="171.6"/><ellipse cx="901.95" cy="180" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M903.6094,177.525 Q903.7031,177.3937 903.8156,177.3281 Q903.9281,177.2625 904.0594,177.2625 Q904.2844,177.2625 904.425,177.4219 Q904.5656,177.5719 904.5656,177.9375 L904.5656,178.8094 Q904.5656,179.175 904.425,179.3344 Q904.2844,179.4938 904.0594,179.4938 Q903.8531,179.4938 903.7312,179.3719 Q903.6094,179.2594 903.5437,178.95 Q903.5156,178.7344 903.4031,178.6219 Q903.2063,178.3969 902.8406,178.2656 Q902.475,178.1344 902.1,178.1344 Q901.6406,178.1344 901.2563,178.3312 Q900.8813,178.5281 900.5813,178.9781 Q900.2906,179.4281 900.2906,180.0469 L900.2906,180.7031 Q900.2906,181.4438 900.825,181.9406 Q901.3594,182.4281 902.3156,182.4281 Q902.8781,182.4281 903.2719,182.2781 Q903.5063,182.1844 903.7594,181.9219 Q903.9187,181.7625 904.0031,181.7156 Q904.0969,181.6688 904.2188,181.6688 Q904.4156,181.6688 904.5656,181.8281 Q904.725,181.9781 904.725,182.1844 Q904.725,182.3906 904.5188,182.6344 Q904.2188,182.9813 903.7406,183.1781 Q903.0938,183.45 902.3156,183.45 Q901.4063,183.45 900.6844,183.075 Q900.0938,182.775 899.6813,182.1375 Q899.2688,181.4906 899.2688,180.7219 L899.2688,180.0281 Q899.2688,179.2313 899.6344,178.5469 Q900.0094,177.8531 900.6656,177.4875 Q901.3219,177.1125 902.0625,177.1125 Q902.5031,177.1125 902.8875,177.2156 Q903.2813,177.3094 903.6094,177.525 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="64.2" x="912.45" y="183.3407">FilesReaderApp</text><line style="stroke:#000000;stroke-width:0.6;" x1="697.5" x2="1175.1" y1="188.4" y2="188.4"/><line style="stroke:#000000;stroke-width:0.6;" x1="697.5" x2="1175.1" y1="193.2" y2="193.2"/><ellipse cx="703.5" cy="201.6044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="464.4" x="707.7" y="204.0451">isConnected(MapGraph&lt;ClientsProducers, Integer&gt;, ClientsProducers, ArrayList&lt;ClientsProducers&gt;): boolean</text><ellipse cx="703.5" cy="211.8132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="137.4" x="707.7" y="214.2539">readProducerCSV(File, File): void</text><ellipse cx="703.5" cy="222.022" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="73.2" x="707.7" y="224.4627">bootstrap(): void</text><ellipse cx="703.5" cy="232.2308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="157.2" x="707.7" y="234.6715">readIrrigationDeviceFile(File): boolean</text></g><!--MD5=[706e73df52f3df32f52be1ce9adb217e]
+class Graph--><g id="elem_Graph"><rect codeLine="117" fill="#FFFFFF" height="248.9438" id="Graph" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="202.8" x="429.3" y="1485.6"/><ellipse cx="500.85" cy="1498.0796" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M501.4219,1496.064 L501.4219,1500.0577 L502.4531,1500.0577 Q502.8187,1500.0577 502.9781,1500.1983 Q503.1375,1500.339 503.1375,1500.5733 Q503.1375,1500.7983 502.9781,1500.939 Q502.8187,1501.0796 502.4531,1501.0796 L499.3688,1501.0796 Q499.0031,1501.0796 498.8438,1500.939 Q498.6844,1500.7983 498.6844,1500.564 Q498.6844,1500.339 498.8438,1500.1983 Q499.0031,1500.0577 499.3688,1500.0577 L500.4,1500.0577 L500.4,1496.064 L499.3688,1496.064 Q499.0031,1496.064 498.8438,1495.9233 Q498.6844,1495.7827 498.6844,1495.5483 Q498.6844,1495.3233 498.8438,1495.1827 Q499.0031,1495.0421 499.3688,1495.0421 L502.4531,1495.0421 Q502.8187,1495.0421 502.9781,1495.1827 Q503.1375,1495.3233 503.1375,1495.5483 Q503.1375,1495.7827 502.9781,1495.9233 Q502.8187,1496.064 502.4531,1496.064 L501.4219,1496.064 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="7.2" font-style="italic" lengthAdjust="spacing" textLength="40.8" x="510.15" y="1495.8387">«interface»</text><text fill="#000000" font-family="Verdana" font-size="8.4" font-style="italic" lengthAdjust="spacing" textLength="25.8" x="517.65" y="1505.7955">Graph</text><rect fill="#FFFFFF" height="9.9504" style="stroke:#000000;stroke-width:0.6;stroke-dasharray:2.0,2.0;" width="15.6" x="618.3" y="1483.8"/><text fill="#000000" font-family="Verdana" font-size="7.2" font-style="italic" lengthAdjust="spacing" textLength="14.4" x="618.9" y="1491.6387">V, E</text><line style="stroke:#000000;stroke-width:0.6;" x1="429.9" x2="631.5" y1="1510.5592" y2="1510.5592"/><line style="stroke:#000000;stroke-width:0.6;" x1="429.9" x2="631.5" y1="1515.3592" y2="1515.3592"/><ellipse cx="435.9" cy="1523.7636" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="187.8" x="440.1" y="1526.2043">incomingEdges(V): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="435.9" cy="1533.9724" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="76.8" x="440.1" y="1536.4131">numVertices(): int</text><ellipse cx="435.9" cy="1544.1812" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="112.8" x="440.1" y="1546.6219">addEdge(V, V, E): boolean</text><ellipse cx="435.9" cy="1554.3899" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45" x="440.1" y="1556.8307">key(V): int</text><ellipse cx="435.9" cy="1564.5987" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="88.2" x="440.1" y="1567.0395">isDirected(): boolean</text><ellipse cx="435.9" cy="1574.8075" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.2" x="440.1" y="1577.2482">vertices(): ArrayList&lt;V&gt;</text><ellipse cx="435.9" cy="1585.0163" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="96.6" x="440.1" y="1587.457">addVertex(V): boolean</text><ellipse cx="435.9" cy="1595.2251" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="57.6" x="440.1" y="1597.6658">vertex(int): V</text><ellipse cx="435.9" cy="1605.4339" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="91.8" x="440.1" y="1607.8746">clone(): Graph&lt;V, E&gt;</text><ellipse cx="435.9" cy="1615.6427" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="112.2" x="440.1" y="1618.0834">removeVertex(V): boolean</text><ellipse cx="435.9" cy="1625.8515" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="440.1" y="1628.2922">edge(V, V): Edge&lt;V, E&gt;</text><ellipse cx="435.9" cy="1636.0603" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="99.6" x="440.1" y="1638.501">validVertex(V): boolean</text><ellipse cx="435.9" cy="1646.269" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="117" x="440.1" y="1648.7098">removeEdge(V, V): boolean</text><ellipse cx="435.9" cy="1656.4778" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="440.1" y="1658.9186">vertex(Predicate&lt;V&gt;): V</text><ellipse cx="435.9" cy="1666.6866" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="67.8" x="440.1" y="1669.1273">inDegree(V): int</text><ellipse cx="435.9" cy="1676.8954" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="144" x="440.1" y="1679.3361">edges(): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="435.9" cy="1687.1042" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="69" x="440.1" y="1689.5449">numEdges(): int</text><ellipse cx="435.9" cy="1697.313" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="75" x="440.1" y="1699.7537">outDegree(V): int</text><ellipse cx="435.9" cy="1707.5218" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="126" x="440.1" y="1709.9625">adjVertices(V): Collection&lt;V&gt;</text><ellipse cx="435.9" cy="1717.7306" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="188.4" x="440.1" y="1720.1713">outgoingEdges(V): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="435.9" cy="1727.9394" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="113.4" x="440.1" y="1730.3801">edge(int, int): Edge&lt;V, E&gt;</text></g><!--MD5=[845f390619440a1b6723e102f0ca21c8]
+class HubAndDist--><g id="elem_HubAndDist"><rect codeLine="140" fill="#FFFFFF" height="67.2352" id="HubAndDist" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="129" x="1399.8" y="171.6"/><ellipse cx="1436.85" cy="180" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M1438.5094,177.525 Q1438.6031,177.3937 1438.7156,177.3281 Q1438.8281,177.2625 1438.9594,177.2625 Q1439.1844,177.2625 1439.325,177.4219 Q1439.4656,177.5719 1439.4656,177.9375 L1439.4656,178.8094 Q1439.4656,179.175 1439.325,179.3344 Q1439.1844,179.4938 1438.9594,179.4938 Q1438.7531,179.4938 1438.6313,179.3719 Q1438.5094,179.2594 1438.4438,178.95 Q1438.4156,178.7344 1438.3031,178.6219 Q1438.1063,178.3969 1437.7406,178.2656 Q1437.375,178.1344 1437,178.1344 Q1436.5406,178.1344 1436.1563,178.3312 Q1435.7813,178.5281 1435.4813,178.9781 Q1435.1906,179.4281 1435.1906,180.0469 L1435.1906,180.7031 Q1435.1906,181.4438 1435.725,181.9406 Q1436.2594,182.4281 1437.2156,182.4281 Q1437.7781,182.4281 1438.1719,182.2781 Q1438.4063,182.1844 1438.6594,181.9219 Q1438.8188,181.7625 1438.9031,181.7156 Q1438.9969,181.6688 1439.1187,181.6688 Q1439.3156,181.6688 1439.4656,181.8281 Q1439.625,181.9781 1439.625,182.1844 Q1439.625,182.3906 1439.4188,182.6344 Q1439.1187,182.9813 1438.6406,183.1781 Q1437.9937,183.45 1437.2156,183.45 Q1436.3062,183.45 1435.5844,183.075 Q1434.9937,182.775 1434.5813,182.1375 Q1434.1688,181.4906 1434.1688,180.7219 L1434.1688,180.0281 Q1434.1688,179.2313 1434.5344,178.5469 Q1434.9094,177.8531 1435.5656,177.4875 Q1436.2219,177.1125 1436.9625,177.1125 Q1437.4031,177.1125 1437.7875,177.2156 Q1438.1812,177.3094 1438.5094,177.525 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="50.4" x="1447.35" y="183.3407">HubAndDist</text><line style="stroke:#000000;stroke-width:0.6;" x1="1400.4" x2="1528.2" y1="188.4" y2="188.4"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1404.6" y="195.0044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="93" x="1410.6" y="199.2451">hub: ClientsProducers</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1404.6" y="205.2132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="33" x="1410.6" y="209.4539">dist: int</text><line style="stroke:#000000;stroke-width:0.6;" x1="1400.4" x2="1528.2" y1="213.6176" y2="213.6176"/><ellipse cx="1406.4" cy="222.022" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="55.2" x="1410.6" y="224.4627">getDist(): int</text><ellipse cx="1406.4" cy="232.2308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="114.6" x="1410.6" y="234.6715">getHub(): ClientsProducers</text></g><!--MD5=[84718776d214be480e4c259efcb737fc]
+class Main--><g id="elem_Main"><rect codeLine="146" fill="#FFFFFF" height="36.6088" id="Main" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="98.4" x="593.1" y="37.8"/><ellipse cx="630.75" cy="46.2" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M632.4094,43.725 Q632.5031,43.5938 632.6156,43.5281 Q632.7281,43.4625 632.8594,43.4625 Q633.0844,43.4625 633.225,43.6219 Q633.3656,43.7719 633.3656,44.1375 L633.3656,45.0094 Q633.3656,45.375 633.225,45.5344 Q633.0844,45.6938 632.8594,45.6938 Q632.6531,45.6938 632.5313,45.5719 Q632.4094,45.4594 632.3438,45.15 Q632.3156,44.9344 632.2031,44.8219 Q632.0063,44.5969 631.6406,44.4656 Q631.275,44.3344 630.9,44.3344 Q630.4406,44.3344 630.0563,44.5313 Q629.6813,44.7281 629.3813,45.1781 Q629.0906,45.6281 629.0906,46.2469 L629.0906,46.9031 Q629.0906,47.6438 629.625,48.1406 Q630.1594,48.6281 631.1156,48.6281 Q631.6781,48.6281 632.0719,48.4781 Q632.3063,48.3844 632.5594,48.1219 Q632.7188,47.9625 632.8031,47.9156 Q632.8969,47.8688 633.0188,47.8688 Q633.2156,47.8688 633.3656,48.0281 Q633.525,48.1781 633.525,48.3844 Q633.525,48.5906 633.3188,48.8344 Q633.0188,49.1813 632.5406,49.3781 Q631.8938,49.65 631.1156,49.65 Q630.2063,49.65 629.4844,49.275 Q628.8938,48.975 628.4812,48.3375 Q628.0688,47.6906 628.0688,46.9219 L628.0688,46.2281 Q628.0688,45.4313 628.4344,44.7469 Q628.8094,44.0531 629.4656,43.6875 Q630.1219,43.3125 630.8625,43.3125 Q631.3031,43.3125 631.6875,43.4156 Q632.0813,43.5094 632.4094,43.725 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="18.6" x="641.25" y="49.5407">Main</text><line style="stroke:#000000;stroke-width:0.6;" x1="593.7" x2="690.9" y1="54.6" y2="54.6"/><line style="stroke:#000000;stroke-width:0.6;" x1="593.7" x2="690.9" y1="59.4" y2="59.4"/><ellipse cx="599.7" cy="67.8044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="84" x="603.9" y="70.2451">main(String[]): void</text></g><!--MD5=[6d43018961f0c2285e4ded245ccac1bb]
+class MainMenuUI--><g id="elem_MainMenuUI"><rect codeLine="149" fill="#FFFFFF" height="36.6088" id="MainMenuUI" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="66.6" x="609" y="186.9"/><ellipse cx="616.8" cy="195.3" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M618.4594,192.825 Q618.5531,192.6938 618.6656,192.6281 Q618.7781,192.5625 618.9094,192.5625 Q619.1344,192.5625 619.275,192.7219 Q619.4156,192.8719 619.4156,193.2375 L619.4156,194.1094 Q619.4156,194.475 619.275,194.6344 Q619.1344,194.7938 618.9094,194.7938 Q618.7031,194.7938 618.5813,194.6719 Q618.4594,194.5594 618.3938,194.25 Q618.3656,194.0344 618.2531,193.9219 Q618.0563,193.6969 617.6906,193.5656 Q617.325,193.4344 616.95,193.4344 Q616.4906,193.4344 616.1062,193.6313 Q615.7312,193.8281 615.4313,194.2781 Q615.1406,194.7281 615.1406,195.3469 L615.1406,196.0031 Q615.1406,196.7438 615.675,197.2406 Q616.2094,197.7281 617.1656,197.7281 Q617.7281,197.7281 618.1219,197.5781 Q618.3562,197.4844 618.6094,197.2219 Q618.7688,197.0625 618.8531,197.0156 Q618.9469,196.9688 619.0688,196.9688 Q619.2656,196.9688 619.4156,197.1281 Q619.575,197.2781 619.575,197.4844 Q619.575,197.6906 619.3688,197.9344 Q619.0688,198.2813 618.5906,198.4781 Q617.9438,198.75 617.1656,198.75 Q616.2563,198.75 615.5344,198.375 Q614.9438,198.075 614.5313,197.4375 Q614.1188,196.7906 614.1188,196.0219 L614.1188,195.3281 Q614.1188,194.5313 614.4844,193.8469 Q614.8594,193.1531 615.5156,192.7875 Q616.1719,192.4125 616.9125,192.4125 Q617.3531,192.4125 617.7375,192.5156 Q618.1313,192.6094 618.4594,192.825 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="49.8" x="624" y="198.6407">MainMenuUI</text><line style="stroke:#000000;stroke-width:0.6;" x1="609.6" x2="675" y1="203.7" y2="203.7"/><line style="stroke:#000000;stroke-width:0.6;" x1="609.6" x2="675" y1="208.5" y2="208.5"/><ellipse cx="615.6" cy="216.9044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45.6" x="619.8" y="219.3451">run(): void</text></g><!--MD5=[b122bab300f80f5d31a622e2bae54847]
+class MapGraph--><g id="elem_MapGraph"><rect codeLine="152" fill="#FFFFFF" height="189.7406" id="MapGraph" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="202.8" x="56.1" y="778.2"/><ellipse cx="125.55" cy="786.6" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M127.2094,784.125 Q127.3031,783.9938 127.4156,783.9281 Q127.5281,783.8625 127.6594,783.8625 Q127.8844,783.8625 128.025,784.0219 Q128.1656,784.1719 128.1656,784.5375 L128.1656,785.4094 Q128.1656,785.775 128.025,785.9344 Q127.8844,786.0938 127.6594,786.0938 Q127.4531,786.0938 127.3313,785.9719 Q127.2094,785.8594 127.1438,785.55 Q127.1156,785.3344 127.0031,785.2219 Q126.8062,784.9969 126.4406,784.8656 Q126.075,784.7344 125.7,784.7344 Q125.2406,784.7344 124.8562,784.9313 Q124.4812,785.1281 124.1812,785.5781 Q123.8906,786.0281 123.8906,786.6469 L123.8906,787.3031 Q123.8906,788.0437 124.425,788.5406 Q124.9594,789.0281 125.9156,789.0281 Q126.4781,789.0281 126.8719,788.8781 Q127.1062,788.7844 127.3594,788.5219 Q127.5188,788.3625 127.6031,788.3156 Q127.6969,788.2688 127.8188,788.2688 Q128.0156,788.2688 128.1656,788.4281 Q128.325,788.5781 128.325,788.7844 Q128.325,788.9906 128.1188,789.2344 Q127.8188,789.5813 127.3406,789.7781 Q126.6938,790.05 125.9156,790.05 Q125.0063,790.05 124.2844,789.675 Q123.6938,789.375 123.2813,788.7375 Q122.8687,788.0906 122.8687,787.3219 L122.8687,786.6281 Q122.8687,785.8313 123.2344,785.1469 Q123.6094,784.4531 124.2656,784.0875 Q124.9219,783.7125 125.6625,783.7125 Q126.1031,783.7125 126.4875,783.8156 Q126.8813,783.9094 127.2094,784.125 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="42.6" x="136.05" y="789.9407">MapGraph</text><rect fill="#FFFFFF" height="9.9504" style="stroke:#000000;stroke-width:0.6;stroke-dasharray:2.0,2.0;" width="15.6" x="245.1" y="776.4"/><text fill="#000000" font-family="Verdana" font-size="7.2" font-style="italic" lengthAdjust="spacing" textLength="14.4" x="245.7" y="784.2387">V, E</text><line style="stroke:#000000;stroke-width:0.6;" x1="56.7" x2="258.3" y1="795" y2="795"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="60.9" y="801.6044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="175.8" x="66.9" y="805.8451">mapVertices: Map&lt;V, MapVertex&lt;V, E&gt;&gt;</text><line style="stroke:#000000;stroke-width:0.6;" x1="56.7" x2="258.3" y1="810.0088" y2="810.0088"/><ellipse cx="62.7" cy="818.4132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="117" x="66.9" y="820.8539">removeEdge(V, V): boolean</text><ellipse cx="62.7" cy="828.622" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="66.9" y="831.0627">edge(V, V): Edge&lt;V, E&gt;</text><ellipse cx="62.7" cy="838.8308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="96.6" x="66.9" y="841.2715">addVertex(V): boolean</text><ellipse cx="62.7" cy="849.0396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="188.4" x="66.9" y="851.4803">outgoingEdges(V): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="62.7" cy="859.2483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="99.6" x="66.9" y="861.6891">validVertex(V): boolean</text><ellipse cx="62.7" cy="869.4571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="126" x="66.9" y="871.8979">adjVertices(V): Collection&lt;V&gt;</text><ellipse cx="62.7" cy="879.6659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="187.8" x="66.9" y="882.1066">incomingEdges(V): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="62.7" cy="889.8747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="144" x="66.9" y="892.3154">edges(): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="62.7" cy="900.0835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="74.4" x="66.9" y="902.5242">toString(): String</text><ellipse cx="62.7" cy="910.2923" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="67.8" x="66.9" y="912.733">inDegree(V): int</text><ellipse cx="62.7" cy="920.5011" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="113.4" x="66.9" y="922.9418">edge(int, int): Edge&lt;V, E&gt;</text><ellipse cx="62.7" cy="930.7099" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="75" x="66.9" y="933.1506">outDegree(V): int</text><ellipse cx="62.7" cy="940.9187" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="112.2" x="66.9" y="943.3594">removeVertex(V): boolean</text><ellipse cx="62.7" cy="951.1274" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="108.6" x="66.9" y="953.5682">clone(): MapGraph&lt;V, E&gt;</text><ellipse cx="62.7" cy="961.3362" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="112.8" x="66.9" y="963.777">addEdge(V, V, E): boolean</text></g><!--MD5=[bc4d72eb6311fa75f72dcf1fe1932b09]
+class MapVertex--><g id="elem_MapVertex"><rect codeLine="170" fill="#FFFFFF" height="128.4879" id="MapVertex" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="198" x="58.5" y="1049.7"/><ellipse cx="124.35" cy="1058.1" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M126.0094,1055.625 Q126.1031,1055.4937 126.2156,1055.4281 Q126.3281,1055.3625 126.4594,1055.3625 Q126.6844,1055.3625 126.825,1055.5219 Q126.9656,1055.6719 126.9656,1056.0375 L126.9656,1056.9094 Q126.9656,1057.275 126.825,1057.4344 Q126.6844,1057.5938 126.4594,1057.5938 Q126.2531,1057.5938 126.1313,1057.4719 Q126.0094,1057.3594 125.9438,1057.05 Q125.9156,1056.8344 125.8031,1056.7219 Q125.6062,1056.4969 125.2406,1056.3656 Q124.875,1056.2344 124.5,1056.2344 Q124.0406,1056.2344 123.6563,1056.4312 Q123.2813,1056.6281 122.9812,1057.0781 Q122.6906,1057.5281 122.6906,1058.1469 L122.6906,1058.8031 Q122.6906,1059.5438 123.225,1060.0406 Q123.7594,1060.5281 124.7156,1060.5281 Q125.2781,1060.5281 125.6719,1060.3781 Q125.9063,1060.2844 126.1594,1060.0219 Q126.3188,1059.8625 126.4031,1059.8156 Q126.4969,1059.7688 126.6187,1059.7688 Q126.8156,1059.7688 126.9656,1059.9281 Q127.125,1060.0781 127.125,1060.2844 Q127.125,1060.4906 126.9187,1060.7344 Q126.6187,1061.0813 126.1406,1061.2781 Q125.4937,1061.55 124.7156,1061.55 Q123.8062,1061.55 123.0844,1061.175 Q122.4937,1060.875 122.0813,1060.2375 Q121.6687,1059.5906 121.6687,1058.8219 L121.6687,1058.1281 Q121.6687,1057.3313 122.0344,1056.6469 Q122.4094,1055.9531 123.0656,1055.5875 Q123.7219,1055.2125 124.4625,1055.2125 Q124.9031,1055.2125 125.2875,1055.3156 Q125.6812,1055.4094 126.0094,1055.625 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45" x="134.85" y="1061.4407">MapVertex</text><rect fill="#FFFFFF" height="9.9504" style="stroke:#000000;stroke-width:0.6;stroke-dasharray:2.0,2.0;" width="15.6" x="242.7" y="1047.9"/><text fill="#000000" font-family="Verdana" font-size="7.2" font-style="italic" lengthAdjust="spacing" textLength="14.4" x="243.3" y="1055.7387">V, E</text><line style="stroke:#000000;stroke-width:0.6;" x1="59.1" x2="255.9" y1="1066.5" y2="1066.5"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="63.3" y="1073.1044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="137.4" x="69.3" y="1077.3451">outVerts: Map&lt;V, Edge&lt;V, E&gt;&gt;</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="63.3" y="1083.3132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45.6" x="69.3" y="1087.5539">element: V</text><line style="stroke:#000000;stroke-width:0.6;" x1="59.1" x2="255.9" y1="1091.7176" y2="1091.7176"/><ellipse cx="65.1" cy="1100.122" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="67.2" x="69.3" y="1102.5627">getElement(): V</text><ellipse cx="65.1" cy="1110.3308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="74.4" x="69.3" y="1112.7715">toString(): String</text><ellipse cx="65.1" cy="1120.5396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="85.8" x="69.3" y="1122.9803">remAdjVert(V): void</text><ellipse cx="65.1" cy="1130.7483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="80.4" x="69.3" y="1133.1891">numAdjVerts(): int</text><ellipse cx="65.1" cy="1140.9571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="183.6" x="69.3" y="1143.3979">getAllOutEdges(): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="65.1" cy="1151.1659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="142.8" x="69.3" y="1153.6066">addAdjVert(V, Edge&lt;V, E&gt;): void</text><ellipse cx="65.1" cy="1161.3747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="106.2" x="69.3" y="1163.8154">getEdge(V): Edge&lt;V, E&gt;</text><ellipse cx="65.1" cy="1171.5835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="133.8" x="69.3" y="1174.0242">getAllAdjVerts(): Collection&lt;V&gt;</text></g><!--MD5=[b7b072196a724e538165319251b4d539]
+class MatrixGraph--><g id="elem_MatrixGraph"><rect codeLine="182" fill="#FFFFFF" height="220.367" id="MatrixGraph" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="202.8" x="320.1" y="1003.8"/><ellipse cx="385.05" cy="1012.2" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M386.7094,1009.725 Q386.8031,1009.5938 386.9156,1009.5281 Q387.0281,1009.4625 387.1594,1009.4625 Q387.3844,1009.4625 387.525,1009.6219 Q387.6656,1009.7719 387.6656,1010.1375 L387.6656,1011.0094 Q387.6656,1011.375 387.525,1011.5344 Q387.3844,1011.6937 387.1594,1011.6937 Q386.9531,1011.6937 386.8313,1011.5719 Q386.7094,1011.4594 386.6438,1011.15 Q386.6156,1010.9344 386.5031,1010.8219 Q386.3063,1010.5969 385.9406,1010.4656 Q385.575,1010.3344 385.2,1010.3344 Q384.7406,1010.3344 384.3563,1010.5313 Q383.9813,1010.7281 383.6813,1011.1781 Q383.3906,1011.6281 383.3906,1012.2469 L383.3906,1012.9031 Q383.3906,1013.6438 383.925,1014.1406 Q384.4594,1014.6281 385.4156,1014.6281 Q385.9781,1014.6281 386.3719,1014.4781 Q386.6063,1014.3844 386.8594,1014.1219 Q387.0188,1013.9625 387.1031,1013.9156 Q387.1969,1013.8688 387.3187,1013.8688 Q387.5156,1013.8688 387.6656,1014.0281 Q387.825,1014.1781 387.825,1014.3844 Q387.825,1014.5906 387.6188,1014.8344 Q387.3187,1015.1813 386.8406,1015.3781 Q386.1937,1015.65 385.4156,1015.65 Q384.5062,1015.65 383.7844,1015.275 Q383.1937,1014.975 382.7813,1014.3375 Q382.3688,1013.6906 382.3688,1012.9219 L382.3688,1012.2281 Q382.3688,1011.4313 382.7344,1010.7469 Q383.1094,1010.0531 383.7656,1009.6875 Q384.4219,1009.3125 385.1625,1009.3125 Q385.6031,1009.3125 385.9875,1009.4156 Q386.3812,1009.5094 386.7094,1009.725 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="51.6" x="395.55" y="1015.5407">MatrixGraph</text><rect fill="#FFFFFF" height="9.9504" style="stroke:#000000;stroke-width:0.6;stroke-dasharray:2.0,2.0;" width="15.6" x="509.1" y="1002"/><text fill="#000000" font-family="Verdana" font-size="7.2" font-style="italic" lengthAdjust="spacing" textLength="14.4" x="509.7" y="1009.8387">V, E</text><line style="stroke:#000000;stroke-width:0.6;" x1="320.7" x2="522.3" y1="1020.6" y2="1020.6"/><ellipse cx="326.7" cy="1029.0044" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="97.2" x="330.9" y="1031.4451">RESIZE_FACTOR: float</text><ellipse cx="326.7" cy="1039.2132" fill="none" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="96.6" x="330.9" y="1041.6539">INITIAL_CAPACITY: int</text><polygon fill="none" points="326.7,1047.022,324.3,1050.622,329.1,1050.622" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="118.8" x="330.9" y="1051.8627">edgeMatrix: Edge&lt;V, E&gt;[][]</text><line style="stroke:#000000;stroke-width:0.6;" x1="320.7" x2="522.3" y1="1056.0264" y2="1056.0264"/><ellipse cx="326.7" cy="1064.4308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="112.2" x="330.9" y="1066.8715">removeVertex(V): boolean</text><ellipse cx="326.7" cy="1074.6396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="144" x="330.9" y="1077.0803">edges(): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="326.7" cy="1084.8483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="330.9" y="1087.2891">edge(V, V): Edge&lt;V, E&gt;</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="324.9" y="1093.2571"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="111" x="330.9" y="1097.4979">removeEdge(int, int): void</text><ellipse cx="326.7" cy="1105.2659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="67.8" x="330.9" y="1107.7066">inDegree(V): int</text><ellipse cx="326.7" cy="1115.4747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="188.4" x="330.9" y="1117.9154">outgoingEdges(V): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="326.7" cy="1125.6835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="117" x="330.9" y="1128.1242">removeEdge(V, V): boolean</text><ellipse cx="326.7" cy="1135.8923" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="113.4" x="330.9" y="1138.333">edge(int, int): Edge&lt;V, E&gt;</text><ellipse cx="326.7" cy="1146.1011" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="112.8" x="330.9" y="1148.5418">addEdge(V, V, E): boolean</text><ellipse cx="326.7" cy="1156.3099" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="126" x="330.9" y="1158.7506">adjVertices(V): Collection&lt;V&gt;</text><ellipse cx="326.7" cy="1166.5187" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="74.4" x="330.9" y="1168.9594">toString(): String</text><ellipse cx="326.7" cy="1176.7274" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="187.8" x="330.9" y="1179.1682">incomingEdges(V): Collection&lt;Edge&lt;V, E&gt;&gt;</text><ellipse cx="326.7" cy="1186.9362" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="117.6" x="330.9" y="1189.377">clone(): MatrixGraph&lt;V, E&gt;</text><ellipse cx="326.7" cy="1197.145" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="75" x="330.9" y="1199.5857">outDegree(V): int</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="324.9" y="1205.5538"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="81.6" x="330.9" y="1209.7945">resizeMatrix(): void</text><ellipse cx="326.7" cy="1217.5626" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="96.6" x="330.9" y="1220.0033">addVertex(V): boolean</text></g><!--MD5=[27eb0c30e65d8b262e52e99e862b6c6e]
+class MenuItem--><g id="elem_MenuItem"><rect codeLine="203" fill="#FFFFFF" height="77.4439" id="MenuItem" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="149.4" x="647.4" y="341.1"/><ellipse cx="699.15" cy="349.5" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M700.8094,347.025 Q700.9031,346.8938 701.0156,346.8281 Q701.1281,346.7625 701.2594,346.7625 Q701.4844,346.7625 701.625,346.9219 Q701.7656,347.0719 701.7656,347.4375 L701.7656,348.3094 Q701.7656,348.675 701.625,348.8344 Q701.4844,348.9938 701.2594,348.9938 Q701.0531,348.9938 700.9313,348.8719 Q700.8094,348.7594 700.7438,348.45 Q700.7156,348.2344 700.6031,348.1219 Q700.4063,347.8969 700.0406,347.7656 Q699.675,347.6344 699.3,347.6344 Q698.8406,347.6344 698.4563,347.8313 Q698.0813,348.0281 697.7813,348.4781 Q697.4906,348.9281 697.4906,349.5469 L697.4906,350.2031 Q697.4906,350.9437 698.025,351.4406 Q698.5594,351.9281 699.5156,351.9281 Q700.0781,351.9281 700.4719,351.7781 Q700.7063,351.6844 700.9594,351.4219 Q701.1188,351.2625 701.2031,351.2156 Q701.2969,351.1688 701.4187,351.1688 Q701.6156,351.1688 701.7656,351.3281 Q701.925,351.4781 701.925,351.6844 Q701.925,351.8906 701.7188,352.1344 Q701.4187,352.4813 700.9406,352.6781 Q700.2937,352.95 699.5156,352.95 Q698.6062,352.95 697.8844,352.575 Q697.2937,352.275 696.8813,351.6375 Q696.4688,350.9906 696.4688,350.2219 L696.4688,349.5281 Q696.4688,348.7313 696.8344,348.0469 Q697.2094,347.3531 697.8656,346.9875 Q698.5219,346.6125 699.2625,346.6125 Q699.7031,346.6125 700.0875,346.7156 Q700.4812,346.8094 700.8094,347.025 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="41.4" x="709.65" y="352.8407">MenuItem</text><line style="stroke:#000000;stroke-width:0.6;" x1="648" x2="796.2" y1="357.9" y2="357.9"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="652.2" y="364.5044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="78.6" x="658.2" y="368.7451">description: String</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="652.2" y="374.7132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="52.8" x="658.2" y="378.9539">ui: Runnable</text><line style="stroke:#000000;stroke-width:0.6;" x1="648" x2="796.2" y1="383.1176" y2="383.1176"/><ellipse cx="654" cy="391.522" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="135" x="658.2" y="393.9627">hasDescription(String): boolean</text><ellipse cx="654" cy="401.7308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45.6" x="658.2" y="404.1715">run(): void</text><ellipse cx="654" cy="411.9396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="74.4" x="658.2" y="414.3803">toString(): String</text></g><!--MD5=[266c9e7a26111ce562131e224e5acac7]
+class NCloserPointsUI--><g id="elem_NCloserPointsUI"><rect codeLine="210" fill="#FFFFFF" height="46.8176" id="NCloserPointsUI" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="127.8" x="498.6" y="356.4"/><ellipse cx="526.65" cy="364.8" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M528.3094,362.325 Q528.4031,362.1937 528.5156,362.1281 Q528.6281,362.0625 528.7594,362.0625 Q528.9844,362.0625 529.125,362.2219 Q529.2656,362.3719 529.2656,362.7375 L529.2656,363.6094 Q529.2656,363.975 529.125,364.1344 Q528.9844,364.2938 528.7594,364.2938 Q528.5531,364.2938 528.4313,364.1719 Q528.3094,364.0594 528.2438,363.75 Q528.2156,363.5344 528.1031,363.4219 Q527.9063,363.1969 527.5406,363.0656 Q527.175,362.9344 526.8,362.9344 Q526.3406,362.9344 525.9563,363.1312 Q525.5813,363.3281 525.2813,363.7781 Q524.9906,364.2281 524.9906,364.8469 L524.9906,365.5031 Q524.9906,366.2438 525.525,366.7406 Q526.0594,367.2281 527.0156,367.2281 Q527.5781,367.2281 527.9719,367.0781 Q528.2063,366.9844 528.4594,366.7219 Q528.6188,366.5625 528.7031,366.5156 Q528.7969,366.4688 528.9187,366.4688 Q529.1156,366.4688 529.2656,366.6281 Q529.425,366.7781 529.425,366.9844 Q529.425,367.1906 529.2188,367.4344 Q528.9187,367.7813 528.4406,367.9781 Q527.7937,368.25 527.0156,368.25 Q526.1062,368.25 525.3844,367.875 Q524.7937,367.575 524.3813,366.9375 Q523.9688,366.2906 523.9688,365.5219 L523.9688,364.8281 Q523.9688,364.0313 524.3344,363.3469 Q524.7094,362.6531 525.3656,362.2875 Q526.0219,361.9125 526.7625,361.9125 Q527.2031,361.9125 527.5875,362.0156 Q527.9812,362.1094 528.3094,362.325 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="67.2" x="537.15" y="368.1407">NCloserPointsUI</text><line style="stroke:#000000;stroke-width:0.6;" x1="499.2" x2="625.8" y1="373.2" y2="373.2"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="503.4" y="379.8044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="113.4" x="509.4" y="384.0451">ctrl: CloserPointsController</text><line style="stroke:#000000;stroke-width:0.6;" x1="499.2" x2="625.8" y1="388.2088" y2="388.2088"/><ellipse cx="505.2" cy="396.6132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45.6" x="509.4" y="399.0539">run(): void</text></g><!--MD5=[db94511ff73c25040c57072aa4771965]
+class Path--><g id="elem_Path"><rect codeLine="214" fill="#FFFFFF" height="118.2791" id="Path" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="241.8" x="1549.8" y="146.1"/><ellipse cx="1659.15" cy="154.5" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M1660.8094,152.025 Q1660.9031,151.8937 1661.0156,151.8281 Q1661.1281,151.7625 1661.2594,151.7625 Q1661.4844,151.7625 1661.625,151.9219 Q1661.7656,152.0719 1661.7656,152.4375 L1661.7656,153.3094 Q1661.7656,153.675 1661.625,153.8344 Q1661.4844,153.9938 1661.2594,153.9938 Q1661.0531,153.9938 1660.9312,153.8719 Q1660.8094,153.7594 1660.7437,153.45 Q1660.7156,153.2344 1660.6031,153.1219 Q1660.4063,152.8969 1660.0406,152.7656 Q1659.675,152.6344 1659.3,152.6344 Q1658.8406,152.6344 1658.4563,152.8312 Q1658.0813,153.0281 1657.7813,153.4781 Q1657.4906,153.9281 1657.4906,154.5469 L1657.4906,155.2031 Q1657.4906,155.9438 1658.025,156.4406 Q1658.5594,156.9281 1659.5156,156.9281 Q1660.0781,156.9281 1660.4719,156.7781 Q1660.7063,156.6844 1660.9594,156.4219 Q1661.1187,156.2625 1661.2031,156.2156 Q1661.2969,156.1688 1661.4188,156.1688 Q1661.6156,156.1688 1661.7656,156.3281 Q1661.925,156.4781 1661.925,156.6844 Q1661.925,156.8906 1661.7188,157.1344 Q1661.4188,157.4813 1660.9406,157.6781 Q1660.2938,157.95 1659.5156,157.95 Q1658.6063,157.95 1657.8844,157.575 Q1657.2938,157.275 1656.8813,156.6375 Q1656.4688,155.9906 1656.4688,155.2219 L1656.4688,154.5281 Q1656.4688,153.7313 1656.8344,153.0469 Q1657.2094,152.3531 1657.8656,151.9875 Q1658.5219,151.6125 1659.2625,151.6125 Q1659.7031,151.6125 1660.0875,151.7156 Q1660.4813,151.8094 1660.8094,152.025 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="18.6" x="1669.65" y="157.8407">Path</text><line style="stroke:#000000;stroke-width:0.6;" x1="1550.4" x2="1791" y1="162.9" y2="162.9"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1554.6" y="169.5044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="207" x="1560.6" y="173.7451">paths: ArrayList&lt;LinkedList&lt;ClientsProducers&gt;&gt;</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1554.6" y="179.7132"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="100.8" x="1560.6" y="183.9539">entity: ClientsProducers</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1554.6" y="189.922"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="67.2" x="1560.6" y="194.1627">averageDist: int</text><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1554.6" y="200.1308"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="108.6" x="1560.6" y="204.3715">dists: ArrayList&lt;Integer&gt;</text><line style="stroke:#000000;stroke-width:0.6;" x1="1550.4" x2="1791" y1="208.5352" y2="208.5352"/><ellipse cx="1556.4" cy="216.9396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="227.4" x="1560.6" y="219.3803">getPaths(): ArrayList&lt;LinkedList&lt;ClientsProducers&gt;&gt;</text><ellipse cx="1556.4" cy="227.1483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="89.4" x="1560.6" y="229.5891">getAverageDist(): int</text><ellipse cx="1556.4" cy="237.3571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="122.4" x="1560.6" y="239.7979">getEntity(): ClientsProducers</text><ellipse cx="1556.4" cy="247.5659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="130.8" x="1560.6" y="250.0066">getDists(): ArrayList&lt;Integer&gt;</text><rect fill="#FFFFFF" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="1554.6" y="255.9747"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="129" x="1560.6" y="260.2154">getAverageCompanyDist(): int</text></g><!--MD5=[a5b6460e263250ae655859ad2eca2bc8]
+class ShowTextUI--><g id="elem_ShowTextUI"><rect codeLine="225" fill="#FFFFFF" height="46.8176" id="ShowTextUI" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="68.4" x="503.7" y="32.7"/><ellipse cx="511.5" cy="41.1" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M513.1594,38.625 Q513.2531,38.4938 513.3656,38.4281 Q513.4781,38.3625 513.6094,38.3625 Q513.8344,38.3625 513.975,38.5219 Q514.1156,38.6719 514.1156,39.0375 L514.1156,39.9094 Q514.1156,40.275 513.975,40.4344 Q513.8344,40.5938 513.6094,40.5938 Q513.4031,40.5938 513.2813,40.4719 Q513.1594,40.3594 513.0938,40.05 Q513.0656,39.8344 512.9531,39.7219 Q512.7563,39.4969 512.3906,39.3656 Q512.025,39.2344 511.65,39.2344 Q511.1906,39.2344 510.8063,39.4313 Q510.4313,39.6281 510.1312,40.0781 Q509.8406,40.5281 509.8406,41.1469 L509.8406,41.8031 Q509.8406,42.5437 510.375,43.0406 Q510.9094,43.5281 511.8656,43.5281 Q512.4281,43.5281 512.8219,43.3781 Q513.0563,43.2844 513.3094,43.0219 Q513.4688,42.8625 513.5531,42.8156 Q513.6469,42.7688 513.7688,42.7688 Q513.9656,42.7688 514.1156,42.9281 Q514.275,43.0781 514.275,43.2844 Q514.275,43.4906 514.0688,43.7344 Q513.7688,44.0813 513.2906,44.2781 Q512.6438,44.55 511.8656,44.55 Q510.9562,44.55 510.2344,44.175 Q509.6437,43.875 509.2313,43.2375 Q508.8187,42.5906 508.8187,41.8219 L508.8187,41.1281 Q508.8187,40.3313 509.1844,39.6469 Q509.5594,38.9531 510.2156,38.5875 Q510.8719,38.2125 511.6125,38.2125 Q512.0531,38.2125 512.4375,38.3156 Q512.8313,38.4094 513.1594,38.625 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="51.6" x="518.7" y="44.4407">ShowTextUI</text><line style="stroke:#000000;stroke-width:0.6;" x1="504.3" x2="571.5" y1="49.5" y2="49.5"/><rect fill="none" height="3.6" style="stroke:#000000;stroke-width:0.6;" width="3.6" x="508.5" y="56.1044"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="49.8" x="514.5" y="60.3451">text: String</text><line style="stroke:#000000;stroke-width:0.6;" x1="504.3" x2="571.5" y1="64.5088" y2="64.5088"/><ellipse cx="510.3" cy="72.9132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="45.6" x="514.5" y="75.3539">run(): void</text></g><!--MD5=[f8d2b21678b6ea5d90e779ee6463ca37]
+class Utils--><g id="elem_Utils"><rect codeLine="229" fill="#FFFFFF" height="128.4879" id="Utils" rx="1.5" ry="1.5" style="stroke:#000000;stroke-width:0.6;" width="185.4" x="292.2" y="141"/><ellipse cx="373.65" cy="149.4" fill="#FFFFFF" rx="5.4" ry="5.4" style="stroke:#000000;stroke-width:0.6;"/><path d="M375.3094,146.925 Q375.4031,146.7938 375.5156,146.7281 Q375.6281,146.6625 375.7594,146.6625 Q375.9844,146.6625 376.125,146.8219 Q376.2656,146.9719 376.2656,147.3375 L376.2656,148.2094 Q376.2656,148.575 376.125,148.7344 Q375.9844,148.8937 375.7594,148.8937 Q375.5531,148.8937 375.4313,148.7719 Q375.3094,148.6594 375.2438,148.35 Q375.2156,148.1344 375.1031,148.0219 Q374.9063,147.7969 374.5406,147.6656 Q374.175,147.5344 373.8,147.5344 Q373.3406,147.5344 372.9563,147.7313 Q372.5813,147.9281 372.2813,148.3781 Q371.9906,148.8281 371.9906,149.4469 L371.9906,150.1031 Q371.9906,150.8438 372.525,151.3406 Q373.0594,151.8281 374.0156,151.8281 Q374.5781,151.8281 374.9719,151.6781 Q375.2063,151.5844 375.4594,151.3219 Q375.6188,151.1625 375.7031,151.1156 Q375.7969,151.0688 375.9188,151.0688 Q376.1156,151.0688 376.2656,151.2281 Q376.425,151.3781 376.425,151.5844 Q376.425,151.7906 376.2188,152.0344 Q375.9188,152.3813 375.4406,152.5781 Q374.7938,152.85 374.0156,152.85 Q373.1063,152.85 372.3844,152.475 Q371.7938,152.175 371.3812,151.5375 Q370.9688,150.8906 370.9688,150.1219 L370.9688,149.4281 Q370.9688,148.6313 371.3344,147.9469 Q371.7094,147.2531 372.3656,146.8875 Q373.0219,146.5125 373.7625,146.5125 Q374.2031,146.5125 374.5875,146.6156 Q374.9813,146.7094 375.3094,146.925 Z " fill="#000000"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="18" x="384.15" y="152.7407">Utils</text><line style="stroke:#000000;stroke-width:0.6;" x1="292.8" x2="477" y1="157.8" y2="157.8"/><line style="stroke:#000000;stroke-width:0.6;" x1="292.8" x2="477" y1="162.6" y2="162.6"/><ellipse cx="298.8" cy="171.0044" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="160.8" x="303" y="173.4451">readLineFromConsole(String): String?</text><ellipse cx="298.8" cy="181.2132" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="153" x="303" y="183.6539">readDateFromConsole(String): Date</text><ellipse cx="298.8" cy="191.422" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="92.4" x="303" y="193.8627">selectsIndex(List): int</text><ellipse cx="298.8" cy="201.6308" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="103.8" x="303" y="204.0715">confirm(String): boolean</text><ellipse cx="298.8" cy="211.8396" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="169.2" x="303" y="214.2803">showAndSelectOne(List, String): Object</text><ellipse cx="298.8" cy="222.0483" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="171" x="303" y="224.4891">readDoubleFromConsole(String): double</text><ellipse cx="298.8" cy="232.2571" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="115.2" x="303" y="234.6979">showList(List, String): void</text><ellipse cx="298.8" cy="242.4659" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="159.6" x="303" y="244.9066">showAndSelectIndex(List, String): int</text><ellipse cx="298.8" cy="252.6747" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="154.8" x="303" y="255.1154">readIntegerFromConsole(String): int</text><ellipse cx="298.8" cy="262.8835" fill="#FFFFFF" rx="1.8" ry="1.8" style="stroke:#000000;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="8.4" lengthAdjust="spacing" textLength="117.6" x="303" y="265.3242">selectsObject(List): Object?</text></g><!--MD5=[6f07585409b102dc4da38f4da03f6207]
+link Algorithms to MatrixGraph--><g id="link_Algorithms_MatrixGraph"><path codeLine="242" d="M421.5,942.354 C421.5,942.354 421.5,1000.728 421.5,1000.728 " fill="none" id="Algorithms-to-MatrixGraph" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="421.5,1003.728,423.9,998.328,421.5,1000.728,419.1,998.328,421.5,1003.728" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="395.1" y="969.7859">create</text></g><!--MD5=[5b0f1873c15ced29becf7ded48d12cb7]
+link App to Company--><g id="link_App_Company"><path codeLine="243" d="M127.698,625.806 C127.698,625.806 127.698,646.752 127.698,646.752 " fill="none" id="App-Company" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="127.698,654.552,130.098,649.152,127.698,651.552,125.298,649.152,127.698,654.552" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="127.698" x2="127.698" y1="651.552" y2="646.752"/><polygon fill="#595959" points="127.698,618.606,125.298,622.206,127.698,625.806,130.098,622.206,127.698,618.606" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="119.3759" y="648.1292">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="35.4" x="89.1065" y="631.3957">company</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="104.4065" y="640.8753">1</text></g><!--MD5=[5b0f1873c15ced29becf7ded48d12cb7]
+link App to Company--><g id="link_App_Company"><path codeLine="244" d="M187.302,618.606 C187.302,618.606 187.302,651.552 187.302,651.552 " fill="none" id="App-to-Company" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="187.302,654.552,189.702,649.152,187.302,651.552,184.902,649.152,187.302,654.552" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="160.902" y="633.3239">create</text></g><!--MD5=[1974e60eb3e861a3010d3e776148bdf6]
+link AuthController to App--><g id="link_AuthController_App"><path codeLine="245" d="M157.5,420.666 C157.5,420.666 157.5,482.28 157.5,482.28 " fill="none" id="AuthController-App" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="157.5,490.08,159.9,484.68,157.5,487.08,155.1,484.68,157.5,490.08" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="157.5" x2="157.5" y1="487.08" y2="482.28"/><polygon fill="#595959" points="157.5,413.466,155.1,417.066,157.5,420.666,159.9,417.066,157.5,413.466" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="152.5162" y="483.6679">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="14.4" x="142.3125" y="426.025">app</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="147.1125" y="435.5046">1</text></g><!--MD5=[a96456ea2219a7b2c0f89561544f0c79]
+link CloserPointsController to Company--><g id="link_CloserPointsController_Company"><path codeLine="246" d="M400.404,575.4 C400.404,575.4 288,575.4 288,575.4 C288,575.4 288,646.716 288,646.716 " fill="none" id="CloserPointsController-Company" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="288,654.516,290.4,649.116,288,651.516,285.6,649.116,288,654.516" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="288" x2="288" y1="651.516" y2="646.716"/><polygon fill="#595959" points="407.604,575.4,404.004,573,400.404,575.4,404.004,577.8,407.604,575.4" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="398.1343" y="574.7386">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="35.4" x="263.3513" y="638.7034">company</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="278.6513" y="648.183">1</text></g><!--MD5=[2f333a950ee3ef30068427f37ab0915e]
+link ClosestPointsCheck to DistanceComparator--><g id="link_ClosestPointsCheck_DistanceComparator"><path codeLine="247" d="M1324.8,79.56 C1324.8,79.56 1324.8,183.81 1324.8,183.81 " fill="none" id="ClosestPointsCheck-to-DistanceComparator" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="1324.8,186.81,1327.2,181.41,1324.8,183.81,1322.4,181.41,1324.8,186.81" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="1298.4" y="129.9299">create</text></g><!--MD5=[37120c66a413dbc292029613370c0bdf]
+link ClosestPointsCheck to HubAndDist--><g id="link_ClosestPointsCheck_HubAndDist"><path codeLine="248" d="M1464.3,79.56 C1464.3,79.56 1464.3,168.348 1464.3,168.348 " fill="none" id="ClosestPointsCheck-to-HubAndDist" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="1464.3,171.348,1466.7,165.948,1464.3,168.348,1461.9,165.948,1464.3,171.348" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="1437.9" y="122.1959">create</text></g><!--MD5=[07b6a7fa7caa772cdde79e818eb5a82a]
+link ClosestPointsCheck to Path--><g id="link_ClosestPointsCheck_Path"><path codeLine="249" d="M1603.8,79.56 C1603.8,79.56 1603.8,143.022 1603.8,143.022 " fill="none" id="ClosestPointsCheck-to-Path" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="1603.8,146.022,1606.2,140.622,1603.8,143.022,1601.4,140.622,1603.8,146.022" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="1577.4" y="109.5299">create</text></g><!--MD5=[73cb6a84480518af2d88af90c1d954ca]
+link CommonGraph to Graph--><g id="link_CommonGraph_Graph"><path codeLine="250" d="M530.7,1449.684 C530.7,1449.684 530.7,1473.54 530.7,1473.54 " fill="none" id="CommonGraph-to-Graph" style="stroke:#008200;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="534.9,1473.54,530.7,1485.54,526.5,1473.54,534.9,1473.54" style="stroke:#008200;stroke-width:0.6;"/></g><!--MD5=[d54b4dffa9be7019b8e527c1b0799a03]
+link Company to MapGraph--><g id="link_Company_MapGraph"><path codeLine="251" d="M191.298,742.236 C191.298,742.236 191.298,775.128 191.298,775.128 " fill="none" id="Company-to-MapGraph" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="191.298,778.128,193.698,772.728,191.298,775.128,188.898,772.728,191.298,778.128" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="164.898" y="756.9239">create</text></g><!--MD5=[d54b4dffa9be7019b8e527c1b0799a03]
+link Company to MapGraph--><g id="link_Company_MapGraph"><path codeLine="252" d="M123.702,749.436 C123.702,749.436 123.702,770.328 123.702,770.328 " fill="none" id="Company-MapGraph" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="123.702,778.128,126.102,772.728,123.702,775.128,121.302,772.728,123.702,778.128" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="123.702" x2="123.702" y1="775.128" y2="770.328"/><polygon fill="#595959" points="123.702,742.236,121.302,745.836,123.702,749.436,126.102,745.836,123.702,742.236" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="117.0355" y="771.8548">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="87.6" x="29.1909" y="754.824">clientsProducersGraph</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="70.5909" y="764.3036">1</text></g><!--MD5=[b7cee81347dd7c65010c724824592315]
+link FilesReaderApp to ClientsProducers--><g id="link_FilesReaderApp_ClientsProducers"><path codeLine="253" d="M1000.2,238.914 C1000.2,273.852 1000.2,323.4 1000.2,323.4 C1000.2,323.4 1403.226,323.4 1403.226,323.4 " fill="none" id="FilesReaderApp-to-ClientsProducers" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="1406.226,323.4,1400.826,321,1403.226,323.4,1400.826,325.8,1406.226,323.4" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="1133.07" y="321.6419">create</text></g><!--MD5=[33fe3dde57421834cb9530e6ed307fc3]
+link HubAndDist to ClientsProducers--><g id="link_HubAndDist_ClientsProducers"><path codeLine="254" d="M1444.998,246.066 C1444.998,246.066 1444.998,297.588 1444.998,297.588 " fill="none" id="HubAndDist-ClientsProducers" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="1444.998,305.388,1447.398,299.988,1444.998,302.388,1442.598,299.988,1444.998,305.388" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="1444.998" x2="1444.998" y1="302.388" y2="297.588"/><polygon fill="#595959" points="1444.998,238.866,1442.598,242.466,1444.998,246.066,1447.398,242.466,1444.998,238.866" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="1438.7399" y="298.9406">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="14.4" x="1427.6993" y="251.425">hub</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="1432.4993" y="260.9046">1</text></g><!--MD5=[8b2a2f22e5dc70491baccf72018b5896]
+link Main to MainMenuUI--><g id="link_Main_MainMenuUI"><path codeLine="255" d="M642.3,74.532 C642.3,74.532 642.3,183.81 642.3,183.81 " fill="none" id="Main-to-MainMenuUI" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="642.3,186.81,644.7,181.41,642.3,183.81,639.9,181.41,642.3,186.81" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="615.9" y="127.4159">create</text></g><!--MD5=[0700ecc6cda38ae978528dae1ca4ab88]
+link MainMenuUI to MenuItem--><g id="link_MainMenuUI_MenuItem"><path codeLine="256" d="M661.5,223.554 C661.5,223.554 661.5,337.974 661.5,337.974 " fill="none" id="MainMenuUI-to-MenuItem" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="661.5,340.974,663.9,335.574,661.5,337.974,659.1,335.574,661.5,340.974" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="635.1" y="279.0059">create</text></g><!--MD5=[d540e42d58e127c5acceeac20762a15c]
+link MainMenuUI to NCloserPointsUI--><g id="link_MainMenuUI_NCloserPointsUI"><path codeLine="257" d="M617.7,223.554 C617.7,223.554 617.7,353.172 617.7,353.172 " fill="none" id="MainMenuUI-to-NCloserPointsUI" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="617.7,356.172,620.1,350.772,617.7,353.172,615.3,350.772,617.7,356.172" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="591.3" y="286.6019">create</text></g><!--MD5=[7e7fe92a5523e911c73a9daab762bfae]
+link MapGraph to CommonGraph--><g id="link_MapGraph_CommonGraph"><path codeLine="258" d="M259.104,951 C382.068,951 572.85,951 572.85,951 C572.85,951 572.85,1247.874 572.85,1247.874 " fill="none" id="MapGraph-to-CommonGraph" style="stroke:#000082;stroke-width:0.6;"/><polygon fill="none" points="577.05,1247.874,572.85,1259.874,568.65,1247.874,577.05,1247.874" style="stroke:#000082;stroke-width:0.6;"/></g><!--MD5=[7992a734d3762fb19bbd899ae76dd0f0]
+link MapGraph to Edge--><g id="link_MapGraph_Edge"><path codeLine="259" d="M259.08,959.4 C285.498,959.4 306.702,959.4 306.702,959.4 C306.702,959.4 306.702,1287.39 306.702,1287.39 " fill="none" id="MapGraph-to-Edge" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="306.702,1290.39,309.102,1284.99,306.702,1287.39,304.302,1284.99,306.702,1290.39" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="280.302" y="1097.8319">create</text></g><!--MD5=[b81c77be576bce0e54e5b9039b25ba38]
+link MapGraph to MapVertex--><g id="link_MapGraph_MapVertex"><path codeLine="260" d="M190.5,975.066 C190.5,975.066 190.5,1041.75 190.5,1041.75 " fill="none" id="MapGraph-MapVertex" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="190.5,1049.55,192.9,1044.15,190.5,1046.55,188.1,1044.15,190.5,1049.55" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="190.5" x2="190.5" y1="1046.55" y2="1041.75"/><polygon fill="#595959" points="190.5,967.866,188.1,971.466,190.5,975.066,192.9,971.466,190.5,967.866" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="187.9472" y="1043.3501">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="48.6" x="142.2942" y="980.4329">mapVertices</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="5.4" x="163.8942" y="989.9125">*</text></g><!--MD5=[b81c77be576bce0e54e5b9039b25ba38]
+link MapGraph to MapVertex--><g id="link_MapGraph_MapVertex"><path codeLine="261" d="M124.5,967.866 C124.5,967.866 124.5,1046.55 124.5,1046.55 " fill="none" id="MapGraph-to-MapVertex" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="124.5,1049.55,126.9,1044.15,124.5,1046.55,122.1,1044.15,124.5,1049.55" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="98.1" y="1005.4499">create</text></g><!--MD5=[bed815064f335fa2c08f3cbd52d9763e]
+link MapVertex to Edge--><g id="link_MapVertex_Edge"><path codeLine="262" d="M263.748,1114.2 C263.748,1114.2 293.298,1114.2 293.298,1114.2 C293.298,1114.2 293.298,1282.68 293.298,1282.68 " fill="none" id="MapVertex-Edge" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="293.298,1290.48,295.698,1285.08,293.298,1287.48,290.898,1285.08,293.298,1290.48" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="293.298" x2="293.298" y1="1287.48" y2="1282.68"/><polygon fill="#595959" points="256.548,1114.2,260.148,1116.6,263.748,1114.2,260.148,1111.8,256.548,1114.2" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="261.1449" y="1112.8605">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="34.2" x="255.1002" y="1274.7847">outVerts</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="5.4" x="269.5002" y="1284.2643">*</text></g><!--MD5=[b10ac0057826d99e32d382b760b607c3]
+link MatrixGraph to CommonGraph--><g id="link_MatrixGraph_CommonGraph"><path codeLine="263" d="M480.75,1224.126 C480.75,1224.126 480.75,1247.922 480.75,1247.922 " fill="none" id="MatrixGraph-to-CommonGraph" style="stroke:#000082;stroke-width:0.6;"/><polygon fill="none" points="484.95,1247.922,480.75,1259.922,476.55,1247.922,484.95,1247.922" style="stroke:#000082;stroke-width:0.6;"/></g><!--MD5=[88378fecc0214ccb54b388de34e73693]
+link MatrixGraph to Edge--><g id="link_MatrixGraph_Edge"><path codeLine="264" d="M344.598,1231.326 C344.598,1231.326 344.598,1282.728 344.598,1282.728 " fill="none" id="MatrixGraph-Edge" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="344.598,1290.528,346.998,1285.128,344.598,1287.528,342.198,1285.128,344.598,1290.528" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="344.598" x2="344.598" y1="1287.528" y2="1282.728"/><polygon fill="#595959" points="344.598,1224.126,342.198,1227.726,344.598,1231.326,346.998,1227.726,344.598,1224.126" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="340.2955" y="1284.1195">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="43.2" x="297.5503" y="1236.6406">edgeMatrix</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="5.4" x="316.4503" y="1246.1202">*</text></g><!--MD5=[88378fecc0214ccb54b388de34e73693]
+link MatrixGraph to Edge--><g id="link_MatrixGraph_Edge"><path codeLine="265" d="M369.102,1224.126 C369.102,1224.126 369.102,1287.528 369.102,1287.528 " fill="none" id="MatrixGraph-to-Edge" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="369.102,1290.528,371.502,1285.128,369.102,1287.528,366.702,1285.128,369.102,1290.528" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="342.702" y="1254.0659">create</text></g><!--MD5=[0a93459aaec619360395300742cb8311]
+link NCloserPointsUI to AverageComparator--><g id="link_NCloserPointsUI_AverageComparator"><path codeLine="266" d="M498.54,379.8 C432.582,379.8 339.3,379.8 339.3,379.8 C339.3,379.8 339.3,533.046 339.3,533.046 " fill="none" id="NCloserPointsUI-to-AverageComparator" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="339.3,536.046,341.7,530.646,339.3,533.046,336.9,530.646,339.3,536.046" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="315.9" y="378.0419">create</text></g><!--MD5=[bc6674762c26654ad1760edc57b24df9]
+link NCloserPointsUI to CloserPointsController--><g id="link_NCloserPointsUI_CloserPointsController"><path codeLine="267" d="M541.2,410.55 C541.2,410.55 541.2,523.146 541.2,523.146 " fill="none" id="NCloserPointsUI-CloserPointsController" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="541.2,530.946,543.6,525.546,541.2,527.946,538.8,525.546,541.2,530.946" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="541.2" x2="541.2" y1="527.946" y2="523.146"/><polygon fill="#595959" points="541.2,403.35,538.8,406.95,541.2,410.55,543.6,406.95,541.2,403.35" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="531.8822" y="524.5032">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="13.2" x="524.0766" y="415.8354">ctrl</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="528.2766" y="425.315">1</text></g><!--MD5=[bc6674762c26654ad1760edc57b24df9]
+link NCloserPointsUI to CloserPointsController--><g id="link_NCloserPointsUI_CloserPointsController"><path codeLine="268" d="M583.8,403.35 C583.8,403.35 583.8,527.946 583.8,527.946 " fill="none" id="NCloserPointsUI-to-CloserPointsController" style="stroke:#595959;stroke-width:0.6;stroke-dasharray:7.0,7.0;"/><polygon fill="#595959" points="583.8,530.946,586.2,525.546,583.8,527.946,581.4,525.546,583.8,530.946" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="25.8" x="557.4" y="463.8899">create</text></g><!--MD5=[43254904b6d7e2a48d9e7ecb5c83506e]
+link Path to ClientsProducers--><g id="link_Path_ClientsProducers"><path codeLine="269" d="M1542.366,252 C1542.366,252 1483.602,252 1483.602,252 C1483.602,252 1483.602,297.474 1483.602,297.474 " fill="none" id="Path-ClientsProducers" style="stroke:#595959;stroke-width:0.6;"/><polygon fill="#595959" points="1483.602,305.274,1486.002,299.874,1483.602,302.274,1481.202,299.874,1483.602,305.274" style="stroke:#595959;stroke-width:0.6;"/><line style="stroke:#595959;stroke-width:0.6;" x1="1483.602" x2="1483.602" y1="302.274" y2="297.474"/><polygon fill="#595959" points="1549.566,252,1545.966,249.6,1542.366,252,1545.966,254.4,1549.566,252" style="stroke:#595959;stroke-width:0.6;"/><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="1540.3265" y="252.3692">1</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="23.4" x="1460.6652" y="289.4155">entity</text><text fill="#000000" font-family="Verdana" font-size="7.8" lengthAdjust="spacing" textLength="4.8" x="1469.9652" y="298.8951">1</text></g><!--MD5=[d1901424826f931e77549565fabde134]
+@startuml
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Algorithms {
+  + BreadthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  - DepthFirstSearch(Graph<V, E>, V, boolean[], LinkedList<V>): void
+  - initializePathDist(int, V[], E[]): void
+  + DepthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  + allPaths(Graph<V, E>, V, V): ArrayList<LinkedList<V>>?
+  # getPath(Graph<V, E>, V, V, V[], LinkedList<V>): void
+  - shortestPathDijkstra(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, boolean[], V[], E[]): void
+  + shortestPath(Graph<V, E>, V, V, Comparator<E>, BinaryOperator<E>, E, LinkedList<V>): E?
+  + shortestPaths(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, ArrayList<LinkedList<V>>, ArrayList<E>): boolean
+  + minDistGraph(Graph<V, E>, Comparator<E>, BinaryOperator<E>): MatrixGraph<V, E>?
+  - allPaths(Graph<V, E>, V, V, boolean[], LinkedList<V>, ArrayList<LinkedList<V>>): void
+}
+class App {
+  - company: Company
+  - authFacade: AuthFacade
+  - singleton: App
+  - bootstrap(): void
+  + doLogout(): void
+  + doLogin(String, String): boolean
+  + getInstance(): App
+  - getProperties(): Properties
+  + getCompany(): Company
+  + getCurrentUserSession(): UserSession
+}
+class AuthController {
+  - app: App
+  + getUserRoles(): List<UserRoleDTO>
+  + doLogin(String, String): boolean
+  + doLogout(): void
+}
+class AverageComparator {
+  + compare(Path, Path): int
+}
+class ClientsProducers {
+  - code: String
+  - latitude: float
+  - locId: String
+  - longitude: float
+  + getType(): String
+  + getLocationID(): String
+  + getCode(): String
+  + getLongitude(): float
+  + hashCode(): int
+  + equals(Object): boolean
+  + toString(): String
+  + getLatitude(): float
+}
+class CloserPointsController {
+  - company: Company
+  + getCloserPoints(Graph<ClientsProducers, Integer>): ArrayList<Path>
+}
+class ClosestPointsCheck {
+  + getClosestHub(ClientsProducers, Graph<ClientsProducers, Integer>): ClientsProducers?
+  + getCloserPoints(Graph<ClientsProducers, Integer>): ArrayList<Path>
+}
+class CommonGraph<V, E> {
+  # numEdges: int
+  # vertices: ArrayList<V>
+  # numVerts: int
+  # isDirected: boolean
+  + key(V): int
+  + vertex(int): V
+  + vertex(Predicate<V>): V
+  + clone(): Graph<V, E>
+  + numEdges(): int
+  + equals(Object): boolean
+  + hashCode(): int
+  + vertices(): ArrayList<V>
+  # copy(Graph<V, E>, Graph<V, E>): void
+  + isDirected(): boolean
+  + numVertices(): int
+  + validVertex(V): boolean
+}
+class Company {
+  - clientsProducersGraph: MapGraph<ClientsProducers, Integer>
+  - designation: String
+  - authFacade: AuthFacade
+  + getAuthFacade(): AuthFacade
+  + getClientsProducersGraph(): MapGraph<ClientsProducers, Integer>
+  + getDesignation(): String
+}
+class Constants {
+  + ROLE_DRIVER: String
+  + ROLE_CLIENT: String
+  + ROLE_AGRICULTURAL_MANAGER: String
+  + PARAMS_FILENAME: String
+  + ROLE_ADMIN: String
+  + PARAMS_COMPANY_DESIGNATION: String
+  + ROLE_DISTRIBUTION_MANAGER: String
+}
+class DistanceComparator {
+  + compare(HubAndDist, HubAndDist): int
+}
+class Edge<V, E> {
+  - vOrig: V
+  - vDest: V
+  - weight: E
+  + setWeight(E): void
+  + getVDest(): V
+  + getWeight(): E
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+  + getVOrig(): V
+}
+class FilesReaderApp {
+  + isConnected(MapGraph<ClientsProducers, Integer>, ClientsProducers, ArrayList<ClientsProducers>): boolean
+  + readProducerCSV(File, File): void
+  + bootstrap(): void
+  + readIrrigationDeviceFile(File): boolean
+}
+interface Graph<V, E> << interface >> {
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + numVertices(): int
+  + addEdge(V, V, E): boolean
+  + key(V): int
+  + isDirected(): boolean
+  + vertices(): ArrayList<V>
+  + addVertex(V): boolean
+  + vertex(int): V
+  + clone(): Graph<V, E>
+  + removeVertex(V): boolean
+  + edge(V, V): Edge<V, E>
+  + validVertex(V): boolean
+  + removeEdge(V, V): boolean
+  + vertex(Predicate<V>): V
+  + inDegree(V): int
+  + edges(): Collection<Edge<V, E>>
+  + numEdges(): int
+  + outDegree(V): int
+  + adjVertices(V): Collection<V>
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + edge(int, int): Edge<V, E>
+}
+class HubAndDist {
+  - hub: ClientsProducers
+  - dist: int
+  + getDist(): int
+  + getHub(): ClientsProducers
+}
+class Main {
+  + main(String[]): void
+}
+class MainMenuUI {
+  + run(): void
+}
+class MapGraph<V, E> {
+  - mapVertices: Map<V, MapVertex<V, E>>
+  + removeEdge(V, V): boolean
+  + edge(V, V): Edge<V, E>
+  + addVertex(V): boolean
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + validVertex(V): boolean
+  + adjVertices(V): Collection<V>
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + edges(): Collection<Edge<V, E>>
+  + toString(): String
+  + inDegree(V): int
+  + edge(int, int): Edge<V, E>
+  + outDegree(V): int
+  + removeVertex(V): boolean
+  + clone(): MapGraph<V, E>
+  + addEdge(V, V, E): boolean
+}
+class MapVertex<V, E> {
+  - outVerts: Map<V, Edge<V, E>>
+  - element: V
+  + getElement(): V
+  + toString(): String
+  + remAdjVert(V): void
+  + numAdjVerts(): int
+  + getAllOutEdges(): Collection<Edge<V, E>>
+  + addAdjVert(V, Edge<V, E>): void
+  + getEdge(V): Edge<V, E>
+  + getAllAdjVerts(): Collection<V>
+}
+class MatrixGraph<V, E> {
+  + RESIZE_FACTOR: float
+  + INITIAL_CAPACITY: int
+  ~ edgeMatrix: Edge<V, E>[][]
+  + removeVertex(V): boolean
+  + edges(): Collection<Edge<V, E>>
+  + edge(V, V): Edge<V, E>
+  - removeEdge(int, int): void
+  + inDegree(V): int
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + removeEdge(V, V): boolean
+  + edge(int, int): Edge<V, E>
+  + addEdge(V, V, E): boolean
+  + adjVertices(V): Collection<V>
+  + toString(): String
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + clone(): MatrixGraph<V, E>
+  + outDegree(V): int
+  - resizeMatrix(): void
+  + addVertex(V): boolean
+}
+class MenuItem {
+  - description: String
+  - ui: Runnable
+  + hasDescription(String): boolean
+  + run(): void
+  + toString(): String
+}
+class NCloserPointsUI {
+  - ctrl: CloserPointsController
+  + run(): void
+}
+class Path {
+  - paths: ArrayList<LinkedList<ClientsProducers>>
+  - entity: ClientsProducers
+  - averageDist: int
+  - dists: ArrayList<Integer>
+  + getPaths(): ArrayList<LinkedList<ClientsProducers>>
+  + getAverageDist(): int
+  + getEntity(): ClientsProducers
+  + getDists(): ArrayList<Integer>
+  - getAverageCompanyDist(): int
+}
+class ShowTextUI {
+  - text: String
+  + run(): void
+}
+class Utils {
+  + readLineFromConsole(String): String?
+  + readDateFromConsole(String): Date
+  + selectsIndex(List): int
+  + confirm(String): boolean
+  + showAndSelectOne(List, String): Object
+  + readDoubleFromConsole(String): double
+  + showList(List, String): void
+  + showAndSelectIndex(List, String): int
+  + readIntegerFromConsole(String): int
+  + selectsObject(List): Object?
+}
+
+Algorithms              -[#595959,dashed]->  MatrixGraph            : "«create»"
+App                    "1" *-[#595959,plain]-> "company\n1" Company                
+App                     -[#595959,dashed]->  Company                : "«create»"
+AuthController         "1" *-[#595959,plain]-> "app\n1" App                    
+CloserPointsController "1" *-[#595959,plain]-> "company\n1" Company                
+ClosestPointsCheck      -[#595959,dashed]->  DistanceComparator     : "«create»"
+ClosestPointsCheck      -[#595959,dashed]->  HubAndDist             : "«create»"
+ClosestPointsCheck      -[#595959,dashed]->  Path                   : "«create»"
+CommonGraph             -[#008200,dashed]-^  Graph                  
+Company                 -[#595959,dashed]->  MapGraph               : "«create»"
+Company                "1" *-[#595959,plain]-> "clientsProducersGraph\n1" MapGraph               
+FilesReaderApp          -[#595959,dashed]->  ClientsProducers       : "«create»"
+HubAndDist             "1" *-[#595959,plain]-> "hub\n1" ClientsProducers       
+Main                    -[#595959,dashed]->  MainMenuUI             : "«create»"
+MainMenuUI              -[#595959,dashed]->  MenuItem               : "«create»"
+MainMenuUI              -[#595959,dashed]->  NCloserPointsUI        : "«create»"
+MapGraph                -[#000082,plain]-^  CommonGraph            
+MapGraph                -[#595959,dashed]->  Edge                   : "«create»"
+MapGraph               "1" *-[#595959,plain]-> "mapVertices\n*" MapVertex              
+MapGraph                -[#595959,dashed]->  MapVertex              : "«create»"
+MapVertex              "1" *-[#595959,plain]-> "outVerts\n*" Edge                   
+MatrixGraph             -[#000082,plain]-^  CommonGraph            
+MatrixGraph            "1" *-[#595959,plain]-> "edgeMatrix\n*" Edge                   
+MatrixGraph             -[#595959,dashed]->  Edge                   : "«create»"
+NCloserPointsUI         -[#595959,dashed]->  AverageComparator      : "«create»"
+NCloserPointsUI        "1" *-[#595959,plain]-> "ctrl\n1" CloserPointsController 
+NCloserPointsUI         -[#595959,dashed]->  CloserPointsController : "«create»"
+Path                   "1" *-[#595959,plain]-> "entity\n1" ClientsProducers
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+<style>
+  root {
+    BackgroundColor white
+    FontColor black
+    FontName Verdana
+    HyperLinkColor blue
+    LineColor black
+    LineThickness 1
+    Margin 5
+  }
+  caption {
+    LineThickness 0
+  }
+  footer {
+    LineThickness 0
+  }
+  header {
+    LineThickness 0
+  }
+  node {
+    MaximumWidth 300
+  }
+  title {
+    FontSize 22
+    LineThickness 0
+  }
+</style>
+
+skinparam ArrowLollipopColor black
+skinparam BackgroundColor white
+skinparam DefaultFontName Verdana
+skinparam DefaultMonospacedFontName Courier
+skinparam LifelineStrategy nosolid
+skinparam ParticipantPadding 10
+skinparam SequenceLifeLineBorderColor black
+skinparam Shadowing false
+skinparam UseBetaStyle true
+
+skinparam Activity {
+  BackgroundColor white
+  BarColor black
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam Boundary {
+  FontColor black
+}
+skinparam Box {
+  Padding 5
+}
+skinparam CircledCharacter {
+  FontColor black
+  FontName Courier
+  Radius 9
+}
+skinparam Class {
+  BackgroundColor white
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassAttribute {
+  FontColor black
+  FontName Verdana
+}
+skinparam ClassStereotype {
+  FontColor black
+  FontName Verdana
+}
+skinparam Footer {
+  FontColor black
+  FontName Verdana
+}
+skinparam Header {
+  FontColor black
+  FontName Verdana
+}
+skinparam Hyperlink {
+  Color blue
+}
+skinparam IconPackage {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPrivate {
+  Color black
+  BackgroundColor white
+}
+skinparam IconProtected {
+  Color black
+  BackgroundColor white
+}
+skinparam IconPublic {
+  Color black
+  BackgroundColor white
+}
+skinparam Note {
+  FontColor black
+  FontName Verdana
+}
+skinparam Object {
+  BorderColor black
+}
+skinparam Package {
+  BorderColor black
+  FontColor black
+  FontName Verdana
+}
+skinparam State {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeA {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeC {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeE {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeI {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam StereotypeN {
+  BackgroundColor white
+  BorderColor black
+}
+skinparam UseCaseStereoType {
+  FontColor black
+  FontName Verdana
+}
+top to bottom direction
+skinparam linetype ortho
+
+class Algorithms {
+  + BreadthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  - DepthFirstSearch(Graph<V, E>, V, boolean[], LinkedList<V>): void
+  - initializePathDist(int, V[], E[]): void
+  + DepthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  + allPaths(Graph<V, E>, V, V): ArrayList<LinkedList<V>>?
+  # getPath(Graph<V, E>, V, V, V[], LinkedList<V>): void
+  - shortestPathDijkstra(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, boolean[], V[], E[]): void
+  + shortestPath(Graph<V, E>, V, V, Comparator<E>, BinaryOperator<E>, E, LinkedList<V>): E?
+  + shortestPaths(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, ArrayList<LinkedList<V>>, ArrayList<E>): boolean
+  + minDistGraph(Graph<V, E>, Comparator<E>, BinaryOperator<E>): MatrixGraph<V, E>?
+  - allPaths(Graph<V, E>, V, V, boolean[], LinkedList<V>, ArrayList<LinkedList<V>>): void
+}
+class App {
+  - company: Company
+  - authFacade: AuthFacade
+  - singleton: App
+  - bootstrap(): void
+  + doLogout(): void
+  + doLogin(String, String): boolean
+  + getInstance(): App
+  - getProperties(): Properties
+  + getCompany(): Company
+  + getCurrentUserSession(): UserSession
+}
+class AuthController {
+  - app: App
+  + getUserRoles(): List<UserRoleDTO>
+  + doLogin(String, String): boolean
+  + doLogout(): void
+}
+class AverageComparator {
+  + compare(Path, Path): int
+}
+class ClientsProducers {
+  - code: String
+  - latitude: float
+  - locId: String
+  - longitude: float
+  + getType(): String
+  + getLocationID(): String
+  + getCode(): String
+  + getLongitude(): float
+  + hashCode(): int
+  + equals(Object): boolean
+  + toString(): String
+  + getLatitude(): float
+}
+class CloserPointsController {
+  - company: Company
+  + getCloserPoints(Graph<ClientsProducers, Integer>): ArrayList<Path>
+}
+class ClosestPointsCheck {
+  + getClosestHub(ClientsProducers, Graph<ClientsProducers, Integer>): ClientsProducers?
+  + getCloserPoints(Graph<ClientsProducers, Integer>): ArrayList<Path>
+}
+class CommonGraph<V, E> {
+  # numEdges: int
+  # vertices: ArrayList<V>
+  # numVerts: int
+  # isDirected: boolean
+  + key(V): int
+  + vertex(int): V
+  + vertex(Predicate<V>): V
+  + clone(): Graph<V, E>
+  + numEdges(): int
+  + equals(Object): boolean
+  + hashCode(): int
+  + vertices(): ArrayList<V>
+  # copy(Graph<V, E>, Graph<V, E>): void
+  + isDirected(): boolean
+  + numVertices(): int
+  + validVertex(V): boolean
+}
+class Company {
+  - clientsProducersGraph: MapGraph<ClientsProducers, Integer>
+  - designation: String
+  - authFacade: AuthFacade
+  + getAuthFacade(): AuthFacade
+  + getClientsProducersGraph(): MapGraph<ClientsProducers, Integer>
+  + getDesignation(): String
+}
+class Constants {
+  + ROLE_DRIVER: String
+  + ROLE_CLIENT: String
+  + ROLE_AGRICULTURAL_MANAGER: String
+  + PARAMS_FILENAME: String
+  + ROLE_ADMIN: String
+  + PARAMS_COMPANY_DESIGNATION: String
+  + ROLE_DISTRIBUTION_MANAGER: String
+}
+class DistanceComparator {
+  + compare(HubAndDist, HubAndDist): int
+}
+class Edge<V, E> {
+  - vOrig: V
+  - vDest: V
+  - weight: E
+  + setWeight(E): void
+  + getVDest(): V
+  + getWeight(): E
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+  + getVOrig(): V
+}
+class FilesReaderApp {
+  + isConnected(MapGraph<ClientsProducers, Integer>, ClientsProducers, ArrayList<ClientsProducers>): boolean
+  + readProducerCSV(File, File): void
+  + bootstrap(): void
+  + readIrrigationDeviceFile(File): boolean
+}
+interface Graph<V, E> << interface >> {
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + numVertices(): int
+  + addEdge(V, V, E): boolean
+  + key(V): int
+  + isDirected(): boolean
+  + vertices(): ArrayList<V>
+  + addVertex(V): boolean
+  + vertex(int): V
+  + clone(): Graph<V, E>
+  + removeVertex(V): boolean
+  + edge(V, V): Edge<V, E>
+  + validVertex(V): boolean
+  + removeEdge(V, V): boolean
+  + vertex(Predicate<V>): V
+  + inDegree(V): int
+  + edges(): Collection<Edge<V, E>>
+  + numEdges(): int
+  + outDegree(V): int
+  + adjVertices(V): Collection<V>
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + edge(int, int): Edge<V, E>
+}
+class HubAndDist {
+  - hub: ClientsProducers
+  - dist: int
+  + getDist(): int
+  + getHub(): ClientsProducers
+}
+class Main {
+  + main(String[]): void
+}
+class MainMenuUI {
+  + run(): void
+}
+class MapGraph<V, E> {
+  - mapVertices: Map<V, MapVertex<V, E>>
+  + removeEdge(V, V): boolean
+  + edge(V, V): Edge<V, E>
+  + addVertex(V): boolean
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + validVertex(V): boolean
+  + adjVertices(V): Collection<V>
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + edges(): Collection<Edge<V, E>>
+  + toString(): String
+  + inDegree(V): int
+  + edge(int, int): Edge<V, E>
+  + outDegree(V): int
+  + removeVertex(V): boolean
+  + clone(): MapGraph<V, E>
+  + addEdge(V, V, E): boolean
+}
+class MapVertex<V, E> {
+  - outVerts: Map<V, Edge<V, E>>
+  - element: V
+  + getElement(): V
+  + toString(): String
+  + remAdjVert(V): void
+  + numAdjVerts(): int
+  + getAllOutEdges(): Collection<Edge<V, E>>
+  + addAdjVert(V, Edge<V, E>): void
+  + getEdge(V): Edge<V, E>
+  + getAllAdjVerts(): Collection<V>
+}
+class MatrixGraph<V, E> {
+  + RESIZE_FACTOR: float
+  + INITIAL_CAPACITY: int
+  ~ edgeMatrix: Edge<V, E>[][]
+  + removeVertex(V): boolean
+  + edges(): Collection<Edge<V, E>>
+  + edge(V, V): Edge<V, E>
+  - removeEdge(int, int): void
+  + inDegree(V): int
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + removeEdge(V, V): boolean
+  + edge(int, int): Edge<V, E>
+  + addEdge(V, V, E): boolean
+  + adjVertices(V): Collection<V>
+  + toString(): String
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + clone(): MatrixGraph<V, E>
+  + outDegree(V): int
+  - resizeMatrix(): void
+  + addVertex(V): boolean
+}
+class MenuItem {
+  - description: String
+  - ui: Runnable
+  + hasDescription(String): boolean
+  + run(): void
+  + toString(): String
+}
+class NCloserPointsUI {
+  - ctrl: CloserPointsController
+  + run(): void
+}
+class Path {
+  - paths: ArrayList<LinkedList<ClientsProducers>>
+  - entity: ClientsProducers
+  - averageDist: int
+  - dists: ArrayList<Integer>
+  + getPaths(): ArrayList<LinkedList<ClientsProducers>>
+  + getAverageDist(): int
+  + getEntity(): ClientsProducers
+  + getDists(): ArrayList<Integer>
+  - getAverageCompanyDist(): int
+}
+class ShowTextUI {
+  - text: String
+  + run(): void
+}
+class Utils {
+  + readLineFromConsole(String): String?
+  + readDateFromConsole(String): Date
+  + selectsIndex(List): int
+  + confirm(String): boolean
+  + showAndSelectOne(List, String): Object
+  + readDoubleFromConsole(String): double
+  + showList(List, String): void
+  + showAndSelectIndex(List, String): int
+  + readIntegerFromConsole(String): int
+  + selectsObject(List): Object?
+}
+
+Algorithms              -[#595959,dashed]->  MatrixGraph            : "«create»"
+App                    "1" *-[#595959,plain]-> "company\n1" Company                
+App                     -[#595959,dashed]->  Company                : "«create»"
+AuthController         "1" *-[#595959,plain]-> "app\n1" App                    
+CloserPointsController "1" *-[#595959,plain]-> "company\n1" Company                
+ClosestPointsCheck      -[#595959,dashed]->  DistanceComparator     : "«create»"
+ClosestPointsCheck      -[#595959,dashed]->  HubAndDist             : "«create»"
+ClosestPointsCheck      -[#595959,dashed]->  Path                   : "«create»"
+CommonGraph             -[#008200,dashed]-^  Graph                  
+Company                 -[#595959,dashed]->  MapGraph               : "«create»"
+Company                "1" *-[#595959,plain]-> "clientsProducersGraph\n1" MapGraph               
+FilesReaderApp          -[#595959,dashed]->  ClientsProducers       : "«create»"
+HubAndDist             "1" *-[#595959,plain]-> "hub\n1" ClientsProducers       
+Main                    -[#595959,dashed]->  MainMenuUI             : "«create»"
+MainMenuUI              -[#595959,dashed]->  MenuItem               : "«create»"
+MainMenuUI              -[#595959,dashed]->  NCloserPointsUI        : "«create»"
+MapGraph                -[#000082,plain]-^  CommonGraph            
+MapGraph                -[#595959,dashed]->  Edge                   : "«create»"
+MapGraph               "1" *-[#595959,plain]-> "mapVertices\n*" MapVertex              
+MapGraph                -[#595959,dashed]->  MapVertex              : "«create»"
+MapVertex              "1" *-[#595959,plain]-> "outVerts\n*" Edge                   
+MatrixGraph             -[#000082,plain]-^  CommonGraph            
+MatrixGraph            "1" *-[#595959,plain]-> "edgeMatrix\n*" Edge                   
+MatrixGraph             -[#595959,dashed]->  Edge                   : "«create»"
+NCloserPointsUI         -[#595959,dashed]->  AverageComparator      : "«create»"
+NCloserPointsUI        "1" *-[#595959,plain]-> "ctrl\n1" CloserPointsController 
+NCloserPointsUI         -[#595959,dashed]->  CloserPointsController : "«create»"
+Path                   "1" *-[#595959,plain]-> "entity\n1" ClientsProducers
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 19:12:26 WEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

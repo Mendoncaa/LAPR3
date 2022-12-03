@@ -1,0 +1,264 @@
+@startuml
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Algorithms {
+  - shortestPathDijkstra(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, boolean[], V[], E[]): void
+  + allPaths(Graph<V, E>, V, V): ArrayList<LinkedList<V>>?
+  - allPaths(Graph<V, E>, V, V, boolean[], LinkedList<V>, ArrayList<LinkedList<V>>): void
+  + shortestPaths(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, ArrayList<LinkedList<V>>, ArrayList<E>): boolean
+  + BreadthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  # getPath(Graph<V, E>, V, V, V[], LinkedList<V>): void
+  + DepthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  - initializePathDist(int, V[], E[]): void
+  + shortestPath(Graph<V, E>, V, V, Comparator<E>, BinaryOperator<E>, E, LinkedList<V>): E?
+  + minDistGraph(Graph<V, E>, Comparator<E>, BinaryOperator<E>): MatrixGraph<V, E>?
+  - DepthFirstSearch(Graph<V, E>, V, boolean[], LinkedList<V>): void
+}
+class App {
+  - authFacade: AuthFacade
+  - company: Company
+  - singleton: App
+  + getCurrentUserSession(): UserSession
+  - getProperties(): Properties
+  + getCompany(): Company
+  + doLogout(): void
+  + getInstance(): App
+  - bootstrap(): void
+  + doLogin(String, String): boolean
+}
+class AuthController {
+  - app: App
+  + doLogout(): void
+  + doLogin(String, String): boolean
+  + getUserRoles(): List<UserRoleDTO>
+}
+class AuthUI {
+  - ctrl: AuthController
+  - doLogin(): boolean
+  - logout(): void
+  + run(): void
+  - getMenuItemForRoles(): List<MenuItem>
+  - selectsRole(List<UserRoleDTO>): UserRoleDTO
+  - redirectToRoleUI(List<MenuItem>, UserRoleDTO): void
+}
+class ClientsProducers {
+  - locId: String
+  - latitude: float
+  - code: String
+  - longitude: float
+  + getCode(): String
+  + hashCode(): int
+  + getLocationID(): String
+  + equals(Object): boolean
+  + getType(): String
+  + getLatitude(): float
+  + toString(): String
+  + getLongitude(): float
+}
+class ClosestHubController {
+  - company: Company
+  + getClosestHub(ClientsProducers, Graph<ClientsProducers, Integer>): ClientsProducers
+}
+class ClosestHubUI {
+  - ctrl: ClosestHubController
+  + run(): void
+}
+class ClosestPointsCheck {
+  + getClosestHub(ClientsProducers, Graph<ClientsProducers, Integer>): ClientsProducers?
+}
+class CommonGraph<V, E> {
+  # numVerts: int
+  # vertices: ArrayList<V>
+  # isDirected: boolean
+  # numEdges: int
+  + isDirected(): boolean
+  + hashCode(): int
+  # copy(Graph<V, E>, Graph<V, E>): void
+  + vertex(int): V
+  + equals(Object): boolean
+  + numVertices(): int
+  + key(V): int
+  + numEdges(): int
+  + validVertex(V): boolean
+  + vertex(Predicate<V>): V
+  + vertices(): ArrayList<V>
+  + clone(): Graph<V, E>
+}
+class Company {
+  - authFacade: AuthFacade
+  - designation: String
+  - clientsProducersGraph: MapGraph<ClientsProducers, Integer>
+  + getDesignation(): String
+  + getAuthFacade(): AuthFacade
+  + getClientsProducersGraph(): MapGraph<ClientsProducers, Integer>
+}
+class Constants {
+  + ROLE_AGRICULTURAL_MANAGER: String
+  + ROLE_CLIENT: String
+  + ROLE_DISTRIBUTION_MANAGER: String
+  + PARAMS_COMPANY_DESIGNATION: String
+  + PARAMS_FILENAME: String
+  + ROLE_DRIVER: String
+  + ROLE_ADMIN: String
+}
+class DistanceComparator {
+  + compare(HubAndDist, HubAndDist): int
+}
+class Edge<V, E> {
+  - vDest: V
+  - vOrig: V
+  - weight: E
+  + getVDest(): V
+  + getWeight(): E
+  + equals(Object): boolean
+  + toString(): String
+  + getVOrig(): V
+  + hashCode(): int
+  + setWeight(E): void
+}
+class FilesReaderApp {
+  + readIrrigationDeviceFile(File): boolean
+  + isConnected(MapGraph<ClientsProducers, Integer>, ClientsProducers, ArrayList<ClientsProducers>): boolean
+  + bootstrap(): void
+  + readProducerCSV(File, File): void
+}
+interface Graph<V, E> << interface >> {
+  + numEdges(): int
+  + edge(int, int): Edge<V, E>
+  + vertex(Predicate<V>): V
+  + isDirected(): boolean
+  + outDegree(V): int
+  + removeEdge(V, V): boolean
+  + edge(V, V): Edge<V, E>
+  + inDegree(V): int
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + addEdge(V, V, E): boolean
+  + numVertices(): int
+  + clone(): Graph<V, E>
+  + validVertex(V): boolean
+  + removeVertex(V): boolean
+  + adjVertices(V): Collection<V>
+  + vertices(): ArrayList<V>
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + addVertex(V): boolean
+  + edges(): Collection<Edge<V, E>>
+  + vertex(int): V
+  + key(V): int
+}
+class HubAndDist {
+  - dist: int
+  - hub: ClientsProducers
+  + getHub(): ClientsProducers
+  + getDist(): int
+}
+class Main {
+  + main(String[]): void
+}
+class MainMenuUI {
+  + run(): void
+}
+class MapGraph<V, E> {
+  - mapVertices: Map<V, MapVertex<V, E>>
+  + addEdge(V, V, E): boolean
+  + addVertex(V): boolean
+  + edge(int, int): Edge<V, E>
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + adjVertices(V): Collection<V>
+  + inDegree(V): int
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + removeEdge(V, V): boolean
+  + edges(): Collection<Edge<V, E>>
+  + edge(V, V): Edge<V, E>
+  + outDegree(V): int
+  + removeVertex(V): boolean
+  + validVertex(V): boolean
+  + toString(): String
+  + clone(): MapGraph<V, E>
+}
+class MapVertex<V, E> {
+  - outVerts: Map<V, Edge<V, E>>
+  - element: V
+  + getElement(): V
+  + getEdge(V): Edge<V, E>
+  + getAllAdjVerts(): Collection<V>
+  + numAdjVerts(): int
+  + remAdjVert(V): void
+  + addAdjVert(V, Edge<V, E>): void
+  + getAllOutEdges(): Collection<Edge<V, E>>
+  + toString(): String
+}
+class MatrixGraph<V, E> {
+  ~ edgeMatrix: Edge<V, E>[][]
+  + INITIAL_CAPACITY: int
+  + RESIZE_FACTOR: float
+  - removeEdge(int, int): void
+  + addVertex(V): boolean
+  + clone(): MatrixGraph<V, E>
+  + outDegree(V): int
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + adjVertices(V): Collection<V>
+  - resizeMatrix(): void
+  + inDegree(V): int
+  + removeVertex(V): boolean
+  + toString(): String
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + edge(int, int): Edge<V, E>
+  + addEdge(V, V, E): boolean
+  + removeEdge(V, V): boolean
+  + edge(V, V): Edge<V, E>
+  + edges(): Collection<Edge<V, E>>
+}
+class MenuItem {
+  - ui: Runnable
+  - description: String
+  + hasDescription(String): boolean
+  + toString(): String
+  + run(): void
+}
+class ShowTextUI {
+  - text: String
+  + run(): void
+}
+class Utils {
+  + readDateFromConsole(String): Date
+  + showAndSelectOne(List, String): Object
+  + showAndSelectIndex(List, String): int
+  + selectsObject(List): Object?
+  + readLineFromConsole(String): String?
+  + readDoubleFromConsole(String): double
+  + showList(List, String): void
+  + selectsIndex(List): int
+  + confirm(String): boolean
+  + readIntegerFromConsole(String): int
+}
+
+Algorithms            -[#595959,dashed]->  MatrixGraph          : "«create»"
+App                   -[#595959,dashed]->  Company              : "«create»"
+App                  "1" *-[#595959,plain]-> "company\n1" Company
+AuthController       "1" *-[#595959,plain]-> "app\n1" App
+AuthUI               "1" *-[#595959,plain]-> "ctrl\n1" AuthController
+AuthUI                -[#595959,dashed]->  AuthController       : "«create»"
+ClosestHubController "1" *-[#595959,plain]-> "company\n1" Company
+ClosestHubUI          -[#595959,dashed]->  ClosestHubController : "«create»"
+ClosestHubUI         "1" *-[#595959,plain]-> "ctrl\n1" ClosestHubController
+ClosestPointsCheck    -[#595959,dashed]->  DistanceComparator   : "«create»"
+ClosestPointsCheck    -[#595959,dashed]->  HubAndDist           : "«create»"
+CommonGraph           -[#008200,dashed]-^  Graph
+Company              "1" *-[#595959,plain]-> "clientsProducersGraph\n1" MapGraph
+Company               -[#595959,dashed]->  MapGraph             : "«create»"
+FilesReaderApp        -[#595959,dashed]->  ClientsProducers     : "«create»"
+HubAndDist           "1" *-[#595959,plain]-> "hub\n1" ClientsProducers
+Main                  -[#595959,dashed]->  MainMenuUI           : "«create»"
+MainMenuUI            -[#595959,dashed]->  ClosestHubUI         : "«create»"
+MainMenuUI            -[#595959,dashed]->  MenuItem             : "«create»"
+MapGraph              -[#000082,plain]-^  CommonGraph
+MapGraph              -[#595959,dashed]->  Edge                 : "«create»"
+MapGraph              -[#595959,dashed]->  MapVertex            : "«create»"
+MapGraph             "1" *-[#595959,plain]-> "mapVertices\n*" MapVertex
+MapVertex            "1" *-[#595959,plain]-> "outVerts\n*" Edge
+MatrixGraph           -[#000082,plain]-^  CommonGraph
+MatrixGraph           -[#595959,dashed]->  Edge                 : "«create»"
+MatrixGraph          "1" *-[#595959,plain]-> "edgeMatrix\n*" Edge
+@enduml

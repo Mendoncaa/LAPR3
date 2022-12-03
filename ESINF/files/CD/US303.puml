@@ -1,0 +1,43 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+
+class App{
+-BST<Product> productBST
+-ArrayList<Flag> flagDescription
+-ArrayList<ItemCodes> itemCodes
+-ArrayList<AreaInfo> areaInfos
++getFlagDescriptions()
++getItemCodes()
++getAreaInfos()
++getProductBST()
++{static}getInstance()
+}
+
+class ClosestPointsCheck{
++{static}getCloserPoints(Graph<ClientsProducers,Integer> graph)
++{static}getClosestHub(ClientsProducers cp, Graph<ClientsProducers,Integer> graph)
+}
+
+class Algorithms{
+
+}
+
+
+class NCloserPointsUI{
+- CloserPointsController ctrl
++run()
+}
+
+class CloserPointsController{
+-Company company
++getCloserPoints(Graph<Clientsproducers, Integer> graph)
+}
+
+
+
+NCloserPointsUI..>CloserPointsController
+
+
+
+@enduml
