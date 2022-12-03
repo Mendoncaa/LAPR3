@@ -6,28 +6,26 @@
 uint64_t state=0;  
 uint64_t inc=0;
 
-
+//Arrays para a US[102]
 char temp[30];
-//char *ptrtemp = &temp;
-
 char velcvento[30];
-//char *ptrvento= &velcvento;
-
 char dirvento[30];
-//char *ptrdirvento= &dirvento;
-
 char humdatm[30];
-//char *ptrhumdatm= &humdatm;
-
 char humdsolo[30];
-//char *ptrhumdsolo= &humdsolo;
-
 char pluvio[30];
 
-int numElementos=30;
+//Inicializador de variaveis sem dependeencias
+char ult_temp=15;
+char ult_velc_vento=10;
+char ult_dir_vento;
 
-int k=0;
-int j=0;
+
+//US[104]
+int erros;
+int erroMaximo=5;
+
+
+//US[103]
 
 short matriz[6][3];
 short *ptrMatriz=&matriz[0][0];
@@ -37,8 +35,7 @@ short contador=0;
 short soma=0;
 short media=0;
 
-int erros=0;
-int erroMaximo=3;
+
 
 
 
@@ -67,21 +64,37 @@ int main() {
 
 
 }
-void SensTemp(){
+void sens_temp(){
+	
+	char tempmin= -20;
+	char tempmax= 55;
 
-	char ult_temp=15;
 
-	for (int i = 0; i < 24; i++){
+	for (int i = 0; i < 30; i++){
 		char comp_rand = pcg32_random_r() % 3;
 		if(i!=0){
-			ult_temp=  *(ptrtemp-1)
+			ult_temp= temp[i-1];
 		}
 		
 		sens_temp(ult_temp, comp_rand);
 
-		*ptrtemp++;
+		temp[i]= sens_temp(ult_temp, comp_rand);
 		
 	}
+	for (int i = 0; i < 30; i++)
+	{
+		if (temp[i]> tempmax || temp[i]< tempmin){
+			erros++;
+		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-2;
+			sens_temp(init);
+		}
+	}
+
 	for(int i=0;i<30;i++){
 		soma+=temp[i];
 		contador++;
@@ -109,16 +122,30 @@ void SensTemp(){
 	
 
 
-void SensVelcVento(){
-	char ult_velc_vento=10;
-		for (int i = 0; i < 24; i++){
+void sens_velc_vento(){
+
+	unsigned char velcmin= 0;
+	unsigned char velcmax= 150;
+
+		for (int i = 0; i < 30; i++){
 			char comp_rand = pcg32_random_r() % 15;
 		if(i!=0){
-			ult_velc_vento=  *(ptrvento-1);
+			ult_velc_vento=  velcvento[i-1];
 		}
-	sens_velc_ventp(ult_velc_vento, comp_rand);
-	*ptrvento++;
-		
+		velcvento[i]= sensor_velc_vento(ult_velc_vento, comp_rand);
+	}
+	for (int i = 0; i < 30; i++)
+	{
+		if (velcvento[i]> velcmax || velcvento[i]< velcmin){
+			erros++;
+		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-2;
+			sens_velc_vento(init);
+		}
 	}
 	for(int i=0;i<30;i++){
 		soma+=velcvento[i];
@@ -130,6 +157,7 @@ void SensVelcVento(){
 			valorMaximo=velcvento[i];
 		}
 	}
+
 	media=soma/contador;
 	
 		*ptrMatriz=valorMaximo;
@@ -147,20 +175,37 @@ void SensVelcVento(){
 
 
 
-void SensDirVento(){
-		//so pode variar entre 0 e 359
-		char ult_dir_vento=250;
-		for (int i = 0; i < 24; i++){
-			char comp_rand = pcg32_random_r() % 15;		
+void sens_dir_vento(){
+		
+		unsigned char dirmin= 0;
+		unsigned char dirmax= 359;
+		
+
+		for (int i = 0; i < 30; i++){
+			char comp_rand = pcg32_random_r() % 50;		
 		if(i!=0){
-			ult_dir_vento = *(ptrdir-1);
+			ult_dir_vento = dirvento[i-1];
 		}
-		sens_velc_vento(ult_dir_vento, comp_rand);
-		*ptrdirvento++;
+		dirvento[i]= sensor_velc_vento(ult_dir_vento, comp_rand);
+		
 		}
+		for (int i = 0; i < 30; i++)
+	{
+		if (dirvento[i]> dirmax || dirvento[i]< dirmin){
+			erros++;
+		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-2;
+			sens_dir_vento(init);
+		}
+	}
+
 		for(int i=0;i<30;i++){
-		soma+=dirvento[i];
-		contador++;
+			soma+=dirvento[i];
+			contador++;
 		if(dirvento[i]<valorMinimo){
 			valorMinimo=dirvento[i];
 		}
@@ -183,16 +228,47 @@ void SensDirVento(){
 }
 	
 	
-void SensHumdAtm(){
-		char ult_dir_vento=250;
-		for (int i = 0; i < 24; i++){
-			char comp_rand = pcg32_random_r() % 15;
-		if(i!=0){
-			ult_dir_vento=  *(ptrdir-1);
+void sens_hum_atm(){
+
+		unsigned char humatmmin= 0;
+		unsigned char humatmmax= 5;
+
+
+
+
+
+		unsigned char ult_pluvio;
+		
+		unsigned char ult_hmd_atm;
+		
+	for (int i = 0; i < 30; i++){
+			ult_pluvio= pluvio[i];
+
+			if( ult_pluvio==0){
+				
+				char comp_rand = pcg32_random_r() % 5;
+			}
+			
+			if(i!=0){
+				ult_hmd_atm = humdatm[i-1];
+			}
+			
+			humdatm[i]= sensor_hum_atm(ult_hmd_atm, comp_rand);
+		
 		}
-		sens_velc_vento(ult_dir_vento, comp_rand);
-		*ptrvento++;
+		for (int i = 0; i < 30; i++)
+	{
+		if (humdatm[i]> humatmmax || humdatm[i]< humatmmin){
+			erros++;
 		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-2;
+			sens_hum_atm(init);
+		}
+	}
 	
 	for(int i=0;i<30;i++){
 		soma+=dirvento[i];
@@ -203,7 +279,7 @@ void SensHumdAtm(){
 		if(humdatm[i]>valorMaximo){
 			valorMaximo=humdatm[i];
 		}
-	}
+		}
 	media=soma/contador;
 	
 		*ptrMatriz=valorMaximo;
@@ -222,15 +298,41 @@ void SensHumdAtm(){
 	
 	
 	
-void SensHumdSolo(){
-			char ult_humd_solo;
-			for (int i = 0; i < 24; i++){
-				char comp_rand= pcg32_random_r() % 15;
+void sens_hum_solo(){
+
+			unsigned char solomin= 0;
+			unsigned char solomax= 5;
+
+			
+			unsigned char ult_humd_solo;
+			unsigned char ult_pluvio;
+
+			
+			for (int i = 0; i < 30; i++){
+				char comp_rand= pcg32_random_r() % 5;
 			
 			}
 			if(i!=0){
+				
+				ult_humd_solo= humdsolo[i-1];
 			
 			}
+			humdsolo[i]= sens_hum_solo(ult_humd_solo, ult_pluvio, comp_rand);
+	for (int i = 0; i < 30; i++)
+	{
+		if (humdsolo[i]> solomax || humdsolo[i]< solomin){
+			erros++;
+		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-2;
+			sens_hum_solo(init);
+		}
+	}
+	
+	
 	for(int i=0;i<30;i++){
 		soma+=dirvento[i];
 		contador++;
@@ -262,31 +364,50 @@ void SensHumdSolo(){
 	//sensor pluvio
 
 
-void SensPluvio(){
+void sens_pluvio(){
+
+		char minPluvio=0;
+		char maxPluvio=5;
+		
+	
+		
+		unsigned char ult_pluvio;
 		char ult_temp;
-    	*ptrtemp = *(ptrtemp-24);
-    	unsigned char ult_pluvio;
-		char *ptrpluvio= pluvio;
-    	for (int i = 0; i < 24; i++){
+    	
+
+    	for (int i = 0; i < 30; i++){
         	char ult_temp = arraytemp[i];
         	//sleep(k); //criar função para dar output de x em x segundos
-        	char comp_rand = pcg32_random_r() % 3; //mudar a alteração de temp
+        	char comp_rand = pcg32_random_r() % 5; //mudar a alteração de temp
 			//componente aleatoria que gera um numero random, alteração
-        	int random_number = pcg32_random_r() % ult_temp ;
+        	int comp_relative = pcg32_random_r() % ult_temp ;
 			//
-        if (random_number !=0){ 	
+        if (comp_relative !=0){ 	
             comp_rand = 0;
 
         }
 		// O valor só altera se a componente gerar o valor 0
         if (i !=0){		
-			ult_pluvio = *(ptrpluvio-1);
+			ult_pluvio = pluvio[i-1];
         }
 		// o ultimo valor da pluviosidade é a posição anterior para onde o apontador está a apontar
-        sens_pluvio(ult_pluvio,ult_temp, comp_rand);
-			*ptrpluvio++;
+        pluvio[i]= sens_pluvio(ult_pluvio,ult_temp, comp_rand);
+			
 
 		}
+		for (int i = 0; i < 30; i++)
+	{
+		if (pluvio[i]> maxPluvio || pluvio[i]< minPluvio){
+			erros++;
+		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-2;
+			sens_pluvio(init);
+		}
+	}
 	for(int i=0;i<30;i++){
 		soma+=dirvento[i];
 		contador++;
@@ -308,7 +429,7 @@ void SensPluvio(){
 		contador=0;
 		media=0;
 		soma=0;
-		j=0;
+	
 
 
 }
