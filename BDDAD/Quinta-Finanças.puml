@@ -9,6 +9,7 @@ entity Campo {
     --
     Designacao: VARCHAR2(255) NOT NULL
     Area: NUMBER NOT NULL
+    Hectares INTEGER NOT NULL
 }
 
 /'Triggers:-
@@ -129,11 +130,9 @@ entity Encomenda_Especie_Vegetal {
 entity Accao {
     * ID: INTEGER <<PK>>
     --
-
     Campo_ID: INTEGER <<FK>>
     Cultura_ID: INTEGER <<FK>>
     Data_Accao: DATE NOT NULL
-    Quantidade: NUMBER NOT NULL
 }
 
 entity Metodo_Distribuicao {
@@ -146,6 +145,7 @@ entity Rega {
     * Accao_ID: INTEGER <<PK>> <<FK>>
     --
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+    Quantidade: NUMBER NOT NULL
 }
 
 entity Aplicacao_Produto {
@@ -153,6 +153,7 @@ entity Aplicacao_Produto {
     --
     Produto_ID: INTEGER <<FK>> NOT NULL
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+    Quantidade: NUMBER NOT NULL
 }
 
 entity Colheita {
@@ -160,6 +161,7 @@ entity Colheita {
     --
     Especie_Vegetal_ID: INTEGER <<FK>> NOT NULL
     Preco: NUMBER NOT NULL
+    Quantidade: NUMBER NOT NULL
 }
 
 Campo ||-d-|{ Plantacao
