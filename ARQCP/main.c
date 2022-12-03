@@ -160,9 +160,9 @@ void sens_velc_vento(){
 
 	media=soma/contador;
 	
-		*ptrMatriz=valorMaximo;
-		*(ptrMatriz+1)=valorMinimo;
-		*(ptrMatriz+2)=media;
+		*(ptrMatriz+4)=valorMaximo;
+		*(ptrMatriz+5)=valorMinimo;
+		*(ptrMatriz+6)=media;
 		
 		valorMinimo=400;
 		valorMaximo=0;
@@ -215,9 +215,9 @@ void sens_dir_vento(){
 	}
 	media=soma/contador;
 	
-		*ptrMatriz=valorMaximo;
-		*(ptrMatriz+1)=valorMinimo;
-		*(ptrMatriz+2)=media;
+		*(ptrMatriz+7)=valorMaximo;
+		*(ptrMatriz+8)=valorMinimo;
+		*(ptrMatriz+9)=media;
 		
 		valorMinimo=400;
 		valorMaximo=0;
@@ -282,9 +282,9 @@ void sens_hum_atm(){
 		}
 	media=soma/contador;
 	
-		*ptrMatriz=valorMaximo;
-		*(ptrMatriz+1)=valorMinimo;
-		*(ptrMatriz+2)=media;
+		*(ptrMatriz+10)=valorMaximo;
+		*(ptrMatriz+11)=valorMinimo;
+		*(ptrMatriz+12)=media;
 		
 		valorMinimo=400;
 		valorMaximo=0;
@@ -345,9 +345,9 @@ void sens_hum_solo(){
 	}
 	media=soma/contador;
 	
-		*ptrMatriz=valorMaximo;
-		*(ptrMatriz+1)=valorMinimo;
-		*(ptrMatriz+2)=media;
+		*(ptrMatriz+13)=valorMaximo;
+		*(ptrMatriz+14)=valorMinimo;
+		*(ptrMatriz+15)=media;
 		
 		valorMinimo=400;
 		valorMaximo=0;
@@ -420,9 +420,9 @@ void sens_pluvio(){
 	}
 	media=soma/contador;
 	
-		*ptrMatriz=valorMaximo;
-		*(ptrMatriz+1)=valorMinimo;
-		*(ptrMatriz+2)=media;
+		*(ptrMatriz+16)=valorMaximo;
+		*(ptrMatriz+17)=valorMinimo;
+		*(ptrMatriz+18)=media;
 		
 		valorMinimo=400;
 		valorMaximo=0;

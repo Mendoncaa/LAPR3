@@ -64,7 +64,6 @@ public class GraphUI implements Runnable{
         codePath.clear();
 
     }
-
     private static void generateToBePrinted (ArrayList<ClientsProducers> cp, LinkedList<String> toBePrinted) {
 
         for(int i = 0; i < cp.size(); i++) {
