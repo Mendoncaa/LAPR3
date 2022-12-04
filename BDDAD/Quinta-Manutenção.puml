@@ -52,6 +52,12 @@ entity Rega {
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
 }
 
+entity Categoria{
+     * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL
+}
+
 entity Aplicacao_Produto {
     * Accao_ID: INTEGER <<PK>>
     --
@@ -62,8 +68,6 @@ entity Aplicacao_Produto {
 entity Produto {
     * ID: INTEGER <<PK>>
     --
-    Tipo_produto_ID: INTEGER <<FK>> NOT NULL
-    Fornecedor: VARCHAR2(255) NOT NULL
     Ficha_Tecnica_ID: INTEGER <<FK>> NOT NULL UNIQUE
     Nome: VARCHAR2(255) NOT NULL UNIQUE
 }
@@ -72,16 +76,18 @@ entity Produto {
 entity Tipo_Produto {
     * ID: INTEGER <<PK>>
     --
-    Tipo: VARCHAR2(255) NOT NULL UNIQUE
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
 }
 
 entity Ficha_Tecnica {
     * ID: INTEGER <<PK>>
     --
-    Humidade: NUMBER
-    pH: NUMBER
-    Peso_Especifico: NUMBER
-    Formulacao_Peletizada: INTEGER
+    Tipo_produto_ID: INTEGER <<FK>> NOT NULL
+    Fornecedor: VARCHAR2(255) NOT NULL,
+    Humidade: FLOAT
+    pH: FLOAT
+    Peso_Especifico: FLOAT
+    Formulacao_Peletizada: FLOAT
 }
 
 entity Ficha_Tecnica_Substancia {
@@ -95,6 +101,7 @@ entity Substancia {
     * ID: INTEGER <<PK>>
     --
     Nome: VARCHAR2(255) NOT NULL UNIQUE
+    Categoria_ID: INTEGER <<FK>> NOT NULL
     Unidade: VARCHAR2(255) NOT NULL
 }
 
@@ -143,7 +150,8 @@ Accao ||--d--|| Aplicacao_Produto
 Metodo_Distribuicao ||-r-o{ Rega
 Metodo_Distribuicao ||-l-o{ Aplicacao_Produto
 
-Tipo_Produto ||-d-o{ Produto
+Tipo_Produto ||-d-o{ Ficha_Tecnica
+Categoria ||-d-o{ Substancia
 
 Produto ||-d-|| Ficha_Tecnica
 Produto ||--u--o{ Aplicacao_Produto
