@@ -53,11 +53,4 @@ class IrrigationTest {
         assertEquals(irg, irg2);
     }
 
-    @Test
-    void testHashCode() {
-    }
-
-    @Test
-    void testToString() {
-    }
 }
