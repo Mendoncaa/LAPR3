@@ -8,7 +8,6 @@ entity Campo {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL
-    Area: NUMBER NOT NULL
     Hectares INTEGER NOT NULL
 }
 
@@ -115,7 +114,7 @@ entity Encomenda {
     #1:'/
 entity Incidente {
     * Cliente_Codigo_Unico: INTEGER <<PK>> <<FK>>
-    * Encomenda_ID: INTEGER <<PK>> <<FK>>
+    * Encomenda_ID: INTEGER UNIQUE <<PK>> <<FK>> 
     --
     Data_Incumprimento: DATE NOT NULL
 }
