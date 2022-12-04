@@ -7,7 +7,7 @@
 uint64_t state=0;  
 uint64_t inc=0;
 
-
+int j=0;
 
 
 //Arrays para a US[102]
@@ -76,7 +76,7 @@ void sensTemp(int i){
 	}
 
 	for(int j=0;j<30;j++){
-		soma+=temp[i];
+		soma+=temp[j];
 		contador++;
 		if(temp[j]<valorMinimo){
 			valorMinimo=temp[j];
@@ -91,12 +91,14 @@ void sensTemp(int i){
 		*(ptrMatriz+1)=valorMinimo;
 		*(ptrMatriz+2)=media;
 		
-		valorMinimo=400;
-		valorMaximo=0;
-		contador=0;
-		media=0;
-		soma=0;
-		i=0;
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
+		
+		
+		
+		
+		
+	
 
 }
 	
@@ -128,7 +130,7 @@ void sensVelcVento(int i){
 		}
 	}
 	for(int j=0;j<30;j++){
-		soma+=velcvento[i];
+		soma+=velcvento[j];
 		contador++;
 		if(velcvento[j]<valorMinimo){
 			valorMinimo=velcvento[j];
@@ -140,16 +142,14 @@ void sensVelcVento(int i){
 
 	media=soma/contador;
 	
-		*(ptrMatriz+4)=valorMaximo;
-		*(ptrMatriz+5)=valorMinimo;
-		*(ptrMatriz+6)=media;
+		*(ptrMatriz+3)=valorMaximo;
+		*(ptrMatriz+4)=valorMinimo;
+		*(ptrMatriz+5)=media;
+
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
 		
-		valorMinimo=400;
-		valorMaximo=0;
-		contador=0;
-		media=0;
-		soma=0;
-		i=0;
+		
+		
 
 }
 
@@ -185,7 +185,7 @@ void sensDirVento(int i){
 	}
 
 		for(int j=0;j<30;j++){
-			soma+=dirvento[i];
+			soma+=dirvento[j];
 			contador++;
 		if(dirvento[j]<valorMinimo){
 			valorMinimo=dirvento[j];
@@ -196,16 +196,12 @@ void sensDirVento(int i){
 	}
 	media=soma/contador;
 	
-		*(ptrMatriz+7)=valorMaximo;
-		*(ptrMatriz+8)=valorMinimo;
-		*(ptrMatriz+9)=media;
+		*(ptrMatriz+6)=valorMaximo;
+		*(ptrMatriz+7)=valorMinimo;
+		*(ptrMatriz+8)=media;
 		
-		valorMinimo=400;
-		valorMaximo=0;
-		contador=0;
-		media=0;
-		soma=0;
-		i=0;
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
 }
 	
 	
@@ -253,7 +249,7 @@ void  sensHumAtm(int i){
 	}
 	
 	for(int j=0;j<30;j++){
-		soma+=dirvento[i];
+		soma+=dirvento[j];
 		contador++;
 		if(humdatm[j]<valorMinimo){
 			valorMinimo=humdatm[j];
@@ -264,16 +260,12 @@ void  sensHumAtm(int i){
 		}
 	media=soma/contador;
 	
-		*(ptrMatriz+10)=valorMaximo;
-		*(ptrMatriz+11)=valorMinimo;
-		*(ptrMatriz+12)=media;
+		*(ptrMatriz+9)=valorMaximo;
+		*(ptrMatriz+10)=valorMinimo;
+		*(ptrMatriz+11)=media;
 		
-		valorMinimo=400;
-		valorMaximo=0;
-		contador=0;
-		media=0;
-		soma=0;
-		i=0;
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
 		
 		
 }
@@ -319,7 +311,7 @@ void sensHumSolo(int i){
 	
 	
 	for(int j=0;j<30;j++){
-		soma+=dirvento[i];
+		soma+=dirvento[j];
 		contador++;
 	if(humdsolo[j]<valorMinimo){
 		valorMinimo=humdsolo[j];
@@ -330,16 +322,12 @@ void sensHumSolo(int i){
 	}
 	media=soma/contador;
 	
-		*(ptrMatriz+13)=valorMaximo;
-		*(ptrMatriz+14)=valorMinimo;
-		*(ptrMatriz+15)=media;
+		*(ptrMatriz+12)=valorMaximo;
+		*(ptrMatriz+13)=valorMinimo;
+		*(ptrMatriz+14)=media;
 		
-		valorMinimo=400;
-		valorMaximo=0;
-		contador=0;
-		media=0;
-		soma=0;
-		i=0;
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
 		
 		
 
@@ -393,7 +381,7 @@ void sensPluvio(int i){
 		}
 	}
 	for(int j=0;j<30;j++){
-		soma+=dirvento[i];
+		soma+=dirvento[j];
 		contador++;
 	if(pluvio[j]<valorMinimo){
 		valorMinimo=pluvio[j];
@@ -404,16 +392,12 @@ void sensPluvio(int i){
 	}
 	media=soma/contador;
 	
-		*(ptrMatriz+16)=valorMaximo;
-		*(ptrMatriz+17)=valorMinimo;
-		*(ptrMatriz+18)=media;
+		*(ptrMatriz+15)=valorMaximo;
+		*(ptrMatriz+16)=valorMinimo;
+		*(ptrMatriz+17)=media;
 		
-		valorMinimo=400;
-		valorMaximo=0;
-		contador=0;
-		media=0;
-		soma=0;
-		i=0;
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
 	
 
 
