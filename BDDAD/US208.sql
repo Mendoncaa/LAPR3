@@ -77,7 +77,7 @@ exception
 end;
 /
 
-
+--bloco anónimo que testa a precedure AddFicha_Tecnica_Proc
 begin
   AddFicha_Tecnica_Proc('Estrume', 'Quinta', 'Fertilizante');
 end;
