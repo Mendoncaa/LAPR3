@@ -1,15 +1,19 @@
 #include <stdio.h>
 #include <stdint.h> 
 #include <unistd.h>
+#include "pcg32_random_r.h"
 #include "sensores.h"
 
 uint64_t state=0;  
 uint64_t inc=0;
 
+
+
+
 //Arrays para a US[102]
 char temp[30];
 char velcvento[30];
-char dirvento[30];
+short dirvento[30];
 char humdatm[30];
 char humdsolo[30];
 char pluvio[30];
@@ -38,42 +42,8 @@ short media=0;
 
 
 
-int main() { 
-	uint32_t buffer [64]; 
-	FILE *f;
-	int result;
-	f = fopen("/dev/urandom", "r"); 
-	if (f == NULL) {
-		printf("Error: open() failed to open /dev/random for reading\n"); 
-		return 1;
-    }
-	result = fread(buffer , sizeof(uint32_t), 64,f);
-	fread(&state , sizeof(uint64_t),1,f);
-	fread(&inc , sizeof(uint64_t), 1,f);
-    if (result < 1) {
-		printf("Error , failed to read and words\n"); 
-		return 1;
-    }
-    sens_temp(i);
-    sens_velc_vento(i);
-    sens_dir_vento(i);
-    sens_hum_atm(i);
-    sens_hum_solo(i);
-	sens_pluvio(i);
-	
-	for(int i=0; i<6;i++){
-		for(int j=0; j<3;j++){
-			printf"%10d\n",matriz[i][j]);
-		}
-	}
-			//printf("%d\n",pcg32_random_r()); 
-	return 0;
 
-
-
-
-}
-void sens_temp(int i){
+void sensTemp(int i){
 	
 	char tempmin= -20;
 	char tempmax= 55;
@@ -81,11 +51,12 @@ void sens_temp(int i){
 
 	for (i; i < 30; i++){
 		char comp_rand = pcg32_random_r() % 3;
+		
 		if(i!=0){
 			ult_temp= temp[i-1];
 		}
 		
-		sens_temp(ult_temp, comp_rand);
+		
 
 		temp[i]= sens_temp(ult_temp, comp_rand);
 		
@@ -100,7 +71,7 @@ void sens_temp(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sens_temp(init);
+			sensTemp(init);
 		}
 	}
 
@@ -125,13 +96,13 @@ void sens_temp(int i){
 		contador=0;
 		media=0;
 		soma=0;
-		j=0;
+		i=0;
 
 }
 	
 
 
-void sens_velc_vento(int i){
+void sensVelcVento(int i){
 
 	unsigned char velcmin= 0;
 	unsigned char velcmax= 150;
@@ -141,7 +112,7 @@ void sens_velc_vento(int i){
 		if(i!=0){
 			ult_velc_vento=  velcvento[i-1];
 		}
-		velcvento[i]= sensor_velc_vento(ult_velc_vento, comp_rand);
+		velcvento[i]= sens_velc_vento(ult_velc_vento, comp_rand);
 	}
 	for (int i = 0; i < 30; i++)
 	{
@@ -153,7 +124,7 @@ void sens_velc_vento(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sens_velc_vento(init);
+			sensVelcVento(init);
 		}
 	}
 	for(int i=0;i<30;i++){
@@ -178,16 +149,17 @@ void sens_velc_vento(int i){
 		contador=0;
 		media=0;
 		soma=0;
-		j=0;
+		i=0;
 
 }
 
 
 
-void sens_dir_vento(int i){
+void sensDirVento(int i){
 		
-		unsigned char dirmin= 0;
-		unsigned char dirmax= 359;
+		unsigned short dirmin= 0;
+		unsigned short dirmax= 359;
+		
 		
 
 		for (i; i < 30; i++){
@@ -195,7 +167,7 @@ void sens_dir_vento(int i){
 		if(i!=0){
 			ult_dir_vento = dirvento[i-1];
 		}
-		dirvento[i]= sensor_velc_vento(ult_dir_vento, comp_rand);
+		dirvento[i]= sens_dir_vento(ult_dir_vento, comp_rand);
 		
 		}
 		for (int i = 0; i < 30; i++)
@@ -208,7 +180,7 @@ void sens_dir_vento(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sens_dir_vento(init);
+			sensDirVento(init);
 		}
 	}
 
@@ -233,14 +205,15 @@ void sens_dir_vento(int i){
 		contador=0;
 		media=0;
 		soma=0;
-		j=0;
+		i=0;
 }
 	
 	
-void sens_hum_atm(int i){
+void  sensHumAtm(int i){
 
 		unsigned char humatmmin= 0;
 		unsigned char humatmmax= 5;
+		char comp_rand;
 
 
 
@@ -255,14 +228,14 @@ void sens_hum_atm(int i){
 
 			if( ult_pluvio==0){
 				
-				char comp_rand = pcg32_random_r() % 5;
+				comp_rand = pcg32_random_r() % 5;
 			}
 			
 			if(i!=0){
 				ult_hmd_atm = humdatm[i-1];
 			}
 			
-			humdatm[i]= sensor_hum_atm(ult_hmd_atm, comp_rand);
+			humdatm[i]= sens_humd_atm(ult_hmd_atm, ult_pluvio, comp_rand);
 		
 		}
 		for (int i = 0; i < 30; i++)
@@ -275,7 +248,7 @@ void sens_hum_atm(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sens_hum_atm(init);
+			sensHumAtm(init);
 		}
 	}
 	
@@ -300,33 +273,36 @@ void sens_hum_atm(int i){
 		contador=0;
 		media=0;
 		soma=0;
-		j=0;
+		i=0;
 		
 		
 }
 	
 	
 	
-void sens_hum_solo(){
+void sensHumSolo(int i){
 
 			unsigned char solomin= 0;
 			unsigned char solomax= 5;
 
 			
 			unsigned char ult_humd_solo;
-			unsigned char ult_pluvio;
+			unsigned char ult_pluvio=0;
 
 			
 			for (i; i < 30; i++){
 				char comp_rand= pcg32_random_r() % 5;
 			
-			}
+			
 			if(i!=0){
 				
 				ult_humd_solo= humdsolo[i-1];
+
+				
 			
 			}
-			humdsolo[i]= sens_hum_solo(ult_humd_solo, ult_pluvio, comp_rand);
+			humdsolo[i]= sens_humd_solo(ult_humd_solo, ult_pluvio, comp_rand);
+			}
 	for (int i = 0; i < 30; i++)
 	{
 		if (humdsolo[i]> solomax || humdsolo[i]< solomin){
@@ -337,7 +313,7 @@ void sens_hum_solo(){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sens_hum_solo(init);
+			sensHumSolo(init);
 		}
 	}
 	
@@ -363,7 +339,7 @@ void sens_hum_solo(){
 		contador=0;
 		media=0;
 		soma=0;
-		j=0;
+		i=0;
 		
 		
 
@@ -373,7 +349,7 @@ void sens_hum_solo(){
 	//sensor pluvio
 
 
-void sens_pluvio(int i){
+void sensPluvio(int i){
 
 		char minPluvio=0;
 		char maxPluvio=5;
@@ -385,7 +361,7 @@ void sens_pluvio(int i){
     	
 
     	for (i; i < 30; i++){
-        	char ult_temp = arraytemp[i];
+        	char ult_temp = temp[i];
         	//sleep(k); //criar função para dar output de x em x segundos
         	char comp_rand = pcg32_random_r() % 5; //mudar a alteração de temp
 			//componente aleatoria que gera um numero random, alteração
@@ -404,8 +380,7 @@ void sens_pluvio(int i){
 			
 
 		}
-		for (int i = 0; i < 30; i++)
-	{
+		for (i = 0; i < 30; i++){
 		if (pluvio[i]> maxPluvio || pluvio[i]< minPluvio){
 			erros++;
 		}
@@ -414,17 +389,17 @@ void sens_pluvio(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sens_pluvio(init);
+			sensPluvio(init);
 		}
 	}
-	for(int i=0;i<30;i++){
+	for(int j=0;j<30;j++){
 		soma+=dirvento[i];
 		contador++;
-	if(pluvio[i]<valorMinimo){
-		valorMinimo=pluvio[i];
+	if(pluvio[j]<valorMinimo){
+		valorMinimo=pluvio[j];
 	}
-	if(pluvio[i]>valorMaximo){
-		valorMaximo=pluvio[i];
+	if(pluvio[j]>valorMaximo){
+		valorMaximo=pluvio[j];
 		}
 	}
 	media=soma/contador;
@@ -438,7 +413,43 @@ void sens_pluvio(int i){
 		contador=0;
 		media=0;
 		soma=0;
+		i=0;
 	
+
+
+}
+int main() { 
+	uint32_t buffer [64]; 
+	FILE *f;
+	int result;
+	f = fopen("/dev/urandom", "r"); 
+	if (f == NULL) {
+		printf("Error: open() failed to open /dev/random for reading\n"); 
+		return 1;
+    }
+	result = fread(buffer , sizeof(uint32_t), 64,f);
+	fread(&state , sizeof(uint64_t),1,f);
+	fread(&inc , sizeof(uint64_t), 1,f);
+    if (result < 1) {
+		printf("Error , failed to read and words\n"); 
+		return 1;
+    }
+    sensTemp(0);
+    sensVelcVento(0);
+    sensDirVento(0);
+    sensHumAtm(0);
+    sensHumSolo(0);
+	sensPluvio(0);
+	
+	for(int i=0; i<6;i++){
+		for(int j=0; j<3;j++){
+			printf("%10d\n",matriz[i][j]);
+		}
+	}
+			//printf("%d\n",pcg32_random_r()); 
+	return 0;
+
+
 
 
 }

@@ -1,6 +1,3 @@
-#ifndef SENSORES_H
-#define SENSORES_H
-uint32_t pcg32_random_r();
 /**
  * Gera o valor de temperatura com base no último valor de temperatura.
  * O novo valor a gerar será o incremento ao último valor gerado, adicionado de um valor
@@ -13,7 +10,7 @@ uint32_t pcg32_random_r();
  *
  * @return A nova medição do valor da temperatura (°C)
  */
-char sensor_temp(char ult_temp, char comp_rand);
+char sens_temp(char ult_temp, char comp_rand);
 
 
 /**
@@ -29,7 +26,7 @@ char sensor_temp(char ult_temp, char comp_rand);
  *
  * @return O novo medição do valor da velocidade do vento (km/h)
  */
-unsigned char sensor_velc_vento(unsigned char ult_velc_vento, char comp_rand);
+unsigned char sens_velc_vento(unsigned char ult_velc_vento, char comp_rand);
 
 
 /**
@@ -46,7 +43,7 @@ unsigned char sensor_velc_vento(unsigned char ult_velc_vento, char comp_rand);
  *
  * @return A nova medição do valor da direção do vento (graus)
  */
-unsigned short sensor_dir_vento(unsigned short ult_dir_vento, short comp_rand);
+unsigned short sens_dir_vento(unsigned short ult_dir_vento, short comp_rand);
 
 
 /**
@@ -67,7 +64,7 @@ unsigned short sensor_dir_vento(unsigned short ult_dir_vento, short comp_rand);
  *
  * @return A nova medição do valor da humidade atmosférica (percentagem)
  */
-unsigned char sensor_humd_atm(unsigned char ult_hmd_atm, unsigned char ult_pluvio, char comp_rand);
+unsigned char sens_humd_atm(unsigned char ult_hmd_atm, unsigned char ult_pluvio, char comp_rand);
 
 
 /**
@@ -88,7 +85,7 @@ unsigned char sensor_humd_atm(unsigned char ult_hmd_atm, unsigned char ult_pluvi
  *
  * @return A nova medição do valor da humidade do solo (percentagem)
  */
-unsigned char sensor_humd_solo(unsigned char ult_hmd_solo, unsigned char ult_pluvio, char comp_rand);
+unsigned char sens_humd_solo(unsigned char ult_hmd_solo, unsigned char ult_pluvio, char comp_rand);
 
 
 /**
@@ -111,4 +108,4 @@ unsigned char sensor_humd_solo(unsigned char ult_hmd_solo, unsigned char ult_plu
  *
  * @return A nova medição do valor de pluviosidade (mm)
  */
-unsigned char sensor_pluvio(unsigned char ult_pluvio, char ult_temp, char comp_rand);
+unsigned char sens_pluvio(unsigned char ult_pluvio, char ult_temp, char comp_rand);
