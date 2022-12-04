@@ -45,7 +45,7 @@ short media=0;
 
 void sensTemp(int i){
 	
-	char tempmin= -20;
+	char tempmin= 0;
 	char tempmax= 55;
 
 
@@ -61,7 +61,7 @@ void sensTemp(int i){
 		temp[i]= sens_temp(ult_temp, comp_rand);
 		
 	}
-	for (int i = 0; i < 30; i++)
+	for (i = 0; i < 30; i++)
 	{
 		if (temp[i]> tempmax || temp[i]< tempmin){
 			erros++;
@@ -75,14 +75,14 @@ void sensTemp(int i){
 		}
 	}
 
-	for(int i=0;i<30;i++){
+	for(int j=0;j<30;j++){
 		soma+=temp[i];
 		contador++;
-		if(temp[i]<valorMinimo){
-			valorMinimo=temp[i];
+		if(temp[j]<valorMinimo){
+			valorMinimo=temp[j];
 		}
-		if(temp[i]>valorMaximo){
-			valorMaximo=temp[i];
+		if(temp[j]>valorMaximo){
+			valorMaximo=temp[j];
 		}
 	}
 	media=soma/contador;
@@ -114,7 +114,7 @@ void sensVelcVento(int i){
 		}
 		velcvento[i]= sens_velc_vento(ult_velc_vento, comp_rand);
 	}
-	for (int i = 0; i < 30; i++)
+	for (i = 0; i < 30; i++)
 	{
 		if (velcvento[i]> velcmax || velcvento[i]< velcmin){
 			erros++;
@@ -127,14 +127,14 @@ void sensVelcVento(int i){
 			sensVelcVento(init);
 		}
 	}
-	for(int i=0;i<30;i++){
+	for(int j=0;j<30;j++){
 		soma+=velcvento[i];
 		contador++;
-		if(velcvento[i]<valorMinimo){
-			valorMinimo=velcvento[i];
+		if(velcvento[j]<valorMinimo){
+			valorMinimo=velcvento[j];
 		}
-		if(velcvento[i]>valorMaximo){
-			valorMaximo=velcvento[i];
+		if(velcvento[j]>valorMaximo){
+			valorMaximo=velcvento[j];
 		}
 	}
 
@@ -170,7 +170,7 @@ void sensDirVento(int i){
 		dirvento[i]= sens_dir_vento(ult_dir_vento, comp_rand);
 		
 		}
-		for (int i = 0; i < 30; i++)
+		for (i = 0; i < 30; i++)
 	{
 		if (dirvento[i]> dirmax || dirvento[i]< dirmin){
 			erros++;
@@ -184,14 +184,14 @@ void sensDirVento(int i){
 		}
 	}
 
-		for(int i=0;i<30;i++){
+		for(int j=0;j<30;j++){
 			soma+=dirvento[i];
 			contador++;
-		if(dirvento[i]<valorMinimo){
-			valorMinimo=dirvento[i];
+		if(dirvento[j]<valorMinimo){
+			valorMinimo=dirvento[j];
 		}
-		if(dirvento[i]>valorMaximo){
-			valorMaximo=dirvento[i];
+		if(dirvento[j]>valorMaximo){
+			valorMaximo=dirvento[j];
 		}
 	}
 	media=soma/contador;
@@ -238,7 +238,7 @@ void  sensHumAtm(int i){
 			humdatm[i]= sens_humd_atm(ult_hmd_atm, ult_pluvio, comp_rand);
 		
 		}
-		for (int i = 0; i < 30; i++)
+		for (i = 0; i < 30; i++)
 	{
 		if (humdatm[i]> humatmmax || humdatm[i]< humatmmin){
 			erros++;
@@ -252,14 +252,14 @@ void  sensHumAtm(int i){
 		}
 	}
 	
-	for(int i=0;i<30;i++){
+	for(int j=0;j<30;j++){
 		soma+=dirvento[i];
 		contador++;
-		if(humdatm[i]<valorMinimo){
-			valorMinimo=humdatm[i];
+		if(humdatm[j]<valorMinimo){
+			valorMinimo=humdatm[j];
 		}
-		if(humdatm[i]>valorMaximo){
-			valorMaximo=humdatm[i];
+		if(humdatm[j]>valorMaximo){
+			valorMaximo=humdatm[j];
 		}
 		}
 	media=soma/contador;
@@ -303,7 +303,7 @@ void sensHumSolo(int i){
 			}
 			humdsolo[i]= sens_humd_solo(ult_humd_solo, ult_pluvio, comp_rand);
 			}
-	for (int i = 0; i < 30; i++)
+	for (i = 0; i < 30; i++)
 	{
 		if (humdsolo[i]> solomax || humdsolo[i]< solomin){
 			erros++;
@@ -318,14 +318,14 @@ void sensHumSolo(int i){
 	}
 	
 	
-	for(int i=0;i<30;i++){
+	for(int j=0;j<30;j++){
 		soma+=dirvento[i];
 		contador++;
-	if(humdsolo[i]<valorMinimo){
-		valorMinimo=humdsolo[i];
+	if(humdsolo[j]<valorMinimo){
+		valorMinimo=humdsolo[j];
 	}
-	if(humdsolo[i]>valorMaximo){
-		valorMaximo=humdsolo[i];
+	if(humdsolo[j]>valorMaximo){
+		valorMaximo=humdsolo[j];
 		}
 	}
 	media=soma/contador;

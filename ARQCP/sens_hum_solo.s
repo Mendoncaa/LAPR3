@@ -14,7 +14,8 @@ sens_humd_solo:
     ret
 
 zero:
-    movb $0, %al
+    movb $0, %dil
+    movb %dil, %al
 
     ret
     

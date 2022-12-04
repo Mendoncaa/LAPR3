@@ -11,6 +11,7 @@ sens_humd_atm:
     ret
 
 zero:
-     movb $0, %al
+     movb $0, %dil
+     movb %dil, %al
     
     ret
