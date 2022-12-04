@@ -1,0 +1,218 @@
+@startuml
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Algorithms {
+  + BreadthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  - DepthFirstSearch(Graph<V, E>, V, boolean[], LinkedList<V>): void
+  - initializePathDist(int, V[], E[]): void
+  + DepthFirstSearch(Graph<V, E>, V): LinkedList<V>?
+  + allPaths(Graph<V, E>, V, V): ArrayList<LinkedList<V>>?
+  # getPath(Graph<V, E>, V, V, V[], LinkedList<V>): void
+  - shortestPathDijkstra(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, boolean[], V[], E[]): void
+  + shortestPath(Graph<V, E>, V, V, Comparator<E>, BinaryOperator<E>, E, LinkedList<V>): E?
+  + shortestPaths(Graph<V, E>, V, Comparator<E>, BinaryOperator<E>, E, ArrayList<LinkedList<V>>, ArrayList<E>): boolean
+  + minDistGraph(Graph<V, E>, Comparator<E>, BinaryOperator<E>): MatrixGraph<V, E>?
+  - allPaths(Graph<V, E>, V, V, boolean[], LinkedList<V>, ArrayList<LinkedList<V>>): void
+}
+
+class App {
+  - company: Company
+  - authFacade: AuthFacade
+  - singleton: App
+  - bootstrap(): void
+  + doLogout(): void
+  + doLogin(String, String): boolean
+  + getInstance(): App
+  - getProperties(): Properties
+  + getCompany(): Company
+  + getCurrentUserSession(): UserSession
+}
+class AuthController {
+  - app: App
+  + getUserRoles(): List<UserRoleDTO>
+  + doLogin(String, String): boolean
+  + doLogout(): void
+}
+
+class ClientsProducers {
+  - code: String
+  - latitude: float
+  - locId: String
+  - longitude: float
+  + getType(): String
+  + getLocationID(): String
+  + getCode(): String
+  + getLongitude(): float
+  + hashCode(): int
+  + equals(Object): boolean
+  + toString(): String
+  + getLatitude(): float
+}
+
+class CommonGraph<V, E> {
+  # numEdges: int
+  # vertices: ArrayList<V>
+  # numVerts: int
+  # isDirected: boolean
+  + key(V): int
+  + vertex(int): V
+  + vertex(Predicate<V>): V
+  + clone(): Graph<V, E>
+  + numEdges(): int
+  + equals(Object): boolean
+  + hashCode(): int
+  + vertices(): ArrayList<V>
+  # copy(Graph<V, E>, Graph<V, E>): void
+  + isDirected(): boolean
+  + numVertices(): int
+  + validVertex(V): boolean
+}
+class Company {
+  - clientsProducersGraph: MapGraph<ClientsProducers, Integer>
+  - designation: String
+  - authFacade: AuthFacade
+  + getAuthFacade(): AuthFacade
+  + getClientsProducersGraph(): MapGraph<ClientsProducers, Integer>
+  + getDesignation(): String
+}
+class Edge<V, E> {
+  - vOrig: V
+  - vDest: V
+  - weight: E
+  + setWeight(E): void
+  + getVDest(): V
+  + getWeight(): E
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+  + getVOrig(): V
+}
+class FilesReaderApp {
+  + isConnected(MapGraph<ClientsProducers, Integer>, ClientsProducers, ArrayList<ClientsProducers>): boolean
+  + readProducerCSV(File, File): void
+  + bootstrap(): void
+  + readIrrigationDeviceFile(File): boolean
+}
+interface Graph<V, E> << interface >> {
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + numVertices(): int
+  + addEdge(V, V, E): boolean
+  + key(V): int
+  + isDirected(): boolean
+  + vertices(): ArrayList<V>
+  + addVertex(V): boolean
+  + vertex(int): V
+  + clone(): Graph<V, E>
+  + removeVertex(V): boolean
+  + edge(V, V): Edge<V, E>
+  + validVertex(V): boolean
+  + removeEdge(V, V): boolean
+  + vertex(Predicate<V>): V
+  + inDegree(V): int
+  + edges(): Collection<Edge<V, E>>
+  + numEdges(): int
+  + outDegree(V): int
+  + adjVertices(V): Collection<V>
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + edge(int, int): Edge<V, E>
+}
+class Main {
+  + main(String[]): void
+}
+class MainMenuUI {
+  + run(): void
+}
+class MapGraph<V, E> {
+  - mapVertices: Map<V, MapVertex<V, E>>
+  + removeEdge(V, V): boolean
+  + edge(V, V): Edge<V, E>
+  + addVertex(V): boolean
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + validVertex(V): boolean
+  + adjVertices(V): Collection<V>
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + edges(): Collection<Edge<V, E>>
+  + toString(): String
+  + inDegree(V): int
+  + edge(int, int): Edge<V, E>
+  + outDegree(V): int
+  + removeVertex(V): boolean
+  + clone(): MapGraph<V, E>
+  + addEdge(V, V, E): boolean
+}
+class MapVertex<V, E> {
+  - outVerts: Map<V, Edge<V, E>>
+  - element: V
+  + getElement(): V
+  + toString(): String
+  + remAdjVert(V): void
+  + numAdjVerts(): int
+  + getAllOutEdges(): Collection<Edge<V, E>>
+  + addAdjVert(V, Edge<V, E>): void
+  + getEdge(V): Edge<V, E>
+  + getAllAdjVerts(): Collection<V>
+}
+class MatrixGraph<V, E> {
+  + RESIZE_FACTOR: float
+  + INITIAL_CAPACITY: int
+  ~ edgeMatrix: Edge<V, E>[][]
+  + removeVertex(V): boolean
+  + edges(): Collection<Edge<V, E>>
+  + edge(V, V): Edge<V, E>
+  - removeEdge(int, int): void
+  + inDegree(V): int
+  + outgoingEdges(V): Collection<Edge<V, E>>
+  + removeEdge(V, V): boolean
+  + edge(int, int): Edge<V, E>
+  + addEdge(V, V, E): boolean
+  + adjVertices(V): Collection<V>
+  + toString(): String
+  + incomingEdges(V): Collection<Edge<V, E>>
+  + clone(): MatrixGraph<V, E>
+  + outDegree(V): int
+  - resizeMatrix(): void
+  + addVertex(V): boolean
+}
+class GraphUI {
+    + run(): void
+    + generateToBePrinted(): void
+}
+class Main {
+  + main(String[]): void
+}
+class MainMenuUI {
+  + run(): void
+}
+class MenuItem {
+  - description: String
+  - ui: Runnable
+  + hasDescription(String): boolean
+  + run(): void
+  + toString(): String
+}
+
+App                    "1" *-[#595959,plain]-> "company\n1" Company
+App                     -[#595959,dashed]->  Company                : "«create»"
+AuthController         "1" *-[#595959,plain]-> "app\n1" App
+CommonGraph             -[#008200,dashed]-^  Graph
+Company                 -[#595959,dashed]->  MapGraph               : "«create»"
+Company                "1" *-[#595959,plain]-> "clientsProducersGraph\n1" MapGraph
+FilesReaderApp          -[#595959,dashed]->  ClientsProducers       : "«create»"
+FilesReaderApp          -[#595959,dashed]->  MapGraph               : "fill"
+Main                    -[#595959,dashed]->  MainMenuUI             : "«create»"
+Main                    -[#595959,dashed]->  FilesReaderApp         : "«bootstrap()»"
+MainMenuUI              -[#595959,dashed]->  MenuItem               : "«create»"
+MenuItem                -[#595959,dashed]->  GraphUI                : "«run()»"
+GraphUI                 -[#595959,dashed]->  Algorithms             : "«shortestPath()»"
+GraphUI                 -[#595959,dashed]->  Company                : "«getClientsProducersGraph()»"
+MapGraph                -[#000082,plain]-^  CommonGraph
+MapGraph                -[#595959,dashed]->  Edge                   : "«create»"
+MapGraph               "1" *-[#595959,plain]-> "mapVertices\n*" MapVertex
+MapGraph                -[#595959,dashed]->  MapVertex              : "«create»"
+MapVertex              "1" *-[#595959,plain]-> "outVerts\n*" Edge
+MatrixGraph             -[#000082,plain]-^  CommonGraph
+MatrixGraph            "1" *-[#595959,plain]-> "edgeMatrix\n*" Edge
+MatrixGraph             -[#595959,dashed]->  Edge                   : "«create»"
+@enduml

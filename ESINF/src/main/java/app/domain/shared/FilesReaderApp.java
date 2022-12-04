@@ -172,7 +172,7 @@ public class FilesReaderApp {
         boolean connected = true;
 
         int i;
-        for (i = 0; i < dfsResults.size(); i++) {
+        for (i = 0; i < cp.size(); i++) {
             if (!dfsResults.contains(cp.get(i))) {
                 //System.out.println("not connected");
                 connected = false;
