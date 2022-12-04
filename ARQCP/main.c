@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h> 
 #include <unistd.h>
-#include "pcg32_random_r.h"
+#include "sensores.h"
 
 uint64_t state=0;  
 uint64_t inc=0;
@@ -26,7 +26,6 @@ int erroMaximo=5;
 
 
 //US[103]
-
 short matriz[6][3];
 short *ptrMatriz=&matriz[0][0];
 short valorMinimo=400;
@@ -55,10 +54,20 @@ int main() {
 		printf("Error , failed to read and words\n"); 
 		return 1;
     }
-     
+    sens_temp(i);
+    sens_velc_vento(i);
+    sens_dir_vento(i);
+    sens_hum_atm(i);
+    sens_hum_solo(i);
+	sens_pluvio(i);
 	
-	printf("%d\n",pcg32_random_r()); 
-    return 0;
+	for(int i=0; i<6;i++){
+		for(int j=0; j<3;j++){
+			printf"%10d\n",matriz[i][j]);
+		}
+	}
+			//printf("%d\n",pcg32_random_r()); 
+	return 0;
 
 
 
