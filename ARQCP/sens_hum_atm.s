@@ -1,4 +1,4 @@
-.section text
+.section .text
     .global sens_humd_atm
 
 sens_humd_atm:

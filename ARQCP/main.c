@@ -443,10 +443,11 @@ int main() {
 	
 	for(int i=0; i<6;i++){
 		for(int j=0; j<3;j++){
-			printf("%10d\n",matriz[i][j]);
+			printf("%10d",matriz[i][j]);
 		}
+		printf("\n");
 	}
-			//printf("%d\n",pcg32_random_r()); 
+			
 	return 0;
 
 
