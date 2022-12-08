@@ -4,6 +4,7 @@ import app.domain.shared.FilesReaderApp;
 import app.graph.Edge;
 import app.graph.Graph;
 import app.graph.map.MapGraph;
+import app.stores.HubStore;
 import app.stores.IrrigationDeviceStore;
 import app.stores.UsersStore;
 import pt.isep.lei.esoft.auth.AuthFacade;
@@ -18,7 +19,11 @@ public class Company {
     private AuthFacade authFacade;
     private UsersStore usersStore;
     private IrrigationDeviceStore irrigationDeviceStore;
+
+    private HubStore hubStore;
     private MapGraph<ClientsProducers, Integer> clientsProducersGraph;
+
+
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -29,6 +34,7 @@ public class Company {
         this.usersStore = new UsersStore();
         this.irrigationDeviceStore = new IrrigationDeviceStore();
         this.clientsProducersGraph = new MapGraph<>(false);
+        this.hubStore = new HubStore();
     }
 
     public MapGraph<ClientsProducers, Integer> getClientsProducersGraph() {
@@ -50,6 +56,12 @@ public class Company {
     public UsersStore getUserStore() {
         return usersStore;
     }
+
+    public HubStore getHubStore() {
+        return hubStore;
+    }
+
+
 
     public void saveUser(AppUser appUser) {
         this.authFacade.addUserWithRole(appUser.getName(), appUser.getEmail(), appUser.getPassword(), appUser.getRole());

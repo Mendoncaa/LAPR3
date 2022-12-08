@@ -35,6 +35,11 @@ public class Path {
         return averageDist;
     }
 
+    @Override
+    public String toString() {
+        return entity.getCode()+" - "+averageDist;
+    }
+
     private int getAverageCompanyDist() {
         if (paths.isEmpty()) {
             return 0;

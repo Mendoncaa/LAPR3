@@ -1,5 +1,6 @@
 package app.ui.console;
 
+import app.controller.App;
 import app.ui.console.utils.Utils;
 
 import java.io.IOException;
@@ -35,6 +36,10 @@ public class MainMenuUI {
             }
         }
         while (option != -1 );
+
+        for (int i = 0; i < App.getInstance().getCompany().getHubStore().size(); i++) {
+            System.out.println(App.getInstance().getCompany().getHubStore().getHub(i));
+        }
     }
 
 
