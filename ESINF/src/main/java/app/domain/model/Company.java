@@ -4,9 +4,7 @@ import app.domain.shared.FilesReaderApp;
 import app.graph.Edge;
 import app.graph.Graph;
 import app.graph.map.MapGraph;
-import app.stores.HubStore;
-import app.stores.IrrigationDeviceStore;
-import app.stores.UsersStore;
+import app.stores.*;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,6 +21,9 @@ public class Company {
     private HubStore hubStore;
     private MapGraph<ClientsProducers, Integer> clientsProducersGraph;
 
+    private Orders orders;
+    private Stock stock;
+
 
 
     public Company(String designation) {
@@ -35,6 +36,16 @@ public class Company {
         this.irrigationDeviceStore = new IrrigationDeviceStore();
         this.clientsProducersGraph = new MapGraph<>(false);
         this.hubStore = new HubStore();
+        this.orders = new Orders();
+        this.stock = new Stock();
+    }
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public Stock getStock() {
+        return stock;
     }
 
     public MapGraph<ClientsProducers, Integer> getClientsProducersGraph() {

@@ -17,15 +17,9 @@ public class HubStore {
     }
 
     public void addHub(ClientsProducers hub) {
-        this.hubs.add(hub);
-    }
-
-    public void removeHub(ClientsProducers hub) {
-        this.hubs.remove(hub);
-    }
-
-    public void clearHubs() {
-        this.hubs.clear();
+        if (hub != null && !this.hubs.contains(hub)) {
+            this.hubs.add(hub);
+        }
     }
 
     public boolean containsHub(ClientsProducers hub) {
@@ -40,27 +34,8 @@ public class HubStore {
         return this.hubs.get(index);
     }
 
-    public void setHub(int index, ClientsProducers hub) {
-        this.hubs.set(index, hub);
-    }
-
-    public void removeHub(int index) {
-        this.hubs.remove(index);
-    }
-
-    public void addHub(int index, ClientsProducers hub) {
-        this.hubs.add(index, hub);
-    }
-
-    public int indexOfHub(ClientsProducers hub) {
-        return this.hubs.indexOf(hub);
-    }
-
     public boolean isEmpty() {
         return this.hubs.isEmpty();
     }
 
-    public void addAllHubs(ArrayList<ClientsProducers> hubs) {
-        this.hubs.addAll(hubs);
-    }
 }

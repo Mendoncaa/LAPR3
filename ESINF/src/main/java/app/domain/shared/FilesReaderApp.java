@@ -1,12 +1,8 @@
 package app.domain.shared;
 
 import app.controller.App;
-import app.domain.model.ClientsProducers;
-import app.domain.model.HoursMinutes;
-import app.domain.model.Irrigation;
-import app.domain.model.IrrigationDevice;
+import app.domain.model.*;
 import app.graph.Algorithms;
-import app.graph.Edge;
 import app.graph.map.MapGraph;
 
 import java.io.File;
@@ -16,7 +12,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import static app.graph.Algorithms.DepthFirstSearch;
 
 public class FilesReaderApp {
 
@@ -181,6 +176,59 @@ public class FilesReaderApp {
         }
 
         return connected;
+    }
+
+    public static boolean importBasketList(File file) {
+        try {
+            Scanner scanner = new Scanner(file);
+            String[] line = scanner.nextLine().split(",");
+
+            ArrayList<String> productsName = new ArrayList<>();
+            int len = line.length;
+
+            for (int i = 2; i < len; i++) {
+                line[i] = takeCommasOut(line[i]);
+                productsName.add(line[i]);
+            }
+
+            while (scanner.hasNextLine()) {
+                line = scanner.nextLine().split(",");
+                if (line.length == len) {
+                    for (int i = 0; i < line.length; i++) {
+                        line[i] = takeCommasOut(line[i]);
+                    }
+                    ClientsProducers cp = App.getInstance().getClientProducerByCode(line[0]);
+                    if (cp != null) {
+                        int day = Integer.parseInt(line[1]);
+                        ArrayList<Product> products = new ArrayList<>();
+
+                        for (int i = 2; i < len; i++) {
+                            products.add(new Product(productsName.get(i - 2), Float.parseFloat(line[i])));
+                        }
+
+                        ClientBasket basket = new ClientBasket(cp, products);
+
+                        if (cp.getType().equalsIgnoreCase(Constants.PRODUTOR)) {
+                            App.getInstance().getCompany().getStock().addStock(day, basket);
+                        } else {
+                            App.getInstance().getCompany().getOrders().addOrder(day, basket);
+                        }
+                    }
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            return false;
+        }
+        return true;
+    }
+
+    private static String takeCommasOut(String element) {
+        if (element.contains("\"")) {
+            element = element.substring(1, element.length() - 1);
+        }
+        return element;
     }
 
 }
