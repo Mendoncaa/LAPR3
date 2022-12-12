@@ -1,7 +1,10 @@
 package app.controller;
 
 import app.domain.model.Company;
+import app.domain.model.ExpeditionList;
 import app.domain.shared.ExpeditionListCreator;
+
+import java.util.Set;
 
 public class ExpeditionListNoRestController {
 
@@ -15,7 +18,7 @@ public class ExpeditionListNoRestController {
         this.company = company;
     }
 
-    public boolean getExpeditionListNoRestrictions() {
-        return ExpeditionListCreator.getExpeditionListNoRestrictions();
+    public Set<ExpeditionList> getExpeditionListNoRestrictions(int day) {
+        return ExpeditionListCreator.getExpeditionListNoRestrictions(day);
     }
 }
