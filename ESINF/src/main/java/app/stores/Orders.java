@@ -27,4 +27,8 @@ public class Orders {
         return orders;
     }
 
+    public void updateOrders(Map<Integer, ArrayList<ClientBasket>> orders) {
+        this.orders = orders;
+    }
+
 }

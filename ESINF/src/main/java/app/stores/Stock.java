@@ -26,4 +26,8 @@ public class Stock {
     public Map<Integer, ArrayList<ClientBasket>> getStock() {
         return stock;
     }
+
+    public void updateStock(Map<Integer, ArrayList<ClientBasket>> stock) {
+        this.stock = stock;
+    }
 }

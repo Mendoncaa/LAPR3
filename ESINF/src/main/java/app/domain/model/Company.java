@@ -9,6 +9,8 @@ import pt.isep.lei.esoft.auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Map;
 
 
 public class Company {
@@ -46,6 +48,14 @@ public class Company {
 
     public Stock getStock() {
         return stock;
+    }
+
+    public void updateOrders(Map<Integer, ArrayList<ClientBasket>> orders) {
+        this.orders.updateOrders(orders);
+    }
+
+    public void updateStock(Map<Integer, ArrayList<ClientBasket>> stock) {
+        this.stock.updateStock(stock);
     }
 
     public MapGraph<ClientsProducers, Integer> getClientsProducersGraph() {

@@ -191,6 +191,8 @@ public class FilesReaderApp {
                 productsName.add(line[i]);
             }
 
+            int lineCounter = 1;
+
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine().split(",");
                 if (line.length == len) {
@@ -213,8 +215,11 @@ public class FilesReaderApp {
                         } else {
                             App.getInstance().getCompany().getOrders().addOrder(day, basket);
                         }
+                    }else{
+                        System.out.println("Client Producer in line "+lineCounter+" not found");
                     }
                 }
+                lineCounter++;
             }
 
         } catch (FileNotFoundException e) {
