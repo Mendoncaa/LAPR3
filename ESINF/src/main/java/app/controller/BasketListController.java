@@ -6,6 +6,7 @@ import app.domain.model.Path;
 import app.domain.shared.ClosestPointsCheck;
 import app.domain.shared.FilesReaderApp;
 import app.graph.Graph;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class BasketListController {
         this.company = company;
     }
 
-    public boolean importBasketList(File file) {
+    public Pair<Integer, Integer> importBasketList(File file) {
         return FilesReaderApp.importBasketList(file);
     }
 }

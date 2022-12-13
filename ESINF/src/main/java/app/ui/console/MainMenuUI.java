@@ -26,6 +26,7 @@ public class MainMenuUI {
         options.add(new MenuItem("Register an irrigation device ", new IrrigationDeviceCreationUI()));
         options.add(new MenuItem("Check current irrigation ", new IrrigationDeviceUI()));
         options.add(new MenuItem("Import basket list", new BasketListUI()));
+        options.add(new MenuItem("Generate a dispatch list without any restriction", new ExpeditionListNoRestUI()));
 
         int option = 0;
         do {

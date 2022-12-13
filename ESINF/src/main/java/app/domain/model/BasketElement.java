@@ -4,9 +4,9 @@ public class BasketElement {
     private Product product;
     private ClientsProducers producer;
 
-    public BasketElement(Product product, ClientsProducers quantity) {
+    public BasketElement(Product product, ClientsProducers producer) {
         this.product = product;
-        this.producer = quantity;
+        this.producer = producer;
     }
 
     public Product getProduct() {

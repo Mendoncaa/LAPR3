@@ -6,21 +6,28 @@ import java.util.TreeSet;
 
 public class ExpeditionList {
 
-    private Set<BasketElement> basketElements;
+    private ArrayList<BasketElement> basketElements;
+    private ArrayList<BasketElement> basketOrderedElements;
     private ClientsProducers receiver;
 
-    public ExpeditionList(Set<BasketElement> basketElements, ClientsProducers receiver) {
+    public ExpeditionList(ArrayList<BasketElement> basketElements,ArrayList<BasketElement> basketOrderedElements ,ClientsProducers receiver) {
         this.basketElements = basketElements;
         this.receiver = receiver;
+        this.basketOrderedElements = basketOrderedElements;
     }
 
     public ExpeditionList(ClientsProducers receiver) {
         this.receiver = receiver;
-        this.basketElements = new TreeSet<>();
+        this.basketElements = new ArrayList<>();
+        this.basketOrderedElements = new ArrayList<>();
     }
 
-    public Set<BasketElement> getBasketElements() {
+    public ArrayList<BasketElement> getBasketElements() {
         return basketElements;
+    }
+
+    public ArrayList<BasketElement> getBasketOrderedElements() {
+        return basketOrderedElements;
     }
 
     public ClientsProducers getReceiver() {

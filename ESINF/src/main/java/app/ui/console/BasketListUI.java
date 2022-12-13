@@ -2,6 +2,7 @@ package app.ui.console;
 
 import app.controller.BasketListController;
 import app.ui.console.utils.Utils;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,8 +18,11 @@ public class BasketListUI implements Runnable {
 
         String path = Utils.readLineFromConsole("\nFile path to read: ");
         if (path != null) {
-            if (this.controller.importBasketList(new File(path))){
+            Pair<Integer, Integer> result = this.controller.importBasketList(new File(path));
+            if (result != null) {
                 System.out.println("Basket list imported successfully!");
+                System.out.println("Number of producers: " + result.getRight());
+                System.out.println("Number of orders: " + result.getLeft());
             } else {
                 System.out.println("Error importing basket list!");
             }

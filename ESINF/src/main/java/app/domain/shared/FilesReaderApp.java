@@ -4,6 +4,8 @@ import app.controller.App;
 import app.domain.model.*;
 import app.graph.Algorithms;
 import app.graph.map.MapGraph;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -178,7 +180,11 @@ public class FilesReaderApp {
         return connected;
     }
 
-    public static boolean importBasketList(File file) {
+    public static Pair<Integer,Integer> importBasketList(File file) {
+
+        int clients = 0;
+        int producers = 0;
+
         try {
             Scanner scanner = new Scanner(file);
             String[] line = scanner.nextLine().split(",");
@@ -212,8 +218,10 @@ public class FilesReaderApp {
 
                         if (cp.getType().equalsIgnoreCase(Constants.PRODUTOR)) {
                             App.getInstance().getCompany().getStock().addStock(day, basket);
+                            producers++;
                         } else {
                             App.getInstance().getCompany().getOrders().addOrder(day, basket);
+                            clients++;
                         }
                     }else{
                         System.out.println("Client Producer in line "+lineCounter+" not found");
@@ -224,9 +232,9 @@ public class FilesReaderApp {
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
-            return false;
+            return null;
         }
-        return true;
+        return new ImmutablePair<>(clients, producers);
     }
 
     private static String takeCommasOut(String element) {

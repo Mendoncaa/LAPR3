@@ -4,6 +4,7 @@ import app.domain.model.Company;
 import app.domain.model.ExpeditionList;
 import app.domain.shared.ExpeditionListCreator;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class ExpeditionListNoRestController {
@@ -18,7 +19,7 @@ public class ExpeditionListNoRestController {
         this.company = company;
     }
 
-    public Set<ExpeditionList> getExpeditionListNoRestrictions(int day) {
+    public ArrayList<ExpeditionList> getExpeditionListNoRestrictions(int day) {
         return ExpeditionListCreator.getExpeditionListNoRestrictions(day);
     }
 }
