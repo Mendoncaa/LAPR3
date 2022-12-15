@@ -25,7 +25,7 @@ public class Company {
 
     private Orders orders;
     private Stock stock;
-
+    private Statistics statistics;
 
 
     public Company(String designation) {
@@ -40,6 +40,7 @@ public class Company {
         this.hubStore = new HubStore();
         this.orders = new Orders();
         this.stock = new Stock();
+        this.statistics = new Statistics();
     }
 
     public Orders getOrders() {
@@ -56,6 +57,14 @@ public class Company {
 
     public void updateStock(Map<Integer, ArrayList<ClientBasket>> stock) {
         this.stock.updateStock(stock);
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public void updateStatistics(int day, StatisticBasket statisticBasket) {
+        this.statistics.addStatisticBasket(day, statisticBasket);
     }
 
     public MapGraph<ClientsProducers, Integer> getClientsProducersGraph() {
@@ -81,7 +90,6 @@ public class Company {
     public HubStore getHubStore() {
         return hubStore;
     }
-
 
 
     public void saveUser(AppUser appUser) {

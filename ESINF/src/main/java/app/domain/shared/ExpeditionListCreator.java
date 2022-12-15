@@ -19,6 +19,7 @@ public class ExpeditionListCreator {
             ArrayList<ClientBasket> clientBasketsOrders = App.getInstance().getCompany().getOrders().getOrders().get(day);      // orders of day key
             ArrayList<ClientBasket> clientBasketsStock = App.getInstance().getCompany().getStock().getStock().get(day);        // stock of day key
 
+
             // for each client basket in orders
             for (ClientBasket clientBasketsOrder : clientBasketsOrders) {
 
@@ -47,6 +48,7 @@ public class ExpeditionListCreator {
                                     clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - productOrder.getQuantity());    //atualizar stock
                                     expeditionList.getBasketElements().add(new BasketElement(new Product(productOrder.getName(), quantity_delivered), clientBasketsStock.get(productOwner).getEntity()));          // add product to expedition list
                                     expeditionList.getBasketOrderedElements().add(new BasketElement(new Product(productOrder.getName(), quantity_ordered), clientBasketsStock.get(productOwner).getEntity()));          // add product ordered to expedition list
+
                                 } else {
                                     quantity_delivered = productInStock.getQuantity();
                                     clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
@@ -69,7 +71,7 @@ public class ExpeditionListCreator {
 
         return expeditionListSet;
     }
-
+/*
     public static Set<ExpeditionList> getExpeditionListClosestNProducers(int day, int n) {
 
         Map<Integer, ArrayList<ClientBasket>> orders = App.getInstance().getCompany().getOrders().getOrders();
@@ -129,6 +131,8 @@ public class ExpeditionListCreator {
         App.getInstance().getCompany().updateOrders(orders);
         return expeditionListSet;
     }
+
+ */
 
     private static int findProductOwner(ArrayList<ClientBasket> stock, Product product) {
         boolean found = false;
