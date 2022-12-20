@@ -48,7 +48,6 @@ public class ExpeditionListCreator {
                                     clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - productOrder.getQuantity());    //atualizar stock
                                     expeditionList.getBasketElements().add(new BasketElement(new Product(productOrder.getName(), quantity_delivered), clientBasketsStock.get(productOwner).getEntity()));          // add product to expedition list
                                     expeditionList.getBasketOrderedElements().add(new BasketElement(new Product(productOrder.getName(), quantity_ordered), clientBasketsStock.get(productOwner).getEntity()));          // add product ordered to expedition list
-
                                 } else {
                                     quantity_delivered = productInStock.getQuantity();
                                     clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
@@ -59,7 +58,16 @@ public class ExpeditionListCreator {
                         }
                     }
                 }
+
+                if (App.getInstance().getCompany().getStatistics().getStatisticsForBasket().containsKey(day)){
+                    App.getInstance().getCompany().getStatistics().getStatisticsForBasket().get(day).add(expeditionList);
+                }else {
+                    App.getInstance().getCompany().getStatistics().getStatisticsForBasket().put(day,new ArrayList<>());
+                    App.getInstance().getCompany().getStatistics().getStatisticsForBasket().get(day).add(expeditionList);
+                }
+
                 expeditionListSet.add(expeditionList);
+
             }
 
             App.getInstance().getCompany().getStock().getStock().remove(day);

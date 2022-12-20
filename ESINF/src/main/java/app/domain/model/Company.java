@@ -70,10 +70,6 @@ public class Company {
         return statistics;
     }
 
-    public void updateStatistics(int day, StatisticBasket statisticBasket) {
-        this.statistics.addStatisticBasket(day, statisticBasket);
-    }
-
     public MapGraph<ClientsProducers, Integer> getClientsProducersGraph() {
         return clientsProducersGraph;
     }
