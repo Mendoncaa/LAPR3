@@ -134,7 +134,7 @@ public class ExpeditionListCreator {
 
  */
 
-    private static int findProductOwner(ArrayList<ClientBasket> stock, Product product) {
+    public static int findProductOwner(ArrayList<ClientBasket> stock, Product product) {
         boolean found = false;
         for (int j = 0; j < stock.size(); j++) {
             ArrayList<Product> products = stock.get(j).getProducts();
@@ -153,7 +153,7 @@ public class ExpeditionListCreator {
         return -1;
     }
 
-    private static int returnProductID(ClientBasket stock, Product product) {
+    public static int returnProductID(ClientBasket stock, Product product) {
 
         ArrayList<Product> products = stock.getProducts();
         for (int i = 0; i < products.size(); i++) {

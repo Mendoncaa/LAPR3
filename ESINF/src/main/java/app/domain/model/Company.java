@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class Company {
@@ -25,6 +26,7 @@ public class Company {
 
     private Orders orders;
     private Stock stock;
+    private Map<Integer, ArrayList<ClientBasket>> excedents;
     private Statistics statistics;
 
 
@@ -40,6 +42,7 @@ public class Company {
         this.hubStore = new HubStore();
         this.orders = new Orders();
         this.stock = new Stock();
+        this.excedents = new TreeMap<>();
         this.statistics = new Statistics();
     }
 
@@ -57,6 +60,10 @@ public class Company {
 
     public void updateStock(Map<Integer, ArrayList<ClientBasket>> stock) {
         this.stock.updateStock(stock);
+    }
+
+    public void updateExcedents(Map<Integer, ArrayList<ClientBasket>> excedents) {
+        this.excedents = excedents;
     }
 
     public Statistics getStatistics() {

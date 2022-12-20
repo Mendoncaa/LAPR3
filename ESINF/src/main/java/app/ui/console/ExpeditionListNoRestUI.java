@@ -4,6 +4,7 @@ import app.controller.App;
 import app.controller.ExpeditionListNoRestController;
 import app.domain.model.BasketElement;
 import app.domain.model.ExpeditionList;
+import app.domain.shared.ExcedentCalculator;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,10 +22,11 @@ public class ExpeditionListNoRestUI implements Runnable {
 
             Scanner sc = new Scanner(System.in);
             System.out.println("Insert day: ");
+            int day = sc.nextInt();
 
-            ArrayList<ExpeditionList> expedition_list = ctrl.getExpeditionListNoRestrictions(sc.nextInt());
+            ArrayList<ExpeditionList> expedition_list = ctrl.getExpeditionListNoRestrictions(day);
             ArrayList<String> clients_with_nothing_to_deliver = new ArrayList<>();
-
+            ExcedentCalculator.CalculateExcedent(day);
 
             if (!expedition_list.isEmpty()) {
                 System.out.println("\n----  Expedition list with no restrictions was successfully generated  ----\n");

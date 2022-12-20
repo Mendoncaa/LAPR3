@@ -20,8 +20,8 @@ public class BasketListUI implements Runnable {
         if (path != null) {
             Pair<Integer, Integer> result = this.controller.importBasketList(new File(path));
             if (result != null) {
-                System.out.println("Basket list imported successfully!");
-                System.out.println("Number of producers: " + result.getRight());
+                System.out.println("\nBasket list imported successfully!");
+                System.out.println("\nNumber of producers: " + result.getRight());
                 System.out.println("Number of orders: " + result.getLeft());
             } else {
                 System.out.println("Error importing basket list!");
