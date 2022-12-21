@@ -35,16 +35,19 @@ public class Stock {
     public void addHubs() {
         if (!App.getInstance().getCompany().getHubStore().isEmpty()) {
             ArrayList<ClientsProducers> hubs = App.getInstance().getCompany().getHubStore().getHubs();
-            Iterator<Integer> iterator = stock.keySet().iterator();
+            Map<Integer, ArrayList<ClientBasket>> stock2 = new TreeMap<>(stock);
+            Map<Integer, ArrayList<ClientBasket>> stock3 = new TreeMap<>(stock);
+            Iterator<Integer> iterator = stock2.keySet().iterator();
+            Iterator<Integer> iterator2 = stock3.keySet().iterator();
             int day = iterator.next();
-            ArrayList<Product> arr= new ArrayList<>(cleanArray(stock.get(day).get(0).getProducts()));
+            ArrayList<Product> arr= new ArrayList<>(cleanArray(stock2.get(day).get(0).getProducts()));
+            int day2;
 
-
-            for (int i = 0; i < stock.keySet().size(); i++) {
-                for (int j = 0; j < hubs.size(); j++) {
-                    addStock(day, new ClientBasket(hubs.get(j), arr));
+            while (iterator2.hasNext()){
+                day2 = iterator2.next();
+                for (ClientsProducers hub : hubs) {
+                    addStock(day2, new ClientBasket(hub, arr));
                 }
-                day = iterator.next();
             }
         }
     }

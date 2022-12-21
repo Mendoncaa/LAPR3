@@ -23,8 +23,9 @@ public class NCloserPointsUI implements Runnable {
         Scanner scanner = new Scanner(System.in);
         do {
             try {
-                System.out.println("\nDefining Hubs\nHow much do you want? ");
+                System.out.println("\n----------Defining Hubs----------\n\nHow much do you want? ");
                 n = scanner.nextInt();
+                System.out.println();
                 if (n > 0) {
                     exit = true;
                 }

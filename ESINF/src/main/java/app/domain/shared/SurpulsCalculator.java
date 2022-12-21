@@ -16,12 +16,14 @@ public class SurpulsCalculator {
         Map<Integer, ArrayList<ClientBasket>> stock = cloneMap(App.getInstance().getCompany().getStock().getStock());
         Map<Integer, ArrayList<ClientBasket>> orders = cloneMap(App.getInstance().getCompany().getOrders().getOrders());
 
-        Set<Integer> days = getDays(stock);
-        days.removeIf(day -> day >= actualDay);
-        Iterator<Integer> iterator = days.iterator();
+        if (!stock.isEmpty()) {
+            Set<Integer> days = getDays(stock);
+            days.removeIf(day -> day >= actualDay);
+            Iterator<Integer> iterator = days.iterator();
 
-        CalculateSurplusDay(iterator, stock, orders);
-        App.getInstance().getCompany().getExcedents().putAll(stock);
+            CalculateSurplusDay(iterator, stock, orders);
+            App.getInstance().getCompany().getExcedents().putAll(stock);
+        }
     }
 
     private static void CalculateSurplusDay(Iterator<Integer> daysItr, Map<Integer, ArrayList<ClientBasket>> stock, Map<Integer, ArrayList<ClientBasket>> orders) {
