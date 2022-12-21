@@ -62,8 +62,8 @@ public class Company {
         this.stock.updateStock(stock);
     }
 
-    public void updateExcedents(Map<Integer, ArrayList<ClientBasket>> excedents) {
-        this.excedents = excedents;
+    public Map<Integer, ArrayList<ClientBasket>> getExcedents() {
+        return excedents;
     }
 
     public Statistics getStatistics() {
