@@ -37,14 +37,8 @@ public class ClosestPointsCheck {
 
         Set<Path> closerPointsSet = new TreeSet<>(new AverageComparator());
         closerPointsSet.addAll(pathArrayList);
-        Iterator<Path> iterator = closerPointsSet.iterator();
-        for (int i = 0; i < closerPointsSet.size(); i++) {
-            System.out.println(iterator.next());
-        }
-        System.out.println();
 
         return closerPointsSet;
-
     }
 
     public static ClientsProducers getClosestHub(ClientsProducers cp, Graph<ClientsProducers, Integer> graph) {

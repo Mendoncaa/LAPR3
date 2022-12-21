@@ -3,6 +3,7 @@ package app.ui.console;
 
 import app.controller.App;
 import app.controller.CloserPointsController;
+import app.domain.model.ClientBasket;
 import app.domain.model.Path;
 import app.domain.shared.AverageComparator;
 
@@ -22,7 +23,7 @@ public class NCloserPointsUI implements Runnable {
         Scanner scanner = new Scanner(System.in);
         do {
             try {
-                System.out.println("\nTop N Closer Points\nWrite the N :");
+                System.out.println("\nDefining Hubs\nHow much do you want? ");
                 n = scanner.nextInt();
                 if (n > 0) {
                     exit = true;

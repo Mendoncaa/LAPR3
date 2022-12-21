@@ -1,5 +1,6 @@
 package app.ui.console;
 
+import app.controller.App;
 import app.controller.BasketListController;
 import app.ui.console.utils.Utils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -23,6 +24,7 @@ public class BasketListUI implements Runnable {
                 System.out.println("\nBasket list imported successfully!");
                 System.out.println("\nNumber of producers: " + result.getRight());
                 System.out.println("Number of orders: " + result.getLeft());
+                App.getInstance().getCompany().getStock().addHubs();
             } else {
                 System.out.println("Error importing basket list!");
             }

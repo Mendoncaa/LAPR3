@@ -9,9 +9,11 @@ import java.util.TreeMap;
 public class Orders {
 
     private Map<Integer, ArrayList<ClientBasket>> orders;
+    private Map<Integer, ArrayList<ClientBasket>> hubsOrders;
 
     public Orders() {
         orders = new TreeMap<>();
+        hubsOrders = new TreeMap<>();
     }
 
     public void addOrder(int id, ClientBasket basket) {
@@ -23,8 +25,21 @@ public class Orders {
         }
     }
 
+    public void addHubOrder(int id, ClientBasket basket) {
+        if (hubsOrders.containsKey(id)) {
+            hubsOrders.get(id).add(basket);
+        } else {
+            hubsOrders.put(id, new ArrayList<>());
+            hubsOrders.get(id).add(basket);
+        }
+    }
+
     public Map<Integer, ArrayList<ClientBasket>> getOrders() {
         return orders;
+    }
+
+    public Map<Integer, ArrayList<ClientBasket>> getHubsOrders() {
+        return hubsOrders;
     }
 
     public void updateOrders(Map<Integer, ArrayList<ClientBasket>> orders) {

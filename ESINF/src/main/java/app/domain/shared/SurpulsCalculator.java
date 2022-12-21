@@ -37,6 +37,7 @@ public class SurpulsCalculator {
             ArrayList<ClientBasket> clientBasketsStock = stock.get(day);        // stock of day key
             ArrayList<ClientBasket> clientBasketsSurplusOlder = new ArrayList<>();
             ArrayList<ClientBasket> clientBasketsSurplusRecent = new ArrayList<>();
+            ArrayList<ClientBasket> hubBaskets = new ArrayList<>();
 
             // get surplus of the day before
             if (stock.containsKey(day - 1)) {
@@ -55,7 +56,11 @@ public class SurpulsCalculator {
             // for each client basket in orders
             for (ClientBasket clientBasketsOrder : clientBasketsOrders) {
 
-                ArrayList<Product> productsOrder = clientBasketsOrder.getProducts();       // products of one order
+                ArrayList<Product> productsOrder = new ArrayList<>(clientBasketsOrder.getProducts());       // products of one order
+                boolean isHub = isThisHub(clientBasketsOrder.getEntity(), 0);
+
+                ArrayList<Product> delivered = new ArrayList<>(cleanArray(clientBasketsOrder.getProducts()));
+                int k = 0;
 
                 // for each product inside each client basket in order
                 // product of one order
@@ -106,21 +111,26 @@ public class SurpulsCalculator {
                                 }
 
                                 float rest = productOrder.getQuantity();
+                                float quantity = 0;
 
                                 if (productInSurplusOlder != null) {
                                     if (productInSurplusOlder.getQuantity() >= rest) {
+                                        quantity = quantity + rest;
                                         rest = 0;
                                         clientBasketsSurplusOlder.get(productOwnerOlder).getProducts().get(productInSurplusOlderID).setQuantity(productInSurplusOlder.getQuantity() - rest);    //atualizar stock
                                     } else {
+                                        quantity = quantity + productInSurplusOlder.getQuantity();
                                         rest = rest - productInSurplusOlder.getQuantity();
                                         clientBasketsSurplusOlder.get(productOwnerOlder).getProducts().get(productInSurplusOlderID).setQuantity(0);    //atualizar stock
                                     }
 
                                     if (productInSurplusRecent != null && rest > 0) {
                                         if (productInSurplusRecent.getQuantity() > rest) {
+                                            quantity = quantity + rest;
                                             rest = 0;
                                             clientBasketsSurplusRecent.get(productOwnerRecent).getProducts().get(productInSurplusRecentID).setQuantity(productInSurplusRecent.getQuantity() - rest);    //atualizar stock
                                         } else {
+                                            quantity = quantity + productInSurplusRecent.getQuantity();
                                             rest = rest - productInSurplusRecent.getQuantity();
                                             clientBasketsSurplusRecent.get(productOwnerRecent).getProducts().get(productInSurplusRecentID).setQuantity(0);    //atualizar stock
                                         }
@@ -128,9 +138,11 @@ public class SurpulsCalculator {
 
                                     if (productInStock != null && rest > 0) {
                                         if (productInStock.getQuantity() > rest) {
+                                            quantity = quantity + rest;
                                             rest = 0;
                                             clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - rest);    //atualizar stock
                                         } else {
+                                            quantity = quantity + productInStock.getQuantity();
                                             clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
                                         }
                                     }
@@ -139,18 +151,22 @@ public class SurpulsCalculator {
                                     if (productInSurplusRecent != null) {
 
                                         if (productInSurplusRecent.getQuantity() > rest) {
+                                            quantity = quantity + rest;
                                             rest = 0;
                                             clientBasketsSurplusRecent.get(productOwnerRecent).getProducts().get(productInSurplusRecentID).setQuantity(productInSurplusRecent.getQuantity() - rest);    //atualizar stock
                                         } else {
+                                            quantity = quantity + productInSurplusRecent.getQuantity();
                                             rest = rest - productInSurplusRecent.getQuantity();
                                             clientBasketsSurplusRecent.get(productOwnerRecent).getProducts().get(productInSurplusRecentID).setQuantity(0);    //atualizar stock
                                         }
 
                                         if (productInStock != null && rest > 0) {
                                             if (productInStock.getQuantity() > rest) {
+                                                quantity = quantity + rest;
                                                 rest = 0;
                                                 clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - rest);    //atualizar stock
                                             } else {
+                                                quantity = quantity + productInStock.getQuantity();
                                                 clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
                                             }
                                         }
@@ -158,19 +174,37 @@ public class SurpulsCalculator {
                                     } else {
                                         if (productInStock != null) {
                                             if (productInStock.getQuantity() > productOrder.getQuantity()) {
+                                                quantity = quantity + productOrder.getQuantity();
                                                 clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - productOrder.getQuantity());    //atualizar stock
                                             } else {
+                                                quantity = quantity + productInStock.getQuantity();
                                                 clientBasketsStock.get(productOwner).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
                                             }
                                         }
                                     }
                                 }
+                                delivered.get(k).setQuantity(quantity);
                             }
                         }
                     }
+                    k++;
+                }
+                if (isHub) {
+                    hubBaskets.add(new ClientBasket(clientBasketsOrder.getEntity(), delivered));
                 }
             }
 
+            //update stock
+
+            for (ClientBasket hubBasket : hubBaskets) {
+                if (stock.containsKey(day + 1)) {
+                    stock.get(day + 1).get(indexOfHub(stock, hubBasket.getEntity(), day + 1)).getProducts().clear();
+                    stock.get(day + 1).get(indexOfHub(stock, hubBasket.getEntity(), day + 1)).getProducts().addAll(hubBasket.getProducts());
+                } else {
+                    stock.put(day + 1, new ArrayList<>());
+                    stock.get(day + 1).add(hubBasket);
+                }
+            }
 
             stock.remove(day);
             stock.put(day, clientBasketsStock);
@@ -192,6 +226,27 @@ public class SurpulsCalculator {
         }
 
     }
+
+    private static int indexOfHub(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, int day) {
+        ArrayList<ClientBasket> basket = stock.get(day);
+        for (int i = 0; i < basket.size(); i++) {
+            if (basket.get(i).getEntity().equals(hub)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    private static boolean isThisHub(ClientsProducers entity, int idx) {
+        if (idx >= App.getInstance().getCompany().getHubStore().getHubs().size()) return false;
+
+        if (App.getInstance().getCompany().getHubStore().getHub(idx).equals(entity)) {
+            return true;
+        }
+        return isThisHub(entity, idx + 1);
+    }
+
 
     private static int findProductSurplusOwnerID(ArrayList<ClientBasket> stock, ClientsProducers cp, int idx) {
         if (idx >= stock.size()) return -1;
@@ -219,5 +274,13 @@ public class SurpulsCalculator {
 
     private static Map<Integer, ArrayList<ClientBasket>> cloneMap(Map<Integer, ArrayList<ClientBasket>> map) {
         return new TreeMap<>(map);
+    }
+
+    private static ArrayList<Product> cleanArray(ArrayList<Product> products) {
+        ArrayList<Product> array = new ArrayList<>(products);
+        for (int i = 0; i < products.size(); i++) {
+            array.get(i).setQuantity(0);
+        }
+        return products;
     }
 }

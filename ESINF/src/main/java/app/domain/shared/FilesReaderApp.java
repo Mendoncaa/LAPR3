@@ -180,7 +180,7 @@ public class FilesReaderApp {
         return connected;
     }
 
-    public static Pair<Integer,Integer> importBasketList(File file) {
+    public static Pair<Integer, Integer> importBasketList(File file) {
 
         int clients = 0;
         int producers = 0;
@@ -216,6 +216,10 @@ public class FilesReaderApp {
 
                         ClientBasket basket = new ClientBasket(cp, products);
 
+                        if (isThisHub(cp, 0)) {
+                            App.getInstance().getCompany().getOrders().addHubOrder(day, basket);
+                        }
+
                         if (cp.getType().equalsIgnoreCase(Constants.PRODUTOR)) {
                             App.getInstance().getCompany().getStock().addStock(day, basket);
                             producers++;
@@ -223,8 +227,8 @@ public class FilesReaderApp {
                             App.getInstance().getCompany().getOrders().addOrder(day, basket);
                             clients++;
                         }
-                    }else{
-                        System.out.println("Client Producer in line "+lineCounter+" not found");
+                    } else {
+                        System.out.println("Client Producer in line " + lineCounter + " not found");
                     }
                 }
                 lineCounter++;
@@ -242,6 +246,15 @@ public class FilesReaderApp {
             element = element.substring(1, element.length() - 1);
         }
         return element;
+    }
+
+    private static boolean isThisHub(ClientsProducers entity, int idx) {
+        if (idx >= App.getInstance().getCompany().getHubStore().getHubs().size()) return false;
+
+        if (App.getInstance().getCompany().getHubStore().getHub(idx).equals(entity)) {
+            return true;
+        }
+        return isThisHub(entity, idx + 1);
     }
 
 }
