@@ -17,14 +17,7 @@ entity Campo {
 entity Cultura {
     * ID: INTEGER <<PK>>
     --
-    Tipo_Cultura_ID <<FK>>
     Especie_Vegetal_ID <<FK>>
-}
-
-entity Tipo_Cultura {
-    * ID: INTEGER <<PK>>
-    --
-    Designacao: VARCHAR2(255) NOT NULL UNIQUE
 }
 
 /'Contraints:- [[Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo > 0)], 
@@ -113,7 +106,6 @@ entity Encomenda {
 /'Triggers:-
     #1:'/
 entity Incidente {
-    * Cliente_Codigo_Unico: INTEGER <<PK>> <<FK>>
     * Encomenda_ID: INTEGER UNIQUE <<PK>> <<FK>> 
     --
     Data_Incumprimento: DATE NOT NULL
@@ -170,7 +162,7 @@ Campo ||-d-|{ Plantacao
 Cultura ||-u-|{ Plantacao
 Cultura ||-d-|| Cultura_Temporaria
 Cultura ||-r-|| Cultura_Permanente
-Tipo_Cultura ||-u-|{ Cultura 
+
 Especie_Vegetal||-u-|{Cultura
 
 Plantacao ||-r-|{ Accao
@@ -185,7 +177,6 @@ Localidade ||-r-|{ Morada
 Pais ||-l-|{ Morada
 
 Cliente ||-d-o{ Encomenda
-Cliente ||-d-o{ Incidente
 
 Encomenda ||-l-o| Incidente
 Encomenda ||-d-|{ Encomenda_Especie_Vegetal

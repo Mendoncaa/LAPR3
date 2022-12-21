@@ -8,6 +8,7 @@ import app.ui.console.utils.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -40,14 +41,15 @@ public class MainMenuUI {
         while (option != -1);
 
 
-        System.out.println(App.getInstance().getCompany().getExcedents().size());
+        //System.out.println(App.getInstance().getCompany().getExcedents().size());
         Set<Integer> days = App.getInstance().getCompany().getExcedents().keySet();
+        Iterator<Integer> daysIterator = days.iterator();
         for (int i = 0; i < days.size(); i++) {
-            int day = days.iterator().next();
+            int day = daysIterator.next();
             System.out.println("Day " + day);
-            System.out.println();
             ArrayList<ClientBasket> clientBaskets = App.getInstance().getCompany().getExcedents().get(day);
             for (int j = 0; j < clientBaskets.size(); j++) {
+                System.out.println();
                 System.out.println("Client " + clientBaskets.get(j).getEntity().getCode());
                 System.out.println();
                 ArrayList<Product> products = clientBaskets.get(j).getProducts();

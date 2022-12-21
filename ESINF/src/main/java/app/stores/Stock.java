@@ -32,13 +32,18 @@ public class Stock {
         this.stock = stock;
     }
 
+    /**
+     * adicionar os hubs inicializados c os produtos a 0, em cada dia do stock
+     */
     public void addHubs() {
         if (!App.getInstance().getCompany().getHubStore().isEmpty()) {
             ArrayList<ClientsProducers> hubs = App.getInstance().getCompany().getHubStore().getHubs();
             Map<Integer, ArrayList<ClientBasket>> stock2 = new TreeMap<>(stock);
             Map<Integer, ArrayList<ClientBasket>> stock3 = new TreeMap<>(stock);
+
             Iterator<Integer> iterator = stock2.keySet().iterator();
             Iterator<Integer> iterator2 = stock3.keySet().iterator();
+
             int day = iterator.next();
             ArrayList<Product> arr= new ArrayList<>(cleanArray(stock2.get(day).get(0).getProducts()));
             int day2;

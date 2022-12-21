@@ -39,7 +39,6 @@ public class SurpulsCalculator {
             ArrayList<ClientBasket> clientBasketsStock = stock.get(day);        // stock of day key
             ArrayList<ClientBasket> clientBasketsSurplusOlder = new ArrayList<>();
             ArrayList<ClientBasket> clientBasketsSurplusRecent = new ArrayList<>();
-            ArrayList<ClientBasket> hubBaskets = new ArrayList<>();
 
             // get surplus of the day before
             if (stock.containsKey(day - 1)) {
@@ -59,10 +58,6 @@ public class SurpulsCalculator {
             for (ClientBasket clientBasketsOrder : clientBasketsOrders) {
 
                 ArrayList<Product> productsOrder = new ArrayList<>(clientBasketsOrder.getProducts());       // products of one order
-                boolean isHub = isThisHub(clientBasketsOrder.getEntity(), 0);
-
-                ArrayList<Product> delivered = new ArrayList<>(cleanArray(clientBasketsOrder.getProducts()));
-                int k = 0;
 
                 // for each product inside each client basket in order
                 // product of one order
@@ -185,28 +180,13 @@ public class SurpulsCalculator {
                                         }
                                     }
                                 }
-                                delivered.get(k).setQuantity(quantity);
                             }
                         }
                     }
-                    k++;
-                }
-                if (isHub) {
-                    hubBaskets.add(new ClientBasket(clientBasketsOrder.getEntity(), delivered));
                 }
             }
 
             //update stock
-
-            for (ClientBasket hubBasket : hubBaskets) {
-                if (stock.containsKey(day + 1)) {
-                    stock.get(day + 1).get(indexOfHub(stock, hubBasket.getEntity(), day + 1)).getProducts().clear();
-                    stock.get(day + 1).get(indexOfHub(stock, hubBasket.getEntity(), day + 1)).getProducts().addAll(hubBasket.getProducts());
-                } else {
-                    stock.put(day + 1, new ArrayList<>());
-                    stock.get(day + 1).add(hubBasket);
-                }
-            }
 
             stock.remove(day);
             stock.put(day, clientBasketsStock);
@@ -228,17 +208,6 @@ public class SurpulsCalculator {
         }
 
     }
-
-    private static int indexOfHub(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, int day) {
-        ArrayList<ClientBasket> basket = stock.get(day);
-        for (int i = 0; i < basket.size(); i++) {
-            if (basket.get(i).getEntity().equals(hub)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
 
     private static boolean isThisHub(ClientsProducers entity, int idx) {
         if (idx >= App.getInstance().getCompany().getHubStore().getHubs().size()) return false;
@@ -285,4 +254,28 @@ public class SurpulsCalculator {
         }
         return products;
     }
+
+    private static void findHubIndex(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, Product product, int day, int hubID, int productID) {
+        hubID = findHubID(stock, hub, day, 0);
+        productID = findProductID(stock, product, day, hubID, 0);
+    }
+
+    private static int findHubID(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, int day, int idx) {
+        if (idx >= stock.get(day).size()) return -1;
+
+        if (stock.get(day).get(idx).getEntity().equals(hub)) return idx;
+
+        return findHubID(stock, hub, day, idx + 1);
+    }
+
+    private static int findProductID(Map<Integer, ArrayList<ClientBasket>> stock, Product product, int day, int hubID, int idx) {
+        if (idx >= stock.get(day).get(hubID).getProducts().size()) return -1;
+
+        if (stock.get(day).get(idx).getProducts().get(idx).getName().equalsIgnoreCase(product.getName())) return idx;
+
+        return findProductID(stock, product, day, hubID, idx + 1);
+    }
+
+
 }
+
