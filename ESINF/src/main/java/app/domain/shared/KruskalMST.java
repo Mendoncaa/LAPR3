@@ -55,7 +55,7 @@ public class KruskalMST {
 
         Iterator<Edge<ClientsProducers, Integer>> edgeIt = edgeArrayList.iterator();
         Edge<ClientsProducers, Integer> previous = null;
-        Edge<ClientsProducers, Integer> current = null;
+        Edge<ClientsProducers, Integer> current;
 
         //System.out.println(edgeArrayList.size());
 

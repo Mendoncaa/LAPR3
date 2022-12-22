@@ -36,12 +36,13 @@ public class GraphSmallestUI implements Runnable{
         }
 
         System.out.println("Vertexes:" + cpPrint + "\n");
-        System.out.println(mst);
-       /* System.out.println("Edges:\n");
+        //System.out.println(mst);
+        System.out.println("Edges:\n");
 
         while(edgeIterator.hasNext()) {
-            System.out.println(edgeIterator.next().getVOrig().getCode() + "==>" + edgeIterator.next().getVDest().getCode());
+            Edge<ClientsProducers, Integer> edCurrent = edgeIterator.next();
+            System.out.println(edCurrent.getVOrig().getCode() + "==>" + edCurrent.getVDest().getCode());
         }
-*/
+
     }
 }
