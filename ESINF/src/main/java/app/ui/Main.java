@@ -8,8 +8,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        FilesReaderApp.bootstrap();
-
         try {
             MainMenuUI menu = new MainMenuUI();
 

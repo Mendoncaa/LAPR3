@@ -2,6 +2,7 @@ package app.domain.shared;
 
 import app.controller.App;
 import app.domain.model.*;
+import app.domain.shared.GraphDiameter;
 import app.graph.Algorithms;
 import app.graph.map.MapGraph;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -16,15 +17,6 @@ import java.util.Scanner;
 
 
 public class FilesReaderApp {
-
-    public static void bootstrap() {
-
-
-        File graphVertexFile = new File("ESINF/src/files/Big/clientes-produtores_big.csv");
-        File graphEdgeFile = new File("ESINF/src/files/Big/distancias_big.csv");
-        FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);
-
-    }
 
     public static boolean readIrrigationDeviceFile(File path) {
         try {
@@ -159,7 +151,10 @@ public class FilesReaderApp {
         ClientsProducers cpOrig = cp.get(0);
 
         boolean connected = isConnected(cpgraph, cpOrig, cp);
-        System.out.printf("Connected graph: %b", connected);
+        System.out.printf("Connected graph: %b \n", connected);
+
+        int diameter = GraphDiameter.getDiameter(cpgraph);
+        System.out.printf("Graph diameter: %d \n", diameter);
         //System.out.println(graph);
     }
 

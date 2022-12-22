@@ -191,9 +191,9 @@ public class Algorithms {
         Iterator<V> it = shortPath.iterator();
         while (it.hasNext()) {
             V vert = it.next();
-            System.out.println(vert);
+            //System.out.println(vert);
         }
-        System.out.println();
+        //System.out.println();
 
         if (dist[g.key(vDest)] != null) {
             getPath(g, vOrig, vDest, pathKeys, shortPath);

@@ -20,7 +20,7 @@ public class KruskalMST {
     static Iterator<ClientsProducers> cpIt = App.getInstance().getCompany().getClientsProducersGraph().vertices().iterator();
 
 
-    public static void kruskal() {
+    public static MapGraph<ClientsProducers, Integer> kruskal() {
 
         parseGraph(clpGraphClone);
 
@@ -86,15 +86,9 @@ public class KruskalMST {
             }
         }
 
-        ArrayList<ClientsProducers> cp = mst.vertices();
-        LinkedList<String> printable = new LinkedList<>();
-        printable.clear();
-        generateToBePrinted(cp, printable);
-
-        //System.out.println(printable);
-        System.out.println(mst);
-
+        return mst;
     }
+
     private static void parseGraph (MapGraph<ClientsProducers, Integer> clpGraphClone) {
 
         while(cpIt.hasNext()) {
@@ -112,17 +106,6 @@ public class KruskalMST {
         return e1.getWeight().compareTo(e2.getWeight());
     }
 
-    private static void generateToBePrinted (ArrayList<ClientsProducers> cp, LinkedList<String> toBePrinted) {
 
-        for(int i = 0; i < cp.size(); i++) {
-
-            if(cp.get(i).getType().equalsIgnoreCase("Empresa")) {
-                continue;
-            }
-            String cpCodeBuffer = cp.get(i).getCode();
-
-            toBePrinted.add(cpCodeBuffer);
-        }
-    }
 
 }
