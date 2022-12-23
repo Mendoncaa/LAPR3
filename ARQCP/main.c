@@ -32,7 +32,7 @@ int erroMaximo=5;
 //US[103]
 short matriz[6][3];
 short *ptrMatriz=&matriz[0][0];
-short valorMinimo=400;
+short valorMinimo=00;
 short valorMaximo=0;
 short contador=0;
 short soma=0;
@@ -424,10 +424,41 @@ int main() {
     sensHumAtm(0);
     sensHumSolo(0);
 	sensPluvio(0);
-	
+	printf("\t\t\tValor Mínimo\tValor Máximo\tMédia dos valores");
+	printf("\n");
 	for(int i=0; i<6;i++){
+		switch (i){
+			case 0:
+				printf("Temperatura:\t\t");
+				break;
+			
+			
+			case 1:
+				printf("Velocidade do vento:\t");
+				break;
+
+			
+			case 2:
+				printf("Direção do vento:\t");
+				break;
+			
+
+			case 3:
+				printf("Humidade atmosférica:\t");
+				break;
+
+			
+			case 4: 
+				printf("Humidade do solo:\t");
+				break;
+
+
+			case 5:
+				printf("Puviosidade:\t\t");
+				break;
+		}
 		for(int j=0; j<3;j++){
-			printf("%10d",matriz[i][j]);
+			printf("%10d\t",matriz[i][j]);
 		}
 		printf("\n");
 	}
