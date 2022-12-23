@@ -45,23 +45,32 @@ public class Stock {
             Iterator<Integer> iterator2 = stock3.keySet().iterator();
 
             int day = iterator.next();
-            ArrayList<Product> arr= new ArrayList<>(cleanArray(stock2.get(day).get(0).getProducts()));
-            int day2;
+            int size = stock2.get(day).get(0).getProducts().size();
+            ArrayList<Product> products = new ArrayList<>(stock2.get(day).get(0).getProducts());
+            String[] prods = new String[size];
+            for (int i = 0; i < size; i++) {
+                prods[i] = products.get(i).getName();
+            }
+            int day2 = 0;
 
-            while (iterator2.hasNext()){
+            while (iterator2.hasNext()) {
                 day2 = iterator2.next();
                 for (ClientsProducers hub : hubs) {
-                    addStock(day2, new ClientBasket(hub, arr));
+                    addStock(day2, new ClientBasket(hub, createArray(prods)));
                 }
+            }
+
+            for (ClientsProducers hub : hubs) {
+                addStock(day2 + 1, new ClientBasket(hub, createArray(prods)));
             }
         }
     }
 
-    private ArrayList<Product> cleanArray(ArrayList<Product> products) {
-        ArrayList<Product> array = new ArrayList<>(products);
-        for (int i = 0; i < products.size(); i++) {
-            array.get(i).setQuantity(0);
+    private ArrayList<Product> createArray(String[] prods) {
+        ArrayList<Product> array = new ArrayList<>();
+        for (int i = 0; i < prods.length; i++) {
+           array.add(new Product(prods[i],0 ));
         }
-        return products;
+        return array;
     }
 }

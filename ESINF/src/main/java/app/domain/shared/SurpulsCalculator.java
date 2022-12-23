@@ -42,14 +42,14 @@ public class SurpulsCalculator {
 
             // get surplus of the day before
             if (stock.containsKey(day - 1)) {
-                clientBasketsSurplusRecent = stock.get(day - 1);
+                clientBasketsSurplusRecent = new ArrayList<>(stock.get(day - 1));
             }
 
             newer = !clientBasketsSurplusRecent.isEmpty();
 
             // get surplus of 2 days before
             if (stock.containsKey(day - 2)) {
-                clientBasketsSurplusOlder = stock.get(day - 2);
+                clientBasketsSurplusOlder = new ArrayList<>(stock.get(day - 2));
             }
 
             older = !clientBasketsSurplusOlder.isEmpty();
@@ -58,12 +58,22 @@ public class SurpulsCalculator {
             for (ClientBasket clientBasketsOrder : clientBasketsOrders) {
 
                 ArrayList<Product> productsOrder = new ArrayList<>(clientBasketsOrder.getProducts());       // products of one order
+                boolean isHub = isThisHub(clientBasketsOrder.getEntity(), 0);
+                int hubID = -1;
+                if (isHub) {
+                    hubID = findHubID(stock, clientBasketsOrder.getEntity(), day + 1, 0);
+                }
 
                 // for each product inside each client basket in order
                 // product of one order
                 for (Product productOrder : productsOrder) {
+                    int productID = -1;
 
                     if (productOrder.getQuantity() > 0) {
+
+                        if (isHub) {
+                            productID = findProductID(stock, productOrder, day + 1, hubID, 0);
+                        }
 
                         int productOwner = findProductOwner(clientBasketsStock, productOrder);   // find product owner id
                         int productOwnerRecent = -1;
@@ -180,6 +190,9 @@ public class SurpulsCalculator {
                                         }
                                     }
                                 }
+                                if (isHub) {
+                                    stock.get(day + 1).get(hubID).getProducts().get(productID).setQuantity(quantity);
+                                }
                             }
                         }
                     }
@@ -246,19 +259,13 @@ public class SurpulsCalculator {
     private static Map<Integer, ArrayList<ClientBasket>> cloneMap(Map<Integer, ArrayList<ClientBasket>> map) {
         return new TreeMap<>(map);
     }
-
-    private static ArrayList<Product> cleanArray(ArrayList<Product> products) {
-        ArrayList<Product> array = new ArrayList<>(products);
-        for (int i = 0; i < products.size(); i++) {
-            array.get(i).setQuantity(0);
-        }
-        return products;
-    }
-
+/*
     private static void findHubIndex(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, Product product, int day, int hubID, int productID) {
         hubID = findHubID(stock, hub, day, 0);
         productID = findProductID(stock, product, day, hubID, 0);
     }
+
+ */
 
     private static int findHubID(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, int day, int idx) {
         if (idx >= stock.get(day).size()) return -1;
@@ -271,7 +278,7 @@ public class SurpulsCalculator {
     private static int findProductID(Map<Integer, ArrayList<ClientBasket>> stock, Product product, int day, int hubID, int idx) {
         if (idx >= stock.get(day).get(hubID).getProducts().size()) return -1;
 
-        if (stock.get(day).get(idx).getProducts().get(idx).getName().equalsIgnoreCase(product.getName())) return idx;
+        if (stock.get(day).get(hubID).getProducts().get(idx).getName().equalsIgnoreCase(product.getName())) return idx;
 
         return findProductID(stock, product, day, hubID, idx + 1);
     }
