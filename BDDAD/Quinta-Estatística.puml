@@ -36,6 +36,7 @@ entity Cultura_Permanente {
 /'Constraints:- [[Campo_ID, Data_Inicio_Cultura, UNIQUE(Campo_ID, Data_Inicio_Cultura)], 
 [Data_Fim_Cultura, CHECK(Data_Fim_Cultura < Data_Inicio_Cultura)]]'/
 entity Plantacao {
+    * ID: INTEGER <<PK>>
     * Campo_ID: INTEGER <<PK>> <<FK>>
     * Cultura_ID: INTEGER <<PK>> <<FK>>
     --
@@ -56,8 +57,7 @@ entity Sensor {
 }
 
 entity Leitura {
-    * Campo_ID: INTEGER <<PK>> <<FK>>
-    * Cultura_ID: INTEGER <<PK>> <<FK>>
+    * Plantacao_ID: INTEGER <<PK>> <<FK>>
     * Data_Leitura: DATE <<PK>>
     --
     Sensor_ID: INTEGER <<FK>> NOT NULL

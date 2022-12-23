@@ -69,23 +69,23 @@ entity Categoria{
     Designacao: VARCHAR2(255) NOT NULL
 }
 
-entity Aplicacao_Produto {
+entity Aplicacao_Fator_Producao {
     * Accao_ID: INTEGER <<PK>>
     --
-    Produto_ID: INTEGER <<FK>> NOT NULL
+    Fator_Producao_ID: INTEGER <<FK>> NOT NULL
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
 }
 
-entity Produto {
+entity Fator_Producao {
     * ID: INTEGER <<PK>>
-    *Tipo_Produto_ID: INTEGER <<PK>> <<FK>>
+    *Tipo_Fator_Producao_ID: INTEGER <<FK>>
     --
     Ficha_Tecnica_ID: INTEGER <<FK>> NOT NULL UNIQUE
     Nome: VARCHAR2(255) NOT NULL UNIQUE
 }
 
 
-entity Tipo_Produto {
+entity Tipo_Fator_Producao {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL UNIQUE
@@ -120,12 +120,11 @@ entity Plano {
     * ID: INTEGER <<PK>>
     --
     Periodicidade_ID: INTEGER <<FK>> NOT NULL
-    Campo_ID: INTEGER <<FK>> NOT NULL
-    Cultura_ID: INTEGER <<FK>> NOT NULL
+    Plantacao_ID: INTEGER <<FK>> NOT NULL
     Quantidade: NUMBER NOT NULL
 }
 
-entity Periocidade {
+entity Periodicidade {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL UNIQUE
@@ -136,7 +135,7 @@ entity Plano_Rega {
     --
 }
 
-entity Plano_Aplicacao_Produto {
+entity Plano_Aplicacao_Fator_Producao {
     * Plano_ID: INTEGER <<PK>> <<FK>>
     --
 }
@@ -149,26 +148,26 @@ Plantacao ||-r-|{ Accao
 Plantacao ||-d-|{ Plano
 
 Accao ||--d--|| Rega
-Accao ||--d--|| Aplicacao_Produto
+Accao ||--d--|| Aplicacao_Fator_Producao
 
 Metodo_Distribuicao ||-r-o{ Rega
-Metodo_Distribuicao ||-l-o{ Aplicacao_Produto
+Metodo_Distribuicao ||-l-o{ Aplicacao_Fator_Producao
 
-Tipo_Produto ||-l-o{ Produto
+Tipo_Fator_Producao ||-l-o{ Fator_Producao
 Categoria ||-d-o{ Substancia
 
-Produto ||-d-|| Ficha_Tecnica
-Produto ||--u--o{ Aplicacao_Produto
+Fator_Producao ||-d-|| Ficha_Tecnica
+Fator_Producao ||--u--o{ Aplicacao_Fator_Producao
 
 Ficha_Tecnica ||-d-|{ Ficha_Tecnica_Substancia
 
 Substancia ||-u-|{ Ficha_Tecnica_Substancia
 
-Periocidade ||-r-o{ Plano
+Periodicidade ||-r-o{ Plano
 
 Plano_Rega ||-u-|| Plano
 
-Plano_Aplicacao_Produto ||-u-|| Plano
+Plano_Aplicacao_Fator_Producao ||-u-|| Plano
 
 Cultura ||-d-|| Cultura_Temporaria
 Cultura ||-r-|| Cultura_Permanente
