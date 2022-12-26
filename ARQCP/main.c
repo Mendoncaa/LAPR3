@@ -48,6 +48,20 @@ void sensTemp(int i){
 	char tempmin= 0;
 	char tempmax= 55;
 
+	Sensor sensTemp;
+	sensTemp.id=1;
+	sensTemp.sensor_type="T";
+	sensTemp.max_limit=tempmax;
+	sensTemp.min_limit=tempmin;
+	sensTemp.frequency=--;
+	sensTemp.readings_size=(3600/--*24);
+	sensTemp.readings=temp;
+
+	for(int j=0;j<sensTemo.readings_size;j++){
+		printf("\n%d\n, temp[i]");
+		printf("\nOs valores são: \n");
+		printf("\n%d\n" (char) sensTemp.readings[i]);
+	
 
 	for (i; i < 30; i++){
 		char comp_rand = pcg32_random_r() % 3;
@@ -98,7 +112,7 @@ void sensTemp(int i){
 		
 		
 		
-	
+	}
 
 }
 	
@@ -108,6 +122,16 @@ void sensVelcVento(int i){
 
 	unsigned char velcmin= 0;
 	unsigned char velcmax= 150;
+
+	Sensor sensVelcVento;
+	sensVelcVento.id=2;
+	sensVelcVento.sensor_type="W";
+	sensVelcVento.max_limit=velcmax;
+	sensVelcVento.min_limit=velcmin;
+	sensVelcVento.frequency=--;
+	sensVelcVento.readings_size=(3600/--*24);
+	sensVelcVento.readings=velcvento;
+
 
 		for (i; i < 30; i++){
 			char comp_rand = pcg32_random_r() % 15;
@@ -161,6 +185,14 @@ void sensDirVento(int i){
 		unsigned short dirmax= 359;
 		
 		
+		Sensor sensDirVento;
+		sensDirVento.id=3;
+		sensDirVento.sensor_type="D";
+		sensDirVento.max_limit=dirmax;
+		sensDirVento.min_limit=dirmin;
+		sensDirVento.frequency=--;
+		sensDirVento.readings_size=(3600/--*24);
+		sensDirVento.readings=dirvento;
 
 		for (i; i < 30; i++){
 			char comp_rand = pcg32_random_r() % 50;		
@@ -210,15 +242,20 @@ void  sensHumAtm(int i){
 		unsigned char humatmmin= 0;
 		unsigned char humatmmax= 5;
 		char comp_rand;
-
-
-
-
-
+		
 		unsigned char ult_pluvio;
 		
 		unsigned char ult_hmd_atm;
-		
+
+		Sensor sensHumAtm;
+		sensHumAtm.id=4;
+		sensHumAtm.sensor_type="A";
+		sensHumAtm.max_limit=humatmmax;
+		sensHumAtm.min_limit=humatmmin;
+		sensHumAtm.frequency=--;
+		sensHumAtm.readings_size=(3600/--*24);
+		sensHumAtm.readings=humdtam;
+
 	for (i; i < 30; i++){
 			ult_pluvio= pluvio[i];
 
@@ -280,7 +317,17 @@ void sensHumSolo(int i){
 			
 			unsigned char ult_humd_solo;
 			unsigned char ult_pluvio=0;
+			
+			Sensor sensHumSolo;
+			sensHumSolo.id=5;
+			sensHumSolo.sensor_type="G";
+			sensHumSolo.max_limit=solomax;
+			sensHumSolo.min_limit=solomin;
+			sensHumSolo.frequency=--;
+			sensHumSolo.readings_size=(3600/--*24);
+			sensHumSolo.readings=humdsolo;
 
+		
 			
 			for (i; i < 30; i++){
 				char comp_rand= pcg32_random_r() % 5;
@@ -347,6 +394,14 @@ void sensPluvio(int i){
 		unsigned char ult_pluvio;
 		char ult_temp;
     	
+		Sensor sensPluvio;
+		sensPluvio.id=6;
+		sensPluvio.sensor_type="R";
+		sensPluvio.max_limit=maxPluvio;
+		sensPluvio.min_limit=minPluvio;
+		sensPluvio.frequency=--;
+		sensPluvio.readings_size=(3600/--*24);
+		sensPluvio.readings=pluvios;
 
     	for (i; i < 30; i++){
         	char ult_temp = temp[i];
@@ -418,12 +473,13 @@ int main() {
 		printf("Error , failed to read and words\n"); 
 		return 1;
     }
-    sensTemp(0);
+	/*sensTemp(0);
     sensVelcVento(0);
     sensDirVento(0);
     sensHumAtm(0);
     sensHumSolo(0);
 	sensPluvio(0);
+	*/
 	printf("\t\t\tValor Mínimo\tValor Máximo\tMédia dos valores");
 	printf("\n");
 	for(int i=0; i<6;i++){

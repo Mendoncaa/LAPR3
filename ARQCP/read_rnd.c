@@ -33,5 +33,5 @@ int main() {
     printf("Read %d words from /dev/urandom\n",res); 
     for(i=0;i<res;i++) 
         printf("%08x\n",buffer[i]); 
-    return 0;
+    return 0;s
 }
