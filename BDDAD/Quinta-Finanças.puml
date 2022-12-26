@@ -8,7 +8,7 @@ entity Campo {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL
-    Hectares INTEGER NOT NULL
+    Hectares: INTEGER NOT NULL
 }
 
 /'Triggers:-
@@ -17,14 +17,7 @@ entity Campo {
 entity Cultura {
     * ID: INTEGER <<PK>>
     --
-    Tipo_Cultura_ID <<FK>>
-    Especie_Vegetal_ID <<FK>>
-}
-
-entity Tipo_Cultura {
-    * ID: INTEGER <<PK>>
-    --
-    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+    Produto_ID <<FK>>
 }
 
 /'Contraints:- [[Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo > 0)], 
@@ -42,14 +35,15 @@ entity Cultura_Permanente {
 /'Constraints:- [[Campo_ID, Data_Inicio_Cultura, UNIQUE(Campo_ID, Data_Inicio_Cultura)], 
 [Data_Fim_Cultura, CHECK(Data_Fim_Cultura < Data_Inicio_Cultura)]]'/
 entity Plantacao {
-    * Campo_ID: INTEGER <<PK>> <<FK>>
-    * Cultura_ID: INTEGER <<PK>> <<FK>>
+    * ID: INTEGER <<PK>>
     --
+    Campo_ID: INTEGER <<FK>>
+    Cultura_ID: INTEGER <<FK>>
     Data_Inicio_Cultura: DATE
     Data_Fim_Cultura: DATE
 }
 
-entity Especie_Vegetal {
+entity Produto {
     * ID: INTEGER <<PK>>
     --
     Nome: VARCHAR2(255) NOT NULL UNIQUE
@@ -113,15 +107,14 @@ entity Encomenda {
 /'Triggers:-
     #1:'/
 entity Incidente {
-    * Cliente_Codigo_Unico: INTEGER <<PK>> <<FK>>
     * Encomenda_ID: INTEGER UNIQUE <<PK>> <<FK>> 
     --
     Data_Incumprimento: DATE NOT NULL
 }
 
-entity Encomenda_Especie_Vegetal {
+entity Encomenda_Produto {
     * Encomenda_ID: INTEGER <<PK>> <<FK>>
-    * Especie_Vegetal_ID: INTEGER <<PK>> <<FK>>
+    * Produto_ID: INTEGER <<PK>> <<FK>>
     --
     Quantidade: NUMBER NOT NULL
     Preco: NUMBER NOT NULL
@@ -131,8 +124,7 @@ entity Encomenda_Especie_Vegetal {
 entity Accao {
     * ID: INTEGER <<PK>>
     --
-    Campo_ID: INTEGER <<FK>>
-    Cultura_ID: INTEGER <<FK>>
+    *Plantacao_ID: INTEGER <<FK>>
     Data_Accao: DATE NOT NULL
 }
 
@@ -149,10 +141,10 @@ entity Rega {
     Quantidade: NUMBER NOT NULL
 }
 
-entity Aplicacao_Produto {
+entity Aplicacao_Fator_Producao {
     * Accao_ID: INTEGER <<PK>> <<FK>>
     --
-    Produto_ID: INTEGER <<FK>> NOT NULL
+    Fator_Producao_ID: INTEGER <<FK>> NOT NULL
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
     Quantidade: NUMBER NOT NULL
 }
@@ -160,7 +152,7 @@ entity Aplicacao_Produto {
 entity Colheita {
     * Accao_ID: INTEGER <<PK>> <<FK>>
     --
-    Especie_Vegetal_ID: INTEGER <<FK>> NOT NULL
+    Produto_ID: INTEGER <<FK>> NOT NULL
     Preco: NUMBER NOT NULL
     Quantidade: NUMBER NOT NULL
 }
@@ -170,8 +162,8 @@ Campo ||-d-|{ Plantacao
 Cultura ||-u-|{ Plantacao
 Cultura ||-d-|| Cultura_Temporaria
 Cultura ||-r-|| Cultura_Permanente
-Tipo_Cultura ||-u-|{ Cultura 
-Especie_Vegetal||-u-|{Cultura
+
+Produto ||-u-|{Cultura
 
 Plantacao ||-r-|{ Accao
 
@@ -185,19 +177,18 @@ Localidade ||-r-|{ Morada
 Pais ||-l-|{ Morada
 
 Cliente ||-d-o{ Encomenda
-Cliente ||-d-o{ Incidente
 
 Encomenda ||-l-o| Incidente
-Encomenda ||-d-|{ Encomenda_Especie_Vegetal
+Encomenda ||-d-|{ Encomenda_Produto
 
-Especie_Vegetal ||-u-|{ Encomenda_Especie_Vegetal
-Especie_Vegetal ||---u---o{ Colheita
+Produto ||-u-|{ Encomenda_Produto
+Produto ||---u---o{ Colheita
 
 Accao ||--d--|| Rega
-Accao ||--d--|| Aplicacao_Produto
+Accao ||--d--|| Aplicacao_Fator_Producao
 Accao ||--d--|| Colheita
 
 Metodo_Distribuicao ||-u-o{ Rega
-Metodo_Distribuicao ||-u-o{ Aplicacao_Produto
+Metodo_Distribuicao ||-u-o{ Aplicacao_Fator_Producao
 
 @enduml

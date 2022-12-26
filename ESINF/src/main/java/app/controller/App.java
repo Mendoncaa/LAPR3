@@ -1,14 +1,18 @@
 package app.controller;
 
+import app.domain.model.ClientsProducers;
 import app.domain.model.Company;
 import app.domain.shared.Constants;
 import app.stores.EmailsPasswords;
+import app.stores.Orders;
+import app.stores.Stock;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.UserSession;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 
 
@@ -35,6 +39,8 @@ public class App {
     public UserSession getCurrentUserSession() {
         return this.authFacade.getCurrentUserSession();
     }
+
+
 
     public boolean doLogin(String email, String pwd) {
         return this.authFacade.doLogin(email, pwd).isLoggedIn();
@@ -89,5 +95,15 @@ public class App {
 
     public EmailsPasswords getEmailsPasswords() {
         return emailsPasswords;
+    }
+
+    public ClientsProducers getClientProducerByCode(String code){
+        ArrayList<ClientsProducers> clientsProducers = this.getCompany().getClientsProducersGraph().vertices();
+        for(ClientsProducers cp : clientsProducers){
+            if(cp.getCode().equals(code)){
+                return cp;
+            }
+        }
+        return null;
     }
 }

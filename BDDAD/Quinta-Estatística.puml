@@ -20,15 +20,23 @@ entity Cultura {
     Designacao: VARCHAR2(255) NOT NULL UNIQUE
 }
 
-entity Tipo_Cultura {
-    * ID: INTEGER <<PK>>
+/'Contraints:- [[Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo > 0)], 
+[Ciclo_Vegetativo, CHECK(Ciclo_Vegetativo < 12)]]'/
+entity Cultura_Temporaria {
+    * Cultura_ID: INTEGER <<PK>> <<FK>>
     --
-    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+    Ciclo_Vegetativo: INTEGER NOT NULL
 }
+
+entity Cultura_Permanente {
+    * Cultura_ID: INTEGER <<PK>> <<FK>>
+}
+
 
 /'Constraints:- [[Campo_ID, Data_Inicio_Cultura, UNIQUE(Campo_ID, Data_Inicio_Cultura)], 
 [Data_Fim_Cultura, CHECK(Data_Fim_Cultura < Data_Inicio_Cultura)]]'/
 entity Plantacao {
+    * ID: INTEGER <<PK>>
     * Campo_ID: INTEGER <<PK>> <<FK>>
     * Cultura_ID: INTEGER <<PK>> <<FK>>
     --
@@ -49,8 +57,7 @@ entity Sensor {
 }
 
 entity Leitura {
-    * Campo_ID: INTEGER <<PK>> <<FK>>
-    * Cultura_ID: INTEGER <<PK>> <<FK>>
+    * Plantacao_ID: INTEGER <<PK>> <<FK>>
     * Data_Leitura: DATE <<PK>>
     --
     Sensor_ID: INTEGER <<FK>> NOT NULL
@@ -60,10 +67,10 @@ entity Leitura {
 Campo ||-d-|{ Plantacao
 
 Cultura ||-r-|{ Plantacao
+Cultura ||-d-|| Cultura_Temporaria
+Cultura ||-d-|| Cultura_Permanente
 
 Plantacao ||-r-|{ Leitura
-
-Cultura }|-l-|| Tipo_Cultura 
 
 Tipo_Sensor ||-u-|{ Sensor
 

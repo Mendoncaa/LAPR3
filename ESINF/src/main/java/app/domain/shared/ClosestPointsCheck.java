@@ -12,7 +12,7 @@ import java.util.*;
 
 public class ClosestPointsCheck {
 
-    public static ArrayList<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
+    public static Set<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
 
         ArrayList<ClientsProducers> companies = new ArrayList<>();
         ArrayList<ClientsProducers> vertices = graph.vertices();
@@ -35,8 +35,10 @@ public class ClosestPointsCheck {
             pathArrayList.add(new Path(company, paths, dists));
         }
 
-        return pathArrayList;
+        Set<Path> closerPointsSet = new TreeSet<>(new AverageComparator());
+        closerPointsSet.addAll(pathArrayList);
 
+        return closerPointsSet;
     }
 
     public static ClientsProducers getClosestHub(ClientsProducers cp, Graph<ClientsProducers, Integer> graph) {

@@ -34,7 +34,7 @@ int erroMaximo=5;
 //US[103]
 short matriz[6][3];
 short *ptrMatriz=&matriz[0][0];
-short valorMinimo=400;
+short valorMinimo=00;
 short valorMaximo=0;
 short contador=0;
 short soma=0;
@@ -50,6 +50,20 @@ void sensTemp(int i){
 	char tempmin= 0;
 	char tempmax= 55;
 
+	Sensor sensTemp;
+	sensTemp.id=1;
+	sensTemp.sensor_type="T";
+	sensTemp.max_limit=tempmax;
+	sensTemp.min_limit=tempmin;
+	sensTemp.frequency=--;
+	sensTemp.readings_size=(3600/--*24);
+	sensTemp.readings=temp;
+
+	for(int j=0;j<sensTemo.readings_size;j++){
+		printf("\n%d\n, temp[i]");
+		printf("\nOs valores são: \n");
+		printf("\n%d\n" (char) sensTemp.readings[i]);
+	
 
 	for (i; i < 30; i++){
 		char comp_rand = pcg32_random_r() % 3;
@@ -100,9 +114,12 @@ void sensTemp(int i){
 		
 		
 		
-	
+	}
 
 }
+	
+
+
 	
 
 
@@ -110,6 +127,16 @@ void sensVelcVento(int i){
 
 	unsigned char velcmin= 0;
 	unsigned char velcmax= 150;
+
+	Sensor sensVelcVento;
+	sensVelcVento.id=2;
+	sensVelcVento.sensor_type="W";
+	sensVelcVento.max_limit=velcmax;
+	sensVelcVento.min_limit=velcmin;
+	sensVelcVento.frequency=--;
+	sensVelcVento.readings_size=(3600/--*24);
+	sensVelcVento.readings=velcvento;
+
 
 		for (i; i < 30; i++){
 			char comp_rand = pcg32_random_r() % 15;
@@ -163,6 +190,14 @@ void sensDirVento(int i){
 		unsigned short dirmax= 359;
 		
 		
+		Sensor sensDirVento;
+		sensDirVento.id=3;
+		sensDirVento.sensor_type="D";
+		sensDirVento.max_limit=dirmax;
+		sensDirVento.min_limit=dirmin;
+		sensDirVento.frequency=--;
+		sensDirVento.readings_size=(3600/--*24);
+		sensDirVento.readings=dirvento;
 
 		for (i; i < 30; i++){
 			char comp_rand = pcg32_random_r() % 50;		
@@ -283,12 +318,25 @@ void  sensHumAtm(int i){
 		unsigned char humatmmin= 0;
 		unsigned char humatmmax= 5;
 		char comp_rand;
+<<<<<<< HEAD
 
 
+=======
+		
+>>>>>>> 0880e50c69dbf5ac6be048c9997cf6d5e8688382
 		unsigned char ult_pluvio;
 		
 		unsigned char ult_hmd_atm;
-		
+
+		Sensor sensHumAtm;
+		sensHumAtm.id=4;
+		sensHumAtm.sensor_type="A";
+		sensHumAtm.max_limit=humatmmax;
+		sensHumAtm.min_limit=humatmmin;
+		sensHumAtm.frequency=--;
+		sensHumAtm.readings_size=(3600/--*24);
+		sensHumAtm.readings=humdtam;
+
 	for (i; i < 30; i++){
 			ult_pluvio= pluvio[i];
 
@@ -350,7 +398,17 @@ void sensHumSolo(int i){
 			
 			unsigned char ult_humd_solo;
 			unsigned char ult_pluvio=0;
+			
+			Sensor sensHumSolo;
+			sensHumSolo.id=5;
+			sensHumSolo.sensor_type="G";
+			sensHumSolo.max_limit=solomax;
+			sensHumSolo.min_limit=solomin;
+			sensHumSolo.frequency=--;
+			sensHumSolo.readings_size=(3600/--*24);
+			sensHumSolo.readings=humdsolo;
 
+		
 			
 			for (i; i < 30; i++){
 				
@@ -413,6 +471,87 @@ void sensHumSolo(int i){
 		
 
 }
+<<<<<<< HEAD
+=======
+
+
+	//sensor pluvio
+
+
+void sensPluvio(int i){
+
+		char minPluvio=0;
+		char maxPluvio=5;
+		
+	
+		
+		unsigned char ult_pluvio;
+		char ult_temp;
+    	
+		Sensor sensPluvio;
+		sensPluvio.id=6;
+		sensPluvio.sensor_type="R";
+		sensPluvio.max_limit=maxPluvio;
+		sensPluvio.min_limit=minPluvio;
+		sensPluvio.frequency=--;
+		sensPluvio.readings_size=(3600/--*24);
+		sensPluvio.readings=pluvios;
+
+    	for (i; i < 30; i++){
+        	char ult_temp = temp[i];
+        	//sleep(k); //criar função para dar output de x em x segundos
+        	char comp_rand = pcg32_random_r() % 5; //mudar a alteração de temp
+			//componente aleatoria que gera um numero random, alteração
+        	int comp_relative = pcg32_random_r() % ult_temp ;
+			//
+        if (comp_relative !=0){ 	
+            comp_rand = 0;
+
+        }
+		// O valor só altera se a componente gerar o valor 0
+        if (i !=0){		
+			ult_pluvio = pluvio[i-1];
+        }
+		// o ultimo valor da pluviosidade é a posição anterior para onde o apontador está a apontar
+        pluvio[i]= sens_pluvio(ult_pluvio,ult_temp, comp_rand);
+			
+
+		}
+		for (i = 0; i < 30; i++){
+		if (pluvio[i]> maxPluvio || pluvio[i]< minPluvio){
+			erros++;
+		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-4;
+			sensPluvio(init);
+		}
+	}
+	for(int j=0;j<30;j++){
+		soma+=dirvento[j];
+		contador++;
+	if(pluvio[j]<valorMinimo){
+		valorMinimo=pluvio[j];
+	}
+	if(pluvio[j]>valorMaximo){
+		valorMaximo=pluvio[j];
+		}
+	}
+	media=soma/contador;
+	
+		*(ptrMatriz+15)=valorMaximo;
+		*(ptrMatriz+16)=valorMinimo;
+		*(ptrMatriz+17)=media;
+		
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
+	
+
+
+}
+>>>>>>> 0880e50c69dbf5ac6be048c9997cf6d5e8688382
 int main() { 
 	uint32_t buffer [64]; 
 	FILE *f;
@@ -429,16 +568,48 @@ int main() {
 		printf("Error , failed to read and words\n"); 
 		return 1;
     }
-    sensTemp(0);
+	/*sensTemp(0);
     sensVelcVento(0);
     sensDirVento(0);
     sensHumAtm(0);
     sensHumSolo(0);
 	sensPluvio(0);
-	
+	*/
+	printf("\t\t\tValor Mínimo\tValor Máximo\tMédia dos valores");
+	printf("\n");
 	for(int i=0; i<6;i++){
+		switch (i){
+			case 0:
+				printf("Temperatura:\t\t");
+				break;
+			
+			
+			case 1:
+				printf("Velocidade do vento:\t");
+				break;
+
+			
+			case 2:
+				printf("Direção do vento:\t");
+				break;
+			
+
+			case 3:
+				printf("Humidade atmosférica:\t");
+				break;
+
+			
+			case 4: 
+				printf("Humidade do solo:\t");
+				break;
+
+
+			case 5:
+				printf("Puviosidade:\t\t");
+				break;
+		}
 		for(int j=0; j<3;j++){
-			printf("%10d",matriz[i][j]);
+			printf("%10d\t",matriz[i][j]);
 		}
 		printf("\n");
 	}

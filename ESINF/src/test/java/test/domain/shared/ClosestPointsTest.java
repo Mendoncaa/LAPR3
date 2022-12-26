@@ -44,11 +44,10 @@ public class ClosestPointsTest {
     @Test
     public void testClosestPoints() {
 
-        ArrayList<Path> closerPoints = ClosestPointsCheck.getCloserPoints(completeMap);
-        Set<Path> closerPointsSet = new TreeSet<>(new AverageComparator());
-        closerPointsSet.addAll(closerPoints);
+        Set<Path> closerPoints = ClosestPointsCheck.getCloserPoints(completeMap);
+        closerPoints.addAll(closerPoints);
 
-        Iterator<Path> itr = closerPointsSet.iterator();
+        Iterator<Path> itr = closerPoints.iterator();
         Path path = itr.next();
         Path path2 = itr.next();
         Assertions.assertEquals(path.getEntity().getCode(), "E1");

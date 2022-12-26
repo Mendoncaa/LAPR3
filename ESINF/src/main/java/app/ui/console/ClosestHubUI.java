@@ -36,7 +36,7 @@ public class ClosestHubUI implements Runnable {
                     System.out.println(i + 1 + ". " + clients.get(i).getCode());
                 }
                 System.out.println();
-                option = Utils.readIntegerFromConsole("Which client you want?");
+                option = Utils.readIntegerFromConsole("Which client do you want?");
             } while (option < 0 || option > clients.size());
 
         } catch (NumberFormatException e) {

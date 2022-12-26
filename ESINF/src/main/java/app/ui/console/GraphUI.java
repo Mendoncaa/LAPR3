@@ -10,18 +10,18 @@ import java.util.*;
 
 public class GraphUI implements Runnable{
 
-    MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
-    ClientsProducers clp1 = null;
-    ClientsProducers clp2 = null;
-    ArrayList<ClientsProducers> cp = clpGraph.vertices();
+    static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+    static ClientsProducers clp1 = null;
+    static ClientsProducers clp2 = null;
+
     LinkedList<String> toBePrinted = new LinkedList<>();
     LinkedList<ClientsProducers> path = new LinkedList<>();
-
     ArrayList<String> codePath = new ArrayList<>();
 
-    Comparator<Double> cpE;
     @Override
     public void run() {
+
+        ArrayList<ClientsProducers> cp = clpGraph.vertices();
 
         generateToBePrinted(cp, toBePrinted);
 

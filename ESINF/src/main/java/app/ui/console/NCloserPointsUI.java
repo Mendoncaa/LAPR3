@@ -3,6 +3,7 @@ package app.ui.console;
 
 import app.controller.App;
 import app.controller.CloserPointsController;
+import app.domain.model.ClientBasket;
 import app.domain.model.Path;
 import app.domain.shared.AverageComparator;
 
@@ -22,8 +23,9 @@ public class NCloserPointsUI implements Runnable {
         Scanner scanner = new Scanner(System.in);
         do {
             try {
-                System.out.println("\nTop N Closer Points\nWrite the N :");
+                System.out.println("\n----------Defining Hubs----------\n\nHow much do you want? ");
                 n = scanner.nextInt();
+                System.out.println();
                 if (n > 0) {
                     exit = true;
                 }
@@ -32,24 +34,17 @@ public class NCloserPointsUI implements Runnable {
             }
         } while (!exit);
 
-        ArrayList<Path> closerPoints = ctrl.getCloserPoints(App.getInstance().getCompany().getClientsProducersGraph());
-        Set<Path> closerPointsSet = new TreeSet<>(new AverageComparator());
+        Set<Path> closerPoints = ctrl.getCloserPoints(App.getInstance().getCompany().getClientsProducersGraph());
+        Set<Path> closerPoints2 = closerPoints;
 
-        closerPointsSet.addAll(closerPoints);
+        Iterator<Path> iterator = closerPoints.iterator();
+        Iterator<Path> iterator2 = closerPoints2.iterator();
 
-        Iterator<Path> iterator = closerPointsSet.iterator();
-
-        if (closerPointsSet.size()>=n) {
-            System.out.println("\nTop " + n + " Closer Points :\n");
-            for (int i = 0; i < n; i++) {
-                Path path = iterator.next();
-                System.out.println(i + 1 + ". " + path.getEntity() + "    Average :  " + path.getAverageDist() + " meters");
-            }
-        }else {
-            System.out.println("\nTop " + closerPointsSet.size() + " Closer Points :\n");
-            for (int i = 0; i < closerPoints.size(); i++) {
-                Path path = iterator.next();
-                System.out.println(i + 1 + ". " + path.getEntity() + "    Average :  " + path.getAverageDist() + " meters");
+        for (int i = 0; i < n; i++) {
+            if (iterator2.hasNext()) {
+                App.getInstance().getCompany().getHubStore().addHub(iterator.next().getEntity());
+                Path actual = iterator2.next();
+                System.out.println(i + 1 + ". " + actual.getEntity() + "    Average :  " + actual.getAverageDist() + " meters");
             }
         }
     }

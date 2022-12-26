@@ -1,3 +1,48 @@
+CREATE OR REPLACE FUNCTION Add_Localidade_Func(v_localidade Localidade.nome%TYPE) RETURN Localidade.id%TYPE
+IS
+nr_id INTEGER;
+BEGIN
+select nvl(max(ID), 0)+1 into nr_id from Localidade;
+INSERT into Localidade (id, nome) VALUES(nr_id, v_localidade);
+RETURN nr_id;
+END;
+/
+
+CREATE OR REPLACE FUNCTION Add_Pais_Func(v_nome Pais.nome%type) RETURN Pais.ID%type
+is 
+nr_id INTEGER;
+BEGIN
+select nvl(max(ID), 0)+1 into nr_id from Pais;
+INSERT into Pais (id, nome) VALUES(nr_id, v_nome);
+RETURN nr_id;
+end;
+/
+
+
+CREATE OR REPLACE FUNCTION Add_Morada_Func(v_id_localidade Morada.Localidade_ID%type, v_id_pais Morada.Pais_id%TYPE, v_nome_rua Morada.nome_rua%TYPE, v_numero_porta Morada.Numero_Porta%TYPE, v_codigo_postal Morada.codigo_postal%TYPE) RETURN cliente.morada_correspondencia_id%TYPE
+is
+nr_id_morada INTEGER;
+BEGIN
+select nvl(max(ID), 0)+1 into nr_id_morada from Morada;
+INSERT into Morada(id, localidade_id,pais_id,nome_rua,numero_porta,codigo_postal)
+VALUES(nr_id_morada,v_id_localidade,v_id_pais,v_nome_rua, v_numero_porta, v_codigo_postal);
+RETURN nr_id_morada;
+END;
+/
+
+
+CREATE OR REPLACE FUNCTION Add_Tipo_Cliente_Func(v_designacao Tipo_Cliente.designacao%TYPE) RETURN Tipo_Cliente.designacao%TYPE
+is
+nr_id_tipo_cliente INTEGER;
+BEGIN
+select nvl(max(ID), 0)+1 into nr_id_tipo_cliente from Tipo_Cliente;
+INSERT into Tipo_Cliente(id, designacao) VALUES(nr_id_tipo_cliente,v_designacao);
+RETURN nr_id_tipo_cliente;
+END;
+/
+
+
+
 -----------US205 1./2.--------------------
 
 CREATE OR REPLACE PROCEDURE Add_Client_Proc(v_nome Cliente.nome%TYPE,v_tipo_cliente tipo_cliente.designacao%TYPE, v_numero_fiscal cliente.numero_fiscal%TYPE,
@@ -78,53 +123,3 @@ END;
 BEGIN
 Add_Client_Proc('Pedro','empresa',123454356,'pedro@gmail.com',10000,'Paris','França','Baguette',231,'80202');
 end;
-
-
-CREATE OR REPLACE FUNCTION Add_Localidade_Func(v_localidade Localidade.nome%TYPE) RETURN Localidade.id%TYPE
-IS
-nr_id INTEGER;
-BEGIN
-select nvl(max(ID), 0)+1 into nr_id from Localidade;
-INSERT into Localidade (id, nome) VALUES(nr_id, v_localidade);
-RETURN nr_id;
-END;
-/
-
-CREATE OR REPLACE FUNCTION Add_Pais_Func(v_nome Pais.nome%type) RETURN Pais.ID%type
-is 
-nr_id INTEGER;
-BEGIN
-select nvl(max(ID), 0)+1 into nr_id from Pais;
-INSERT into Pais (id, nome) VALUES(nr_id, v_nome);
-RETURN nr_id;
-end;
-/
-
-
-CREATE OR REPLACE FUNCTION Add_Morada_Func(v_id_localidade Morada.Localidade_ID%type, v_id_pais Morada.Pais_id%TYPE, v_nome_rua Morada.nome_rua%TYPE, v_numero_porta Morada.Numero_Porta%TYPE, v_codigo_postal Morada.codigo_postal%TYPE) RETURN cliente.morada_correspondencia_id%TYPE
-is
-nr_id_morada INTEGER;
-BEGIN
-select nvl(max(ID), 0)+1 into nr_id_morada from Morada;
-INSERT into Morada(id, localidade_id,pais_id,nome_rua,numero_porta,codigo_postal)
-VALUES(nr_id_morada,v_id_localidade,v_id_pais,v_nome_rua, v_numero_porta, v_codigo_postal);
-RETURN nr_id_morada;
-END;
-/
-
-
-CREATE OR REPLACE FUNCTION Add_Tipo_Cliente_Func(v_designacao Tipo_Cliente.designacao%TYPE) RETURN Tipo_Cliente.designacao%TYPE
-is
-nr_id_tipo_cliente INTEGER;
-BEGIN
-select nvl(max(ID), 0)+1 into nr_id_tipo_cliente from Tipo_Cliente;
-INSERT into Tipo_Cliente(id, designacao) VALUES(nr_id_tipo_cliente,v_designacao);
-RETURN nr_id_tipo_cliente;
-END;
-/
-
-
------------------------------------------------------------------------------------------
-
-
-

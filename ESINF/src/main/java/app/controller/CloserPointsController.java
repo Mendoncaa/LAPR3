@@ -7,6 +7,7 @@ import app.domain.shared.ClosestPointsCheck;
 import app.graph.Graph;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class CloserPointsController {
 
@@ -21,7 +22,7 @@ public class CloserPointsController {
         this.company = company;
     }
 
-    public ArrayList<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
+    public Set<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
         return ClosestPointsCheck.getCloserPoints(graph);
     }
 }

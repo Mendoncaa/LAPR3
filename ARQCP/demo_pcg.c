@@ -33,6 +33,7 @@ int main()
 	
       int i;   
       for(i=0;i<32;i++) 
-		printf("%8x\n",pcg32_random_r()); 
+		printf("%8x\n",pcg32_random_r());   
       return 0; 
     } 
+

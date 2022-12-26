@@ -14,8 +14,9 @@ sens_pluvio:
 
 zero:
     movb $0, %dil
-    movb %dil, %al
- 
+    movb %dil, %al 
+
     ret
+    
 
 

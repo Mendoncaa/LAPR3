@@ -1,13 +1,12 @@
 package app.domain.shared;
 
 import app.controller.App;
-import app.domain.model.ClientsProducers;
-import app.domain.model.HoursMinutes;
-import app.domain.model.Irrigation;
-import app.domain.model.IrrigationDevice;
+import app.domain.model.*;
+import app.domain.shared.GraphDiameter;
 import app.graph.Algorithms;
-import app.graph.Edge;
 import app.graph.map.MapGraph;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,18 +15,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import static app.graph.Algorithms.DepthFirstSearch;
 
 public class FilesReaderApp {
-
-    public static void bootstrap() {
-
-
-        File graphVertexFile = new File("ESINF/src/files/Big/clientes-produtores_big.csv");
-        File graphEdgeFile = new File("ESINF/src/files/Big/distancias_big.csv");
-        FilesReaderApp.readProducerCSV(graphVertexFile, graphEdgeFile);
-
-    }
 
     public static boolean readIrrigationDeviceFile(File path) {
         try {
@@ -162,7 +151,10 @@ public class FilesReaderApp {
         ClientsProducers cpOrig = cp.get(0);
 
         boolean connected = isConnected(cpgraph, cpOrig, cp);
-        System.out.printf("Connected graph: %b", connected);
+        System.out.printf("Connected graph: %b \n", connected);
+
+        int diameter = GraphDiameter.getDiameter(cpgraph);
+        System.out.printf("Graph diameter: %d \n", diameter);
         //System.out.println(graph);
     }
 
@@ -181,6 +173,83 @@ public class FilesReaderApp {
         }
 
         return connected;
+    }
+
+    public static Pair<Integer, Integer> importBasketList(File file) {
+
+        int clients = 0;
+        int producers = 0;
+
+        try {
+            Scanner scanner = new Scanner(file);
+            String[] line = scanner.nextLine().split(",");
+
+            ArrayList<String> productsName = new ArrayList<>();
+            int len = line.length;
+
+            for (int i = 2; i < len; i++) {
+                line[i] = takeCommasOut(line[i]);
+                productsName.add(line[i]);
+            }
+
+            int lineCounter = 1;
+
+            while (scanner.hasNextLine()) {
+                line = scanner.nextLine().split(",");
+                if (line.length == len) {
+                    for (int i = 0; i < line.length; i++) {
+                        line[i] = takeCommasOut(line[i]);
+                    }
+                    ClientsProducers cp = App.getInstance().getClientProducerByCode(line[0]);
+                    if (cp != null) {
+                        int day = Integer.parseInt(line[1]);
+                        ArrayList<Product> products = new ArrayList<>();
+
+                        for (int i = 2; i < len; i++) {
+                            products.add(new Product(productsName.get(i - 2), Float.parseFloat(line[i])));
+                        }
+
+                        ClientBasket basket = new ClientBasket(cp, products);
+
+                        if (isThisHub(cp, 0)) {
+                            App.getInstance().getCompany().getOrders().addHubOrder(day, basket);
+                        }
+
+                        if (cp.getType().equalsIgnoreCase(Constants.PRODUTOR)) {
+                            App.getInstance().getCompany().getStock().addStock(day, basket);
+                            producers++;
+                        } else {
+                            App.getInstance().getCompany().getOrders().addOrder(day, basket);
+                            clients++;
+                        }
+                    } else {
+                        System.out.println("Client Producer in line " + lineCounter + " not found");
+                    }
+                }
+                lineCounter++;
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            return null;
+        }
+        return new ImmutablePair<>(clients, producers);
+    }
+
+    private static String takeCommasOut(String element) {
+        if (element.contains("\"")) {
+            element = element.substring(1, element.length() - 1);
+        }
+        return element;
+    }
+
+    private static boolean isThisHub(ClientsProducers entity, int idx) {
+        if (idx >= App.getInstance().getCompany().getHubStore().getHubs().size()) return false;
+
+        if (App.getInstance().getCompany().getHubStore().getHub(idx).equals(entity)) {
+            return true;
+        }
+        return isThisHub(entity, idx + 1);
     }
 
 }

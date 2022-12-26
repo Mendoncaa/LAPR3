@@ -4,12 +4,14 @@ import app.domain.shared.FilesReaderApp;
 import app.graph.Edge;
 import app.graph.Graph;
 import app.graph.map.MapGraph;
-import app.stores.IrrigationDeviceStore;
-import app.stores.UsersStore;
+import app.stores.*;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class Company {
@@ -18,7 +20,15 @@ public class Company {
     private AuthFacade authFacade;
     private UsersStore usersStore;
     private IrrigationDeviceStore irrigationDeviceStore;
+
+    private HubStore hubStore;
     private MapGraph<ClientsProducers, Integer> clientsProducersGraph;
+
+    private Orders orders;
+    private Stock stock;
+    private Map<Integer, ArrayList<ClientBasket>> excedents;
+    private Statistics statistics;
+
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -29,6 +39,35 @@ public class Company {
         this.usersStore = new UsersStore();
         this.irrigationDeviceStore = new IrrigationDeviceStore();
         this.clientsProducersGraph = new MapGraph<>(false);
+        this.hubStore = new HubStore();
+        this.orders = new Orders();
+        this.stock = new Stock();
+        this.excedents = new TreeMap<>();
+        this.statistics = new Statistics();
+    }
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void updateOrders(Map<Integer, ArrayList<ClientBasket>> orders) {
+        this.orders.updateOrders(orders);
+    }
+
+    public void updateStock(Map<Integer, ArrayList<ClientBasket>> stock) {
+        this.stock.updateStock(stock);
+    }
+
+    public Map<Integer, ArrayList<ClientBasket>> getExcedents() {
+        return excedents;
+    }
+
+    public Statistics getStatistics() {
+        return statistics;
     }
 
     public MapGraph<ClientsProducers, Integer> getClientsProducersGraph() {
@@ -50,6 +89,11 @@ public class Company {
     public UsersStore getUserStore() {
         return usersStore;
     }
+
+    public HubStore getHubStore() {
+        return hubStore;
+    }
+
 
     public void saveUser(AppUser appUser) {
         this.authFacade.addUserWithRole(appUser.getName(), appUser.getEmail(), appUser.getPassword(), appUser.getRole());
