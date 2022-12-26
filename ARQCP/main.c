@@ -118,6 +118,9 @@ void sensTemp(int i){
 	
 
 
+	
+
+
 void sensVelcVento(int i){
 
 	unsigned char velcmin= 0;
