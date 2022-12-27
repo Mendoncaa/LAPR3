@@ -17,6 +17,9 @@ import java.util.Scanner;
 
 
 public class FilesReaderApp {
+    
+    public static File lastOrdersFile = null;
+    public static boolean graphImported = false;
 
     public static boolean readIrrigationDeviceFile(File path) {
         try {
@@ -145,16 +148,14 @@ public class FilesReaderApp {
             System.out.println("Graph Edges file not found");
         }
 
+        graphImported = true;
+
         MapGraph<ClientsProducers, Integer> cpgraph = App.getInstance().getCompany().getClientsProducersGraph();
-        int cpVert = App.getInstance().getCompany().getClientsProducersGraph().numVertices();
         ArrayList<ClientsProducers> cp = cpgraph.vertices();
         ClientsProducers cpOrig = cp.get(0);
 
         boolean connected = isConnected(cpgraph, cpOrig, cp);
         System.out.printf("Connected graph: %b \n", connected);
-
-        int diameter = GraphDiameter.getDiameter(cpgraph);
-        System.out.printf("Graph diameter: %d \n", diameter);
         //System.out.println(graph);
     }
 
@@ -176,6 +177,9 @@ public class FilesReaderApp {
     }
 
     public static Pair<Integer, Integer> importBasketList(File file) {
+
+        FilesReaderApp.lastOrdersFile = file;
+        App.getInstance().getCompany().getStock().getStock().clear();
 
         int clients = 0;
         int producers = 0;
@@ -233,6 +237,9 @@ public class FilesReaderApp {
             System.out.println("File not found");
             return null;
         }
+
+        App.getInstance().getCompany().getStock().addHubs();
+
         return new ImmutablePair<>(clients, producers);
     }
 

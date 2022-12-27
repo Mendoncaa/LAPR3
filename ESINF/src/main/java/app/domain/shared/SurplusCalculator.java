@@ -7,22 +7,27 @@ import app.domain.model.Product;
 
 import java.util.*;
 
-import static app.domain.shared.ExpeditionListCreator.findProductOwner;
-import static app.domain.shared.ExpeditionListCreator.returnProductID;
+import static app.domain.shared.ExpeditionListCreator.*;
 
-public class SurpulsCalculator {
+public class SurplusCalculator {
 
     public static void CalculateSurplus(int actualDay) {
-        Map<Integer, ArrayList<ClientBasket>> stock = cloneMap(App.getInstance().getCompany().getStock().getStock());
+
+        App.getInstance().getCompany().getStock().fillStockClone();
+        Map<Integer, ArrayList<ClientBasket>> stock = cloneMap(App.getInstance().getCompany().getStock().getStockClone());
         Map<Integer, ArrayList<ClientBasket>> orders = cloneMap(App.getInstance().getCompany().getOrders().getOrders());
 
         if (!stock.isEmpty()) {
             Set<Integer> days = getDays(stock);
             days.removeIf(day -> day >= actualDay);
-            Iterator<Integer> iterator = days.iterator();
+            if (!days.isEmpty()) {
+                Iterator<Integer> iterator = days.iterator();
 
-            CalculateSurplusDay(iterator, stock, orders);
-            App.getInstance().getCompany().getExcedents().putAll(stock);
+                CalculateSurplusDay(iterator, stock, orders);
+
+                App.getInstance().getCompany().getExcedents().clear();
+                App.getInstance().getCompany().getExcedents().putAll(stock);
+            }
         }
     }
 
@@ -74,25 +79,30 @@ public class SurpulsCalculator {
                         if (isHub) {
                             productID = findProductID(stock, productOrder, day + 1, hubID, 0);
                         }
-
-                        int productOwner = findProductOwner(clientBasketsStock, productOrder);   // find product owner id
+                        ClientsProducers producer = null;
+                        producer = thereIsProduct(clientBasketsStock, clientBasketsSurplusOlder, clientBasketsSurplusRecent, productOrder, clientBasketsOrder.getEntity());
+                        int productOwner;
                         int productOwnerRecent = -1;
                         int productOwnerOlder = -1;
 
-                        if (productOwner != -1) {
+                        if (producer != null) {
 
-                            ClientsProducers producer = clientBasketsStock.get(productOwner).getEntity();     // get product owner
+                            productOwner = findProductOwnerID(clientBasketsStock, producer, 0);
 
                             if (newer) {
-                                productOwnerRecent = findProductSurplusOwnerID(clientBasketsSurplusRecent, producer, 0);
+                                productOwnerRecent = findProductOwnerID(clientBasketsSurplusRecent, producer, 0);
                             }
                             if (older) {
-                                productOwnerOlder = findProductSurplusOwnerID(clientBasketsSurplusOlder, producer, 0);
+                                productOwnerOlder = findProductOwnerID(clientBasketsSurplusOlder, producer, 0);
                             }
 
-                            int productInStockID = returnProductID(clientBasketsStock.get(productOwner), productOrder); // return product id that is in stock
+                            int productInStockID = -1;
                             int productInSurplusRecentID = -1;
                             int productInSurplusOlderID = -1;
+
+                            if (productOwner != -1){
+                                productInStockID = returnProductID(clientBasketsStock.get(productOwner), productOrder);
+                            }
 
                             if (older) {
                                 productInSurplusOlderID = findProductSurplus(clientBasketsSurplusOlder, productOrder, productOwnerOlder, 0);
@@ -192,6 +202,9 @@ public class SurpulsCalculator {
                                 }
                                 if (isHub) {
                                     stock.get(day + 1).get(hubID).getProducts().get(productID).setQuantity(quantity);
+                                    int hID = findHubID(App.getInstance().getCompany().getStock().getStockClone(), clientBasketsOrder.getEntity(), day + 1, 0);
+                                    int pID = findProductID(App.getInstance().getCompany().getStock().getStockClone(), productOrder, day + 1, hID, 0);
+                                    App.getInstance().getCompany().getStock().getStockClone().get(day + 1).get(hID).getProducts().get(pID).setQuantity(quantity); //atualizar stock com produtos nos hubs
                                 }
                             }
                         }
@@ -232,16 +245,6 @@ public class SurpulsCalculator {
     }
 
 
-    private static int findProductSurplusOwnerID(ArrayList<ClientBasket> stock, ClientsProducers cp, int idx) {
-        if (idx >= stock.size()) return -1;
-
-        if (stock.get(idx).getEntity().getCode().equalsIgnoreCase(cp.getCode())) {
-            return idx;
-        } else {
-            return findProductSurplusOwnerID(stock, cp, idx + 1);
-        }
-    }
-
     private static int findProductSurplus(ArrayList<ClientBasket> stock, Product product, int cpId, int idx) {
         if (idx >= stock.get(cpId).getProducts().size()) return -1;
 
@@ -259,13 +262,6 @@ public class SurpulsCalculator {
     private static Map<Integer, ArrayList<ClientBasket>> cloneMap(Map<Integer, ArrayList<ClientBasket>> map) {
         return new TreeMap<>(map);
     }
-/*
-    private static void findHubIndex(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, Product product, int day, int hubID, int productID) {
-        hubID = findHubID(stock, hub, day, 0);
-        productID = findProductID(stock, product, day, hubID, 0);
-    }
-
- */
 
     private static int findHubID(Map<Integer, ArrayList<ClientBasket>> stock, ClientsProducers hub, int day, int idx) {
         if (idx >= stock.get(day).size()) return -1;
@@ -282,7 +278,6 @@ public class SurpulsCalculator {
 
         return findProductID(stock, product, day, hubID, idx + 1);
     }
-
 
 }
 

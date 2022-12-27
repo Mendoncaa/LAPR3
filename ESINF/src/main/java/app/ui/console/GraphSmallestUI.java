@@ -1,13 +1,10 @@
 package app.ui.console;
 
-import app.controller.App;
 import app.domain.model.ClientsProducers;
-import app.domain.shared.DistanceComparator;
+import app.domain.shared.FilesReaderApp;
 import app.domain.shared.KruskalMST;
-import app.graph.Algorithms;
 import app.graph.Edge;
 import app.graph.map.MapGraph;
-import app.graph.matrix.MatrixGraph;
 
 import java.util.*;
 
@@ -17,10 +14,12 @@ public class GraphSmallestUI implements Runnable{
 
     @Override
     public void run() {
-
-        mst = KruskalMST.kruskal();
-        printFormatMST(mst);
-
+        if(!FilesReaderApp.graphImported) {
+            System.out.println("Graph not yet imported!");
+        }else {
+            mst = KruskalMST.kruskal();
+            printFormatMST(mst);
+        }
     }
 
     private static void printFormatMST(MapGraph<ClientsProducers, Integer> mst) {
@@ -31,7 +30,7 @@ public class GraphSmallestUI implements Runnable{
 
         Iterator<Edge<ClientsProducers, Integer>> edgeIterator = ed.iterator();
 
-        for(int i = 0; i < cp.size(); i++) {
+        for (int i = 0; i < cp.size(); i++) {
             cpPrint.add(cp.get(i).getCode());
         }
 
@@ -39,10 +38,9 @@ public class GraphSmallestUI implements Runnable{
         //System.out.println(mst);
         System.out.println("Edges:\n");
 
-        while(edgeIterator.hasNext()) {
+        while (edgeIterator.hasNext()) {
             Edge<ClientsProducers, Integer> edCurrent = edgeIterator.next();
             System.out.println(edCurrent.getVOrig().getCode() + "==>" + edCurrent.getVDest().getCode());
         }
-
     }
 }

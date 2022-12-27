@@ -19,9 +19,11 @@ char humdsolo[30];
 char pluvio[30];
 
 //Inicializador de variaveis sem dependeencias
-char ult_temp=15;
-char ult_velc_vento=10;
-char ult_dir_vento;
+unsigned char ult_temp=15;
+unsigned char ult_velc_vento=10;
+unsigned short ult_dir_vento;
+
+
 
 
 //US[104]
@@ -224,12 +226,88 @@ void sensDirVento(int i){
 }
 	
 	
+
+
+
+	//sensor pluvio
+
+
+void sensPluvio(int i){
+
+		char minPluvio=0;
+		char maxPluvio=5;
+		
+	
+		
+		unsigned char ult_pluvio;
+		char ult_temp;
+    	
+
+    	for (i; i < 30; i++){
+        	char ult_temp = temp[i];
+        	//sleep(k); //criar função para dar output de x em x segundos
+        	char comp_rand = pcg32_random_r() % 5; //mudar a alteração de temp
+			//componente aleatoria que gera um numero random, alteração
+        	int comp_relative = pcg32_random_r() % ult_temp ;
+			//se nao calha 0 quer dizer que nao choveu
+        if (comp_relative !=0){ 	
+            comp_rand = 0;
+
+        }
+		// O valor só altera se a componente gerar o valor 0
+        if (i !=0){		
+			ult_pluvio = pluvio[i-1];
+        }
+		// o ultimo valor da pluviosidade é a posição anterior para onde o apontador está a apontar
+        pluvio[i]= sens_pluvio(ult_pluvio,ult_temp, comp_rand);
+			
+
+		}
+		for (i = 0; i < 30; i++){
+		if (pluvio[i]> maxPluvio || pluvio[i]< minPluvio){
+			erros++;
+		}
+		else{
+			erros=0;
+		}
+		if(erros==erroMaximo){
+			int init = i-4;
+			sensPluvio(init);
+		}
+	}
+	for(int j=0;j<30;j++){
+		soma+=dirvento[j];
+		contador++;
+	if(pluvio[j]<valorMinimo){
+		valorMinimo=pluvio[j];
+	}
+	if(pluvio[j]>valorMaximo){
+		valorMaximo=pluvio[j];
+		}
+	}
+	media=soma/contador;
+	
+		*(ptrMatriz+15)=valorMaximo;
+		*(ptrMatriz+16)=valorMinimo;
+		*(ptrMatriz+17)=media;
+		
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
+	
+
+
+}
 void  sensHumAtm(int i){
 
 		unsigned char humatmmin= 0;
 		unsigned char humatmmax= 5;
 		char comp_rand;
+<<<<<<< HEAD
+
+
+=======
 		
+>>>>>>> 0880e50c69dbf5ac6be048c9997cf6d5e8688382
 		unsigned char ult_pluvio;
 		
 		unsigned char ult_hmd_atm;
@@ -241,9 +319,12 @@ void  sensHumAtm(int i){
 			ult_pluvio= pluvio[i];
 
 			if( ult_pluvio==0){
-				
-				comp_rand = pcg32_random_r() % 5;
-			}
+					comp_rand= pcg32_random_r() % 10;
+
+				}
+			else{
+					comp_rand= pcg32_random_r() % 2;
+				}
 			
 			if(i!=0){
 				ult_hmd_atm = humdatm[i-1];
@@ -287,14 +368,11 @@ void  sensHumAtm(int i){
 		
 		
 }
-	
-	
-	
 void sensHumSolo(int i){
 
 			unsigned char solomin= 0;
 			unsigned char solomax= 5;
-
+			char comp_rand;
 			
 			unsigned char ult_humd_solo;
 			unsigned char ult_pluvio=0;
@@ -304,7 +382,18 @@ void sensHumSolo(int i){
 		
 			
 			for (i; i < 30; i++){
-				char comp_rand= pcg32_random_r() % 5;
+				
+				ult_pluvio= pluvio[i];
+				
+				if( ult_pluvio==0){
+					 
+					comp_rand= pcg32_random_r() % 10;
+
+				}
+				else{
+					comp_rand= pcg32_random_r() % 2;
+				}
+				
 			
 			
 			if(i!=0){
@@ -353,6 +442,8 @@ void sensHumSolo(int i){
 		
 
 }
+<<<<<<< HEAD
+=======
 
 
 	//sensor pluvio
@@ -424,6 +515,7 @@ void sensPluvio(int i){
 
 
 }
+>>>>>>> 0880e50c69dbf5ac6be048c9997cf6d5e8688382
 int main() { 
 	uint32_t buffer [64]; 
 	FILE *f;

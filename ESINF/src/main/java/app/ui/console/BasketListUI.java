@@ -15,8 +15,7 @@ public class BasketListUI implements Runnable {
     @Override
     public void run() {
         System.out.println("\n###        Basket list        ###");
-        System.out.println();
-
+        App.getInstance().getCompany().getStock().getStock().clear();
         String path = Utils.readLineFromConsole("\nFile path to read: ");
         if (path != null) {
             Pair<Integer, Integer> result = this.controller.importBasketList(new File(path));
@@ -28,7 +27,7 @@ public class BasketListUI implements Runnable {
             } else {
                 System.out.println("Error importing basket list!");
             }
-        }else {
+        } else {
             System.out.println("Invalid path!");
         }
     }

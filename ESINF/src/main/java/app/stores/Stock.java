@@ -11,8 +11,11 @@ public class Stock {
 
     private Map<Integer, ArrayList<ClientBasket>> stock;
 
+    private Map<Integer, ArrayList<ClientBasket>> stockClone;
+
     public Stock() {
         stock = new TreeMap<>();
+        stockClone = new TreeMap<>();
     }
 
     public void addStock(int id, ClientBasket basket) {
@@ -22,14 +25,16 @@ public class Stock {
             stock.put(id, new ArrayList<>());
             stock.get(id).add(basket);
         }
+        this.stockClone = cloneMap(this.stock);
     }
+
 
     public Map<Integer, ArrayList<ClientBasket>> getStock() {
         return stock;
     }
 
-    public void updateStock(Map<Integer, ArrayList<ClientBasket>> stock) {
-        this.stock = stock;
+    public Map<Integer, ArrayList<ClientBasket>> getStockClone() {
+        return stockClone;
     }
 
     /**
@@ -38,8 +43,8 @@ public class Stock {
     public void addHubs() {
         if (!App.getInstance().getCompany().getHubStore().isEmpty()) {
             ArrayList<ClientsProducers> hubs = App.getInstance().getCompany().getHubStore().getHubs();
-            Map<Integer, ArrayList<ClientBasket>> stock2 = new TreeMap<>(stock);
-            Map<Integer, ArrayList<ClientBasket>> stock3 = new TreeMap<>(stock);
+            Map<Integer, ArrayList<ClientBasket>> stock2 = cloneMap(stock);
+            Map<Integer, ArrayList<ClientBasket>> stock3 = cloneMap(stock);
 
             Iterator<Integer> iterator = stock2.keySet().iterator();
             Iterator<Integer> iterator2 = stock3.keySet().iterator();
@@ -63,14 +68,23 @@ public class Stock {
             for (ClientsProducers hub : hubs) {
                 addStock(day2 + 1, new ClientBasket(hub, createArray(prods)));
             }
+            this.stockClone = cloneMap(this.stock);
         }
     }
 
     private ArrayList<Product> createArray(String[] prods) {
         ArrayList<Product> array = new ArrayList<>();
         for (int i = 0; i < prods.length; i++) {
-           array.add(new Product(prods[i],0 ));
+            array.add(new Product(prods[i], 0));
         }
         return array;
+    }
+
+    private static Map<Integer, ArrayList<ClientBasket>> cloneMap(Map<Integer, ArrayList<ClientBasket>> map) {
+        return new TreeMap<>(map);
+    }
+
+    public void fillStockClone(){
+        this.stockClone = cloneMap(this.stock);
     }
 }
