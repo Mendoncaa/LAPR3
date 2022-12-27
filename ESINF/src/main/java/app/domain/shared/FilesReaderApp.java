@@ -18,6 +18,8 @@ import java.util.Scanner;
 
 public class FilesReaderApp {
 
+    public static File lastOrdersFile = null;
+
     public static boolean readIrrigationDeviceFile(File path) {
         try {
             Scanner scanner = new Scanner(path);
@@ -177,6 +179,9 @@ public class FilesReaderApp {
 
     public static Pair<Integer, Integer> importBasketList(File file) {
 
+        FilesReaderApp.lastOrdersFile = file;
+        App.getInstance().getCompany().getStock().getStock().clear();
+
         int clients = 0;
         int producers = 0;
 
@@ -233,6 +238,9 @@ public class FilesReaderApp {
             System.out.println("File not found");
             return null;
         }
+
+        App.getInstance().getCompany().getStock().addHubs();
+
         return new ImmutablePair<>(clients, producers);
     }
 

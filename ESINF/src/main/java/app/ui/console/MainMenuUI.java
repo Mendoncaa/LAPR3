@@ -40,27 +40,6 @@ public class MainMenuUI {
             }
         }
         while (option != -1);
-
-
-        //System.out.println(App.getInstance().getCompany().getExcedents().size());
-        Set<Integer> days = App.getInstance().getCompany().getExcedents().keySet();
-        Iterator<Integer> daysIterator = days.iterator();
-        for (int i = 0; i < days.size(); i++) {
-            int day = daysIterator.next();
-            System.out.println("Day " + day);
-            ArrayList<ClientBasket> clientBaskets = App.getInstance().getCompany().getExcedents().get(day);
-            for (int j = 0; j < clientBaskets.size(); j++) {
-                System.out.println();
-                System.out.println("Client " + clientBaskets.get(j).getEntity().getCode());
-                System.out.println();
-                ArrayList<Product> products = clientBaskets.get(j).getProducts();
-                for (int k = 0; k < products.size(); k++) {
-                    System.out.println("Product " + products.get(k).getName() + " quantity " + products.get(k).getQuantity());
-                }
-            }
-            System.out.println();
-        }
     }
-
 
 }
