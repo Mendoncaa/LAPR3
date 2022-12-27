@@ -22,6 +22,7 @@ public class MainMenuUI {
         List<MenuItem> options = new ArrayList<MenuItem>();
         //options.add(new MenuItem("Do Login", new AuthUI()));
         options.add(new MenuItem("Import clients and producers, generate graph", new ImportClientsProducersUI()));
+        options.add(new MenuItem("Get graph diameter - note: option 1 must have been run", new GraphDiameterUI()));
         options.add(new MenuItem("Get shortest path between Clients - note: option 1 must have been run", new GraphUI()));
         options.add(new MenuItem("Get smallest fully connected network - note: option 1 must have been run", new GraphSmallestUI()));
         options.add(new MenuItem("Define the hubs of the distribution network", new NCloserPointsUI()));
