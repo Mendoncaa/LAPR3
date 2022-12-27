@@ -22,6 +22,18 @@
         <td><p>Tabelas que são resultado do processo de Normalização e que não foram identificados no UoD devem ter o nome que é resultado da união das Tabelas envolventes (exemplo: "Encomenda_Especie_Vegetal");</p></td>
     </tr>
     <tr>
+        <td>Tabelas de Factos</td>
+        <td><p>Consiste no nome da área do projeto escolhida para ser analisada adicionando ainda "FAC" à frente da designação da tabela;</p><p>Espaços e caráteres especiais devem ser substítuidos por "_" ou pelos caratéres simplificados correspondentes (i.e. o "ç" deve ser substítuido por "c") respetivamente;</p></td>
+        <td><p>"Producao_FAC";</p><p>"Venda_FAC";</p></td>
+        <td><p>N/A</p></td>
+    </tr>
+    <tr>
+        <td>Tabelas de dimensões</td>
+        <td><p>Consiste no nome da área do projeto escolhida para ser analisada adicionando ainda "DIM" à frente da designação da tabela;</p><p>Espaços e caráteres especiais devem ser substítuidos por "_" ou pelos caratéres simplificados correspondentes (i.e. o "ç" deve ser substítuido por "c") respetivamente;</p></td>
+        <td><p>"Tempo_DIM";</p><p>"Produto_DIM";</p></td>
+        <td><p>N/A</p></td>
+    </tr>
+    <tr>
         <td>Atributos</td>
         <td><p>Consiste em termo(s) utilizados para descrever a Entidade ao qual corresponde;</p><p>Espaços e caráteres especiais devem ser substítuidos por "_" ou pelos caratéres simplificados correspondentes (i.e. o "ç" deve ser substítuido por "c") respetivamente;</p></td>
         <td><p>"Quantidade";</p><p>"Data_Incumprimento";</p></td>
