@@ -1,0 +1,96 @@
+
+entity Setor_DIM {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL
+}
+
+entity Cultura {
+    * ID: INTEGER <<PK>>
+    --
+    Nome: VARCHAR2(255) NOT NULL
+}
+
+entity Tipo_cultura {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL
+}
+
+entity Produto_DIM {
+    * ID: INTEGER <<PK>>
+    --
+    Tipo_cultura_ID: INTEGER <<FK>>
+    Cultura_ID: INTEGER <<FK>>
+}
+
+entity Tempo_DIM {
+    * ID: INTEGER <<PK>>
+    --
+    Year: INTEGER NOT NULL
+    Month: INTEGER NOT NULL
+}
+
+
+entity Cliente_DIM {
+    * Codigo_Unico: INTEGER <<PK>>
+    --
+    Tipo_Cliente_ID: INTEGER <<FK>> NOT NULL
+    Morada_Correspondencia_ID: INTEGER <<FK>> NOT NULL
+    Morada_Entrega_ID: INTEGER <<FK>> NOT NULL
+    Nome: VARCHAR2(255) NOT NULL
+    Numero_Fiscal: VARCHAR(9) NOT NULL UNIQUE
+    Email: VARCHAR2(255) NOT NULL UNIQUE
+    Plafond: NUMBER NOT NULL
+    Numero_Total_Encomendas: INTEGER NOT NULL
+    Valor_Total_Encomendas: NUMBER NOT NULL
+}
+
+
+entity Morada {
+    * ID: INTEGER <<PK>>
+    --
+    Localidade: VARCHAR2(255) NOT NULL
+    Pais: VARCHAR2(255) NOT NULL
+    Nome_Rua: VARCHAR2(255) NOT NULL
+    Numero_Porta: INTEGER NOT NULL
+    Codigo_Postal: VARCHAR2(8) NOT NULL
+}
+
+
+entity Tipo_Cliente {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL UNIQUE
+}
+
+entity Producao_FAC {
+    * ID: INTEGER <<PK>>
+    --
+    Produto_ID: INTEGER <<FK>>
+    Setor_ID: INTEGER <<FK>>
+    Tempo_ID: INTEGER <<FK>>
+    Quantidade: INTEGER NOT NULL
+}
+
+entity Venda_FAC {
+    * ID: INTEGER <<PK>>
+    --
+    Cliente_ID: INTEGER <<FK>>
+    Produto_ID: INTEGER <<FK>>
+    Tempo_ID: INTEGER <<FK>>
+    Quantidade: INTEGER NOT NULL
+}
+
+Producao_FAC ||-l-|{ Produto_DIM
+Producao_FAC ||-u-|{ Setor_DIM
+Producao_FAC ||-d-|{ Tempo_DIM
+
+Venda_FAC ||-l-|{ Cliente_DIM
+Venda_FAC ||-r-|{ Produto_DIM
+Venda_FAC ||-u-|{ Tempo_DIM
+
+Cliente_DIM ||-u-|{ Morada
+Cliente_DIM ||-d-|{ Tipo_Cliente
+Produto_DIM ||-u-|{ Cultura
+Produto_DIM ||-l-|{ Tipo_cultura
