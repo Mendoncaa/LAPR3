@@ -65,21 +65,20 @@ entity Tipo_Cliente {
 }
 
 entity Producao_FAC {
-    * ID: INTEGER <<PK>>
+    *Produto_ID: INTEGER <<PK>> <<FK>>
+    *Setor_ID: INTEGER <<PK>> <<FK>>
+    *Tempo_ID: INTEGER <<PK>> <<FK>>
     --
-    Produto_ID: INTEGER <<FK>>
-    Setor_ID: INTEGER <<FK>>
-    Tempo_ID: INTEGER <<FK>>
-    Quantidade: INTEGER NOT NULL
+    Quantidade: NUMBER NOT NULL
 }
 
 entity Venda_FAC {
-    * ID: INTEGER <<PK>>
+    *Cliente_ID: INTEGER <<PK>> <<FK>>
+    *Produto_ID: INTEGER <<PK>> <<FK>>
+    *Tempo_ID: INTEGER <<PK>> <<FK>>
     --
-    Cliente_ID: INTEGER <<FK>>
-    Produto_ID: INTEGER <<FK>>
-    Tempo_ID: INTEGER <<FK>>
-    Quantidade: INTEGER NOT NULL
+    Quantidade: NUMBER NOT NULL
+    Preco: NUMBER NOT NULL
 }
 
 Producao_FAC ||-l-|{ Produto_DIM
