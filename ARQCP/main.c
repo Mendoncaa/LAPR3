@@ -13,13 +13,13 @@ int j=0;
 
 
 //Arrays para a US[102]
-/*char temp[sizeof(temp)];
-char velcvento[sizeof(velcvento)];
-short dirvento[sizeof(dirvento)];
-char humdatm[sizeof(humdatm)];
-char humdsolo[sizeof(humdsolo)];
-char pluvio[sizeof(pluvio)];
-*/
+/*char temp[30];
+char velcvento[30];
+short dirvento[30];
+char humdatm[30];
+char humdsolo[30];
+char pluvio[30];*/
+
 
 //Inicializador de variaveis sem dependeencias
 unsigned char ult_temp=15;
@@ -48,25 +48,37 @@ short media=0;
 
 
 
-void sensTemp(int i){
+/* char velcvento[3600/freqVelcVento*24];
+short dirvento[3600/freqDirVento*24];
+char humdatm[3600/freqHumDatm*24];
+char humdsolo[3600/freqHumDsolo*24];
+char pluvio[3600/freqPluvio*24];*/
+
+
+
+void sensTemp(int i, int freqTemp){
 	
-	int freqTemp;
-	char temp[3600/freqTemp*24];
+
 	char tempmin= 0;
 	char tempmax= 55;
+	char temp[3600/freqTemp*24];
 
-	Sensor sensTemperatura;
-	sensTemperatura.id=1;
-	sensTemperatura.sensor_type="T";
-	sensTemperatura.max_limit=tempmax;
-	sensTemperatura.min_limit=tempmin;
-	sensTemperatura.frequency=freqTemp;
-	sensTemperatura.readings_size=sizeof(temp)/sizeof(unsigned long);
-	sensTemperatura.readings=malloc(sensTemperatura.readings_size*sizeof(unsigned short));
-	for(int i =0;i<sensTemperatura.readings_size;i++){
-		sensTemperatura.readings[i]=(unsigned short) temp[i];
+	int numSensores=0;
+	printf("Quantos sensores de temperatura deseja criar? \n");
+	scanf("%d", &numSensores);
+
+
+	Sensor *sensTemperatura = malloc(numSensores * sizeof(Sensor));
+	sensTemperatura[i].id=1;
+	sensTemperatura[i].sensor_type=84;
+	sensTemperatura[i].max_limit=tempmax;
+	sensTemperatura[i].min_limit=tempmin;
+	sensTemperatura[i].frequency=freqTemp;
+	sensTemperatura[i].readings_size=sizeof(temp)/sizeof(unsigned long);
+	sensTemperatura[i].readings=malloc(sensTemperatura->readings_size*sizeof(unsigned short));
+	for(int j = 0;i<sensTemperatura->readings_size;j++){
+		sensTemperatura[i].readings[j]=(unsigned short) temp[j];
 	} 
-
 	
 	for (i; i <sizeof(temp); i++){
 		char comp_rand = pcg32_random_r() % 3;
@@ -90,18 +102,35 @@ void sensTemp(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sensTemp(init);
+			sensTemp(init, freqTemp);
 		}
 	}
-
-	for(int j=0;j<sizeof(temp);j++){
-		soma+=temp[j];
-		contador++;
-		if(temp[j]<valorMinimo){
-			valorMinimo=temp[j];
+	int sensor;
+	if(numSensores>1){
+		printf("Qual sensor deseja analisar? \n");
+		for(int i=0;i<numSensores;i++){
+			printf("Sensor %d \n", sensTemperatura[i].id);
 		}
-		if(temp[j]>valorMaximo){
-			valorMaximo=temp[j];
+		scanf("%d", &sensor);
+		while (sensor==0){
+			printf("Sensor invalido, tente novamente \n");
+			scanf("%d", &sensor);
+
+		}
+
+		
+	}else{
+		sensor=1;
+	}
+
+	for(int i=0;i<sensTemperatura->readings_size;i++){
+		soma+=sensTemperatura[sensor-1].readings[i];
+		contador++;
+		if(sensTemperatura[sensor-1].readings[i]<valorMinimo){
+			valorMinimo=sensTemperatura[sensor-1].readings[i];
+		}
+		if(sensTemperatura[sensor-1].readings[i]>valorMaximo){
+			valorMaximo=sensTemperatura[sensor-1].readings[i];
 		}
 	}
 	media=soma/contador;
@@ -112,8 +141,8 @@ void sensTemp(int i){
 		
 		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
 		
-		free(sensTemperatura.readings);
-		sensTemperatura.readings=NULL;
+		free(sensTemperatura->readings);
+		sensTemperatura->readings=NULL;
 		
 		
 		
@@ -127,16 +156,16 @@ void sensTemp(int i){
 	
 
 
-void sensVelcVento(int i){
+void sensVelcVento(int i, int freqVelcVento){
 	
-	int freqVelcVento;
+	
 	char velcvento[3600/freqVelcVento*24];
 	unsigned char velcmin= 0;
 	unsigned char velcmax= 150;
 
 	Sensor sensVelocidadeVento;
 	sensVelocidadeVento.id=2;
-	sensVelocidadeVento.sensor_type="W";
+	sensVelocidadeVento.sensor_type=87;
 	sensVelocidadeVento.max_limit=velcmax;
 	sensVelocidadeVento.min_limit=velcmin;
 	sensVelocidadeVento.frequency=freqVelcVento;
@@ -163,7 +192,7 @@ void sensVelcVento(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sensVelcVento(init);
+			sensVelcVento(init, freqVelcVento);
 		}
 	}
 	for(int j=0;j<sizeof(velcvento);j++){
@@ -193,10 +222,10 @@ void sensVelcVento(int i){
 
 
 
-void sensDirVento(int i){
+void sensDirVento(int i, int freqDirVento){
 		
 
-		int freqDirVento;
+	
 		char dirvento[3600/freqDirVento*24];
 		unsigned short dirmin= 0;
 		unsigned short dirmax= 359;
@@ -204,7 +233,7 @@ void sensDirVento(int i){
 		
 		Sensor sensorDirecaoVento;
 		sensorDirecaoVento.id=3;
-		sensorDirecaoVento.sensor_type="D";
+		sensorDirecaoVento.sensor_type=68;
 		sensorDirecaoVento.max_limit=dirmax;
 		sensorDirecaoVento.min_limit=dirmin;
 		sensorDirecaoVento.frequency=freqDirVento;
@@ -232,7 +261,7 @@ void sensDirVento(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sensDirVento(init);
+			sensDirVento(init, freqDirVento);
 		}
 	}
 
@@ -267,10 +296,12 @@ void sensDirVento(int i){
 
 
 
-void  sensHumAtm(int i){
+void  sensHumAtm(int i, int freqHumAtm, int freqPluvio){
 
-		int freqHumAtm;
+		
 		char humdatm[3600/freqHumAtm*24];
+		char pluvio[3600/freqPluvio*24];
+
 		unsigned char humatmmin= 0;
 		unsigned char humatmmax= 5;
 		char comp_rand;
@@ -281,7 +312,7 @@ void  sensHumAtm(int i){
 
 		Sensor sensorHumidadeAtmosferica;
 		sensorHumidadeAtmosferica.id=4;
-		sensorHumidadeAtmosferica.sensor_type="A";
+		sensorHumidadeAtmosferica.sensor_type=65;
 		sensorHumidadeAtmosferica.max_limit=humatmmax;
 		sensorHumidadeAtmosferica.min_limit=humatmmin;
 		sensorHumidadeAtmosferica.frequency=freqHumAtm;
@@ -320,7 +351,7 @@ void  sensHumAtm(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sensHumAtm(init);
+			sensHumAtm(init, freqHumAtm, freqPluvio);
 		}
 	}
 	
@@ -348,10 +379,12 @@ void  sensHumAtm(int i){
 		
 		
 }
-void sensHumSolo(int i){
+void sensHumSolo(int i, int freqHumSolo, int freqPluvio){
 
-			int freqHumSolo;
+		
 			char humdsolo[3600/freqHumSolo*24];
+			char pluvio[3600/freqPluvio*24];
+
 			unsigned char solomin= 0;
 			unsigned char solomax= 5;
 			char comp_rand;
@@ -361,10 +394,10 @@ void sensHumSolo(int i){
 			
 			Sensor sensorHumidadeSolo;
 			sensorHumidadeSolo.id=5;
-			sensorHumidadeSolo.sensor_type="G";
+			sensorHumidadeSolo.sensor_type=71;
 			sensorHumidadeSolo.max_limit=solomax;
 			sensorHumidadeSolo.min_limit=solomin;
-			sensorHumidadeSolo.frequency=humdsolo;
+			sensorHumidadeSolo.frequency=freqHumSolo;
 			sensorHumidadeSolo.readings_size=sizeof(humdsolo)/sizeof(unsigned long);
 			sensorHumidadeSolo.readings=malloc(sensorHumidadeSolo.readings_size*sizeof(unsigned char));
 			for(int i =0;i<sensorHumidadeSolo.readings_size;i++){
@@ -405,7 +438,7 @@ void sensHumSolo(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sensHumSolo(init);
+			sensHumSolo(init, freqHumSolo, freqPluvio);
 		}
 	}
 	
@@ -438,11 +471,12 @@ void sensHumSolo(int i){
 	//sensor pluvio
 
 
-void sensPluvio(int i){
+void sensPluvio(int i, int freqPluvio, int freqTemp){
 
 
-		int freqPluvio;
+		
 		char pluvio[3600/freqPluvio*24];
+		char temp[3600/freqTemp*24];
 		char minPluvio=0;
 		char maxPluvio=5;
 		
@@ -453,10 +487,10 @@ void sensPluvio(int i){
     	
 		Sensor sensPluviosidade;
 		sensPluviosidade.id=6;
-		sensPluviosidade.sensor_type="R";
+		sensPluviosidade.sensor_type=82;
 		sensPluviosidade.max_limit=maxPluvio;
 		sensPluviosidade.min_limit=minPluvio;
-		sensPluviosidade.frequency=pluvio;
+		sensPluviosidade.frequency=freqPluvio;
 		sensPluviosidade.readings_size=sizeof(pluvio)/sizeof(unsigned long);
 		sensPluviosidade.readings=malloc(sensPluviosidade.readings_size*sizeof(unsigned char));
 		for(int i = 0 ;i<sensPluviosidade.readings_size;i++){
@@ -492,7 +526,7 @@ void sensPluvio(int i){
 		}
 		if(erros==erroMaximo){
 			int init = i-4;
-			sensPluvio(init);
+			sensPluvio(init, freqPluvio, freqTemp);
 		}
 	}
 	for(int j=0;j<sizeof(pluvio);j++){
@@ -534,6 +568,7 @@ int main() {
 		printf("Error , failed to read and words\n"); 
 		return 1;
     }
+
 	printf("Qual a frequencia de leitura dos sensor de temperatura? (em segundos)\n");
 	int freqTemp;
 	scanf("%d",&freqTemp);
@@ -552,13 +587,12 @@ int main() {
 	printf("Qual a frequencia de leitura dos sensor de pluviosidade? (em segundos)\n");
 	int freqPluvio;
 	scanf("%d",&freqPluvio);
-	/*sensTemp(0);
-    sensVelocidadeVento(0);
-    sensorDirecaoVento(0);
-    sensorHumidadeAtmosferica(0);
-    sensorHumidadeSolo(0);
-	sensPluviosidade(0);
-	*/
+	sensTemp(0,freqTemp);
+    sensVelcVento(0,freqVelcVento);
+    sensDirVento(0,freqDirVento);
+    sensHumAtm(0,freqHumAtm,freqPluvio);
+    sensHumSolo(0,freqHumSolo,freqPluvio);
+	sensPluvio(0,freqPluvio,freqTemp);
 	printf("\t\t\tValor Mínimo\tValor Máximo\tMédia dos valores");
 	printf("\n");
 	for(int i=0; i<6;i++){
@@ -597,11 +631,12 @@ int main() {
 		}
 		printf("\n");
 	}
-			
+	
+	
 	return 0;
 
 
-
+	
 
 }
 			
