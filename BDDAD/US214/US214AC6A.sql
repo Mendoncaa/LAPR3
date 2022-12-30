@@ -1,4 +1,4 @@
-    ------------acceptance criteria 6----------------
+    ------------acceptance criteria 6A----------------
 
 --a) Qual é a evolução da produção de uma determinada cultura num determinado setor ao longo
 --dos últimos cinco anos?
@@ -26,24 +26,6 @@ EXCEPTION
 END;
 /
 
---bloco anónimo de teste sem erro
-DECLARE
-v_id INTEGER; 
-v_id2 INTEGER;
-BEGIN
-v_ID := get_setor_ID_FUNC('setor 3');
-DBMS_OUTPUT.put_line(v_ID);
-END;
-/
-
---bloco anónimo de teste com erro
-DECLARE
-v_id INTEGER; 
-v_id2 INTEGER;
-BEGIN
-v_ID2 := get_setor_ID_FUNC('Setor 30');
-END;
-/
 
 
 CREATE OR REPLACE FUNCTION get_cultura_ID_FUNC(v_nome Cultura.Nome%TYPE) RETURN Cultura.ID%TYPE IS
@@ -69,27 +51,13 @@ EXCEPTION
 END;
 /
 
---bloco anónimo de teste sem erro
-DECLARE
-v_id INTEGER; 
-BEGIN
-v_ID := get_cultura_ID_FUNC('Batata');
-DBMS_OUTPUT.put_line(v_ID);
-END;
-/
 
---bloco anónimo de teste com erro
-DECLARE
-v_id INTEGER; 
-BEGIN
-v_ID := get_cultura_ID_FUNC('Girafa');
-END;
-/
 
 
 CREATE OR REPLACE PROCEDURE evolucao_producao_PROC (p_cultura Cultura.Nome%TYPE, p_setor Setor_DIM.Designacao%TYPE) IS  
     nr_cultura INTEGER;
     nr_setor INTEGER;
+    ano_atual VARCHAR2(4) := To_char(sysdate,'yyyy');
     ano_1 INTEGER;
     ano_2 INTEGER;
     ano_3 INTEGER;
@@ -111,10 +79,7 @@ CREATE OR REPLACE PROCEDURE evolucao_producao_PROC (p_cultura Cultura.Nome%TYPE,
     v_c1 c1%rowtype;
 
 BEGIN
-    select MAX(t.year) INTO ano_1 from Producao_FAC p 
-        INNER JOIN Tempo_DIM t on t.ID = p.tempo_ID
-            WHERE p.Produto_ID = v_cultura_ID AND p.Setor_ID = v_setor_ID;
-
+    ano_1 := TO_NUMBER(ano_atual, '9999');
     ano_2 := ano_1 - 1;
     ano_3 := ano_2 - 1;
     ano_4 := ano_3 - 1;
@@ -150,6 +115,42 @@ OPEN c1;
     DBMS_OUTPUT.put_line('Ano ' || ano_2 || ': ' || qtd_ano_2 || ' toneladas');
     DBMS_OUTPUT.put_line('Ano ' || ano_1 || ': ' || qtd_ano_1 || ' toneladas');
 
+END;
+/
+
+--bloco anónimo de teste sem erro
+DECLARE
+v_id INTEGER; 
+v_id2 INTEGER;
+BEGIN
+v_ID := get_setor_ID_FUNC('setor 3');
+DBMS_OUTPUT.put_line(v_ID);
+END;
+/
+
+--bloco anónimo de teste com erro
+DECLARE
+v_id INTEGER; 
+v_id2 INTEGER;
+BEGIN
+v_ID2 := get_setor_ID_FUNC('Setor 30');
+END;
+/
+
+--bloco anónimo de teste sem erro
+DECLARE
+v_id INTEGER; 
+BEGIN
+v_ID := get_cultura_ID_FUNC('Batata');
+DBMS_OUTPUT.put_line(v_ID);
+END;
+/
+
+--bloco anónimo de teste com erro
+DECLARE
+v_id INTEGER; 
+BEGIN
+v_ID := get_cultura_ID_FUNC('Girafa');
 END;
 /
 
