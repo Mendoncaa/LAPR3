@@ -10,3 +10,6 @@ Processing '/etc/joe/editorrc'...
 Processing '/etc/joe/ftyperc'...
 Finished processing /etc/joe/ftyperc
 Finished processing /etc/joe/editorrc
+
+*** These modified files were found in JOE when it aborted on Fri Dec 30 17:14:12 2022
+*** JOE was aborted because the terminal closed
