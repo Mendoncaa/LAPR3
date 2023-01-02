@@ -11,11 +11,11 @@ public class Stock {
 
     private Map<Integer, ArrayList<ClientBasket>> stock;
 
-    private Map<Integer, ArrayList<ClientBasket>> stockClone;
+    private Map<Integer, ArrayList<ClientBasket>> stockNoRest;
 
     public Stock() {
         stock = new TreeMap<>();
-        stockClone = new TreeMap<>();
+        stockNoRest = new TreeMap<>();
     }
 
     public void addStock(int id, ClientBasket basket) {
@@ -25,7 +25,7 @@ public class Stock {
             stock.put(id, new ArrayList<>());
             stock.get(id).add(basket);
         }
-        this.stockClone = cloneMap(this.stock);
+        this.stockNoRest = cloneMap(this.stock);
     }
 
 
@@ -33,8 +33,8 @@ public class Stock {
         return stock;
     }
 
-    public Map<Integer, ArrayList<ClientBasket>> getStockClone() {
-        return stockClone;
+    public Map<Integer, ArrayList<ClientBasket>> getStockNoRest() {
+        return stockNoRest;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Stock {
             for (ClientsProducers hub : hubs) {
                 addStock(day2 + 1, new ClientBasket(hub, createArray(prods)));
             }
-            this.stockClone = cloneMap(this.stock);
+            this.stockNoRest = cloneMap(this.stock);
         }
     }
 
@@ -85,6 +85,6 @@ public class Stock {
     }
 
     public void fillStockClone(){
-        this.stockClone = cloneMap(this.stock);
+        this.stockNoRest = cloneMap(this.stock);
     }
 }

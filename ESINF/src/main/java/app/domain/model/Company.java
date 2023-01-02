@@ -29,6 +29,8 @@ public class Company {
     private Map<Integer, ArrayList<ClientBasket>> excedents;
     private Statistics statistics;
 
+    private ExpeditionListStore expeditionListStore;
+
 
     public Company(String designation) {
         if (StringUtils.isBlank(designation))
@@ -44,6 +46,7 @@ public class Company {
         this.stock = new Stock();
         this.excedents = new TreeMap<>();
         this.statistics = new Statistics();
+        this.expeditionListStore = new ExpeditionListStore();
     }
 
     public Orders getOrders() {
@@ -52,6 +55,10 @@ public class Company {
 
     public Stock getStock() {
         return stock;
+    }
+
+    public ExpeditionListStore getExpeditionListStore() {
+        return this.expeditionListStore;
     }
 
     public void updateOrders(Map<Integer, ArrayList<ClientBasket>> orders) {

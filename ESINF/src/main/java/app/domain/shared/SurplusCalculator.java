@@ -14,7 +14,7 @@ public class SurplusCalculator {
     public static void CalculateSurplus(int actualDay) {
 
         App.getInstance().getCompany().getStock().fillStockClone();
-        Map<Integer, ArrayList<ClientBasket>> stock = cloneMap(App.getInstance().getCompany().getStock().getStockClone());
+        Map<Integer, ArrayList<ClientBasket>> stock = cloneMap(App.getInstance().getCompany().getStock().getStockNoRest());
         Map<Integer, ArrayList<ClientBasket>> orders = cloneMap(App.getInstance().getCompany().getOrders().getOrders());
 
         if (!stock.isEmpty()) {
@@ -202,9 +202,9 @@ public class SurplusCalculator {
                                 }
                                 if (isHub) {
                                     stock.get(day + 1).get(hubID).getProducts().get(productID).setQuantity(quantity);
-                                    int hID = findHubID(App.getInstance().getCompany().getStock().getStockClone(), clientBasketsOrder.getEntity(), day + 1, 0);
-                                    int pID = findProductID(App.getInstance().getCompany().getStock().getStockClone(), productOrder, day + 1, hID, 0);
-                                    App.getInstance().getCompany().getStock().getStockClone().get(day + 1).get(hID).getProducts().get(pID).setQuantity(quantity); //atualizar stock com produtos nos hubs
+                                    int hID = findHubID(App.getInstance().getCompany().getStock().getStockNoRest(), clientBasketsOrder.getEntity(), day + 1, 0);
+                                    int pID = findProductID(App.getInstance().getCompany().getStock().getStockNoRest(), productOrder, day + 1, hID, 0);
+                                    App.getInstance().getCompany().getStock().getStockNoRest().get(day + 1).get(hID).getProducts().get(pID).setQuantity(quantity); //atualizar stock com produtos nos hubs
                                 }
                             }
                         }

@@ -73,7 +73,7 @@ public class ExpeditionListNoRestUI implements Runnable {
                 } else {
                     System.out.println("\nExpedition list with no restrictions was not generated.");
                 }
-                App.getInstance().getCompany().getStock().getStockClone().clear();
+                App.getInstance().getCompany().getStock().getStockNoRest().clear();
                 counter++;
             } else {
                 System.out.println("\nThere are no orders to generate an expedition list for this day.");
