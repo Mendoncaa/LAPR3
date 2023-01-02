@@ -100,7 +100,7 @@ public class SurplusCalculator {
                             int productInSurplusRecentID = -1;
                             int productInSurplusOlderID = -1;
 
-                            if (productOwner != -1){
+                            if (productOwner != -1) {
                                 productInStockID = returnProductID(clientBasketsStock.get(productOwner), productOrder);
                             }
 
@@ -204,7 +204,7 @@ public class SurplusCalculator {
                                     stock.get(day + 1).get(hubID).getProducts().get(productID).setQuantity(quantity);
                                     int hID = findHubID(App.getInstance().getCompany().getStock().getStockNoRest(), clientBasketsOrder.getEntity(), day + 1, 0);
                                     int pID = findProductID(App.getInstance().getCompany().getStock().getStockNoRest(), productOrder, day + 1, hID, 0);
-                                    App.getInstance().getCompany().getStock().getStockNoRest().get(day + 1).get(hID).getProducts().get(pID).setQuantity(quantity); //atualizar stock com produtos nos hubs
+                                    App.getInstance().getCompany().getStock().getStockNoRest().get(day + 1).get(hID).getProducts().get(pID).setQuantity(quantity);                                  //atualizar stock com produtos nos hubs
                                 }
                             }
                         }
@@ -226,13 +226,11 @@ public class SurplusCalculator {
                 stock.remove(day - 2);
                 stock.put(day - 2, clientBasketsSurplusOlder);
             }
-
         }
 
         if (daysItr.hasNext()) {
             CalculateSurplusDay(daysItr, stock, orders);
         }
-
     }
 
     private static boolean isThisHub(ClientsProducers entity, int idx) {
@@ -243,7 +241,6 @@ public class SurplusCalculator {
         }
         return isThisHub(entity, idx + 1);
     }
-
 
     private static int findProductSurplus(ArrayList<ClientBasket> stock, Product product, int cpId, int idx) {
         if (idx >= stock.get(cpId).getProducts().size()) return -1;

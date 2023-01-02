@@ -18,20 +18,9 @@ public class ExpeditionListNoRestUI implements Runnable {
 
     @Override
     public void run() {
-        boolean go = false;
-        String answer;
 
-        if (counter != 0) {
-            System.out.println("\nFor a more precise expedition list you should restart the app.\nType Y if you want it anyway");
-            answer = Utils.readLineFromConsole("Type here: ");
-            if (answer != null && answer.equalsIgnoreCase("y")) {
-                go = true;
-            }
-        } else {
-            go = true;
-        }
 
-        if ((!App.getInstance().getCompany().getOrders().getOrders().isEmpty() || App.getInstance().getCompany().getStock().getStock().isEmpty()) && go) {
+        if ((!App.getInstance().getCompany().getOrders().getOrders().isEmpty() || App.getInstance().getCompany().getStock().getStock().isEmpty())) {
             System.out.println("\n###        Expedition list with no restrictions        ###\n");
 
             boolean move = false;
