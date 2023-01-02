@@ -24,4 +24,16 @@ public class ClientBasket {
     public ArrayList<Product> getProducts() {
         return products;
     }
+
+    public ArrayList<Product> cloneProducts() {
+        ArrayList<Product> clone = new ArrayList<>();
+        for (Product p : products) {
+            clone.add(new Product(p.getName(), new Float(p.getQuantity())));
+        }
+        return clone;
+    }
+
+    public ClientBasket clone() {
+        return new ClientBasket(this.entity, cloneProducts());
+    }
 }

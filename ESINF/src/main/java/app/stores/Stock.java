@@ -81,7 +81,20 @@ public class Stock {
     }
 
     private static Map<Integer, ArrayList<ClientBasket>> cloneMap(Map<Integer, ArrayList<ClientBasket>> map) {
-        return new TreeMap<>(map);
+        Set<Integer> keys = map.keySet();
+        Map<Integer, ArrayList<ClientBasket>> clone = new TreeMap<>();
+        for (Integer key : keys) {
+            clone.put(key, new ArrayList<>());
+        }
+
+        for (Integer key : keys) {
+            ArrayList<ClientBasket> baskets = map.get(key);
+            for (ClientBasket basket : baskets) {
+                clone.get(key).add(basket.clone());
+            }
+        }
+
+        return clone;
     }
 
     public void fillStockClone(){

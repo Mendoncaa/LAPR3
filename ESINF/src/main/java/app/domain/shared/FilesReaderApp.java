@@ -238,8 +238,6 @@ public class FilesReaderApp {
             return null;
         }
 
-        App.getInstance().getCompany().getStock().addHubs();
-
         return new ImmutablePair<>(clients, producers);
     }
 

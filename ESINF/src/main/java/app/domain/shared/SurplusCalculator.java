@@ -79,7 +79,7 @@ public class SurplusCalculator {
                         if (isHub) {
                             productID = findProductID(stock, productOrder, day + 1, hubID, 0);
                         }
-                        ClientsProducers producer = null;
+                        ClientsProducers producer;
                         producer = thereIsProduct(clientBasketsStock, clientBasketsSurplusOlder, clientBasketsSurplusRecent, productOrder, clientBasketsOrder.getEntity());
                         int productOwner;
                         int productOwnerRecent = -1;
