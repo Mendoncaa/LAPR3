@@ -60,35 +60,27 @@ public class ClosestPointsCheck {
         return topHubs.iterator().next().getHub();
     }
 
-    public static ArrayList<ClientsProducers> closestProducers (int n) {
+    public static ArrayList<ClientsProducers> closestProducers (ClientsProducers hub, int n) {
 
         MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
         LinkedList<ClientsProducers> path = new LinkedList<>();
         ArrayList<ClientsProducers> closestP = new ArrayList<>();
 
-        ArrayList<ClientsProducers> hubs = App.getInstance().getCompany().getHubStore().getHubs();
-        ArrayList<ClientsProducers> producersToFilter = App.getInstance().getCompany().getClientsProducersGraph().vertices();
+        ArrayList<ClientsProducers> producersToFilter = clpGraph.vertices();
         Map<ClientsProducers, Integer> producerDistance = new HashMap<>();
 
-        for(ClientsProducers p: producersToFilter) {
-            if(!p.getType().equalsIgnoreCase("Produtor")){
-                producersToFilter.remove(p);
-            }
-        }
+        producersToFilter.removeIf(p -> !p.getType().equalsIgnoreCase("Produtor"));
 
-        for(ClientsProducers h: hubs) {
-            for(ClientsProducers p: producersToFilter) {
-                Integer sPathResults = Algorithms.shortestPath(clpGraph, h, p, Integer::compare, Integer::sum, 0, path);
-                producerDistance.put(p, sPathResults);
-            }
+        for(ClientsProducers p: producersToFilter) {
+            Integer sPathResults = Algorithms.shortestPath(clpGraph, hub, p, Integer::compare, Integer::sum, 0, path);
+            System.out.println(sPathResults);
+            producerDistance.put(p, sPathResults);
         }
 
         List<Integer> distances = new ArrayList<>(producerDistance.values());
         Collections.sort(distances);
 
-        for(int i = 0; i < n; i++) {
-
-        }
+        System.out.println(distances);
 
         return closestP;
     }
