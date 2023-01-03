@@ -56,57 +56,122 @@ char pluvio[3600/freqPluvio*24];*/
 
 
 
-void sensTemp(int i, int freqTemp){
-	
+void sensTemp(int i, int freqTemp) {
+  char tempmin = 0;
+  char tempmax = 55;
+  char temp[3600 / freqTemp * 24];
 
-	char tempmin= 0;
-	char tempmax= 55;
-	char temp[3600/freqTemp*24];
-
-	int numSensores=0;
+  int numSensores=0;
 	printf("Quantos sensores de temperatura deseja criar? \n");
 	scanf("%d", &numSensores);
+  
+  Sensor *sensTemperatura = malloc(numSensores * sizeof(Sensor));
+  
+  	for (int i = 0; i < numSensores; i++) {
+    sensTemperatura[i].id = i + 1;
+    sensTemperatura[i].sensor_type = 84;
+    sensTemperatura[i].max_limit = tempmax;
+    sensTemperatura[i].min_limit = tempmin;
+    sensTemperatura[i].frequency = freqTemp;
+    sensTemperatura[i].readings_size = 3600 / freqTemp * 24;
+    sensTemperatura[i].readings = malloc(sensTemperatura->readings_size * sizeof(unsigned short));
+	}
+    
+	for (int i = 0; i < numSensores; i++) {
+    char comp_rand = pcg32_random_r() % 3;
+    
+    if (i != 0) {
+      ult_temp = sensTemperatura[i - 1].readings[sensTemperatura[i - 1].readings_size - 1];
+    }
+    
+    for (int j = 0; j < sensTemperatura[i].readings_size; j++) {
+      sensTemperatura[i].readings[j] = (unsigned short) sens_temp(ult_temp, comp_rand);
+    }
 
-
-	Sensor *sensTemperatura = malloc(numSensores * sizeof(Sensor));
-	sensTemperatura[i].id=1;
-	sensTemperatura[i].sensor_type=84;
-	sensTemperatura[i].max_limit=tempmax;
-	sensTemperatura[i].min_limit=tempmin;
-	sensTemperatura[i].frequency=freqTemp;
-	sensTemperatura[i].readings_size=sizeof(temp)/sizeof(unsigned long);
-	sensTemperatura[i].readings=malloc(sensTemperatura->readings_size*sizeof(unsigned short));
-	for(int j = 0;i<sensTemperatura->readings_size;j++){
-		sensTemperatura[i].readings[j]=(unsigned short) temp[j];
-	} 
+    
+    for (int j = 0; j < sensTemperatura[i].readings_size; j++) {
+      if (sensTemperatura[i].readings[j] > tempmax || sensTemperatura[i].readings[j] < tempmin) {
+        erros++;
+      } else {
+        erros = 0;
+      }
+      if (erros == erroMaximo) {
+        int init = j - 4;
+        for (int k = 0; k < init; k++) {
+          sensTemperatura[i].readings[k] = (unsigned short) sens_temp(ult_temp, comp_rand);
+        }
+        for (int k = init; k < sensTemperatura[i].readings_size; k++) {
+          sensTemperatura[i].readings[k] = (unsigned short) sens_temp(sensTemperatura[i].readings[k - 1], comp_rand);
+        }
+        erros = 0;
+      }
+    }
+  }
+  int choice;
 	
-	for (i; i <sizeof(temp); i++){
-		char comp_rand = pcg32_random_r() % 3;
-		
-		if(i!=0){
-			ult_temp= temp[i-1];
-		}
-		
-		
+  
+  while (1) {
+    printf("\nMenu:\n");
+    printf("1. Add a sensor\n");
+    printf("2. Remove a sensor\n");
+    printf("3. Analyze a sensor\n");
+    printf("4. Quit\n");
+    
+    int choice;
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+    
+    if (choice == 4) {
+      break;
+    }
+    
+    if (choice == 1) {
+      // Add a sensor
+      numSensores++;
+      sensTemperatura = realloc(sensTemperatura, numSensores * sizeof(Sensor));
+      
+      sensTemperatura[numSensores - 1].id = numSensores;
+      sensTemperatura[numSensores - 1].sensor_type = 84;
+      sensTemperatura[numSensores - 1].max_limit = tempmax;
+      sensTemperatura[numSensores - 1].min_limit = tempmin;
+      sensTemperatura[numSensores - 1].frequency = freqTemp;
+      sensTemperatura[numSensores - 1].readings_size = 3600 / freqTemp * 24;
+      sensTemperatura[numSensores - 1].readings = malloc(sensTemperatura->readings_size * sizeof(unsigned short));
+      
+      printf("Sensor added.\n");
+    }
 
-		temp[i]= sens_temp(ult_temp, comp_rand);
-		
-	}
-	for (i = 0; i <sizeof(temp); i++)
-	{
-		if (temp[i]> tempmax || temp[i]< tempmin){
-			erros++;
-		}
-		else{
-			erros=0;
-		}
-		if(erros==erroMaximo){
-			int init = i-4;
-			sensTemp(init, freqTemp);
-		}
-	}
-	int sensor;
-	if(numSensores>1){
+	if (choice == 2) {
+      // Remove a sensor
+      if (numSensores == 0) {
+        printf("No sensors to remove.\n");
+      } else {
+        printf("Enter the ID of the sensor to remove: ");
+        int id;
+        scanf("%d", &id);
+        
+        int found = 0;
+        for (int i = 0; i < numSensores; i++) {
+          if (sensTemperatura[i].id == id) {
+            found = 1;
+            free(sensTemperatura[i].readings);
+            for (int j = i; j < numSensores - 1; j++) {
+              sensTemperatura[j] = sensTemperatura[j + 1];
+            }
+            numSensores--;
+            sensTemperatura = realloc(sensTemperatura, numSensores * sizeof(Sensor));
+            break;
+          }
+        }
+        
+        if (found) {
+          printf("Sensor removed.\n");
+        } else {
+          printf("Sensor not found.\n");
+        }
+      }
+    } else if (choice == 3) {
+		if(numSensores>1){
 		printf("Qual sensor deseja analisar? \n");
 		for(int i=0;i<numSensores;i++){
 			printf("Sensor %d \n", sensTemperatura[i].id);
@@ -118,35 +183,21 @@ void sensTemp(int i, int freqTemp){
 
 		}
 
+		//meter a média e a print da matriz
+		
+
 		
 	}else{
 		sensor=1;
 	}
 
-	for(int i=0;i<sensTemperatura->readings_size;i++){
-		soma+=sensTemperatura[sensor-1].readings[i];
-		contador++;
-		if(sensTemperatura[sensor-1].readings[i]<valorMinimo){
-			valorMinimo=sensTemperatura[sensor-1].readings[i];
-		}
-		if(sensTemperatura[sensor-1].readings[i]>valorMaximo){
-			valorMaximo=sensTemperatura[sensor-1].readings[i];
-		}
-	}
-	media=soma/contador;
-	
-		*ptrMatriz=valorMaximo;
-		*(ptrMatriz+1)=valorMinimo;
-		*(ptrMatriz+2)=media;
-		
-		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
-		
-		free(sensTemperatura->readings);
-		sensTemperatura->readings=NULL;
-		
-		
-		
-		
+      
+
+
+
+    
+  }
+}
 }
 
 
