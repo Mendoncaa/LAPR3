@@ -15,10 +15,13 @@ public class NCloserPointsUI implements Runnable {
 
     private CloserPointsController ctrl = new CloserPointsController();
 
+    public static boolean defined = false;
+
     @Override
     public void run() {
 
         boolean exit = false;
+
         int n = 0;
         Scanner scanner = new Scanner(System.in);
         do {
@@ -47,5 +50,7 @@ public class NCloserPointsUI implements Runnable {
                 System.out.println(i + 1 + ". " + actual.getEntity() + "    Average :  " + actual.getAverageDist() + " meters");
             }
         }
+
+        defined = true;
     }
 }

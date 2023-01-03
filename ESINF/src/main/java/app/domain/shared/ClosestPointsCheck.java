@@ -6,7 +6,7 @@ import app.domain.model.HubAndDist;
 import app.domain.model.Path;
 import app.graph.Algorithms;
 import app.graph.Graph;
-import org.apache.commons.lang3.tuple.Pair;
+import app.graph.map.MapGraph;
 
 import java.util.*;
 
@@ -58,6 +58,39 @@ public class ClosestPointsCheck {
             return null;
         }
         return topHubs.iterator().next().getHub();
+    }
+
+    public static ArrayList<ClientsProducers> closestProducers (int n) {
+
+        MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+        LinkedList<ClientsProducers> path = new LinkedList<>();
+        ArrayList<ClientsProducers> closestP = new ArrayList<>();
+
+        ArrayList<ClientsProducers> hubs = App.getInstance().getCompany().getHubStore().getHubs();
+        ArrayList<ClientsProducers> producersToFilter = App.getInstance().getCompany().getClientsProducersGraph().vertices();
+        Map<ClientsProducers, Integer> producerDistance = new HashMap<>();
+
+        for(ClientsProducers p: producersToFilter) {
+            if(!p.getType().equalsIgnoreCase("Produtor")){
+                producersToFilter.remove(p);
+            }
+        }
+
+        for(ClientsProducers h: hubs) {
+            for(ClientsProducers p: producersToFilter) {
+                Integer sPathResults = Algorithms.shortestPath(clpGraph, h, p, Integer::compare, Integer::sum, 0, path);
+                producerDistance.put(p, sPathResults);
+            }
+        }
+
+        List<Integer> distances = new ArrayList<>(producerDistance.values());
+        Collections.sort(distances);
+
+        for(int i = 0; i < n; i++) {
+
+        }
+
+        return closestP;
     }
 }
 
