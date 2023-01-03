@@ -12,6 +12,9 @@ nr_morada INTEGER;
 nr_tipo_cliente INTEGER;
 nr_producao_FAC INTEGER;
 nr_venda_FAC INTEGER;
+nr_tipo_hub INTEGER;
+nr_hub INTEGER;
+nr_local_recolha INTEGER;
 
 BEGIN
 
@@ -95,6 +98,35 @@ SELECT Count(*) INTO nr_cliente_dim from Cliente_DIM;
 DBMS_OUTPUT.PUT_LINE('Expected: 4   Actual: '||nr_cliente_dim);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
+-------------------------------------------------------------
+--US216
+--acceptance criteria 3
+
+insert into Tipo_Hub(ID, Designacao) VALUES (1,'E');
+insert into Tipo_Hub(ID, Designacao) VALUES (2,'P');
+DBMS_OUTPUT.PUT_LINE('Tipo Hubs');
+SELECT Count(*) INTO nr_tipo_hub from Tipo_Hub;
+DBMS_OUTPUT.PUT_LINE('Expected: 2   Actual: '||nr_tipo_hub);
+DBMS_OUTPUT.PUT_LINE(chr(0));
+
+insert into Hub (Location_ID, Latitude, Longitude) VALUES ('CT14',38.5243,-8.8926);
+insert into Hub (Location_ID, Latitude, Longitude) VALUES ('CT11',39.3167,-7.4167);
+insert into Hub (Location_ID, Latitude, Longitude) VALUES ('CT10',39.7444,-8.8072);
+DBMS_OUTPUT.PUT_LINE('Hubs');
+SELECT Count(*) INTO nr_hub from Hub;
+DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_hub);
+DBMS_OUTPUT.PUT_LINE(chr(0));
+
+insert into Local_Recolha_DIM(ID, Hub_ID, Tipo_Hub_ID) VALUES (1, 'CT14', 1);
+insert into Local_Recolha_DIM(ID, Hub_ID, Tipo_Hub_ID) VALUES (2, 'CT11', 1);
+insert into Local_Recolha_DIM(ID, Hub_ID, Tipo_Hub_ID) VALUES (3, 'CT10', 2);
+DBMS_OUTPUT.PUT_LINE('Local Recolha');
+SELECT Count(*) INTO nr_local_recolha from Local_Recolha_DIM;
+DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_local_recolha);
+DBMS_OUTPUT.PUT_LINE(chr(0));
+
+-------------------------------------------------------------
+
 insert into Producao_FAC(Produto_ID, Setor_ID, Tempo_ID, Quantidade) VALUES (1,1,1,100);
 insert into Producao_FAC(Produto_ID, Setor_ID, Tempo_ID, Quantidade) VALUES (2,2,2,200);
 insert into Producao_FAC(Produto_ID, Setor_ID, Tempo_ID, Quantidade) VALUES (3,3,3,300);
@@ -112,18 +144,18 @@ SELECT Count(*) INTO nr_producao_fac from Producao_FAC;
 DBMS_OUTPUT.PUT_LINE('Expected: 12   Actual: '||nr_producao_fac);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (1,1,1,100,100);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (2,2,2,200,200);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (3,3,3,300,300);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (4,4,4,400,400);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (2,4,5,500,500);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (3,3,6,600,600);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (1,2,7,700,700);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (4,1,8,800,800);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (3,4,9,900,900);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (2,3,10,1000,1000);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (1,2,11,1100,1100);
-insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Quantidade, Preco) VALUES (4,1,12,1200,1200);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (1,1,1,1,100,100);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (2,2,2,1,200,200);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (3,3,3,2,300,300);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (4,4,4,3,400,400);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (2,4,5,2,500,500);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (3,3,6,3,600,600);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (1,2,7,2,700,700);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (4,1,8,2,800,800);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (3,4,9,3,900,900);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (2,3,10,1,1000,1000);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (1,2,11,1,1100,1100);
+insert into Venda_FAC(Produto_ID, Cliente_ID, Tempo_ID, Local_Recolha_ID, Quantidade, Preco) VALUES (4,1,12,2,1200,1200);
 DBMS_OUTPUT.PUT_LINE('Venda_FAC');
 SELECT Count(*) INTO nr_venda_fac from Venda_FAC;
 DBMS_OUTPUT.PUT_LINE('Expected: 12   Actual: '||nr_venda_fac);

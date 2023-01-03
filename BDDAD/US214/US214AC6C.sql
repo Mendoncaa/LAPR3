@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION verificacao_ano_FUNC(ano Tempo_DIM.Year%TYPE) RETURN 
 nr_culturas INTEGER;
 ex_cultura EXCEPTION;
 BEGIN
-SELECT COUNT(DISTINCT p.Cultura_ID) INTO nr_culturas FROM Venda_FAC v 
+SELECT COUNT(DISTINCT p.Tipo_Cultura_ID) INTO nr_culturas FROM Venda_FAC v 
     INNER JOIN Produto_DIM p ON p.ID = v.Produto_ID
         INNER JOIN Tempo_DIM t ON v.tempo_ID = t.ID
             WHERE t.year = ano;
@@ -27,14 +27,14 @@ END;
 /
 
 
-CREATE OR REPLACE FUNCTION vendas_mensais_qtd_cultura_PROC(ano Tempo_DIM.year%TYPE, mes Tempo_DIM.month%TYPE, p_id Produto_DIM.Cultura_ID%TYPE) RETURN INTEGER IS
+CREATE OR REPLACE FUNCTION vendas_mensais_qtd_cultura_PROC(ano Tempo_DIM.year%TYPE, mes Tempo_DIM.month%TYPE, p_id Produto_DIM.Tipo_Cultura_ID%TYPE) RETURN INTEGER IS
 v_qtd INTEGER := 0;
 ex_counter EXCEPTION;
 BEGIN
     SELECT count(v.quantidade) INTO v_qtd FROM Venda_FAC v 
         INNER JOIN Produto_DIM p ON p.ID = v.Produto_ID
             INNER JOIN Tempo_DIM t ON v.tempo_ID = t.ID
-                WHERE t.year = ano AND t.month = mes AND p.Cultura_ID = p_id;
+                WHERE t.year = ano AND t.month = mes AND p.Tipo_Cultura_ID = p_id;
 
     IF v_qtd = 0 THEN
         RAISE ex_counter;
@@ -43,7 +43,7 @@ BEGIN
     SELECT sum(v.quantidade) INTO v_qtd FROM Venda_FAC v 
         INNER JOIN Produto_DIM p ON p.ID = v.Produto_ID
             INNER JOIN Tempo_DIM t ON v.tempo_ID = t.ID
-                WHERE t.year = ano AND t.month = mes AND p.Cultura_ID = p_id;
+                WHERE t.year = ano AND t.month = mes AND p.Tipo_Cultura_ID = p_id;
 
     RETURN v_qtd;
 
@@ -55,14 +55,14 @@ WHEN ex_counter THEN
 END;
 /
 
-CREATE OR REPLACE FUNCTION vendas_mensais_valor_cultura_PROC(ano Tempo_DIM.year%TYPE, mes Tempo_DIM.month%TYPE, p_id Produto_DIM.Cultura_ID%TYPE) RETURN INTEGER IS
+CREATE OR REPLACE FUNCTION vendas_mensais_valor_cultura_PROC(ano Tempo_DIM.year%TYPE, mes Tempo_DIM.month%TYPE, p_id Produto_DIM.Tipo_Cultura_ID%TYPE) RETURN INTEGER IS
 v_preco INTEGER := 0;
 ex_counter EXCEPTION;
 BEGIN
     SELECT count(v.Preco) INTO v_preco FROM Venda_FAC v 
         INNER JOIN Produto_DIM p ON p.ID = v.Produto_ID
             INNER JOIN Tempo_DIM t ON v.tempo_ID = t.ID
-                WHERE t.year = ano AND t.month = mes AND p.Cultura_ID = p_id;
+                WHERE t.year = ano AND t.month = mes AND p.Tipo_Cultura_ID = p_id;
 
     IF v_preco = 0 THEN
         RAISE ex_counter;
@@ -71,7 +71,7 @@ BEGIN
     SELECT sum(v.Preco) INTO v_preco FROM Venda_FAC v 
         INNER JOIN Produto_DIM p ON p.ID = v.Produto_ID
             INNER JOIN Tempo_DIM t ON v.tempo_ID = t.ID
-                WHERE t.year = ano AND t.month = mes AND p.Cultura_ID = p_id;
+                WHERE t.year = ano AND t.month = mes AND p.Tipo_Cultura_ID = p_id;
 
     RETURN v_preco;
 EXCEPTION
@@ -85,20 +85,20 @@ END;
 
 CREATE OR REPLACE PROCEDURE vendas_mensais_tipo_cultura_PROC(ano Tempo_DIM.Year%TYPE) IS
 nr_culturas INTEGER := verificacao_ano_FUNC(ano);
-CURSOR c_culturas IS SELECT DISTINCT c.nome, p.cultura_id FROM Venda_FAC v 
+CURSOR c_culturas IS SELECT DISTINCT c.designacao, p.Tipo_cultura_id FROM Venda_FAC v 
     INNER JOIN Produto_DIM p ON p.ID = v.Produto_ID
         INNER JOIN Tempo_DIM t ON v.tempo_ID = t.ID
-            INNER JOIN Cultura c ON c.ID = p.Cultura_ID
+            INNER JOIN Tipo_Cultura c ON c.ID = p.Tipo_Cultura_ID
                 WHERE t.year = ano;
 
 BEGIN
     FOR i IN c_culturas LOOP
     DBMS_OUTPUT.PUT_LINE(chr(0));
-        DBMS_OUTPUT.PUT_LINE('Cultura: ' || i.nome);
+        DBMS_OUTPUT.PUT_LINE('Tipo de Cultura: ' || i.designacao);
         DBMS_OUTPUT.PUT_LINE(chr(0));
         DBMS_OUTPUT.PUT_LINE('Vendas mensais: ');
         FOR j IN 1..12 LOOP
-            DBMS_OUTPUT.PUT_LINE('Mês ' || j ||'   Quantidade: '||vendas_mensais_qtd_cultura_PROC(ano, j, i.cultura_id)||' toneladas   Valor: '||vendas_mensais_valor_cultura_PROC(ano, j, i.cultura_id)||' k€');
+            DBMS_OUTPUT.PUT_LINE('Mês ' || j ||'   Quantidade: '||vendas_mensais_qtd_cultura_PROC(ano, j, i.tipo_cultura_id)||' toneladas   Valor: '||vendas_mensais_valor_cultura_PROC(ano, j, i.tipo_cultura_id)||' k€');
         END LOOP;
     END LOOP;
 END;
@@ -106,7 +106,7 @@ END;
 
 BEGIN
 
-vendas_mensais_tipo_cultura_PROC(2016);
+vendas_mensais_tipo_cultura_PROC(2022);
 
 END;
 /
