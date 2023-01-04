@@ -26,6 +26,7 @@ nr_incidentes INTEGER;
 nr_tipo_sensores INTEGER;
 nr_sensores INTEGER;
 nr_Leituras INTEGER;
+nr_input_hub INTEGER;
 
 BEGIN   
 DBMS_OUTPUT.PUT_LINE(chr(0));
@@ -105,10 +106,20 @@ DBMS_OUTPUT.PUT_LINE('Tipos de cliente');
 DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_tipo_cliente);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
+insert into input_hub (input_string) values ('CT1;40.6389;-8.6553;C1');
+insert into input_hub (input_string) values ('CT2;38.0333;-7.8833;C2');
+insert into input_hub (input_string) values ('CT14;38.5243;-8.8926;E1');
+insert into input_hub (input_string) values ('CT11;39.3167;-7.4167;E2');
+insert into input_hub (input_string) values ('CT10;39.7444;-8.8072;P3');
+SELECT Count(*) INTO nr_input_hub from input_hub;
+DBMS_OUTPUT.PUT_LINE('Input Hub');
+DBMS_OUTPUT.PUT_LINE('Expected: 5   Actual: '||nr_input_hub);
+DBMS_OUTPUT.PUT_LINE(chr(0));   
+
 insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(111,1,1,1,'Joaquim',123456789,'j@gmail.com',100000,0,0);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(123,2,2,2,'Joel',123336789,'joel@gmail.com',300000,1,10000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(321,3,3,3,'Ricardo',113456789,'ric@gmail.com',10000,2,5000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(413,2,4,4,'Tiago',444459999,'tiago@gmail.com',103000,0,0);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(123,2,2,2,'Joel',123336789,'joel@gmail.com',300000,'CT14',1,10000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(321,3,3,3,'Ricardo',113456789,'ric@gmail.com',10000,'CT10',2,5000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(413,2,4,4,'Tiago',444459999,'tiago@gmail.com',103000,'CT11',0,0);
 SELECT Count(*) INTO nr_cliente from Cliente;
 DBMS_OUTPUT.PUT_LINE('Clientes');
 DBMS_OUTPUT.PUT_LINE('Expected: 4   Actual: '||nr_cliente);
@@ -216,9 +227,9 @@ DBMS_OUTPUT.PUT_LINE('Aplicação de fatores de produção');
 DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_Aplicacao_Fator_Producao);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
-insert into encomenda(id,cliente_codigo_unico, data_encomenda, data_limite_pagamento, data_pagamento) values (1,123,sysdate,TO_DATE('17/12/2022', 'DD/MM/YYYY'),sysdate);
-insert into encomenda(id,cliente_codigo_unico, data_encomenda, data_limite_pagamento, data_pagamento) values (2,321,TO_DATE('01/12/2022', 'DD/MM/YYYY'),TO_DATE('10/12/2022', 'DD/MM/YYYY'),sysdate);
-insert into encomenda(id,cliente_codigo_unico, data_encomenda, data_limite_pagamento, data_pagamento) values (3,321,sysdate,TO_DATE('10/12/2022','DD/MM/YYYY'),sysdate);
+insert into encomenda(id,cliente_codigo_unico, hub_location_id, data_encomenda, data_limite_pagamento, data_pagamento) values (1,123,'CT11',sysdate,TO_DATE('17/12/2022', 'DD/MM/YYYY'),sysdate);
+insert into encomenda(id,cliente_codigo_unico, hub_location_id, data_encomenda, data_limite_pagamento, data_pagamento) values (2,321,'CT14',TO_DATE('01/12/2022', 'DD/MM/YYYY'),TO_DATE('10/12/2022', 'DD/MM/YYYY'),sysdate);
+insert into encomenda(id,cliente_codigo_unico, hub_location_id, data_encomenda, data_limite_pagamento, data_pagamento) values (3,321,'CT10',sysdate,TO_DATE('10/12/2022','DD/MM/YYYY'),sysdate);
 SELECT Count(*) INTO nr_encomenda from encomenda;
 DBMS_OUTPUT.PUT_LINE('Encomendas');
 DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_encomenda);

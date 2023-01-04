@@ -96,6 +96,65 @@ CREATE TABLE Morada (
     CONSTRAINT MORADA_ID_PK PRIMARY KEY (ID)
 );
 
+CREATE TABLE input_hub (
+    input_string VARCHAR2(25),
+    CONSTRAINT INPUT_HUB_INPUT_STRING_PK PRIMARY KEY (input_string)
+);
+
+CREATE TABLE Hub (
+    Location_ID VARCHAR2(5),
+    Latitude NUMBER,
+    Longitude NUMBER,
+    CONSTRAINT HUB_COMP_PK PRIMARY KEY (Location_ID) 
+);
+
+CREATE OR REPLACE TRIGGER Insert_Hub_Trigger
+    AFTER INSERT ON Input_Hub
+    FOR EACH ROW
+    DECLARE
+    Cursor c1 is SELECT regexp_substr(:new.input_string, '[^;]+', 1, LEVEL) as split_string
+    FROM dual
+    CONNECT BY regexp_substr(:new.input_string, '[^;]+', 1, LEVEL) IS NOT NULL;
+    v_str c1%rowtype;
+    v_locID varchar2(5);
+    v_lat number;
+    v_long number;
+    v_code varchar2(3);
+    v_counter INTEGER := 0;
+    ex_lines EXCEPTION;
+    BEGIN
+        OPEN c1;
+        LOOP
+            FETCH c1 INTO v_str;
+            EXIT WHEN c1%NOTFOUND;
+            v_counter := v_counter + 1;
+        END LOOP;
+        CLOSE c1;
+        if v_counter != 4 then
+            RAISE ex_lines;
+        end if;
+        OPEN c1;
+        LOOP
+            FETCH c1 INTO v_str;
+            EXIT WHEN c1%NOTFOUND;
+            v_locID := v_str.split_string;
+            FETCH c1 INTO v_str;
+            v_lat := to_number(v_str.split_string, '9999999.9999', 'NLS_NUMERIC_CHARACTERS = ''.,''');
+            FETCH c1 INTO v_str;
+            v_long := to_number(v_str.split_string, '9999999.9999', 'NLS_NUMERIC_CHARACTERS = ''.,''');
+            FETCH c1 INTO v_str;
+            v_code := v_str.split_string;
+            if SUBSTR(v_code, 1, 1) != 'C' then
+                insert into Hub (Location_ID, Latitude, Longitude) values (v_locID, v_lat, v_long);
+            end if;
+        END LOOP;
+        CLOSE c1;
+    EXCEPTION
+        WHEN ex_lines THEN
+            RAISE_APPLICATION_ERROR(-20001, 'ERROR: Invalid number of fields');
+    END;
+    /
+
 CREATE TABLE Cliente (
     Codigo_Unico INTEGER,
     Tipo_Cliente_ID INTEGER NOT NULL,
@@ -105,6 +164,7 @@ CREATE TABLE Cliente (
     Numero_Fiscal INTEGER NOT NULL CONSTRAINT CLIENTE_NUMERO_FISCAL_UQ UNIQUE,
     Email VARCHAR2(255) NOT NULL CONSTRAINT CLIENTE_EMAIL_UQ UNIQUE,
     Plafond NUMBER NOT NULL,
+    hub_location_id VARCHAR2(5),
     Numero_Total_Encomendas INTEGER NOT NULL,
     Valor_Total_Encomendas INTEGER NOT NULL, 
     CONSTRAINT CLIENTE_EMAIL_CK CHECK (Email LIKE '%@%.%'),
@@ -112,12 +172,14 @@ CREATE TABLE Cliente (
     CONSTRAINT CLIENTE_MORADA_ENTREGA_ID_FK FOREIGN KEY (Morada_Entrega_ID) REFERENCES Morada(ID),
     CONSTRAINT CLIENTE_MORADA_CORRESPONDENCIA_ID_FK FOREIGN KEY (Morada_Correspondencia_ID) REFERENCES Morada(ID),
     CONSTRAINT CLIENTE_TIPO_CLIENTE_ID_FK FOREIGN KEY (Tipo_Cliente_ID) REFERENCES Tipo_Cliente(ID),
+    CONSTRAINT CLIENTE_HUB_LOCATION_ID_FK FOREIGN KEY (hub_location_id) REFERENCES Hub(Location_ID),
     CONSTRAINT CLIENTE_CODIGO_UNICO_PK PRIMARY KEY (Codigo_Unico)
 );
 
 CREATE TABLE Encomenda (
     ID INTEGER,
     Cliente_Codigo_Unico INTEGER NOT NULL,
+    Hub_Location_ID VARCHAR2(5) NOT NULL,
     Data_Encomenda DATE NOT NULL,
     Data_Limite_Pagamento DATE NOT NULL,
     Data_Pagamento DATE,
@@ -216,7 +278,6 @@ CREATE TABLE Aplicacao_Fator_Producao(
     Accao_ID INTEGER,
     Fator_Producao_ID INTEGER NOT NULL,
     Metodo_Distribuicao_ID INTEGER NOT NULL,
-    CONSTRAINT APLICACAO_FATOR_PRODUCAO_QUANTIDADE_CK CHECK (Quantidade > 0),
     CONSTRAINT APLICACAO_FATOR_PRODUCAO_ACCAO_ID_FK FOREIGN KEY (Accao_ID) REFERENCES Accao(ID),
     CONSTRAINT APLICACAO_FATOR_PRODUCAO_FATOR_PRODUCAO_ID_FK FOREIGN KEY (Fator_Producao_ID) REFERENCES Fator_Producao(ID),
     CONSTRAINT APLICACAO_FATOR_PRODUCAO_METOFO_DISTRIBUICAO_ID_FK FOREIGN KEY (Metodo_Distribuicao_ID) REFERENCES Metodo_Distribuicao(ID),
