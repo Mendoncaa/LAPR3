@@ -298,7 +298,13 @@ EXCEPTION
 END;
 /
 
+DECLARE
+    v_encomenda Encomenda%rowtype;
+    v_id_encomenda Encomenda.ID%TYPE;   
 BEGIN
-Order_PROC('111', 'Laranjas', 10);
+Order_PROC('123', 'Laranjas', 10);
+SELECT max(ID) INTO v_id_encomenda FROM Encomenda;
+SELECT * INTO v_encomenda FROM Encomenda WHERE ID = v_id_encomenda;
+DBMS_OUTPUT.PUT_LINE(v_encomenda.ID||' '||v_encomenda.Cliente_Codigo_Unico||' '||v_encomenda.Hub_Location_ID||' '||v_encomenda.Data_Encomenda||' '||v_encomenda.Data_Limite_Pagamento||' '||v_encomenda.Data_Pagamento);
 END;
 /
