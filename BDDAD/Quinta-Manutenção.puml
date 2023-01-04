@@ -63,6 +63,12 @@ entity Rega {
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
 }
 
+entity Adubacao {
+    * Accao_ID: INTEGER <<PK>>
+    --
+    Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+}
+
 entity Categoria{
      * ID: INTEGER <<PK>>
     --
@@ -74,6 +80,13 @@ entity Aplicacao_Fator_Producao {
     --
     Fator_Producao_ID: INTEGER <<FK>> NOT NULL
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+}
+
+entity Restricao {
+    Campo_ID: INTEGER <<PK>> <<FK>>
+    Fator_Producao_ID: INTEGER <<PK>> <<FK>>
+    Inicio_Restricao: DATE <<PK>>
+    Fim_Restricao: DATE <<PK>>
 }
 
 entity Fator_Producao {
@@ -141,6 +154,7 @@ entity Plano_Aplicacao_Fator_Producao {
 }
 
 Campo ||-d-|{ Plantacao
+Campo ||-u-|{ Restricao
 
 Cultura ||-r-|{ Plantacao
 
@@ -149,15 +163,18 @@ Plantacao ||-d-|{ Plano
 
 Accao ||--d--|| Rega
 Accao ||--d--|| Aplicacao_Fator_Producao
+Accao ||--d--|| Adubacao
 
 Metodo_Distribuicao ||-r-o{ Rega
 Metodo_Distribuicao ||-l-o{ Aplicacao_Fator_Producao
+Metodo_Distribuicao ||-u-o{ Adubacao
 
 Tipo_Fator_Producao ||-l-o{ Fator_Producao
 Categoria ||-d-o{ Substancia
 
 Fator_Producao ||-d-|| Ficha_Tecnica
 Fator_Producao ||--u--o{ Aplicacao_Fator_Producao
+Fator_Producao ||--d--o{ Restricao
 
 Ficha_Tecnica ||-d-|{ Ficha_Tecnica_Substancia
 
