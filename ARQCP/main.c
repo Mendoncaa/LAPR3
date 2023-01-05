@@ -74,9 +74,11 @@ void sensTemp(int i, int freqTemp) {
     sensTemperatura[i].min_limit = tempmin;
     sensTemperatura[i].frequency = freqTemp;
     sensTemperatura[i].readings_size = 3600 / freqTemp * 24;
-    sensTemperatura[i].readings = malloc(sensTemperatura->readings_size * sizeof(unsigned short));
+    sensTemperatura[i].readings = malloc(sensTemperatura->readings_size * sizeof(unsigned long));
+	for(int j=0; j<sensTemperatura->readings_size;j++){
+		sensTemperatura[i].readings[j]=(unsigned short) temp[j];
 	}
-    
+   }   
 	for (int i = 0; i < numSensores; i++) {
     	char comp_rand = pcg32_random_r() % 3;
     
@@ -196,7 +198,11 @@ void sensTemp(int i, int freqTemp) {
           printf("Sensor not found.\n");
         }
       }
+<<<<<<< HEAD
     } else if (choice == 1) {
+=======
+    } else if (choice == 3) {
+>>>>>>> 284e2cce940f802d0420af14a6f88a97f76ee95c
 		int sensor;
 		if(numSensores>1){
 		printf("Qual sensor deseja analisar? \n");
@@ -222,6 +228,7 @@ void sensTemp(int i, int freqTemp) {
 	}else{
 		sensor=1;
 	}
+<<<<<<< HEAD
 
 	
 
@@ -229,6 +236,30 @@ void sensTemp(int i, int freqTemp) {
 
     
   
+=======
+	for(int i=0;i<sensTemperatura->readings_size;i++){
+		soma+=sensTemperatura[sensor-1].readings[i];
+		contador++;
+		if(sensTemperatura[sensor-1].readings[i]<valorMinimo){
+			valorMinimo=sensTemperatura[sensor-1].readings[i];
+		}
+		if(sensTemperatura[sensor-1].readings[i]>valorMaximo){
+			valorMaximo=sensTemperatura[sensor-1].readings[i];
+		}
+	}
+	media=soma/contador;
+	
+		*ptrMatriz=valorMaximo;
+		*(ptrMatriz+1)=valorMinimo;
+		*(ptrMatriz+2)=media;
+		
+		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
+		
+		free(sensTemperatura->readings);
+		sensTemperatura->readings=NULL;
+  	}
+	}
+>>>>>>> 284e2cce940f802d0420af14a6f88a97f76ee95c
 }
 
 
@@ -247,16 +278,20 @@ void sensVelcVento(int i, int freqVelcVento){
 	unsigned char velcmin= 0;
 	unsigned char velcmax= 150;
 
-	Sensor sensVelocidadeVento;
-	sensVelocidadeVento.id=2;
-	sensVelocidadeVento.sensor_type=87;
-	sensVelocidadeVento.max_limit=velcmax;
-	sensVelocidadeVento.min_limit=velcmin;
-	sensVelocidadeVento.frequency=freqVelcVento;
-	sensVelocidadeVento.readings_size=sizeof(velcvento)/sizeof(unsigned long);
-	sensVelocidadeVento.readings=malloc(sensVelocidadeVento.readings_size*sizeof(unsigned short));
-	for(int i =0;i<sensVelocidadeVento.readings_size;i++){
-		sensVelocidadeVento.readings[i]=(unsigned short) velcvento[i];
+	int numSensores=0;
+	printf("Quantos sensores de velocidade do vento deseja criar? \n");
+	scanf("%d", &numSensores);
+
+	Sensor *sensVelocidadeVento=malloc(numSensores * sizeof(Sensor));
+	sensVelocidadeVento[i].id=2;
+	sensVelocidadeVento[i].sensor_type=87;
+	sensVelocidadeVento[i].max_limit=velcmax;
+	sensVelocidadeVento[i].min_limit=velcmin;
+	sensVelocidadeVento[i].frequency=freqVelcVento;
+	sensVelocidadeVento[i].readings_size=sizeof(velcvento)/sizeof(unsigned long);
+	sensVelocidadeVento[i].readings=malloc(sensVelocidadeVento->readings_size*sizeof(unsigned short));
+	for(int j=0;j<sensVelocidadeVento->readings_size;j++){
+		sensVelocidadeVento[i].readings[j]=(unsigned short) velcvento[j];
 	} 
 
 	for (i; i <sizeof(velcvento); i++){
@@ -279,14 +314,29 @@ void sensVelcVento(int i, int freqVelcVento){
 			sensVelcVento(init, freqVelcVento);
 		}
 	}
-	for(int j=0;j<sizeof(velcvento);j++){
-		soma+=velcvento[j];
-		contador++;
-		if(velcvento[j]<valorMinimo){
-			valorMinimo=velcvento[j];
+	int sensor;
+	if(numSensores>1){
+		printf("Qual sensor deseja analisar? \n");
+		for(int i=0;i<numSensores;i++){
+			printf("Sensor %d \n", sensVelocidadeVento[i].id);
 		}
-		if(velcvento[j]>valorMaximo){
-			valorMaximo=velcvento[j];
+		scanf("%d", &sensor);
+		while (sensor==0){
+			printf("Sensor invalido, tente novamente \n");
+			scanf("%d", &sensor);
+
+		}
+	}else{
+		sensor=2;
+	}
+	for(int i=0;i<sensVelocidadeVento->readings_size;i++){
+		soma+=sensVelocidadeVento[sensor-1].readings[i];
+		contador++;
+		if(sensVelocidadeVento[sensor-1].readings[i]<valorMinimo){
+			valorMinimo=sensVelocidadeVento[sensor-1].readings[i];
+		}
+		if(sensVelocidadeVento[sensor-1].readings[i]>valorMaximo){
+			valorMaximo=sensVelocidadeVento[sensor-1].readings[i];
 		}
 	}
 
@@ -298,11 +348,14 @@ void sensVelcVento(int i, int freqVelcVento){
 
 		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
 		
-		free(sensVelocidadeVento.readings);
-		sensVelocidadeVento.readings=NULL;
+		free(sensVelocidadeVento->readings);
+		sensVelocidadeVento->readings=NULL;
 		
 
 }
+		
+
+
 
 
 
@@ -314,17 +367,20 @@ void sensDirVento(int i, int freqDirVento){
 		unsigned short dirmin= 0;
 		unsigned short dirmax= 359;
 		
+		int numSensores=0;
+		printf("Quantos sensores de direcao do vento deseja criar? \n");
+		scanf("%d", &numSensores);
 		
-		Sensor sensorDirecaoVento;
-		sensorDirecaoVento.id=3;
-		sensorDirecaoVento.sensor_type=68;
-		sensorDirecaoVento.max_limit=dirmax;
-		sensorDirecaoVento.min_limit=dirmin;
-		sensorDirecaoVento.frequency=freqDirVento;
-		sensorDirecaoVento.readings_size=sizeof(dirvento)/sizeof(unsigned long);
-		sensorDirecaoVento.readings=malloc(sensorDirecaoVento.readings_size*sizeof(unsigned short));
-		for(int i =0;i<sensorDirecaoVento.readings_size;i++){
-			sensorDirecaoVento.readings[i]=(unsigned short) dirvento[i];
+		Sensor *sensorDirecaoVento=malloc(numSensores * sizeof(Sensor));
+		sensorDirecaoVento[i].id=3;
+		sensorDirecaoVento[i].sensor_type=68;
+		sensorDirecaoVento[i].max_limit=dirmax;
+		sensorDirecaoVento[i].min_limit=dirmin;
+		sensorDirecaoVento[i].frequency=freqDirVento;
+		sensorDirecaoVento[i].readings_size=sizeof(dirvento)/sizeof(unsigned long);
+		sensorDirecaoVento[i].readings=malloc(sensorDirecaoVento->readings_size*sizeof(unsigned short));
+		for(int j=0;j<sensorDirecaoVento->readings_size;j++){
+			sensorDirecaoVento[i].readings[j]=(unsigned short) dirvento[j];
 		}
 
 		for (i; i <sizeof(dirvento); i++){
@@ -336,7 +392,7 @@ void sensDirVento(int i, int freqDirVento){
 		
 		}
 		for (i = 0; i <sizeof(dirvento); i++)
-	{
+		{
 		if (dirvento[i]> dirmax || dirvento[i]< dirmin){
 			erros++;
 		}
@@ -348,15 +404,29 @@ void sensDirVento(int i, int freqDirVento){
 			sensDirVento(init, freqDirVento);
 		}
 	}
-
-		for(int j=0;j<sizeof(dirvento);j++){
-			soma+=dirvento[j];
-			contador++;
-		if(dirvento[j]<valorMinimo){
-			valorMinimo=dirvento[j];
+		int sensor;
+	if(numSensores>1){
+		printf("Qual sensor deseja analisar? \n");
+		for(int i=0;i<numSensores;i++){
+			printf("Sensor %d \n", sensorDirecaoVento[i].id);
 		}
-		if(dirvento[j]>valorMaximo){
-			valorMaximo=dirvento[j];
+		scanf("%d", &sensor);
+		while (sensor==0){
+			printf("Sensor invalido, tente novamente \n");
+			scanf("%d", &sensor);
+
+		}
+	}else{
+		sensor=3;
+	}
+	for(int i=0; i<sensorDirecaoVento->readings_size;i++){
+		soma+=sensorDirecaoVento[sensor-1].readings[i];
+		contador++;
+		if(sensorDirecaoVento[sensor-1].readings[i]<valorMinimo){
+			valorMinimo=sensorDirecaoVento[sensor-1].readings[i];
+		}
+		if(sensorDirecaoVento[sensor-1].readings[i]>valorMaximo){
+			valorMaximo=sensorDirecaoVento[sensor-1].readings[i];
 		}
 	}
 	media=soma/contador;
@@ -367,8 +437,8 @@ void sensDirVento(int i, int freqDirVento){
 		
 		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
 
-		free(sensorDirecaoVento.readings);
-		sensorDirecaoVento.readings=NULL;
+		free(sensorDirecaoVento->readings);
+		sensorDirecaoVento->readings=NULL;
 		
 }
 	
@@ -394,16 +464,20 @@ void  sensHumAtm(int i, int freqHumAtm, int freqPluvio){
 		
 		unsigned char ult_hmd_atm;
 
-		Sensor sensorHumidadeAtmosferica;
-		sensorHumidadeAtmosferica.id=4;
-		sensorHumidadeAtmosferica.sensor_type=65;
-		sensorHumidadeAtmosferica.max_limit=humatmmax;
-		sensorHumidadeAtmosferica.min_limit=humatmmin;
-		sensorHumidadeAtmosferica.frequency=freqHumAtm;
-		sensorHumidadeAtmosferica.readings_size=sizeof(humdatm)/sizeof(unsigned long);
-		sensorHumidadeAtmosferica.readings=malloc(sensorHumidadeAtmosferica.readings_size*sizeof(unsigned char));
-		for(int i =0;i<sensorHumidadeAtmosferica.readings_size;i++){
-			sensorHumidadeAtmosferica.readings[i]=(unsigned char) humdatm[i];
+		int numSensores=0;
+		printf("Quantos sensores de humidade atmosferica deseja criar? \n");
+		scanf("%d", &numSensores);
+
+		Sensor *sensorHumidadeAtmosferica=malloc(numSensores * sizeof(Sensor));
+		sensorHumidadeAtmosferica[i].id=4;
+		sensorHumidadeAtmosferica[i].sensor_type=65;
+		sensorHumidadeAtmosferica[i].max_limit=humatmmax;
+		sensorHumidadeAtmosferica[i].min_limit=humatmmin;
+		sensorHumidadeAtmosferica[i].frequency=freqHumAtm;
+		sensorHumidadeAtmosferica[i].readings_size=sizeof(humdatm)/sizeof(unsigned long);
+		sensorHumidadeAtmosferica[i].readings=malloc(sensorHumidadeAtmosferica->readings_size*sizeof(unsigned char));
+		for(int j=0;j<sensorHumidadeAtmosferica->readings_size;j++){
+			sensorHumidadeAtmosferica[i].readings[j]=(unsigned char) humdatm[j];
 		}
 
 
@@ -438,15 +512,30 @@ void  sensHumAtm(int i, int freqHumAtm, int freqPluvio){
 			sensHumAtm(init, freqHumAtm, freqPluvio);
 		}
 	}
-	
-	for(int j=0;j<sizeof(humdatm);j++){
-		soma+=humdatm[j];  //dirvento
-		contador++;
-		if(humdatm[j]<valorMinimo){
-			valorMinimo=humdatm[j];
+	int sensor;
+	if(numSensores>1){
+		printf("Qual sensor deseja analisar? \n");
+		for(int i=0;i<numSensores;i++){
+			printf("Sensor %d \n", sensorHumidadeAtmosferica[i].id);
 		}
-		if(humdatm[j]>valorMaximo){
-			valorMaximo=humdatm[j];
+		scanf("%d", &sensor);
+		while (sensor==0){
+			printf("Sensor invalido, tente novamente \n");
+			scanf("%d", &sensor);
+
+		}
+	}else{
+		sensor=4;
+	}
+	
+	for(int i=0; i<sensorHumidadeAtmosferica->readings_size;i++){
+		soma+=sensorHumidadeAtmosferica[sensor-1].readings[i];
+		contador++;
+		if(sensorHumidadeAtmosferica[sensor-1].readings[i]<valorMinimo){
+			valorMinimo=sensorHumidadeAtmosferica[sensor-1].readings[i];
+		}
+		if(sensorHumidadeAtmosferica[sensor-1].readings[i]>valorMaximo){
+			valorMaximo=sensorHumidadeAtmosferica[sensor-1].readings[i];
 		}
 	}
 	media=soma/contador;
@@ -458,8 +547,8 @@ void  sensHumAtm(int i, int freqHumAtm, int freqPluvio){
 		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
 		
 
-		free(sensorHumidadeAtmosferica.readings);
-		sensorHumidadeAtmosferica.readings=NULL;
+		free(sensorHumidadeAtmosferica->readings);
+		sensorHumidadeAtmosferica->readings=NULL;
 		
 		
 }
@@ -475,17 +564,21 @@ void sensHumSolo(int i, int freqHumSolo, int freqPluvio){
 			
 			unsigned char ult_humd_solo;
 			unsigned char ult_pluvio=0;
+
+			int numSensores=0;
+			printf("Quantos sensores de humidade do solo deseja criar? \n");
+			scanf("%d", &numSensores);
 			
-			Sensor sensorHumidadeSolo;
-			sensorHumidadeSolo.id=5;
-			sensorHumidadeSolo.sensor_type=71;
-			sensorHumidadeSolo.max_limit=solomax;
-			sensorHumidadeSolo.min_limit=solomin;
-			sensorHumidadeSolo.frequency=freqHumSolo;
-			sensorHumidadeSolo.readings_size=sizeof(humdsolo)/sizeof(unsigned long);
-			sensorHumidadeSolo.readings=malloc(sensorHumidadeSolo.readings_size*sizeof(unsigned char));
-			for(int i =0;i<sensorHumidadeSolo.readings_size;i++){
-				sensorHumidadeSolo.readings[i]=(unsigned char) humdsolo[i];
+			Sensor *sensorHumidadeSolo=malloc(numSensores * sizeof(Sensor));
+			sensorHumidadeSolo[i].id=5;
+			sensorHumidadeSolo[i].sensor_type=71;
+			sensorHumidadeSolo[i].max_limit=solomax;
+			sensorHumidadeSolo[i].min_limit=solomin;
+			sensorHumidadeSolo[i].frequency=freqHumSolo;
+			sensorHumidadeSolo[i].readings_size=sizeof(humdsolo)/sizeof(unsigned long);
+			sensorHumidadeSolo[i].readings=malloc(sensorHumidadeSolo->readings_size*sizeof(unsigned char));
+			for(int i =0;i<sensorHumidadeSolo->readings_size;i++){
+				sensorHumidadeSolo[j].readings[i]=(unsigned char) humdsolo[i];
 			}		
 			
 			for (i; i <sizeof(humdsolo); i++){
@@ -525,17 +618,32 @@ void sensHumSolo(int i, int freqHumSolo, int freqPluvio){
 			sensHumSolo(init, freqHumSolo, freqPluvio);
 		}
 	}
-	
-	
-	for(int j=0;j<sizeof(humdsolo);j++){
-		soma+=humdsolo[j];
-		contador++;
-	if(humdsolo[j]<valorMinimo){
-		valorMinimo=humdsolo[j];
-	}
-	if(humdsolo[j]>valorMaximo){
-		valorMaximo=humdsolo[j];
+	int sensor;
+	if(numSensores>1){
+		printf("Qual o sensor de humidade do solo que deseja consultar? \n");
+		for(int i=0;i<numSensores;i++){
+			printf("Sensor %d \n", sensorHumidadeSolo[i].id);
 		}
+		scanf("%d", &sensor);
+		while (sensor==0){
+			printf("Sensor invalido, tente novamente \n");
+			scanf("%d", &sensor);
+
+		}
+	}else{
+		sensor=5;
+	}
+	
+	for (i = 0; i <sizeof(humdsolo); i++)
+		{
+			soma+=sensorHumidadeSolo[sensor-1].readings[i];
+			contador++;
+			if(sensorHumidadeSolo[sensor-1].readings[i]<valorMinimo){
+				valorMinimo=sensorHumidadeSolo[sensor-1].readings[i];
+			}
+			if(sensorHumidadeSolo[sensor-1].readings[i]>valorMaximo){
+				valorMaximo=sensorHumidadeSolo[sensor-1].readings[i];
+			}
 	}
 	media=soma/contador;
 	
@@ -546,8 +654,8 @@ void sensHumSolo(int i, int freqHumSolo, int freqPluvio){
 		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
 		
 		
-		free(sensorHumidadeSolo.readings);
-		sensorHumidadeSolo.readings=NULL;
+		free(sensorHumidadeSolo->readings);
+		sensorHumidadeSolo->readings=NULL;
 
 }
 
@@ -568,17 +676,20 @@ void sensPluvio(int i, int freqPluvio, int freqTemp){
 		
 		unsigned char ult_pluvio;
 		char ult_temp;
-    	
-		Sensor sensPluviosidade;
-		sensPluviosidade.id=6;
-		sensPluviosidade.sensor_type=82;
-		sensPluviosidade.max_limit=maxPluvio;
-		sensPluviosidade.min_limit=minPluvio;
-		sensPluviosidade.frequency=freqPluvio;
-		sensPluviosidade.readings_size=sizeof(pluvio)/sizeof(unsigned long);
-		sensPluviosidade.readings=malloc(sensPluviosidade.readings_size*sizeof(unsigned char));
-		for(int i = 0 ;i<sensPluviosidade.readings_size;i++){
-			sensPluviosidade.readings[i]=(unsigned char) pluvio[i];
+    	int numSensores=0;
+		printf("Quantos sensores de pluviosidade deseja criar? \n");
+		scanf("%d", &numSensores);
+
+		Sensor *sensPluviosidade;
+		sensPluviosidade[i].id=6;
+		sensPluviosidade[i].sensor_type=82;
+		sensPluviosidade[i].max_limit=maxPluvio;
+		sensPluviosidade[i].min_limit=minPluvio;
+		sensPluviosidade[i].frequency=freqPluvio;
+		sensPluviosidade[i].readings_size=sizeof(pluvio)/sizeof(unsigned long);
+		sensPluviosidade[i].readings=malloc(sensPluviosidade->readings_size*sizeof(unsigned char));
+		for(int j=0 ;j<sensPluviosidade->readings_size;i++){
+			sensPluviosidade[i].readings[j]=(unsigned char) pluvio[j];
 		}
 
     	for (i; i <sizeof(pluvio); i++){
@@ -613,15 +724,31 @@ void sensPluvio(int i, int freqPluvio, int freqTemp){
 			sensPluvio(init, freqPluvio, freqTemp);
 		}
 	}
-	for(int j=0;j<sizeof(pluvio);j++){
-		soma+=pluvio[j];
-		contador++;
-	if(pluvio[j]<valorMinimo){
-		valorMinimo=pluvio[j];
-	}
-	if(pluvio[j]>valorMaximo){
-		valorMaximo=pluvio[j];
+	int sensor;
+	if(numSensores>1){
+		printf("Qual o sensor de pluviosidade que deseja consultar? \n");
+		for(int i=0;i<numSensores;i++){
+			printf("Sensor %d \n", sensPluviosidade[i].id);
 		}
+		scanf("%d", &sensor);
+		while (sensor==0){
+			printf("Sensor invalido, tente novamente \n");
+			scanf("%d", &sensor);
+
+		}
+	}else{
+		sensor=6;
+	}
+	for (i = 0; i <sizeof(pluvio); i++)
+		{
+			soma+=sensPluviosidade[sensor-1].readings[i];
+			contador++;
+			if(sensPluviosidade[sensor-1].readings[i]<valorMinimo){
+				valorMinimo=sensPluviosidade[sensor-1].readings[i];
+			}
+			if(sensPluviosidade[sensor-1].readings[i]>valorMaximo){
+				valorMaximo=sensPluviosidade[sensor-1].readings[i];
+			}
 	}
 	media=soma/contador;
 	
@@ -631,8 +758,8 @@ void sensPluvio(int i, int freqPluvio, int freqTemp){
 		
 		valorMinimo=500, valorMaximo=0, contador=0,media=0,soma=0, i=0,j=0;
 		
-	free (sensPluviosidade.readings);
-	sensPluviosidade.readings=NULL;
+	free (sensPluviosidade->readings);
+	sensPluviosidade->readings=NULL;
 
 
 }
@@ -727,9 +854,13 @@ int main() {
 
 	
 
+<<<<<<< HEAD
 
   
 
 			
 
 
+=======
+}
+>>>>>>> 284e2cce940f802d0420af14a6f88a97f76ee95c

@@ -31,6 +31,26 @@ entity Tempo_DIM {
     Month: INTEGER NOT NULL
 }
 
+entity Tipo_Hub {
+    * ID: INTEGER <<PK>>
+    --
+    Designacao: VARCHAR2(255) NOT NULL
+}
+
+entity Hub {
+    *Location_ID: VARCHAR2(5) <<PK>>
+    --
+    Latitude: NUMBER
+    Longitude: NUMBER
+}
+
+entity Local_recolha_DIM {
+    * ID: INTEGER <<PK>>
+    --
+    Tipo_Hub_ID: INTEGER <<FK>>
+    Hub_ID: VARCHAR2(5) <<FK>>
+}
+
 
 entity Cliente_DIM {
     * Codigo_Unico: INTEGER <<PK>>
@@ -76,6 +96,7 @@ entity Venda_FAC {
     *Cliente_ID: INTEGER <<PK>> <<FK>>
     *Produto_ID: INTEGER <<PK>> <<FK>>
     *Tempo_ID: INTEGER <<PK>> <<FK>>
+    *Local_recolha_ID: INTEGER <<PK>> <<FK>>
     --
     Quantidade: NUMBER NOT NULL
     Preco: NUMBER NOT NULL
@@ -88,8 +109,13 @@ Producao_FAC ||-d-|{ Tempo_DIM
 Venda_FAC ||-l-|{ Cliente_DIM
 Venda_FAC ||-r-|{ Produto_DIM
 Venda_FAC ||-u-|{ Tempo_DIM
+Venda_FAC ||-d-|{ Local_recolha_DIM
 
 Cliente_DIM ||-u-|{ Morada
 Cliente_DIM ||-d-|{ Tipo_Cliente
 Produto_DIM ||-u-|{ Cultura
 Produto_DIM ||-l-|{ Tipo_cultura
+
+Local_recolha_DIM ||-d-|{ Hub
+Local_recolha_DIM ||-r-|{ Tipo_Hub
+

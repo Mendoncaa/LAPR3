@@ -71,6 +71,19 @@ entity Tipo_Cliente {
     Designacao: VARCHAR2(255) NOT NULL UNIQUE
 }
 
+
+entity Hub {
+    * Location_ID: VARCHAR2(5) <<PK>>
+    --
+    Latitude: NUMBER NOT NULL
+    Longitude: NUMBER NOT NULL
+}
+
+entity input_hub {
+    * input_string: VARCHAR2(25) <<PK>>
+    --
+}
+
 /'Constraints:- [[Numero_Fiscal, CHECK(Numero_Fiscal LIKE "[0-9]{9}")], 
 [Email, CHECK(Email LIKE "[a-z][0-9a-z]*@[a-z]+\.[a-z]")]]'/
 entity Cliente {
@@ -83,6 +96,7 @@ entity Cliente {
     Numero_Fiscal: VARCHAR(9) NOT NULL UNIQUE
     Email: VARCHAR2(255) NOT NULL UNIQUE
     Plafond: NUMBER NOT NULL
+    Hub_Location_ID: VARCHAR2(5) <<FK>> NOT NULL
     Numero_Total_Encomendas: INTEGER NOT NULL
     Valor_Total_Encomendas: NUMBER NOT NULL
 }
@@ -115,6 +129,7 @@ entity Encomenda {
     * ID: INTEGER <<PK>>
     --
     Cliente_Codigo_Unico: INTEGER <<FK>> NOT NULL
+    Hub_Location_ID: VARCHAR2(5) NOT NULL
     Data_Encomenda: DATE NOT NULL
     Data_Limite_Pagamento: DATE NOT NULL
     Data_Pagamento: DATE NOT NULL
@@ -142,6 +157,7 @@ entity Accao {
     --
     *Plantacao_ID: INTEGER <<FK>>
     Data_Accao: DATE NOT NULL
+    Quantidade: NUMBER NOT NULL
 }
 
 entity Metodo_Distribuicao {
@@ -154,7 +170,6 @@ entity Rega {
     * Accao_ID: INTEGER <<PK>> <<FK>>
     --
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
-    Quantidade: NUMBER NOT NULL
 }
 
 entity Aplicacao_Fator_Producao {
@@ -162,7 +177,6 @@ entity Aplicacao_Fator_Producao {
     --
     Fator_Producao_ID: INTEGER <<FK>> NOT NULL
     Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
-    Quantidade: NUMBER NOT NULL
 }
 
 entity Colheita {
@@ -170,7 +184,6 @@ entity Colheita {
     --
     Produto_ID: INTEGER <<FK>> NOT NULL
     Preco: NUMBER NOT NULL
-    Quantidade: NUMBER NOT NULL
 }
 
 entity Plano {
@@ -245,6 +258,20 @@ entity Substancia {
 }
 
 
+entity Adubacao {
+    * Accao_ID: INTEGER <<PK>>
+    --
+    Metodo_Distribuicao_ID: INTEGER <<FK>> NOT NULL
+}
+
+entity Restricao {
+    Campo_ID: INTEGER <<PK>> <<FK>>
+    Fator_Producao_ID: INTEGER <<PK>> <<FK>>
+    Inicio_Restricao: DATE <<PK>>
+    Fim_Restricao: DATE <<PK>>
+}
+
+
 Campo ||-d-|{ Plantacao
 
 Cultura ||-r-|{ Plantacao
@@ -258,7 +285,7 @@ Accao ||--d--|| Aplicacao_Fator_Producao
 Metodo_Distribuicao ||-r-o{ Rega
 Metodo_Distribuicao ||-l-o{ Aplicacao_Fator_Producao
 
-Tipo_Fator_Producao ||-l-o{ Fator_Producao
+Tipo_Fator_Producao ||-u-o{ Fator_Producao
 Categoria ||-d-o{ Substancia
 
 Fator_Producao ||-d-|| Ficha_Tecnica
@@ -278,7 +305,7 @@ Cultura ||-d-|| Cultura_Temporaria
 Cultura ||-r-|| Cultura_Permanente
 
 
-Plantacao ||-r-|{ Leitura
+Plantacao ||-l-|{ Leitura
 
 Tipo_Sensor ||-u-|{ Sensor
 
@@ -287,6 +314,7 @@ Sensor ||-u-|{ Leitura
 Produto ||-u-|{Cultura
 
 Tipo_Cliente ||-l-|{ Cliente
+Hub ||-r-|{ Cliente
 
 Morada ||-d-|{ Cliente
 Morada ||-d-|{ Cliente
@@ -297,9 +325,15 @@ Pais ||-l-|{ Morada
 
 Cliente ||-d-o{ Encomenda
 
-Encomenda ||-l-o| Incidente
+Encomenda ||-r-o| Incidente
 Encomenda ||-d-|{ Encomenda_Produto
 
 Produto ||-u-|{ Encomenda_Produto
 Produto ||---u---o{ Colheita
 Accao ||--d--|| Colheita
+
+Accao ||--d--|| Adubacao
+Metodo_Distribuicao ||-u-o{ Adubacao
+
+Campo ||-r-|{ Restricao
+Fator_Producao ||--u--o{ Restricao

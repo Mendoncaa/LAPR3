@@ -19,13 +19,14 @@ nr_ficha_tecnica_substancia INTEGER;
 nr_produto INTEGER;
 nr_rega INTEGER;
 nr_colheita INTEGER;
-nr_aplicacao_produto INTEGER;
+nr_Aplicacao_Fator_Producao INTEGER;
 nr_encomenda INTEGER;
 nr_encomenda_Produto INTEGER;
 nr_incidentes INTEGER;
 nr_tipo_sensores INTEGER;
 nr_sensores INTEGER;
 nr_Leituras INTEGER;
+nr_input_hub INTEGER;
 
 BEGIN   
 DBMS_OUTPUT.PUT_LINE(chr(0));
@@ -105,10 +106,20 @@ DBMS_OUTPUT.PUT_LINE('Tipos de cliente');
 DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_tipo_cliente);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
+insert into input_hub (input_string) values ('CT1;40.6389;-8.6553;C1');
+insert into input_hub (input_string) values ('CT2;38.0333;-7.8833;C2');
+insert into input_hub (input_string) values ('CT14;38.5243;-8.8926;E1');
+insert into input_hub (input_string) values ('CT11;39.3167;-7.4167;E2');
+insert into input_hub (input_string) values ('CT10;39.7444;-8.8072;P3');
+SELECT Count(*) INTO nr_input_hub from input_hub;
+DBMS_OUTPUT.PUT_LINE('Input Hub');
+DBMS_OUTPUT.PUT_LINE('Expected: 5   Actual: '||nr_input_hub);
+DBMS_OUTPUT.PUT_LINE(chr(0));   
+
 insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(111,1,1,1,'Joaquim',123456789,'j@gmail.com',100000,0,0);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(123,2,2,2,'Joel',123336789,'joel@gmail.com',300000,1,10000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(321,3,3,3,'Ricardo',113456789,'ric@gmail.com',10000,2,5000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(413,2,4,4,'Tiago',444459999,'tiago@gmail.com',103000,0,0);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(123,2,2,2,'Joel',123336789,'joel@gmail.com',300000,'CT14',1,10000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(321,3,3,3,'Ricardo',113456789,'ric@gmail.com',10000,'CT10',2,5000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(413,2,4,4,'Tiago',444459999,'tiago@gmail.com',103000,'CT11',0,0);
 SELECT Count(*) INTO nr_cliente from Cliente;
 DBMS_OUTPUT.PUT_LINE('Clientes');
 DBMS_OUTPUT.PUT_LINE('Expected: 4   Actual: '||nr_cliente);
@@ -121,15 +132,15 @@ DBMS_OUTPUT.PUT_LINE('Métodos de distribuição');
 DBMS_OUTPUT.PUT_LINE('Expected: 2   Actual: '||nr_metodo_distribuicao);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (1,1,TO_DATE('05/08/2022', 'DD/MM/YYYY'));
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (2,2,TO_DATE('17/10/2019', 'DD/MM/YYYY'));
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (3,3,TO_DATE('10/12/2021', 'DD/MM/YYYY'));
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (4,5,SYSDATE);
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (5,3,TO_DATE('10/10/2021', 'DD/MM/YYYY'));
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (6,2,TO_DATE('21/07/2017', 'DD/MM/YYYY'));
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (7,1,TO_DATE('22/06/2015', 'DD/MM/YYYY'));
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (8,1,sysdate);
-insert into Accao (ID, Plantacao_ID ,DATA_ACCAO) VALUES (9,4,TO_DATE('10/11/2022', 'DD/MM/YYYY'));
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (1,2,TO_DATE('05/08/2022', 'DD/MM/YYYY'), 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (2,4,TO_DATE('17/10/2019', 'DD/MM/YYYY'), 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (3,3,TO_DATE('10/12/2021', 'DD/MM/YYYY'), 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (4,1,SYSDATE, 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (5,3,TO_DATE('10/10/2021', 'DD/MM/YYYY'), 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (6,2,TO_DATE('21/07/2017', 'DD/MM/YYYY'), 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (7,1,TO_DATE('22/06/2015', 'DD/MM/YYYY'), 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (8,1,sysdate, 23.11);
+insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (9,4,TO_DATE('10/11/2022', 'DD/MM/YYYY'), 23.11);
 SELECT Count(*) INTO nr_accao from accao;
 DBMS_OUTPUT.PUT_LINE('Ações');
 DBMS_OUTPUT.PUT_LINE('Expected: 9   Actual: '||nr_accao);
@@ -192,33 +203,33 @@ DBMS_OUTPUT.PUT_LINE('Fatores de produção');
 DBMS_OUTPUT.PUT_LINE('Expected: 4   Actual: '||nr_produto);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
-insert into Rega(accao_id, metodo_distribuicao_ID, quantidade) values(8, 1, 100000);
-insert into Rega(accao_id, metodo_distribuicao_ID, quantidade) values(9, 2, 550000);
+insert into Rega(accao_id, metodo_distribuicao_ID) values(8, 1);
+insert into Rega(accao_id, metodo_distribuicao_ID) values(9, 2);
 SELECT Count(*) INTO nr_rega from rega;
 DBMS_OUTPUT.PUT_LINE('Regas');
 DBMS_OUTPUT.PUT_LINE('Expected: 2   Actual: '||nr_rega);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
-insert into colheita(accao_id, Produto_id,preco,QUANTIDADE) values (1,1,8000, 10000);
-insert into colheita(accao_id, Produto_id,preco,QUANTIDADE) values (2,3,2000, 750);
-insert into colheita(accao_id, Produto_id,preco,QUANTIDADE) values (3,4,2000, 1000);
-insert into colheita(accao_id, Produto_id,preco,QUANTIDADE) values (4,1,2000, 2500);
+insert into colheita(accao_id, Produto_ID,preco) values (1,1,8000);
+insert into colheita(accao_id, Produto_ID,preco) values (2,3,2000);
+insert into colheita(accao_id, Produto_ID,preco) values (3,4,2000);
+insert into colheita(accao_id, Produto_ID,preco) values (4,1,2000);
 SELECT Count(*) INTO nr_colheita from colheita;
 DBMS_OUTPUT.PUT_LINE('Colheitas');
 DBMS_OUTPUT.PUT_LINE('Expected: 4   Actual: '||nr_colheita);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
-insert into Aplicacao_Fator_Producao(accao_id, Fator_Producao_id, metodo_distribuicao_id,quantidade) values(5, 1, 1, 10);
-insert into Aplicacao_Fator_Producao(accao_id, Fator_Producao_id, metodo_distribuicao_id,quantidade) values(6, 2, 2, 15);
-insert into Aplicacao_Fator_Producao(accao_id, Fator_Producao_id, metodo_distribuicao_id,quantidade) values(7, 3, 1, 20);
-SELECT Count(*) INTO nr_aplicacao_produto from Aplicacao_Fator_Producao;
+insert into Aplicacao_Fator_Producao(accao_id, fator_Producao_ID, metodo_distribuicao_id) values(5, 1, 1);
+insert into Aplicacao_Fator_Producao(accao_id, fator_Producao_ID, metodo_distribuicao_id) values(6, 2, 2);
+insert into Aplicacao_Fator_Producao(accao_id, fator_Producao_ID, metodo_distribuicao_id) values(7, 3, 1);
+SELECT Count(*) INTO nr_Aplicacao_Fator_Producao from Aplicacao_Fator_Producao;
 DBMS_OUTPUT.PUT_LINE('Aplicação de fatores de produção');
-DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_aplicacao_produto);
+DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_Aplicacao_Fator_Producao);
 DBMS_OUTPUT.PUT_LINE(chr(0));
 
-insert into encomenda(id,cliente_codigo_unico, data_encomenda, data_limite_pagamento, data_pagamento) values (1,123,sysdate,TO_DATE('17/12/2022', 'DD/MM/YYYY'),sysdate);
-insert into encomenda(id,cliente_codigo_unico, data_encomenda, data_limite_pagamento, data_pagamento) values (2,321,TO_DATE('01/12/2022', 'DD/MM/YYYY'),TO_DATE('10/12/2022', 'DD/MM/YYYY'),sysdate);
-insert into encomenda(id,cliente_codigo_unico, data_encomenda, data_limite_pagamento, data_pagamento) values (3,321,sysdate,TO_DATE('10/12/2022','DD/MM/YYYY'),sysdate);
+insert into encomenda(id,cliente_codigo_unico, hub_location_id, data_encomenda, data_limite_pagamento, data_pagamento) values (1,123,'CT11',sysdate,TO_DATE('17/12/2022', 'DD/MM/YYYY'),sysdate);
+insert into encomenda(id,cliente_codigo_unico, hub_location_id, data_encomenda, data_limite_pagamento, data_pagamento) values (2,321,'CT14',TO_DATE('01/12/2022', 'DD/MM/YYYY'),TO_DATE('10/12/2022', 'DD/MM/YYYY'),sysdate);
+insert into encomenda(id,cliente_codigo_unico, hub_location_id, data_encomenda, data_limite_pagamento, data_pagamento) values (3,321,'CT10',sysdate,TO_DATE('10/12/2022','DD/MM/YYYY'),sysdate);
 SELECT Count(*) INTO nr_encomenda from encomenda;
 DBMS_OUTPUT.PUT_LINE('Encomendas');
 DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_encomenda);
@@ -265,6 +276,15 @@ SELECT Count(*) INTO nr_Leituras from Leitura;
 DBMS_OUTPUT.PUT_LINE('Leituras dos sensores');
 DBMS_OUTPUT.PUT_LINE('Expected: 3   Actual: '||nr_Leituras);
 DBMS_OUTPUT.PUT_LINE(chr(0));
+
+INSERT INTO Restricao VALUES (1, 1, TO_DATE('23/11/2022', 'DD/MM/YYYY'), SYSDATE);
+INSERT INTO Restricao VALUES (1, 3, TO_DATE('04/12/2021', 'DD/MM/YYYY'), TO_DATE('16/08/2022', 'DD/MM/YYYY'));
+INSERT INTO Restricao VALUES (1, 4, TO_DATE('16/02/2021', 'DD/MM/YYYY'), TO_DATE('18/02/2022', 'DD/MM/YYYY'));
+INSERT INTO Restricao VALUES (2, 1, TO_DATE('12/04/2023', 'DD/MM/YYYY'), TO_DATE('01/09/2023', 'DD/MM/YYYY'));
+INSERT INTO Restricao VALUES (2, 2, TO_DATE('07/02/2020', 'DD/MM/YYYY'), TO_DATE('16/08/2020', 'DD/MM/YYYY'));
+INSERT INTO Restricao VALUES (3, 2, TO_DATE('16/07/2023', 'DD/MM/YYYY'), TO_DATE('25/12/2023', 'DD/MM/YYYY'));
+INSERT INTO Restricao VALUES (3, 3, TO_DATE('29/12/2021', 'DD/MM/YYYY'), TO_DATE('01/01/2022', 'DD/MM/YYYY'));
+INSERT INTO Restricao VALUES (3, 4, TO_DATE('08/05/2022', 'DD/MM/YYYY'), TO_DATE('06/06/2022', 'DD/MM/YYYY'));
 
 END;
 /
