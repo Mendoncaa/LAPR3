@@ -78,7 +78,7 @@ void sensTemp(int i, int freqTemp) {
 	}
     
 	for (int i = 0; i < numSensores; i++) {
-    char comp_rand = pcg32_random_r() % 3;
+    	char comp_rand = pcg32_random_r() % 3;
     
     if (i != 0) {
       ult_temp = sensTemperatura[i - 1].readings[sensTemperatura[i - 1].readings_size - 1];
@@ -111,21 +111,45 @@ void sensTemp(int i, int freqTemp) {
 	
   
   while (1) {
+    while (choice != 4) {
     printf("\nMenu:\n");
-    printf("1. Add a sensor\n");
-    printf("2. Remove a sensor\n");
-    printf("3. Analyze a sensor\n");
-    printf("4. Quit\n");
+    printf("1. Generate temperature readings\n");
+    printf("2. Change temperature sensor frequency\n");
+    printf("3. Add temperature sensor\n");
+    printf("4. Remove temperature sensor\n");
+    printf("5. Quit\n");
     
     int choice;
     printf("Enter your choice: ");
     scanf("%d", &choice);
+
+	if(choice=2){
+		printf("Enter the new frequency for temperature readings: ");
+		int new_freq;
+        scanf("%d", &new_freq);
+        
+  		for (int i = 0; i < numSensores; i++) {
+    	sensTemperatura[i].frequency = new_freq;
+    	int old_size = sensTemperatura[i].readings_size;
+    	sensTemperatura[i].readings_size = 3600 / new_freq * 24;
+    	unsigned short *new_readings = malloc(sensTemperatura[i].readings_size * sizeof(unsigned short));
+    	int min_size = old_size < sensTemperatura[i].readings_size ? old_size : sensTemperatura[i].readings_size;
+    	for (int j = 0; j < min_size; j++) {
+      	new_readings[j] = sensTemperatura[i].readings[j];
+    	}
+
+    	free(sensTemperatura[i].readings);
+    	sensTemperatura[i].readings = new_readings;
+  		}
+		}
+        
+      
+
+	
     
-    if (choice == 4) {
-      break;
-    }
     
-    if (choice == 1) {
+    
+    if (choice == 3) {
       // Add a sensor
       numSensores++;
       sensTemperatura = realloc(sensTemperatura, numSensores * sizeof(Sensor));
@@ -141,7 +165,9 @@ void sensTemp(int i, int freqTemp) {
       printf("Sensor added.\n");
     }
 
-	if (choice == 2) {
+
+
+	if (choice == 4) {
       // Remove a sensor
       if (numSensores == 0) {
         printf("No sensors to remove.\n");
@@ -170,7 +196,8 @@ void sensTemp(int i, int freqTemp) {
           printf("Sensor not found.\n");
         }
       }
-    } else if (choice == 3) {
+    } else if (choice == 1) {
+		int sensor;
 		if(numSensores>1){
 		printf("Qual sensor deseja analisar? \n");
 		for(int i=0;i<numSensores;i++){
@@ -184,21 +211,27 @@ void sensTemp(int i, int freqTemp) {
 		}
 
 		//meter a média e a print da matriz
-		
+	
+	for (int i = 0; i < numSensores; i++) {
+    free(sensTemperatura[i].readings);
+  	}
+  	free(sensTemperatura);
 
+	
 		
 	}else{
 		sensor=1;
 	}
 
-      
+	
 
 
 
     
-  }
+  
 }
-}
+
+
 
 
 	
@@ -681,15 +714,22 @@ int main() {
 			printf("%10d\t",matriz[i][j]);
 		}
 		printf("\n");
+
+		
 	}
-	
-	
 	return 0;
-
-
 	
 
 }
+
+	
+
+
+	
+
+
+  
+
 			
 
 
