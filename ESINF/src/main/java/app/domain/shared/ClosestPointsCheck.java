@@ -12,6 +12,8 @@ import java.util.*;
 
 public class ClosestPointsCheck {
 
+    static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+
     public static Set<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
 
         ArrayList<ClientsProducers> companies = new ArrayList<>();
@@ -62,7 +64,8 @@ public class ClosestPointsCheck {
 
     public static ArrayList<ClientsProducers> closestProducers (ClientsProducers hub, int n) {
 
-        MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+        System.out.println(clpGraph);
+
         LinkedList<ClientsProducers> path = new LinkedList<>();
         ArrayList<ClientsProducers> closestP = new ArrayList<>();
 
@@ -71,16 +74,45 @@ public class ClosestPointsCheck {
 
         producersToFilter.removeIf(p -> !p.getType().equalsIgnoreCase("Produtor"));
 
+        //System.out.println(producersToFilter);
+
+        Iterator<ClientsProducers> it1 = clpGraph.vertices().iterator();
+
+        while(it1.hasNext()) {
+
+            ClientsProducers c = it1.next();
+
+            if(c.getCode().equalsIgnoreCase("CT5")) {
+                hub = c;
+            }
+        }
+
+        System.out.println(hub);
+
         for(ClientsProducers p: producersToFilter) {
             Integer sPathResults = Algorithms.shortestPath(clpGraph, hub, p, Integer::compare, Integer::sum, 0, path);
+            System.out.println(path);
+            System.out.println(p);
             System.out.println(sPathResults);
             producerDistance.put(p, sPathResults);
+
+            path.clear();
         }
 
         List<Integer> distances = new ArrayList<>(producerDistance.values());
         Collections.sort(distances);
+        int i = 0;
 
-        System.out.println(distances);
+        for(Map.Entry<ClientsProducers, Integer> pD : producerDistance.entrySet()) {
+            if(pD.getValue().equals(distances.get(i))) {
+                closestP.add(pD.getKey());
+            }
+            i++;
+        }
+
+        //System.out.println(producerDistance);
+        //System.out.println(distances);
+        //System.out.println(closestP);
 
         return closestP;
     }
