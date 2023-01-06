@@ -76,7 +76,8 @@ void sensTemp(int i, int freqTemp)
 
 				if (j != 0)
 				{
-					ult_temp = sensTemperatura[i - 1].readings[sensTemperatura[i - 1].readings_size - 1];
+					// ult_temp = sensTemperatura[i - 1].readings[sensTemperatura[i - 1].readings_size - 1]; Quero ir buscar o sensor atual?
+					ult_temp = sensTemperatura[i].readings[sensTemperatura[i - 1].readings_size - 1];
 				}
 
 				sensTemperatura[i].readings[j] = sens_temp(ult_temp, comp_rand);
@@ -93,6 +94,9 @@ void sensTemp(int i, int freqTemp)
 				}
 				if (erros == erroMaximo)
 				{
+					//Se eu passar o J não estou a inciializar de novo?
+					//Como é que eu quando encontro um erro recuo 4 leituras e volto a gerar
+
 					int init = j - 4;
 					sensTemp(init, freqTemp);
 				}
@@ -105,12 +109,11 @@ void sensTemp(int i, int freqTemp)
 			while (choice !=6)
 			{
 				printf("\nMenu:\n");
-				printf("1. Generate temperature readings\n");
-				printf("2. Change temperature sensor frequency\n");
-				printf("3. Add temperature sensor\n");
-				printf("4. Remove temperature sensor\n");
-				printf("5. Analyze sensor\n");
-				printf("6. Quit\n");
+				printf("1. Change temperature sensor frequency\n");
+				printf("2. Add temperature sensor\n");
+				printf("3. Remove temperature sensor\n");
+				printf("4. Analyze sensor\n");
+				printf("5. Quit\n");
 
 				int choice;
 				printf("Enter your choice: ");
@@ -118,7 +121,7 @@ void sensTemp(int i, int freqTemp)
 
 				// Mudar a frequencia
 
-				if (choice = 2)
+				if (choice == 1)
 				{
 					printf("Enter the new frequency for temperature readings: ");
 					int new_freq;
@@ -152,7 +155,7 @@ void sensTemp(int i, int freqTemp)
 					}
 				}
 
-				if (choice == 3)
+				if (choice == 2)
 				{
 					// Add a sensor
 					numSensores++;
@@ -169,7 +172,7 @@ void sensTemp(int i, int freqTemp)
 					printf("Sensor added.\n");
 				}
 
-				if (choice == 4)
+				if (choice == 3)
 				{
 					// Remove a sensor
 					if (numSensores == 0)
@@ -209,7 +212,7 @@ void sensTemp(int i, int freqTemp)
 						}
 					}
 				}
-				else if (choice == 3)
+				else if (choice == 2)
 				{
 					int sensor;
 					if (numSensores > 1)
@@ -267,6 +270,8 @@ void sensTemp(int i, int freqTemp)
 	}
 }
 
+
+
 		void sensVelcVento(int i, int freqVelcVento)
 		{
 
@@ -294,6 +299,8 @@ void sensTemp(int i, int freqTemp)
 				ptrVelVento++;
 			}
 		}
+		//Quero que isto receba o meu init
+
 			for (i; i < sizeof(velcvento); i++)
 			{
 				char comp_rand = pcg32_random_r() % 15;
