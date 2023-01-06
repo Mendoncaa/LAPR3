@@ -14,6 +14,8 @@ public class ClosestPointsCheck {
 
     static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
 
+    static LinkedList<ClientsProducers> path = new LinkedList<>();
+
     public static Set<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
 
         ArrayList<ClientsProducers> companies = new ArrayList<>();
@@ -64,36 +66,34 @@ public class ClosestPointsCheck {
 
     public static ArrayList<ClientsProducers> closestProducers (ClientsProducers hub, int n) {
 
-        System.out.println(clpGraph);
-
-        LinkedList<ClientsProducers> path = new LinkedList<>();
+        // System.out.println(clpGraph);
+        ArrayList<ClientsProducers> closestPbuffer = new ArrayList<>();
         ArrayList<ClientsProducers> closestP = new ArrayList<>();
 
         ArrayList<ClientsProducers> producersToFilter = clpGraph.vertices();
         Map<ClientsProducers, Integer> producerDistance = new HashMap<>();
 
-        producersToFilter.removeIf(p -> !p.getType().equalsIgnoreCase("Produtor"));
+        producersToFilter.removeIf(p -> p.getType().equalsIgnoreCase("Produtor"));
 
         //System.out.println(producersToFilter);
 
-        Iterator<ClientsProducers> it1 = clpGraph.vertices().iterator();
+        for (ClientsProducers c : clpGraph.vertices()) {
 
-        while(it1.hasNext()) {
-
-            ClientsProducers c = it1.next();
-
-            if(c.getCode().equalsIgnoreCase("CT5")) {
+            if (c.getLocationID().equalsIgnoreCase(hub.getLocationID())) {
                 hub = c;
             }
         }
 
-        System.out.println(hub);
+        //System.out.println(hub);
 
         for(ClientsProducers p: producersToFilter) {
+            //System.out.println(clpGraph.vertices());
             Integer sPathResults = Algorithms.shortestPath(clpGraph, hub, p, Integer::compare, Integer::sum, 0, path);
-            System.out.println(path);
-            System.out.println(p);
-            System.out.println(sPathResults);
+            //System.out.println(clpGraph.validVertex(hub));
+            //System.out.println(clpGraph.validVertex(p));
+            //System.out.println(path);
+            // System.out.println(p);
+            // System.out.println(sPathResults);
             producerDistance.put(p, sPathResults);
 
             path.clear();
@@ -101,18 +101,24 @@ public class ClosestPointsCheck {
 
         List<Integer> distances = new ArrayList<>(producerDistance.values());
         Collections.sort(distances);
-        int i = 0;
 
-        for(Map.Entry<ClientsProducers, Integer> pD : producerDistance.entrySet()) {
-            if(pD.getValue().equals(distances.get(i))) {
-                closestP.add(pD.getKey());
+        for (Integer distance : distances) {
+            for(Map.Entry<ClientsProducers, Integer> pD : producerDistance.entrySet()) {
+                if (pD.getValue().equals(distance)) {
+                    closestPbuffer.add(pD.getKey());
+                }
             }
-            i++;
+
+
         }
 
-        //System.out.println(producerDistance);
-        //System.out.println(distances);
+        for(int i = 0; i < n; i++) {
+            closestP.add(closestPbuffer.get(i));
+        }
+
         //System.out.println(closestP);
+        //System.out.println(distances);
+        //System.out.println(producerDistance);
 
         return closestP;
     }

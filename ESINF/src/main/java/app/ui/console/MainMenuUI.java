@@ -31,6 +31,7 @@ public class MainMenuUI {
         options.add(new MenuItem("Check current irrigation ", new IrrigationDeviceUI()));
         options.add(new MenuItem("Import basket list", new BasketListUI()));
         options.add(new MenuItem("Generate a dispatch list without any restriction", new ExpeditionListNoRestUI()));
+        options.add(new MenuItem("Generate a dispatch list with N closest producers", new ExpeditionListNClosestUI()));
         options.add(new MenuItem("Debug", new DebugUI()));
 
         int option = 0;
