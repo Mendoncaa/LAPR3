@@ -356,6 +356,7 @@ CREATE TABLE Restricao (
 );
 
 CREATE TABLE Pista_Auditoria(
+    ID INTEGER,
     HoraRealizada TIMESTAMP NOT NULL PRIMARY KEY,
     Utilizador VARCHAR(30) NOT NULL, 
     Campo_id INT NOT NULL,
