@@ -116,10 +116,10 @@ DBMS_OUTPUT.PUT_LINE('Input Hub');
 DBMS_OUTPUT.PUT_LINE('Expected: 5   Actual: '||nr_input_hub);
 DBMS_OUTPUT.PUT_LINE(chr(0));   
 
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(111,1,1,1,'Joaquim',123456789,'j@gmail.com',100000,0,0);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(123,2,2,2,'Joel',123336789,'joel@gmail.com',300000,'CT14',1,10000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(321,3,3,3,'Ricardo',113456789,'ric@gmail.com',10000,'CT10',2,5000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(413,2,4,4,'Tiago',444459999,'tiago@gmail.com',103000,'CT11',0,0);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(111,1,1,'Joaquim',123456789,'j@gmail.com',100000,0,0);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(123,2,2,'Joel',123336789,'joel@gmail.com',300000,'CT14',1,10000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(321,3,3,'Ricardo',113456789,'ric@gmail.com',10000,'CT10',2,5000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(413,2,4,'Tiago',444459999,'tiago@gmail.com',103000,'CT11',0,0);
 SELECT Count(*) INTO nr_cliente from Cliente;
 DBMS_OUTPUT.PUT_LINE('Clientes');
 DBMS_OUTPUT.PUT_LINE('Expected: 4   Actual: '||nr_cliente);
