@@ -47,8 +47,8 @@ void sensTemp(int i, int freqTemp)
 {
 	char tempmin = 0;
 	char tempmax = 55;
-	char temp[3600 / freqTemp * 24];
-	char *ptrTemp = temp;
+	double size= 3600/freqTemp *24;
+	
 
 	int numSensores = 0;
 	printf("Quantos sensores de temperatura deseja criar? \n");
@@ -63,13 +63,9 @@ void sensTemp(int i, int freqTemp)
 		sensTemperatura[i].max_limit = tempmax;
 		sensTemperatura[i].min_limit = tempmin;
 		sensTemperatura[i].frequency = freqTemp;
-		sensTemperatura[i].readings_size = 3600 / freqTemp * 24;
+		sensTemperatura[i].readings_size = size/sizeof(unsigned long);
 		sensTemperatura[i].readings = malloc(sensTemperatura[i].readings_size * sizeof(unsigned long));
-		for (int j = 0; j < sensTemperatura[i].readings_size; j++)
-		{
-			sensTemperatura[i].readings[j] = *ptrTemp;
-			ptrTemp++;
-		}
+		
 
 		for (int i = 0; i < numSensores; i++)
 		{
@@ -83,11 +79,10 @@ void sensTemp(int i, int freqTemp)
 					ult_temp = sensTemperatura[i - 1].readings[sensTemperatura[i - 1].readings_size - 1];
 				}
 
-				sensTemperatura[i].readings[j] = (unsigned short)sens_temp(ult_temp, comp_rand);
-			}
+				sensTemperatura[i].readings[j] = sens_temp(ult_temp, comp_rand);
+			
 
-			for (int j = 0; j < sensTemperatura[i].readings_size; j++)
-			{
+			
 				if (sensTemperatura[i].readings[j] > tempmax || sensTemperatura[i].readings[j] < tempmin)
 				{
 					erros++;
@@ -134,7 +129,8 @@ void sensTemp(int i, int freqTemp)
 						sensTemperatura[i].frequency = new_freq;
 						int old_size = sensTemperatura[i].readings_size;
 
-						sensTemperatura[i].readings_size = 3600 / new_freq * 24;
+						sensTemperatura[i].readings_size = (3600 / new_freq * 24)/sizeof(unsigned long);
+
 						unsigned short *new_readings = malloc(sensTemperatura[i].readings_size * sizeof(unsigned short));
 						int min_size;
 						if (old_size < sensTemperatura[i].readings_size)
