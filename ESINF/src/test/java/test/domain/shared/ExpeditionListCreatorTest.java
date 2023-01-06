@@ -1,28 +1,27 @@
 package test.domain.shared;
 
-import app.controller.App;
 import app.domain.model.ClientBasket;
 import app.domain.model.ClientsProducers;
+import app.domain.model.ExpeditionList;
 import app.domain.model.Product;
-import app.domain.shared.FilesReaderApp;
+import app.domain.shared.ExpeditionListCreator;
 import app.graph.map.MapGraph;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static app.domain.shared.FilesReaderApp.isConnected;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class FilesReaderAppTest {
+public class ExpeditionListCreatorTest {
 
     MapGraph<ClientsProducers, Integer> testMap = new MapGraph<>(false);
-    Map<Integer,ArrayList<ClientBasket>> stockExpected = new TreeMap<>();
-    Map<Integer,ArrayList<ClientBasket>> ordersExpected = new TreeMap<>();
-
+    Map<Integer, ArrayList<ClientBasket>> stockExpected = new TreeMap<>();
+    Map<Integer, ArrayList<ClientBasket>> ordersExpected = new TreeMap<>();
 
 
     @BeforeEach
@@ -99,19 +98,6 @@ class FilesReaderAppTest {
         testMap.addEdge(e3, e4, 162527);
         testMap.addEdge(e3, p2, 100563);
         testMap.addEdge(e3, p1, 111134);
-
-        /*
-        "Clientes-Produtores","Dia","Prod1","Prod2","Prod3","Prod4","Prod5","Prod6","Prod7","Prod8","Prod9","Prod10","Prod11","Prod12"
-        "C1",1,0,0,0,0,5,2,0,0,0,0,2.5,0
-        "C2",1,0,5.5,4.5,0,4,0,0,0,1,9,10,0
-        "C1",2,4.5,6,3.5,0,4,0,9,3,0,5.5,1.5,0
-        "C2",2,9,7,0,1.5,6,0,5,0,5,10,1,3
-        "P1",1,0,7.5,9,2,6,0,8.5,3,3.5,9,1,0
-        "P1",2,3,0,0,0,4.5,4,0,4,5,0,0,2.5
-        "P2",1,7.5,6.5,1.5,7,4,2.5,4.5,3.5,1,0,0,0
-        "P2",2,0,0,2.5,0,5,7.5,8.5,0,3,0,0,8.5
-
-         */
 
         ArrayList<Product> productsC1 = new ArrayList<>();
         ArrayList<Product> productsC2 = new ArrayList<>();
@@ -219,14 +205,102 @@ class FilesReaderAppTest {
         Product pr83 = new Product("Prod11", 0);
         Product pr84 = new Product("Prod12", 8.5f);
 
-        productsC1.add(pr1);productsC1.add(pr2);productsC1.add(pr3);productsC1.add(pr4);productsC1.add(pr5);productsC1.add(pr6);productsC1.add(pr7);productsC1.add(pr8);productsC1.add(pr9);productsC1.add(pr10);productsC1.add(pr11);productsC1.add(pr12);
-        productsC2.add(pr13);productsC2.add(pr14);productsC2.add(pr15);productsC2.add(pr16);productsC2.add(pr17);productsC2.add(pr18);productsC2.add(pr19);productsC2.add(pr20);productsC2.add(pr21);productsC2.add(pr22);productsC2.add(pr23);productsC2.add(pr24);
-        products2C1.add(pr25);products2C1.add(pr26);products2C1.add(pr27);products2C1.add(pr28);products2C1.add(pr29);products2C1.add(pr30);products2C1.add(pr31);products2C1.add(pr32);products2C1.add(pr33);products2C1.add(pr34);products2C1.add(pr35);products2C1.add(pr36);
-        products2C2.add(pr85);products2C2.add(pr86);products2C2.add(pr87);products2C2.add(pr88);products2C2.add(pr89);products2C2.add(pr90);products2C2.add(pr91);products2C2.add(pr92);products2C2.add(pr93);products2C2.add(pr94);products2C2.add(pr95);products2C2.add(pr96);
-        productsP1.add(pr37);productsP1.add(pr38);productsP1.add(pr39);productsP1.add(pr40);productsP1.add(pr41);productsP1.add(pr42);productsP1.add(pr43);productsP1.add(pr44);productsP1.add(pr45);productsP1.add(pr46);productsP1.add(pr47);productsP1.add(pr48);
-        productsP2.add(pr49);productsP2.add(pr50);productsP2.add(pr51);productsP2.add(pr52);productsP2.add(pr53);productsP2.add(pr54);productsP2.add(pr55);productsP2.add(pr56);productsP2.add(pr57);productsP2.add(pr58);productsP2.add(pr59);productsP2.add(pr60);
-        products2P1.add(pr61);products2P1.add(pr62);products2P1.add(pr63);products2P1.add(pr64);products2P1.add(pr65);products2P1.add(pr66);products2P1.add(pr67);products2P1.add(pr68);products2P1.add(pr69);products2P1.add(pr70);products2P1.add(pr71);products2P1.add(pr72);
-        products2P2.add(pr73);products2P2.add(pr74);products2P2.add(pr75);products2P2.add(pr76);products2P2.add(pr77);products2P2.add(pr78);products2P2.add(pr79);products2P2.add(pr80);products2P2.add(pr81);products2P2.add(pr82);products2P2.add(pr83);products2P2.add(pr84);
+        productsC1.add(pr1);
+        productsC1.add(pr2);
+        productsC1.add(pr3);
+        productsC1.add(pr4);
+        productsC1.add(pr5);
+        productsC1.add(pr6);
+        productsC1.add(pr7);
+        productsC1.add(pr8);
+        productsC1.add(pr9);
+        productsC1.add(pr10);
+        productsC1.add(pr11);
+        productsC1.add(pr12);
+        productsC2.add(pr13);
+        productsC2.add(pr14);
+        productsC2.add(pr15);
+        productsC2.add(pr16);
+        productsC2.add(pr17);
+        productsC2.add(pr18);
+        productsC2.add(pr19);
+        productsC2.add(pr20);
+        productsC2.add(pr21);
+        productsC2.add(pr22);
+        productsC2.add(pr23);
+        productsC2.add(pr24);
+        products2C1.add(pr25);
+        products2C1.add(pr26);
+        products2C1.add(pr27);
+        products2C1.add(pr28);
+        products2C1.add(pr29);
+        products2C1.add(pr30);
+        products2C1.add(pr31);
+        products2C1.add(pr32);
+        products2C1.add(pr33);
+        products2C1.add(pr34);
+        products2C1.add(pr35);
+        products2C1.add(pr36);
+        products2C2.add(pr85);
+        products2C2.add(pr86);
+        products2C2.add(pr87);
+        products2C2.add(pr88);
+        products2C2.add(pr89);
+        products2C2.add(pr90);
+        products2C2.add(pr91);
+        products2C2.add(pr92);
+        products2C2.add(pr93);
+        products2C2.add(pr94);
+        products2C2.add(pr95);
+        products2C2.add(pr96);
+        productsP1.add(pr37);
+        productsP1.add(pr38);
+        productsP1.add(pr39);
+        productsP1.add(pr40);
+        productsP1.add(pr41);
+        productsP1.add(pr42);
+        productsP1.add(pr43);
+        productsP1.add(pr44);
+        productsP1.add(pr45);
+        productsP1.add(pr46);
+        productsP1.add(pr47);
+        productsP1.add(pr48);
+        productsP2.add(pr49);
+        productsP2.add(pr50);
+        productsP2.add(pr51);
+        productsP2.add(pr52);
+        productsP2.add(pr53);
+        productsP2.add(pr54);
+        productsP2.add(pr55);
+        productsP2.add(pr56);
+        productsP2.add(pr57);
+        productsP2.add(pr58);
+        productsP2.add(pr59);
+        productsP2.add(pr60);
+        products2P1.add(pr61);
+        products2P1.add(pr62);
+        products2P1.add(pr63);
+        products2P1.add(pr64);
+        products2P1.add(pr65);
+        products2P1.add(pr66);
+        products2P1.add(pr67);
+        products2P1.add(pr68);
+        products2P1.add(pr69);
+        products2P1.add(pr70);
+        products2P1.add(pr71);
+        products2P1.add(pr72);
+        products2P2.add(pr73);
+        products2P2.add(pr74);
+        products2P2.add(pr75);
+        products2P2.add(pr76);
+        products2P2.add(pr77);
+        products2P2.add(pr78);
+        products2P2.add(pr79);
+        products2P2.add(pr80);
+        products2P2.add(pr81);
+        products2P2.add(pr82);
+        products2P2.add(pr83);
+        products2P2.add(pr84);
 
         ClientBasket basket1 = new ClientBasket(c1, productsC1);
         ClientBasket basket2 = new ClientBasket(c2, productsC2);
@@ -254,46 +328,91 @@ class FilesReaderAppTest {
     }
 
     @Test
-    public void testReadIrrigationDeviceFile() {
-        Assertions.assertTrue(FilesReaderApp.readIrrigationDeviceFile(new File("src/files/wateringController.csv")));
-        Assertions.assertFalse(FilesReaderApp.readIrrigationDeviceFile(new File("src/files/wateringController.txt")));
+    public void thereIsProduct() {
+
+        ArrayList<ClientBasket> baskets = new ArrayList<>();
+        ArrayList<ClientBasket> old = new ArrayList<>();
+        ArrayList<ClientBasket> recent = new ArrayList<>();
+
+        ClientsProducers c1 = new ClientsProducers("CT1", 40.6389f, -8.6553f, "P1");
+        ClientsProducers c2 = new ClientsProducers("CT2", 38.0333f, -7.8833f, "P2");
+        ClientsProducers p1 = new ClientsProducers("PT1", 40.6389f, -8.6553f, "P1");
+
+        ClientBasket basket = new ClientBasket(c1, new ArrayList<>());
+        basket.getProducts().add(new Product("Prod1", 0));
+        basket.getProducts().add(new Product("Prod2", 1));
+
+        ClientBasket basket2 = new ClientBasket(c2, new ArrayList<>());
+        basket2.getProducts().add(new Product("Prod1", 1));
+        basket2.getProducts().add(new Product("Prod2", 1));
+
+        baskets.add(basket);
+        baskets.add(basket2);
+
+        Assertions.assertEquals(ExpeditionListCreator.thereIsProduct(baskets, old, recent, new Product("Prod2", 0), p1).getCode(), c2.getCode());
+    }
+
+    @Test
+    public void returnProductID(){
+        ClientsProducers c1 = new ClientsProducers("CT1", 40.6389f, -8.6553f, "P1");
+        ClientBasket basket = new ClientBasket(c1, new ArrayList<>());
+        basket.getProducts().add(new Product("Prod1", 0));
+        basket.getProducts().add(new Product("Prod2", 1));
+
+        Assertions.assertEquals(ExpeditionListCreator.returnProductID(basket, new Product("Prod2", 0)), 1);
+        Assertions.assertNotEquals(ExpeditionListCreator.returnProductID(basket, new Product("Prod2", 0)), 0);
+        Assertions.assertEquals(ExpeditionListCreator.returnProductID(basket, new Product("Prod3", 0)), -1);
     }
 
 
     @Test
-    void testIsConnected() {
+    public void findProductOwnerID(){
 
-        ArrayList<ClientsProducers> cp = testMap.vertices();
-        ClientsProducers c1 = cp.get(0);
-        boolean connected = isConnected(testMap, c1, cp);
-        Assertions.assertTrue(connected);
+        ArrayList<ClientBasket> baskets = new ArrayList<>();
+        ClientsProducers c1 = new ClientsProducers("CT1", 40.6389f, -8.6553f, "P1");
+        ClientsProducers c2 = new ClientsProducers("CT2", 38.0333f, -7.8833f, "P2");
+        ClientsProducers p1 = new ClientsProducers("PT1", 40.6389f, -8.6553f, "P3");
 
+        ClientBasket basket = new ClientBasket(c1, new ArrayList<>());
+        basket.getProducts().add(new Product("Prod1", 0));
+        basket.getProducts().add(new Product("Prod2", 1));
+
+        ClientBasket basket2 = new ClientBasket(c2, new ArrayList<>());
+        basket2.getProducts().add(new Product("Prod1", 1));
+        basket2.getProducts().add(new Product("Prod2", 1));
+
+        baskets.add(basket);
+        baskets.add(basket2);
+
+        Assertions.assertEquals(ExpeditionListCreator.findProductOwnerID(baskets, c1, 0), 0);
+        Assertions.assertEquals(ExpeditionListCreator.findProductOwnerID(baskets, c2, 0), 1);
+        Assertions.assertEquals(ExpeditionListCreator.findProductOwnerID(baskets, p1, 0), -1);
     }
 
     @Test
-    void readProducerCSV() {
+    public void findProductSurplus(){
 
-        File graphVertexFileSmall = new File("../ESINF/src/files/Small/clientes-produtores_small.csv");
-        File graphEdgeFileSmall = new File("../ESINF/src/files/Small/distancias_small.csv");
-        FilesReaderApp.readProducerCSV(graphVertexFileSmall,graphEdgeFileSmall);
-        MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+        ArrayList<ClientBasket> baskets = new ArrayList<>();
+        ClientsProducers c1 = new ClientsProducers("CT1", 40.6389f, -8.6553f, "P1");
+        ClientsProducers c2 = new ClientsProducers("CT2", 38.0333f, -7.8833f, "P2");
+        ClientsProducers p1 = new ClientsProducers("PT1", 40.6389f, -8.6553f, "P3");
 
-        Assertions.assertEquals(testMap.vertices().size(), clpGraph.vertices().size());
-        Assertions.assertEquals(testMap.edges().size(), clpGraph.edges().size());
+        ClientBasket basket = new ClientBasket(c1, new ArrayList<>());
+        basket.getProducts().add(new Product("Prod1", 0));
+        basket.getProducts().add(new Product("Prod2", 1));
+
+        ClientBasket basket2 = new ClientBasket(c2, new ArrayList<>());
+        basket2.getProducts().add(new Product("Prod1", 1));
+        basket2.getProducts().add(new Product("Prod2", 1));
+
+        baskets.add(basket);
+        baskets.add(basket2);
+
+        Assertions.assertEquals(ExpeditionListCreator.findProductSurplus(baskets, new Product("Prod1",0),1,0), 0);
+        Assertions.assertEquals(ExpeditionListCreator.findProductSurplus(baskets, new Product("Prod2",0),0,0), 1);
+        Assertions.assertEquals(ExpeditionListCreator.findProductSurplus(baskets, new Product("Prod3",0),1,0), -1);
 
     }
 
-    @Test
-    void readBasketList() {
-        File graphVertexFileSmall = new File("../ESINF/src/files/Small/clientes-produtores_small.csv");
-        File graphEdgeFileSmall = new File("../ESINF/src/files/Small/distancias_small.csv");
-        FilesReaderApp.readProducerCSV(graphVertexFileSmall,graphEdgeFileSmall);
-        File basketListFile = new File("src/files/cabazes_test.csv");
-        FilesReaderApp.importBasketList(basketListFile);
-        Map<Integer,ArrayList<ClientBasket>> stock = App.getInstance().getCompany().getStock().getStock();
-        Map<Integer,ArrayList<ClientBasket>> orders = App.getInstance().getCompany().getOrders().getOrders();
-
-        Assertions.assertEquals(stockExpected.size(), stock.size());
-        Assertions.assertEquals(ordersExpected.size(), orders.size());
-    }
 }
+

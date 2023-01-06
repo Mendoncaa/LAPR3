@@ -450,7 +450,7 @@ public class ExpeditionListCreator {
         }
     }
 
-    private static int findProductSurplus(ArrayList<ClientBasket> stock, Product product, int cpId, int idx) {
+    public static int findProductSurplus(ArrayList<ClientBasket> stock, Product product, int cpId, int idx) {
         if (idx >= stock.get(cpId).getProducts().size()) return -1;
 
         if (stock.get(cpId).getProducts().get(idx).getName().equalsIgnoreCase(product.getName()) && stock.get(cpId).getProducts().get(idx).getQuantity() > 0) {
