@@ -73,7 +73,7 @@ public class ClosestPointsCheck {
         ArrayList<ClientsProducers> producersToFilter = clpGraph.vertices();
         Map<ClientsProducers, Integer> producerDistance = new HashMap<>();
 
-        producersToFilter.removeIf(p -> p.getType().equalsIgnoreCase("Produtor"));
+        producersToFilter.removeIf(p -> !p.getType().equalsIgnoreCase("Produtor"));
 
         //System.out.println(producersToFilter);
 

@@ -395,7 +395,7 @@ public class ExpeditionListCreator {
                 }
 
                 expeditionListSet.add(expeditionList);
-
+                producersFiltered.clear();
             }
         }
         return expeditionListSet;

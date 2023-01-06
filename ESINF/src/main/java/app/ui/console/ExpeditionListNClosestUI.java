@@ -30,7 +30,8 @@ public class ExpeditionListNClosestUI implements Runnable {
                 int day = getDay();
                 if (day > 0 && day <= App.getInstance().getCompany().getOrders().getOrders().size()) move = true;
 
-                int n = Integer.parseInt(Objects.requireNonNull(Utils.readLineFromConsole("\nNumber of producers: ")));
+                int n = Integer.parseInt(Objects.requireNonNull(Utils.readLineFromConsole("\nNumber of closest producers: ")));
+
 
                 if (move) {
                     SurplusCalculator.CalculateSurplus(day);
