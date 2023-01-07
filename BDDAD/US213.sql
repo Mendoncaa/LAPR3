@@ -15,7 +15,7 @@ CREATE OR REPLACE TRIGGER upPista_Auditoria
 END;
 
 --Trigger que permite a utilização de delete--
-CREATE OR REPLACE TRIGGER dePistaAuditoria
+CREATE OR REPLACE TRIGGER dePista_Auditoria
     AFTER DELETE ON campo
     FOR EACH ROW
     BEGIN
