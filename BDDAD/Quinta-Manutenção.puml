@@ -152,20 +152,19 @@ entity Plano_Aplicacao_Fator_Producao {
     * Plano_ID: INTEGER <<PK>> <<FK>>
     --
 }
-entity PistaAuditoria{
+entity Pista_Auditoria{
     * ID: INTEGER <<PK>>
     Campo_ID: INTEGER <<PK>> <<FK>>
     --
     HoraRealizada: DATE NOT NULL
     Utilizador: VARCHAR2(255) NOT NULL
-    Tabela: VARCHAR2(255) NOT NULL
     TipoAlteracao: VARCHAR2(7) NOT NULL
 }
 
 
 Campo ||-d-|{ Plantacao
 Campo ||-u-|{ Restricao
-Campo ||-u-|{ PistaAuditoria
+Campo ||-u-|{ Pista_Auditoria
 
 Cultura ||-r-|{ Plantacao
 
