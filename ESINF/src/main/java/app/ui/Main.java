@@ -1,6 +1,5 @@
 package app.ui;
 
-import app.domain.shared.FilesReaderApp;
 import app.ui.console.MainMenuUI;
 
 

@@ -10,13 +10,16 @@ import java.io.FileNotFoundException;
 
 public class BasketListUI implements Runnable {
 
+    String path = "ESINF/src/files/Small/cabazes_small.csv";
+
+    //String path = "ESINF/src/files/Big/cabazes_big.csv";
     private BasketListController controller = new BasketListController();
 
     @Override
     public void run() {
         System.out.println("\n###        Basket list        ###");
         App.getInstance().getCompany().getStock().getStock().clear();
-        String path = Utils.readLineFromConsole("\nFile path to read: ");
+        //String path = Utils.readLineFromConsole("\nFile path to read: ");
         if (path != null) {
             Pair<Integer, Integer> result = this.controller.importBasketList(new File(path));
             if (result != null) {

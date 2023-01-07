@@ -14,6 +14,7 @@ public class ClosestPointsCheck {
 
     static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
 
+    static  ArrayList<ClientsProducers> availableHubs = App.getInstance().getCompany().getHubStore().getHubs();
     static LinkedList<ClientsProducers> path = new LinkedList<>();
 
     public static Set<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
@@ -54,7 +55,7 @@ public class ClosestPointsCheck {
         Set<HubAndDist> topHubs = new TreeSet<>(new DistanceComparator());
 
         for (int i = 0; i < paths.size(); i++) {
-            if (paths.get(i).getLast().getType().equalsIgnoreCase("Empresa")) {
+            if (paths.get(i).getLast().getType().equalsIgnoreCase("Empresa") && availableHubs.contains(paths.get(i).getLast())) {
                 topHubs.add(new HubAndDist(paths.get(i).getLast(), dists.get(i)));
             }
         }
@@ -66,7 +67,6 @@ public class ClosestPointsCheck {
 
     public static ArrayList<ClientsProducers> closestProducers (ClientsProducers hub, int n) {
 
-        // System.out.println(clpGraph);
         ArrayList<ClientsProducers> closestPbuffer = new ArrayList<>();
         ArrayList<ClientsProducers> closestP = new ArrayList<>();
 
@@ -75,8 +75,6 @@ public class ClosestPointsCheck {
 
         producersToFilter.removeIf(p -> !p.getType().equalsIgnoreCase("Produtor"));
 
-        //System.out.println(producersToFilter);
-
         for (ClientsProducers c : clpGraph.vertices()) {
 
             if (c.getLocationID().equalsIgnoreCase(hub.getLocationID())) {
@@ -84,16 +82,10 @@ public class ClosestPointsCheck {
             }
         }
 
-        //System.out.println(hub);
-
         for(ClientsProducers p: producersToFilter) {
-            //System.out.println(clpGraph.vertices());
+
             Integer sPathResults = Algorithms.shortestPath(clpGraph, hub, p, Integer::compare, Integer::sum, 0, path);
-            //System.out.println(clpGraph.validVertex(hub));
-            //System.out.println(clpGraph.validVertex(p));
-            //System.out.println(path);
-            // System.out.println(p);
-            // System.out.println(sPathResults);
+
             producerDistance.put(p, sPathResults);
 
             path.clear();
@@ -108,17 +100,11 @@ public class ClosestPointsCheck {
                     closestPbuffer.add(pD.getKey());
                 }
             }
-
-
         }
 
         for(int i = 0; i < n; i++) {
             closestP.add(closestPbuffer.get(i));
         }
-
-        //System.out.println(closestP);
-        //System.out.println(distances);
-        //System.out.println(producerDistance);
 
         return closestP;
     }
