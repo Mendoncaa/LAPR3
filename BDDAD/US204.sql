@@ -27,6 +27,7 @@ nr_tipo_sensores INTEGER;
 nr_sensores INTEGER;
 nr_Leituras INTEGER;
 nr_input_hub INTEGER;
+nr_pista_auditoria INTEGER;
 
 BEGIN   
 DBMS_OUTPUT.PUT_LINE(chr(0));
@@ -285,6 +286,14 @@ INSERT INTO Restricao VALUES (2, 2, TO_DATE('07/02/2020', 'DD/MM/YYYY'), TO_DATE
 INSERT INTO Restricao VALUES (3, 2, TO_DATE('16/07/2023', 'DD/MM/YYYY'), TO_DATE('25/12/2023', 'DD/MM/YYYY'));
 INSERT INTO Restricao VALUES (3, 3, TO_DATE('29/12/2021', 'DD/MM/YYYY'), TO_DATE('01/01/2022', 'DD/MM/YYYY'));
 INSERT INTO Restricao VALUES (3, 4, TO_DATE('08/05/2022', 'DD/MM/YYYY'), TO_DATE('06/06/2022', 'DD/MM/YYYY'));
+
+insert into Pista_Auditoria(ID, HoraRealizada, Utilizador, Campo_id, Tipo_alteracao) VALUES(1,'21:21', 'Cliente ', 4,'UPDATE');
+insert into Pista_Auditoria(ID, HoraRealizada, Utilizador, Campo_id, Tipo_alteracao) VALUES(1,'11:14', 'Cliente' , 4,'DELETE');
+insert into Pista_Auditoria(ID, HoraRealizada, Utilizador, Campo_id, Tipo_alteracao) VALUES(1,'12:21', 'Cliente' , 4,'INSERT');
+SELECT Count(*) INTO nr_pista_auditoria from Pista_Auditoria;
+DBMS_OUTPUT.PUT_LINE('Pista Auditoria');
+DBMS_OUTPUT.PUT_LINE('Expected: 3 Actual: '||nr_pista_auditoria);
+DBMS_OUTPUT.PUT_LINE(chr(0));
 
 END;
 /
