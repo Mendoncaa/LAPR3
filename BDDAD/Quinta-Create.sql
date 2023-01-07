@@ -361,6 +361,5 @@ CREATE TABLE Pista_Auditoria(
     Utilizador VARCHAR(30) NOT NULL, 
     Campo_id INT NOT NULL,
     Tipo_alteracao VARCHAR(7) NOT NULL,
-    Tabela VARCHAR(255),
     CONSTRAINT PISTA_AUDITORIA_CAMPO_ID_FK FOREIGN KEY (Campo_ID) REFERENCES Campo(ID)
 );
