@@ -123,178 +123,171 @@ void sensTemp(int i, int freqTemp)
 	int choice;
 	while (1)
 	{
-		while (choice != 6)
+		printf("\nMenu:\n");
+		printf("1. Change temperature sensor frequency\n");
+		printf("2. Add temperature sensor\n");
+		printf("3. Remove temperature sensor\n");
+		printf("4. Analyze sensor\n");
+
+		int choice;
+		printf("Enter your choice: ");
+		scanf("%d", &choice);
+
+		// Mudar a frequencia
+
+		if (choice == 1)
 		{
-			printf("\nMenu:\n");
-			printf("1. Change temperature sensor frequency\n");
-			printf("2. Add temperature sensor\n");
-			printf("3. Remove temperature sensor\n");
-			printf("4. Analyze sensor\n");
-			printf("5. Quit\n");
+			printf("Enter the new frequency for temperature readings: ");
+			int new_freq;
+			scanf("%d", &new_freq);
 
-			int choice;
-			printf("Enter your choice: ");
-			scanf("%d", &choice);
-
-			// Mudar a frequencia
-
-			if (choice == 1)
+			for (int i = 0; i < numSensores; i++)
 			{
-				printf("Enter the new frequency for temperature readings: ");
-				int new_freq;
-				scanf("%d", &new_freq);
+				sensTemperatura[i].frequency = new_freq;
+				int old_size = sensTemperatura[i].readings_size;
 
-				for (int i = 0; i < numSensores; i++)
+				sensTemperatura[i].readings_size = (3600 / new_freq * 24) / sizeof(unsigned long);
+
+				unsigned short *new_readings = malloc(sensTemperatura[i].readings_size * sizeof(unsigned short));
+				int min_size;
+				if (old_size < sensTemperatura[i].readings_size)
 				{
-					sensTemperatura[i].frequency = new_freq;
-					int old_size = sensTemperatura[i].readings_size;
-
-					sensTemperatura[i].readings_size = (3600 / new_freq * 24) / sizeof(unsigned long);
-
-					unsigned short *new_readings = malloc(sensTemperatura[i].readings_size * sizeof(unsigned short));
-					int min_size;
-					if (old_size < sensTemperatura[i].readings_size)
-					{
-						min_size = old_size;
-					}
-					else
-					{
-						min_size = sensTemperatura[i].readings_size;
-					}
-
-					for (int j = 0; j < min_size; j++)
-					{
-						new_readings[j] = sensTemperatura[i].readings[j];
-					}
-
-					free(sensTemperatura[i].readings);
-					sensTemperatura[i].readings = new_readings;
-				}
-			}
-
-			if (choice == 2)
-			{
-				// Add a sensor
-				numSensores++;
-				sensTemperatura = realloc(sensTemperatura, numSensores * sizeof(Sensor));
-
-				sensTemperatura[numSensores - 1].id = numSensores;
-				sensTemperatura[numSensores - 1].sensor_type = 84;
-				sensTemperatura[numSensores - 1].max_limit = tempmax;
-				sensTemperatura[numSensores - 1].min_limit = tempmin;
-				sensTemperatura[numSensores - 1].frequency = freqTemp;
-				sensTemperatura[numSensores - 1].readings_size = 3600 / freqTemp * 24;
-				sensTemperatura[numSensores - 1].readings = malloc(sensTemperatura[i].readings_size * sizeof(unsigned short));
-
-				printf("Sensor added.\n");
-
-				for (int j = 0; j < sensTemperatura[i].readings_size; j++)
-				{
-					char comp_rand = pcg32_random_r() % 3;
-
-					if (j != 0)
-					{
-						// ult_temp = sensTemperatura[i - 1].readings[sensTemperatura[i - 1].readings_size - 1]; Quero ir buscar o sensor atual?
-						ult_temp = sensTemperatura[i].readings[j - 1];
-					}
-
-					sensTemperatura[i].readings[j] = (char)sens_temp(ult_temp, comp_rand);
-					printf("%d\n", sensTemperatura[i].readings[j]);
-
-					if (sensTemperatura[i].readings[j] > tempmax || sensTemperatura[i].readings[j] < tempmin)
-					{
-						erros++;
-					}
-					else
-					{
-						erros = 0;
-					}
-					if (erros == erroMaximo)
-					{
-						// Se eu passar o J não estou a incializar de novo?
-						// Como é que eu quando encontro um erro recuo 4 leituras e volto a gerar
-
-						j = j - 4;
-						seed();
-					}
-				}
-			}
-
-			if (choice == 3)
-			{
-				// Remove a sensor
-				if (numSensores == 0)
-				{
-					printf("No sensors to remove.\n");
+					min_size = old_size;
 				}
 				else
 				{
-					printf("Enter the ID of the sensor to remove: ");
-					int id;
-					scanf("%d", &id);
+					min_size = sensTemperatura[i].readings_size;
+				}
 
-					int found = 0;
-					for (int i = 0; i < numSensores; i++)
+				for (int j = 0; j < min_size; j++)
+				{
+					new_readings[j] = sensTemperatura[i].readings[j];
+				}
+
+				free(sensTemperatura[i].readings);
+				sensTemperatura[i].readings = new_readings;
+			}
+		} else if (choice == 2)
+		{
+			// Add a sensor
+			numSensores++;
+			sensTemperatura = realloc(sensTemperatura, numSensores * sizeof(Sensor));
+
+			sensTemperatura[numSensores - 1].id = numSensores;
+			sensTemperatura[numSensores - 1].sensor_type = 84;
+			sensTemperatura[numSensores - 1].max_limit = tempmax;
+			sensTemperatura[numSensores - 1].min_limit = tempmin;
+			sensTemperatura[numSensores - 1].frequency = freqTemp;
+			sensTemperatura[numSensores - 1].readings_size = 3600 / freqTemp * 24;
+			sensTemperatura[numSensores - 1].readings = malloc(sensTemperatura[i].readings_size * sizeof(unsigned short));
+			for (int j = 0; j < sensTemperatura[i].readings_size; j++)
+			{
+				char comp_rand = pcg32_random_r() % 3;
+
+				if (j != 0)
+				{
+					// ult_temp = sensTemperatura[i - 1].readings[sensTemperatura[i - 1].readings_size - 1]; Quero ir buscar o sensor atual?
+					ult_temp = sensTemperatura[i].readings[j - 1];
+				}
+
+				sensTemperatura[numSensores-1].readings[j] = (char)sens_temp(ult_temp, comp_rand);
+				// printf("%d\n", sensTemperatura[i].readings[j]);
+
+				if (sensTemperatura[numSensores-1].readings[j] > tempmax || sensTemperatura[numSensores-1].readings[j] < tempmin)
+				{
+					erros++;
+				}
+				else
+				{
+					erros = 0;
+				}
+				if (erros == erroMaximo)
+				{
+					j = j - 4;
+					seed();
+				}
+			}
+			printf("Sensor added.\n");
+		} else if (choice == 3)
+		{
+			// Remove a sensor
+			if (numSensores == 0)
+			{
+				printf("No sensors to remove.\n");
+			}
+			else
+			{
+				printf("Enter the ID of the sensor to remove: ");
+				int id;
+				scanf("%d", &id);
+
+				int found = 0;
+				for (int i = 0; i < numSensores; i++)
+				{
+					if (sensTemperatura[i].id == id)
 					{
-						if (sensTemperatura[i].id == id)
+						found = 1;
+						free(sensTemperatura[i].readings);
+						for (int j = i; j < numSensores - 1; j++)
 						{
-							found = 1;
-							free(sensTemperatura[i].readings);
-							for (int j = i; j < numSensores - 1; j++)
-							{
-								sensTemperatura[j] = sensTemperatura[j + 1];
-							}
-							numSensores--;
-							sensTemperatura = realloc(sensTemperatura, numSensores * sizeof(Sensor));
-							break;
+							sensTemperatura[j] = sensTemperatura[j + 1];
 						}
-					}
-
-					if (found)
-					{
-						printf("Sensor removed.\n");
-					}
-					else
-					{
-						printf("Sensor not found.\n");
+						numSensores--;
+						sensTemperatura = realloc(sensTemperatura, numSensores * sizeof(Sensor));
+						break;
 					}
 				}
-			}
-			else if (choice == 4)
-			{
-				int sensor;
-				if (numSensores > 1)
+
+				if (found)
 				{
-					printf("Qual sensor deseja analisar? \n");
-					for (int i = 0; i < numSensores; i++)
-					{
-						printf("Sensor %d \n", sensTemperatura[i].id);
-					}
-					scanf("%d", &sensor);
-					while (sensor == 0)
-					{
-						printf("Sensor invalido, tente novamente \n");
-						scanf("%d", &sensor);
-					}
+					printf("Sensor removed.\n");
 				}
 				else
 				{
-					sensor = 1;
-				}
-				printf("Sensor de Temperatura: \n");
-				for (int i = 0; i < numSensores; i++)
-				{
-					printf("Sensor %d: \n", sensTemperatura[i].id);
-					printf("%ld", sensTemperatura[i].readings_size);
-					for (int j = 0; i < sensTemperatura[i].readings[j]; j++)
-					{
-						printf("%d, ", sensTemperatura[i].readings[j]);
-					}
-					printf("\n");
+					printf("Sensor not found.\n");
 				}
 			}
+		} else if (choice == 4)
+		{
+			break;
+		}
+		else
+		{
+			printf("Opção inválida. \n");
 		}
 	}
+	int opcao;
+		if (numSensores > 1)
+		{
+			printf("Qual sensor deseja analisar? \n");
+			for (int i = 0; i < numSensores; i++)
+			{
+				printf("Sensor %d \n", sensTemperatura[i].id);
+			}
+			scanf("%d", &opcao);
+			while (opcao == 0)
+			{
+				printf("Sensor invalido, tente novamente \n");
+				scanf("%d", &opcao);
+			}
+		}
+		else
+		{
+			opcao = 1;
+		}
+	FILE *ficheiro = fopen("leituras.csv", "w");
+		fprintf(ficheiro, "Sensor de Temperatura: \n");
+		for (int i = 0; i < numSensores; i++)
+		{
+			fprintf(ficheiro, "Sensor %d: \n", sensTemperatura[i].id);
+			// printf("%ld", sensTemperatura[i].readings_size);
+			for (int j = 0; i < sensTemperatura[i].readings[j]; j++)
+			{
+				fprintf(ficheiro, "%d, ", sensTemperatura[i].readings[j]);
+			}
+			fprintf(ficheiro, "\n");
+		}
+		fclose(ficheiro);
 	for (int j = 0; j < numSensores; j++)
 	{
 		for (int i = 0; i < sensTemperatura[j].readings_size; i++)
@@ -320,11 +313,11 @@ void sensTemp(int i, int freqTemp)
 
 	valorMinimo = 500, valorMaximo = 0, contador = 0, media = 0, soma = 0, i = 0, j = 0;
 
-for (int i = 0; i < numSensores; i++)
-{
-	free(sensTemperatura[i].readings);
-	sensTemperatura[i].readings = NULL;
-}
+	for (int i = 0; i < numSensores; i++)
+	{
+		free(sensTemperatura[i].readings);
+		sensTemperatura[i].readings = NULL;
+	}
 }
 
 void sensVelcVento(int i, int freqVelcVento)
