@@ -11,26 +11,31 @@ import java.util.*;
 
 public class ExpeditionListShortestPath {
 
-    static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+    static Map<ClientsProducers, Integer> hubBaskets = new HashMap<>();
 
-    static  ArrayList<ClientsProducers> availableHubs = App.getInstance().getCompany().getHubStore().getHubs();
-    private static ClientsProducers current;
-    private static ClientsProducers cHub;
-    private static ArrayList<BasketElement> beBuffer;
-    private static ArrayList<ClientsProducers> proExpList = new ArrayList<>();
-    private static final ArrayList<ClientsProducers> hubList = new ArrayList<>();
+    static Map<ArrayList<String>, Integer> distancesPair = new HashMap<>();
 
-    private static  ArrayList<ClientsProducers> bufferPathDistances = new ArrayList<>();
-    private static final LinkedList<ClientsProducers> proPath = new LinkedList<>();
-    private static final LinkedList<ClientsProducers> hubPath = new LinkedList<>();
-    private static final LinkedList<ClientsProducers> bridgePath = new LinkedList<>();
-    private static final LinkedList<ClientsProducers> finalPath = new LinkedList<>();
-    private static List<LinkedList<ClientsProducers>> pCombinations = new LinkedList<>();
-    private static List<LinkedList<ClientsProducers>> hCombinations = new LinkedList<>();
-    public static final Map<ClientsProducers, Integer> hubBaskets = new HashMap<>();
+    static double totalDistance = 0;
+
     public static LinkedList<String> getExpListShortestPath(ArrayList<ExpeditionList> expList) {
 
-        double totalDistance = 0;
+        MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+        ArrayList<ClientsProducers> availableHubs = App.getInstance().getCompany().getHubStore().getHubs();
+
+        ClientsProducers current;
+        ClientsProducers cHub;
+        ArrayList<BasketElement> beBuffer;
+        ArrayList<ClientsProducers> proExpList = new ArrayList<>();
+
+        ArrayList<ClientsProducers> hubList = new ArrayList<>();
+
+        LinkedList<ClientsProducers> proPath = new LinkedList<>();
+        LinkedList<ClientsProducers> hubPath = new LinkedList<>();
+        LinkedList<ClientsProducers> bridgePath = new LinkedList<>();
+        LinkedList<ClientsProducers> finalPath = new LinkedList<>();
+        List<LinkedList<ClientsProducers>> pCombinations;
+        List<LinkedList<ClientsProducers>> hCombinations;
+
 
         //for each expedition list, get client closest hub, and get producers who deliver any product
         for (ExpeditionList e: expList) {
@@ -56,14 +61,13 @@ public class ExpeditionListShortestPath {
         }
 
         //System.out.println(proExpList);
-
         ArrayList<ClientsProducers> proExpListClone = (ArrayList<ClientsProducers>) proExpList.clone();
 
         //create all permutations of producers to get CSP
         pCombinations = listPermutations(proExpList);
 
         //get shortest path between producers in exp list
-        totalDistance = getShortestPathWithNodes(pCombinations, proPath);
+        totalDistance = getShortestPathWithNodes(clpGraph, pCombinations, proPath);
         //System.out.println(proPath);
 
         //get list of hubs in previous map
@@ -89,7 +93,7 @@ public class ExpeditionListShortestPath {
         hCombinations = listPermutations(hubListClone);
 
         //get shortest path between hubs in exp list
-        double hubDistBuffer = getShortestPathWithNodes(hCombinations, hubPath);
+        double hubDistBuffer = getShortestPathWithNodes(clpGraph, hCombinations, hubPath);
 
         //hubPath.removeIf(filter -> !hubListClone.contains(filter) && !proExpListClone.contains(filter));
 
@@ -119,10 +123,23 @@ public class ExpeditionListShortestPath {
         //System.out.println(pCombinations);
         //System.out.println(hCombinations);
 
+        System.out.println(finalPath);
+        for(int i = 0; i < finalPath.size()-1; i++) {
+
+            ArrayList<String> pBuffer = new ArrayList<>();
+            LinkedList<ClientsProducers> bufferPathDistances = new LinkedList<>();
+            pBuffer.add(finalPath.get(i).getCode());
+            pBuffer.add(finalPath.get(i+1).getCode());
+
+            Integer buffer = Algorithms.shortestPath(clpGraph, finalPath.get(0), finalPath.get(i+1), Integer::compare, Integer::sum, 0, bufferPathDistances);
+            distancesPair.put(pBuffer, buffer);
+
+        }
+
         return generateToBePrinted(finalPath);
     }
 
-    private static double getShortestPathWithNodes(List<LinkedList<ClientsProducers>> combinations, LinkedList<ClientsProducers> path) {
+    private static double getShortestPathWithNodes( MapGraph<ClientsProducers, Integer> clpGraph, List<LinkedList<ClientsProducers>> combinations, LinkedList<ClientsProducers> path) {
 
         //System.out.println("starting shortestpathwithnodes");
 
@@ -235,5 +252,17 @@ public class ExpeditionListShortestPath {
         }
 
         return tobePrintedMap;
+    }
+
+    public static Map<ArrayList<String>, Integer> generateToBePrintedDistancesMap () {
+
+        Map<ArrayList<String>, Integer> tobePrintedMap = new HashMap<>(distancesPair);
+
+        return tobePrintedMap;
+
+    }
+
+    public static double getTotalDistance() {
+        return totalDistance;
     }
 }

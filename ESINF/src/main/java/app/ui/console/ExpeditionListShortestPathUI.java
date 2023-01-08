@@ -17,8 +17,13 @@ public class ExpeditionListShortestPathUI implements Runnable{
 
         System.out.println("Shortest delivery path");
         System.out.println(ctrl.ExpeditionListShortestPath(App.getInstance().getCompany().getStatistics().getStatisticsForBasket().get(n)));
+        System.out.println("Distances between points");
+        System.out.println(ctrl.generateTobePrintedDistanceMap());
+        System.out.println("Total distance");
+        System.out.println(ctrl.getTotalDistance());
         System.out.println("Hub/Baskets Delivered");
         System.out.println(ctrl.generateToBePrintedMap());
+
 
     }
 }

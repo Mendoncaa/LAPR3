@@ -1,11 +1,9 @@
 package app.controller;
 
-import app.domain.model.ClientsProducers;
 import app.domain.model.Company;
 import app.domain.model.ExpeditionList;
 import app.domain.shared.ExpeditionListCreator;
 import app.domain.shared.ExpeditionListShortestPath;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Map;
@@ -29,5 +27,11 @@ public class ExpeditionListShortestPathController {
 
     public Map<String, Integer> generateToBePrintedMap () {
         return ExpeditionListShortestPath.generateToBePrintedMap();
+    }
+    public Map<ArrayList<String>, Integer> generateTobePrintedDistanceMap() {
+        return ExpeditionListShortestPath.generateToBePrintedDistancesMap();
+    }
+    public  double getTotalDistance() {
+        return ExpeditionListShortestPath.getTotalDistance();
     }
 }

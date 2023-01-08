@@ -12,10 +12,7 @@ import java.util.*;
 
 public class ClosestPointsCheck {
 
-    static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
 
-    static  ArrayList<ClientsProducers> availableHubs = App.getInstance().getCompany().getHubStore().getHubs();
-    static LinkedList<ClientsProducers> path = new LinkedList<>();
 
     public static Set<Path> getCloserPoints(Graph<ClientsProducers, Integer> graph) {
 
@@ -48,6 +45,9 @@ public class ClosestPointsCheck {
 
     public static ClientsProducers getClosestHub(ClientsProducers cp, Graph<ClientsProducers, Integer> graph) {
 
+        MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+        ArrayList<ClientsProducers> availableHubs = App.getInstance().getCompany().getHubStore().getHubs();
+
         ArrayList<LinkedList<ClientsProducers>> paths = new ArrayList<>();
         ArrayList<Integer> dists = new ArrayList<>();
 
@@ -66,6 +66,9 @@ public class ClosestPointsCheck {
     }
 
     public static ArrayList<ClientsProducers> closestProducers (ClientsProducers hub, int n) {
+
+        MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+        LinkedList<ClientsProducers> path = new LinkedList<>();
 
         ArrayList<ClientsProducers> closestPbuffer = new ArrayList<>();
         ArrayList<ClientsProducers> closestP = new ArrayList<>();

@@ -11,16 +11,16 @@ import java.util.*;
 
 public class GraphUI implements Runnable{
 
-    static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
-    static ClientsProducers clp1 = null;
-    static ClientsProducers clp2 = null;
-
-    LinkedList<String> toBePrinted = new LinkedList<>();
-    LinkedList<ClientsProducers> path = new LinkedList<>();
-    ArrayList<String> codePath = new ArrayList<>();
-
     @Override
     public void run() {
+
+        MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
+        ClientsProducers clp1 = null;
+        ClientsProducers clp2 = null;
+
+        LinkedList<String> toBePrinted = new LinkedList<>();
+        LinkedList<ClientsProducers> path = new LinkedList<>();
+        ArrayList<String> codePath = new ArrayList<>();
 
         if(!FilesReaderApp.graphImported) {
             System.out.println("Graph not yet imported!");
