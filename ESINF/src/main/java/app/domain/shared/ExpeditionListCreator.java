@@ -2,11 +2,14 @@ package app.domain.shared;
 
 import app.controller.App;
 import app.domain.model.*;
+import app.graph.map.MapGraph;
 
 import java.util.ArrayList;
 
 
 public class ExpeditionListCreator {
+
+    static MapGraph<ClientsProducers, Integer> clpGraph = App.getInstance().getCompany().getClientsProducersGraph();
 
     public static ArrayList<ExpeditionList> getExpeditionListNoRestrictions(int day) {
 
@@ -200,7 +203,6 @@ public class ExpeditionListCreator {
 
         ArrayList<ExpeditionList> expeditionListSet = new ArrayList<>();            // expedition list of day key
 
-
         // For each day
         if (App.getInstance().getCompany().getStock().getStockNoRest().containsKey(day) && App.getInstance().getCompany().getOrders().getOrders().containsKey(day)) {
             ArrayList<ClientBasket> clientBasketsOrders = new ArrayList<>(App.getInstance().getCompany().getOrders().getOrders().get(day));     // orders of day key
@@ -226,127 +228,107 @@ public class ExpeditionListCreator {
                 ArrayList<Product> productsOrder = clientBasketsOrder.getProducts();       // products of one order
                 ExpeditionList expeditionList = new ExpeditionList(clientBasketsOrder.getEntity());     // expedition list of one order
 
+                ArrayList<ClientsProducers> producersFiltered;
+
+                ClientsProducers cHub = ClosestPointsCheck.getClosestHub(clientBasketsOrder.getEntity(), clpGraph);
+
+                producersFiltered = ClosestPointsCheck.closestProducers(cHub, n);
+                //System.out.println(producersFiltered);
+
                 // for each product inside each client basket in order
                 // product of one order
                 for (Product productOrder : productsOrder) {
 
-                    ArrayList<ClientsProducers> producersFilteredClone = new ArrayList<>();
-
-
                     if (productOrder.getQuantity() > 0) {
                         ClientsProducers producer;
                         producer = thereIsProduct(clientBasketsStock, clientBasketsSurplusOlder, clientBasketsSurplusRecent, productOrder, clientBasketsOrder.getEntity());   // find product owner id
-                        int productOwnerID;
-                        int productOwnerSurplusOlderID = -1;
-                        int productOwnerSurplusRecentID = -1;
 
-                        if (producer != null) {
+                        if (producersFiltered.contains(producer)) {
 
-                            productOwnerID = findProductOwnerID(clientBasketsStock, producer, 0);
+                            int productOwnerID;
+                            int productOwnerSurplusOlderID = -1;
+                            int productOwnerSurplusRecentID = -1;
 
-                            if (newer) {
-                                productOwnerSurplusRecentID = findProductOwnerID(clientBasketsSurplusRecent, producer, 0);
-                            }
+                            if (producer != null) {
 
-                            if (older) {
-                                productOwnerSurplusOlderID = findProductOwnerID(clientBasketsSurplusOlder, producer, 0);
-                            }
+                                productOwnerID = findProductOwnerID(clientBasketsStock, producer, 0);
 
-                            int productInStockID = -1;
-                            int productInSurplusRecentID = -1;
-                            int productInSurplusOlderID = -1;
-
-                            if (productOwnerID != -1) {
-                                productInStockID = returnProductID(clientBasketsStock.get(productOwnerID), productOrder); // return product id that is in stock
-                            }
-
-                            if (older) {
-                                productInSurplusOlderID = findProductSurplus(clientBasketsSurplusOlder, productOrder, productOwnerSurplusOlderID, 0);
-                            }
-                            if (newer) {
-                                productInSurplusRecentID = findProductSurplus(clientBasketsSurplusRecent, productOrder, productOwnerSurplusRecentID, 0);
-                            }
-
-                            if (productInStockID != -1 || productInSurplusOlderID != -1 || productInSurplusRecentID != -1) {
-
-                                Product productInSurplusRecent = null;
-                                Product productInSurplusOlder = null;
-                                Product productInStock = null;
-
-                                if (productInStockID != -1) {
-                                    productInStock = clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID);
+                                if (newer) {
+                                    productOwnerSurplusRecentID = findProductOwnerID(clientBasketsSurplusRecent, producer, 0);
                                 }
 
-                                if (productInSurplusOlderID != -1 && productOwnerSurplusOlderID != -1) {
-                                    productInSurplusOlder = clientBasketsSurplusOlder.get(productOwnerSurplusOlderID).getProducts().get(productInSurplusOlderID);
-                                }
-                                if (productInSurplusRecentID != -1 && productOwnerSurplusRecentID != -1) {
-                                    productInSurplusRecent = clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID);
+                                if (older) {
+                                    productOwnerSurplusOlderID = findProductOwnerID(clientBasketsSurplusOlder, producer, 0);
                                 }
 
-                                float quantity_ordered = productOrder.getQuantity();
-                                float rest = productOrder.getQuantity();
-                                float quantity_delivered = 0;
+                                int productInStockID = -1;
+                                int productInSurplusRecentID = -1;
+                                int productInSurplusOlderID = -1;
 
-                                if (productInSurplusOlder != null) {
+                                if (productOwnerID != -1) {
+                                    productInStockID = returnProductID(clientBasketsStock.get(productOwnerID), productOrder); // return product id that is in stock
+                                }
 
-                                    if (productInSurplusOlder.getQuantity() >= rest) {
-                                        quantity_delivered = quantity_delivered + productOrder.getQuantity();
-                                        rest = 0;
-                                        clientBasketsSurplusOlder.get(productOwnerSurplusOlderID).getProducts().get(productInSurplusOlderID).setQuantity(productInSurplusOlder.getQuantity() - productOrder.getQuantity());
-                                    } else {
-                                        quantity_delivered = quantity_delivered + productInSurplusOlder.getQuantity();
-                                        rest = rest - productInSurplusOlder.getQuantity();
-                                        clientBasketsSurplusOlder.get(productOwnerSurplusOlderID).getProducts().get(productInSurplusOlderID).setQuantity(0);    //atualizar stock
+                                if (older) {
+                                    productInSurplusOlderID = findProductSurplus(clientBasketsSurplusOlder, productOrder, productOwnerSurplusOlderID, 0);
+                                }
+                                if (newer) {
+                                    productInSurplusRecentID = findProductSurplus(clientBasketsSurplusRecent, productOrder, productOwnerSurplusRecentID, 0);
+                                }
+
+                                if (productInStockID != -1 || productInSurplusOlderID != -1 || productInSurplusRecentID != -1) {
+
+                                    Product productInSurplusRecent = null;
+                                    Product productInSurplusOlder = null;
+                                    Product productInStock = null;
+
+                                    if (productInStockID != -1) {
+                                        productInStock = clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID);
                                     }
 
-                                    if (productInSurplusRecent != null && rest > 0) {
-                                        if (productInSurplusRecent.getQuantity() > rest) {
-                                            quantity_delivered = quantity_delivered + rest;
+                                    if (productInSurplusOlderID != -1 && productOwnerSurplusOlderID != -1) {
+                                        productInSurplusOlder = clientBasketsSurplusOlder.get(productOwnerSurplusOlderID).getProducts().get(productInSurplusOlderID);
+                                    }
+                                    if (productInSurplusRecentID != -1 && productOwnerSurplusRecentID != -1) {
+                                        productInSurplusRecent = clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID);
+                                    }
+
+                                    float quantity_ordered = productOrder.getQuantity();
+                                    float rest = productOrder.getQuantity();
+                                    float quantity_delivered = 0;
+
+                                    if (productInSurplusOlder != null) {
+
+                                        if (productInSurplusOlder.getQuantity() >= rest) {
+                                            quantity_delivered = quantity_delivered + productOrder.getQuantity();
                                             rest = 0;
-                                            clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(productInSurplusRecent.getQuantity() - rest);
+                                            clientBasketsSurplusOlder.get(productOwnerSurplusOlderID).getProducts().get(productInSurplusOlderID).setQuantity(productInSurplusOlder.getQuantity() - productOrder.getQuantity());
                                         } else {
-                                            quantity_delivered = quantity_delivered + productInSurplusRecent.getQuantity();
-                                            rest = rest - productInSurplusRecent.getQuantity();
-                                            clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(0);
+                                            quantity_delivered = quantity_delivered + productInSurplusOlder.getQuantity();
+                                            rest = rest - productInSurplusOlder.getQuantity();
+                                            clientBasketsSurplusOlder.get(productOwnerSurplusOlderID).getProducts().get(productInSurplusOlderID).setQuantity(0);    //atualizar stock
                                         }
-                                    }
 
-                                    if (productInStock != null && rest > 0) {
-                                        if (productInStock.getQuantity() > rest) {
-                                            quantity_delivered = quantity_delivered + rest;
-                                            rest = 0;
-                                            clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - rest);
-                                        } else {
-                                            quantity_delivered = quantity_delivered + productInStock.getQuantity();
-                                            clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(0);
-                                        }
-                                    }
-
-                                    expeditionList.getBasketElements().add(new BasketElement(new Product(productOrder.getName(), quantity_delivered), clientBasketsStock.get(productOwnerID).getEntity()));          // add product to expedition list
-                                    expeditionList.getBasketOrderedElements().add(new BasketElement(new Product(productOrder.getName(), quantity_ordered), clientBasketsStock.get(productOwnerID).getEntity()));
-
-                                } else {
-                                    if (productInSurplusRecent != null) {
-
-                                        if (productInSurplusRecent.getQuantity() > rest) {
-                                            quantity_delivered = quantity_delivered + rest;
-                                            rest = 0;
-                                            clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(productInSurplusRecent.getQuantity() - rest);    //atualizar stock
-                                        } else {
-                                            quantity_delivered = quantity_delivered + productInSurplusRecent.getQuantity();
-                                            rest = rest - productInSurplusRecent.getQuantity();
-                                            clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(0);    //atualizar stock
+                                        if (productInSurplusRecent != null && rest > 0) {
+                                            if (productInSurplusRecent.getQuantity() > rest) {
+                                                quantity_delivered = quantity_delivered + rest;
+                                                rest = 0;
+                                                clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(productInSurplusRecent.getQuantity() - rest);
+                                            } else {
+                                                quantity_delivered = quantity_delivered + productInSurplusRecent.getQuantity();
+                                                rest = rest - productInSurplusRecent.getQuantity();
+                                                clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(0);
+                                            }
                                         }
 
                                         if (productInStock != null && rest > 0) {
                                             if (productInStock.getQuantity() > rest) {
                                                 quantity_delivered = quantity_delivered + rest;
                                                 rest = 0;
-                                                clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - rest);    //atualizar stock
+                                                clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - rest);
                                             } else {
                                                 quantity_delivered = quantity_delivered + productInStock.getQuantity();
-                                                clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
+                                                clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(0);
                                             }
                                         }
 
@@ -354,23 +336,54 @@ public class ExpeditionListCreator {
                                         expeditionList.getBasketOrderedElements().add(new BasketElement(new Product(productOrder.getName(), quantity_ordered), clientBasketsStock.get(productOwnerID).getEntity()));
 
                                     } else {
-                                        if (productInStock != null) {
-                                            if (productInStock.getQuantity() > productOrder.getQuantity()) {
-                                                quantity_delivered = quantity_delivered + productOrder.getQuantity();
-                                                clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - productOrder.getQuantity());    //atualizar stock
+                                        if (productInSurplusRecent != null) {
+
+                                            if (productInSurplusRecent.getQuantity() > rest) {
+                                                quantity_delivered = quantity_delivered + rest;
+                                                rest = 0;
+                                                clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(productInSurplusRecent.getQuantity() - rest);    //atualizar stock
                                             } else {
-                                                quantity_delivered = quantity_delivered + productInStock.getQuantity();
-                                                clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
+                                                quantity_delivered = quantity_delivered + productInSurplusRecent.getQuantity();
+                                                rest = rest - productInSurplusRecent.getQuantity();
+                                                clientBasketsSurplusRecent.get(productOwnerSurplusRecentID).getProducts().get(productInSurplusRecentID).setQuantity(0);    //atualizar stock
+                                            }
+
+                                            if (productInStock != null && rest > 0) {
+                                                if (productInStock.getQuantity() > rest) {
+                                                    quantity_delivered = quantity_delivered + rest;
+                                                    rest = 0;
+                                                    clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - rest);    //atualizar stock
+                                                } else {
+                                                    quantity_delivered = quantity_delivered + productInStock.getQuantity();
+                                                    clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
+                                                }
                                             }
 
                                             expeditionList.getBasketElements().add(new BasketElement(new Product(productOrder.getName(), quantity_delivered), clientBasketsStock.get(productOwnerID).getEntity()));          // add product to expedition list
                                             expeditionList.getBasketOrderedElements().add(new BasketElement(new Product(productOrder.getName(), quantity_ordered), clientBasketsStock.get(productOwnerID).getEntity()));
 
+                                        } else {
+                                            if (productInStock != null) {
+                                                if (productInStock.getQuantity() > productOrder.getQuantity()) {
+                                                    quantity_delivered = quantity_delivered + productOrder.getQuantity();
+                                                    clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(productInStock.getQuantity() - productOrder.getQuantity());    //atualizar stock
+                                                } else {
+                                                    quantity_delivered = quantity_delivered + productInStock.getQuantity();
+                                                    clientBasketsStock.get(productOwnerID).getProducts().get(productInStockID).setQuantity(0);    //atualizar stock
+                                                }
+
+                                                expeditionList.getBasketElements().add(new BasketElement(new Product(productOrder.getName(), quantity_delivered), clientBasketsStock.get(productOwnerID).getEntity()));          // add product to expedition list
+                                                expeditionList.getBasketOrderedElements().add(new BasketElement(new Product(productOrder.getName(), quantity_ordered), clientBasketsStock.get(productOwnerID).getEntity()));
+
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                        //else{
+                        //    System.out.println("no closest producer has specified produce in stock!");
+                        //}
                     }
                 }
 
@@ -382,7 +395,7 @@ public class ExpeditionListCreator {
                 }
 
                 expeditionListSet.add(expeditionList);
-
+                producersFiltered.clear();
             }
         }
         return expeditionListSet;
@@ -450,7 +463,7 @@ public class ExpeditionListCreator {
         }
     }
 
-    private static int findProductSurplus(ArrayList<ClientBasket> stock, Product product, int cpId, int idx) {
+    public static int findProductSurplus(ArrayList<ClientBasket> stock, Product product, int cpId, int idx) {
         if (idx >= stock.get(cpId).getProducts().size()) return -1;
 
         if (stock.get(cpId).getProducts().get(idx).getName().equalsIgnoreCase(product.getName()) && stock.get(cpId).getProducts().get(idx).getQuantity() > 0) {

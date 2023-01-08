@@ -27,6 +27,8 @@ nr_tipo_sensores INTEGER;
 nr_sensores INTEGER;
 nr_Leituras INTEGER;
 nr_input_hub INTEGER;
+nr_pista_auditoria INTEGER;
+nr_input_sensor INTEGER;
 
 BEGIN   
 DBMS_OUTPUT.PUT_LINE(chr(0));
@@ -116,10 +118,10 @@ DBMS_OUTPUT.PUT_LINE('Input Hub');
 DBMS_OUTPUT.PUT_LINE('Expected: 5   Actual: '||nr_input_hub);
 DBMS_OUTPUT.PUT_LINE(chr(0));   
 
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(111,1,1,1,'Joaquim',123456789,'j@gmail.com',100000,0,0);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(123,2,2,2,'Joel',123336789,'joel@gmail.com',300000,'CT14',1,10000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(321,3,3,3,'Ricardo',113456789,'ric@gmail.com',10000,'CT10',2,5000);
-insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,morada_entrega_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(413,2,4,4,'Tiago',444459999,'tiago@gmail.com',103000,'CT11',0,0);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,numero_total_encomendas,valor_total_encomendas) values(111,1,1,'Joaquim',123456789,'j@gmail.com',100000,0,0);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(123,2,2,'Joel',123336789,'joel@gmail.com',300000,'CT14',1,10000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(321,3,3,'Ricardo',113456789,'ric@gmail.com',10000,'CT10',2,5000);
+insert into cliente(codigo_unico,tipo_cliente_id,morada_correspondencia_id,nome,numero_fiscal,email,plafond,hub_location_id,numero_total_encomendas,valor_total_encomendas) values(413,2,4,'Tiago',444459999,'tiago@gmail.com',103000,'CT11',0,0);
 SELECT Count(*) INTO nr_cliente from Cliente;
 DBMS_OUTPUT.PUT_LINE('Clientes');
 DBMS_OUTPUT.PUT_LINE('Expected: 4   Actual: '||nr_cliente);
@@ -131,6 +133,12 @@ SELECT Count(*) INTO nr_metodo_distribuicao from Metodo_distribuicao;
 DBMS_OUTPUT.PUT_LINE('Métodos de distribuição');
 DBMS_OUTPUT.PUT_LINE('Expected: 2   Actual: '||nr_metodo_distribuicao);
 DBMS_OUTPUT.PUT_LINE(chr(0));
+
+insert into input_sensor (input_string) values ('32452VV022324544354323412:33');
+SELECT Count(*) INTO nr_input_sensor from input_sensor;
+DBMS_OUTPUT.PUT_LINE('Sensores');
+DBMS_OUTPUT.PUT_LINE(nr_input_sensor)
+
 
 insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (1,2,TO_DATE('05/08/2022', 'DD/MM/YYYY'), 23.11);
 insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (2,4,TO_DATE('17/10/2019', 'DD/MM/YYYY'), 23.11);
@@ -285,6 +293,14 @@ INSERT INTO Restricao VALUES (2, 2, TO_DATE('07/02/2020', 'DD/MM/YYYY'), TO_DATE
 INSERT INTO Restricao VALUES (3, 2, TO_DATE('16/07/2023', 'DD/MM/YYYY'), TO_DATE('25/12/2023', 'DD/MM/YYYY'));
 INSERT INTO Restricao VALUES (3, 3, TO_DATE('29/12/2021', 'DD/MM/YYYY'), TO_DATE('01/01/2022', 'DD/MM/YYYY'));
 INSERT INTO Restricao VALUES (3, 4, TO_DATE('08/05/2022', 'DD/MM/YYYY'), TO_DATE('06/06/2022', 'DD/MM/YYYY'));
+
+insert into Pista_Auditoria(ID, HoraRealizada, Utilizador, Campo_id, Tipo_alteracao) VALUES(1,CURRENT_TIMESTAMP, 'Cliente' , 4,'UPDATE');
+insert into Pista_Auditoria(ID, HoraRealizada, Utilizador, Campo_id, Tipo_alteracao) VALUES(1,CURRENT_TIMESTAMP, 'Cliente' , 4,'DELETE');
+insert into Pista_Auditoria(ID, HoraRealizada, Utilizador, Campo_id, Tipo_alteracao) VALUES(1,CURRENT_TIMESTAMP, 'Cliente' , 4,'INSERT');
+SELECT Count(*) INTO nr_pista_auditoria from Pista_Auditoria;
+DBMS_OUTPUT.PUT_LINE('Pista Auditoria');
+DBMS_OUTPUT.PUT_LINE('Expected: 3 Actual: '||nr_pista_auditoria);
+DBMS_OUTPUT.PUT_LINE(chr(0));
 
 END;
 /

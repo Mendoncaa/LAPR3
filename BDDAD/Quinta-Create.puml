@@ -91,7 +91,6 @@ entity Cliente {
     --
     Tipo_Cliente_ID: INTEGER <<FK>> NOT NULL
     Morada_Correspondencia_ID: INTEGER <<FK>> NOT NULL
-    Morada_Entrega_ID: INTEGER <<FK>> NOT NULL
     Nome: VARCHAR2(255) NOT NULL
     Numero_Fiscal: VARCHAR(9) NOT NULL UNIQUE
     Email: VARCHAR2(255) NOT NULL UNIQUE

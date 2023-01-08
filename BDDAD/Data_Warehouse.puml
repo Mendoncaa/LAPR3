@@ -5,13 +5,13 @@ entity Setor_DIM {
     Designacao: VARCHAR2(255) NOT NULL
 }
 
-entity Cultura {
+entity Cultura_H {
     * ID: INTEGER <<PK>>
     --
     Nome: VARCHAR2(255) NOT NULL
 }
 
-entity Tipo_cultura {
+entity Tipo_cultura_H {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL
@@ -31,13 +31,13 @@ entity Tempo_DIM {
     Month: INTEGER NOT NULL
 }
 
-entity Tipo_Hub {
+entity Tipo_Hub_H {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL
 }
 
-entity Hub {
+entity Hub_H {
     *Location_ID: VARCHAR2(5) <<PK>>
     --
     Latitude: NUMBER
@@ -67,7 +67,7 @@ entity Cliente_DIM {
 }
 
 
-entity Morada {
+entity Morada_H {
     * ID: INTEGER <<PK>>
     --
     Localidade: VARCHAR2(255) NOT NULL
@@ -78,7 +78,7 @@ entity Morada {
 }
 
 
-entity Tipo_Cliente {
+entity Tipo_Cliente_H {
     * ID: INTEGER <<PK>>
     --
     Designacao: VARCHAR2(255) NOT NULL UNIQUE
@@ -111,11 +111,11 @@ Venda_FAC ||-r-|{ Produto_DIM
 Venda_FAC ||-u-|{ Tempo_DIM
 Venda_FAC ||-d-|{ Local_recolha_DIM
 
-Cliente_DIM ||-u-|{ Morada
-Cliente_DIM ||-d-|{ Tipo_Cliente
-Produto_DIM ||-u-|{ Cultura
-Produto_DIM ||-l-|{ Tipo_cultura
+Cliente_DIM ||-u-|{ Morada_H
+Cliente_DIM ||-d-|{ Tipo_Cliente_H
+Produto_DIM ||-u-|{ Cultura_H
+Produto_DIM ||-l-|{ Tipo_cultura_H
 
-Local_recolha_DIM ||-d-|{ Hub
-Local_recolha_DIM ||-r-|{ Tipo_Hub
+Local_recolha_DIM ||-d-|{ Hub_H
+Local_recolha_DIM ||-r-|{ Tipo_Hub_H
 
