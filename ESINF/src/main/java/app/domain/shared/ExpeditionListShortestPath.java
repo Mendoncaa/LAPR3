@@ -106,7 +106,7 @@ public class ExpeditionListShortestPath {
                 finalPath.add(clientsProducers);
             }
         }
-        
+
         //finalPath.addAll(proPath);
         //finalPath.addAll(bridgePath);
         //finalPath.addAll(hubPath);
