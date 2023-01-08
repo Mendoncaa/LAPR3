@@ -540,7 +540,7 @@ void sensVelcVento(int i, int freqVelcVento)
 	{
 		fprintf(ficheiro, "Sensor %d: \n", sensVelocidadeVento[i].id);
 		// printf("%ld", sensTemperatura[i].readings_size);
-		for (int j = 0; i < sensVelocidadeVento[i].readings[j]; j++)
+		for (int j = 0; i < sensVelocidadeVento[i].readings_size - 1; j++)
 		{
 			fprintf(ficheiro, "%d, ", sensVelocidadeVento[i].readings[j]);
 		}
@@ -1673,6 +1673,14 @@ int main()
 	printf("Qual a frequencia de leitura dos sensor de pluviosidade? (em segundos)\n");
 	int freqPluvio;
 	scanf("%d", &freqPluvio);
+	/*
+	sensTemp(0,freqTemp);
+	sensVelcVento(0, freqVelcVento);
+	sensDirVento(0, freqDirVento);
+	sensHumAtm(0, freqHumAtm, freqPluvio);
+	sensHumSolo(0, freqHumSolo, freqPluvio);
+	sensPluvio(0, freqPluvio, freqTemp);
+	*/
 	int sensor;
 	printf("Qual o sensor que pretende ler?\n");
 	printf("1 - Temperatura\n\n");
