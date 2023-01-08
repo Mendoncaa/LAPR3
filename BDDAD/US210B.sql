@@ -124,3 +124,7 @@ CREATE OR REPLACE PACKAGE BODY Restricao_PACK AS
     END Restricao_Periodo_Ord_FUNC;
 END;
 /
+
+SELECT * FROM TABLE(Restricao_PACK.Restricao_Curto_Prazo_FUNC(TO_DATE('16/11/2022','DD/MM/YYYY')));
+SELECT * FROM TABLE(Restricao_PACK.Restricao_Campo_Data_FUNC(TO_DATE('16/02/2022','DD/MM/YYYY'), 1));
+SELECT * FROM TABLE(Restricao_PACK.Restricao_Periodo_Ord_FUNC(TO_DATE('16/02/2020','DD/MM/YYYY'), TO_DATE('16/02/2023','DD/MM/YYYY')));
