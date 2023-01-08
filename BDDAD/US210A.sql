@@ -423,7 +423,6 @@ END Registar_Adubacao_TRIG;
 /
 
 /*--- US210.A.C - Registar Aplicação Fator Produção ---*/
-
 CREATE OR REPLACE PROCEDURE Registar_Aplicacao_Fator_Producao_PROC(var_plantacao_ID Accao.Plantacao_ID%TYPE, var_data_accao Accao.Data_Accao%TYPE, var_quantidade Accao.Quantidade%TYPE, var_fator_producao_ID Aplicacao_Fator_Producao.Fator_Producao_ID%TYPE, var_metodo_dist_ID Aplicacao_Fator_Producao.Metodo_Distribuicao_ID%TYPE)
 AS
     var_plant_null_exc EXCEPTION;
@@ -748,3 +747,37 @@ EXCEPTION
         RAISE_APPLICATION_ERROR(-20003, 'Acção previamente associada a Operação de Adubação;');
 END Registar_Colheita_TRIG;
 /
+
+/*SUCCESS*/
+EXEC Registar_Rega_PROC(1, TO_DATE('23/11/2023', 'DD/MM/YYYY'), 23.11, 1);
+/*FAIL INSERTS*/
+EXEC Registar_Rega_PROC(2311, TO_DATE('23/11/2023', 'DD/MM/YYYY'), 23.11, 1);
+EXEC Registar_Rega_PROC(1, TO_DATE('23/11/1967', 'DD/MM/YYYY'), 23.11, 1);
+EXEC Registar_Rega_PROC(1, TO_DATE('23/11/2023', 'DD/MM/YYYY'), -23.11, 1);
+EXEC Registar_Rega_PROC(1, TO_DATE('23/11/2023', 'DD/MM/YYYY'), 23.11, 1123);
+
+/*SUCCESS*/
+EXEC Registar_Adubacao_PROC(2, TO_DATE('4/12/2023', 'DD/MM/YYYY'), 12.4, 2);
+/*FAIL INSERTS*/
+EXEC Registar_Adubacao_PROC(412, TO_DATE('4/12/2023', 'DD/MM/YYYY'), 12.4, 2);
+EXEC Registar_Adubacao_PROC(2, TO_DATE('4/12/1967', 'DD/MM/YYYY'), 12.4, 2);
+EXEC Registar_Adubacao_PROC(2, TO_DATE('4/12/2023', 'DD/MM/YYYY'), -12.4, 2);
+EXEC Registar_Adubacao_PROC(2, TO_DATE('4/12/2023', 'DD/MM/YYYY'), 12.4, 162);
+
+/*SUCCESS*/
+EXEC Registar_Aplicacao_Fator_Producao_PROC(1, TO_DATE('02/02/2023', 'DD/MM/YYYY'), 16.2, 1, 2);
+/*FAIL INSERTS*/
+EXEC Registar_Aplicacao_Fator_Producao_PROC(168, TO_DATE('02/02/2023', 'DD/MM/YYYY'), 16.2, 1, 2);
+EXEC Registar_Aplicacao_Fator_Producao_PROC(1, TO_DATE('02/02/1967', 'DD/MM/YYYY'), 16.2, 1, 2);
+EXEC Registar_Aplicacao_Fator_Producao_PROC(1, TO_DATE('02/02/2023', 'DD/MM/YYYY'), -16.2, 1, 2);
+EXEC Registar_Aplicacao_Fator_Producao_PROC(1, TO_DATE('02/02/2023', 'DD/MM/YYYY'), 16.2, -1, 2);
+EXEC Registar_Aplicacao_Fator_Producao_PROC(1, TO_DATE('02/02/2023', 'DD/MM/YYYY'), 16.2, 1, 2267);
+
+/*SUCCESS*/
+EXEC Registar_Colheita_PROC(1, TO_DATE('16/8/2023', 'DD/MM/YYYY'), 16.8, 2.12, 2);
+/*FAIL INSERTS*/
+EXEC Registar_Colheita_PROC(124, TO_DATE('16/8/2022', 'DD/MM/YYYY'), 16.8, 2.12, 2);
+EXEC Registar_Colheita_PROC(1, TO_DATE('16/8/1967', 'DD/MM/YYYY'), 16.8, 2.12, 2);
+EXEC Registar_Colheita_PROC(1, TO_DATE('16/8/2022', 'DD/MM/YYYY'), -16.8, 2.12, 2);
+EXEC Registar_Colheita_PROC(1, TO_DATE('16/8/2022', 'DD/MM/YYYY'), 16.8, -2.12, 2);
+EXEC Registar_Colheita_PROC(1, TO_DATE('16/8/2022', 'DD/MM/YYYY'), 16.8, 2.12, 672);
