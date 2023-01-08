@@ -28,6 +28,7 @@ nr_sensores INTEGER;
 nr_Leituras INTEGER;
 nr_input_hub INTEGER;
 nr_pista_auditoria INTEGER;
+nr_input_sensor INTEGER;
 
 BEGIN   
 DBMS_OUTPUT.PUT_LINE(chr(0));
@@ -132,6 +133,12 @@ SELECT Count(*) INTO nr_metodo_distribuicao from Metodo_distribuicao;
 DBMS_OUTPUT.PUT_LINE('Métodos de distribuição');
 DBMS_OUTPUT.PUT_LINE('Expected: 2   Actual: '||nr_metodo_distribuicao);
 DBMS_OUTPUT.PUT_LINE(chr(0));
+
+insert into input_sensor (input_string) values ('32452VV022324544354323412:33');
+SELECT Count(*) INTO nr_input_sensor from input_sensor;
+DBMS_OUTPUT.PUT_LINE('Sensores');
+DBMS_OUTPUT.PUT_LINE(nr_input_sensor)
+
 
 insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (1,2,TO_DATE('05/08/2022', 'DD/MM/YYYY'), 23.11);
 insert into Accao (ID,  Plantacao_ID,DATA_ACCAO, QUANTIDADE) VALUES (2,4,TO_DATE('17/10/2019', 'DD/MM/YYYY'), 23.11);
